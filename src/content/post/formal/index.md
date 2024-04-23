@@ -7,3 +7,10 @@ coverImage:
   alt: "T-shirt design for DU's formal at the Cornhusker Hotel"
 tags: ["Illustrator"]
 ---
+
+<div class="w-full">
+<video class="mx-auto" autoplay loop muted playsinline>
+  <source src="/video/formal.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+</div>
