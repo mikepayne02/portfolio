@@ -5,5 +5,5 @@ publishDate: "1 August 2024"
 coverImage:
   src: "./scoops-cover.png"
   alt: "Summer Rush 2023"
-tags: ["Illustrator"]
+tags: ["Blender", "Illustrator", "Photoshop"]
 ---

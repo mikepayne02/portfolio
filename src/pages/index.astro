@@ -1,7 +1,6 @@
 ---
 import PageLayout from '../layouts/BaseLayout.astro'
 import Section from '../components/Section.astro'
-import Card from '../components/Card.astro'
 import ProjectCard from '../components/ProjectCard.astro'
 import Label from '../components/Label.astro'
 import SkillLayout from '../components/SkillLayout.astro'
@@ -32,7 +31,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 			/>
 
 			<div class='flex flex-col items-center gap-y-4'>
-				<h1 class='text-3xl font-bold'>Making things</h1>
+				<h1 class='text-3xl font-bold'>Making cool things</h1>
 				<a
 					href='mailto:michael@payne.cx'
 					class='flex flex-row items-center gap-x-3 rounded-3xl border border-input px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md'
@@ -47,7 +46,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					<p class='font-medium'>Connect</p>
 				</a>
 				<div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
-					<Label title='Lincoln'>
+					<Label title='Overland Park, KS'>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
 							fill='none'
@@ -68,6 +67,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 							></path>
 						</svg>
 					</Label>
+
 					<Label
 						title='LinkedIn'
 						as='a'
@@ -92,21 +92,21 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 		<Section title='About'>
 			<p class='text-muted-foreground'>
 				Solving difficult problems is fun. Throughout my life, I've enjoyed using creativity and
-				critical thinking to my advantage in different applications. Business, technology, and media
+				critical thinking to my advantage in different applications. Finance, technology, and media
 				are some of the central interests I have, and I'm always looking to find where innovation is
 				in those areas.
 			</p>
 			<p class='text-muted-foreground'>
-				In the future, I hope to pursue a field that joins my interests in business as well as
-				technology. I like to optimize and make systems more efficient, and I think the best way to
-				do that is with a team of like-minded people.
+				In the future, I hope to pursue a field that joins my interests in business and software. I
+				like to optimize and make systems more efficient, and I think the best way to do that is
+				with a team of like-minded people.
 			</p>
 		</Section>
 
-		<Section title='Designs'>
+		<Section title='Shirts'>
 			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
 				<ProjectCard
-					href='/du-open'
+					href='/posts/du-open'
 					heading='DU Open 2024'
 					subheading='Definitely not The Masters Logo'
 					imagePath='/src/assets/du-open-pocket.jpg'
@@ -114,7 +114,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					class='w-full sm:w-1/2'
 				/>
 				<ProjectCard
-					href='/delta-scoopsilon'
+					href='/posts/delta-scoopsilon'
 					heading='Delta Scoopsilon'
 					subheading="Fall '23 Philanthropy"
 					imagePath='/src/assets/delta-scoopsilon-pocket.jpg'
@@ -124,22 +124,73 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 			</div>
 			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
 				<ProjectCard
-					href='https://www.google.com'
+					href='/posts/du-donuts'
+					heading='DU Donuts'
+					subheading="Spring '23 Philanthropy"
+					imagePath='/src/assets/du-donuts-pocket.jpg'
+					altText='Bags for Bryan Front Pocket'
+					class='w-full sm:w-1/2'
+				/>
+				<ProjectCard
+					heading='Rush 2023'
+					href='/posts/rush-23'
+					subheading="Summer '23 Recruitment"
+					imagePath='/src/assets/rush-pocket.jpg'
+					altText='Lorem, ipsum dolor sit'
+					class='w-full sm:w-1/2'
+				/>
+			</div>
+			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
+				<ProjectCard
+					heading='Hotel Formal'
+					href='/posts/formal'
+					subheading='Cornhusker Marriot Hotel Art Deco'
+					imagePath='/src/assets/formal-pocket.jpg'
+					altText='Lorem, ipsum dolor sit'
+					class='w-full sm:w-1/2'
+				/>
+				<ProjectCard
+					href='/posts/bags-for-bryan'
 					heading='Bags for Bryan'
 					subheading="Fall '22 Philanthropy"
 					imagePath='/src/assets/bags-for-bryan-pocket.jpg'
 					altText='Bags for Bryan Front Pocket'
 					class='w-full sm:w-1/2'
 				/>
-				<ProjectCard
-					heading='Hotel Formal'
-					subheading='Cornhusker Marriot Hotel Art Deco'
-					imagePath='/src/assets/formal-pocket.jpg'
-					altText='Lorem, ipsum dolor sit'
-					class='w-full sm:w-1/2'
-				/>
 			</div>
 		</Section>
+		<Section title='Education'>
+			<div
+				class='relative rounded-xl border border-border bg-primary-foreground px-5 py-3 transition-all hover:border-foreground/25 hover:shadow-sm'
+			>
+				<svg
+					class='mb-3 h-12 w-auto md:absolute md:-left-16 md:mb-0'
+					fill='currentColor'
+					xmlns='http://www.w3.org/2000/svg'
+					viewBox='0 0 1243.86 1247.35'
+				>
+					<path
+						class='cls-1'
+						d='M523.01,1247.35H0v-368.64h81.18v-509.83H0V.1h439.92c120.16,190.06,240.59,380.53,361.02,571.01.32-.1.64-.21.96-.31v-201.69h-81.02V0h522.89v368.84h-81.19v509.57h81.28v368.79h-439.9c-120.24-190.16-240.67-380.62-361.1-571.09-.31.11-.62.22-.93.34v201.71h81.08v369.18ZM15.84,1231.44h491.36v-337.28h-81.29v-274.51c129.49,204.79,258.29,408.48,386.9,611.88h415.24v-337.26h-81.23V353.09h81.24V15.96h-491.24v337.38h81.24v272.86c-.27.12-.55.24-.82.37C688.48,422.91,559.71,219.24,431.17,15.95H15.94v337.32h81.2v541.08H15.84v337.1Z'
+					></path>
+					<path
+						class='cls-1'
+						d='M122.09,327.8H41.03V41.17h376.37c141.24,223.39,282.79,447.26,424.33,671.14l.97-.24v-384.16h-80.85V41.2h440.98v286.45h-81.23v591.81h81.29v286.72h-376.4c-141.46-223.72-283.08-447.69-424.69-671.66-.31.14-.63.28-.94.42v384.36h81.22v286.82H41.04v-286.28h81.05V327.8Z'
+					></path>
+				</svg>
+				<div class='flex flex-col gap-y-1.5'>
+					<div class='flex flex-col gap-y-0.5'>
+						<h1 class='text-lg font-medium'>University of Nebraska-Lincoln</h1>
+						<h2 class='italic text-muted-foreground'>Major: Finance; Minor: Computer Science</h2>
+						<h2 class='text-muted-foreground'>Aug 2021 - Current</h2>
+					</div>
+					<li>
+						GPA: <span class='font-firacode'>3.86/4.00</span>
+					</li>
+				</div>
+			</div>
+		</Section>
+
 		<Section title='Leadership'>
 			<div
 				class='relative rounded-xl border border-border bg-primary-foreground px-5 py-3 transition-all hover:border-foreground/25 hover:shadow-sm'
@@ -180,8 +231,8 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 					<ul class='list-disc text-muted-foreground'>
 						<button
-							onclick="location.href='http://unldu.org'"
-							class='inline-flex items-center rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400'
+							onclick="window.open('http://unldu.org', '_blank')"
+							class='inline-flex items-center rounded-xl bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400'
 						>
 							<svg
 								class='mr-2 h-4 w-4'
@@ -206,37 +257,6 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 			</div>
 		</Section>
 
-		<Section title='Education'>
-			<div
-				class='relative rounded-xl border border-border bg-primary-foreground px-5 py-3 transition-all hover:border-foreground/25 hover:shadow-sm'
-			>
-				<svg
-					class='mb-3 h-12 w-auto md:absolute md:-left-16 md:mb-0'
-					fill='currentColor'
-					xmlns='http://www.w3.org/2000/svg'
-					viewBox='0 0 1243.86 1247.35'
-				>
-					<path
-						class='cls-1'
-						d='M523.01,1247.35H0v-368.64h81.18v-509.83H0V.1h439.92c120.16,190.06,240.59,380.53,361.02,571.01.32-.1.64-.21.96-.31v-201.69h-81.02V0h522.89v368.84h-81.19v509.57h81.28v368.79h-439.9c-120.24-190.16-240.67-380.62-361.1-571.09-.31.11-.62.22-.93.34v201.71h81.08v369.18ZM15.84,1231.44h491.36v-337.28h-81.29v-274.51c129.49,204.79,258.29,408.48,386.9,611.88h415.24v-337.26h-81.23V353.09h81.24V15.96h-491.24v337.38h81.24v272.86c-.27.12-.55.24-.82.37C688.48,422.91,559.71,219.24,431.17,15.95H15.94v337.32h81.2v541.08H15.84v337.1Z'
-					></path>
-					<path
-						class='cls-1'
-						d='M122.09,327.8H41.03V41.17h376.37c141.24,223.39,282.79,447.26,424.33,671.14l.97-.24v-384.16h-80.85V41.2h440.98v286.45h-81.23v591.81h81.29v286.72h-376.4c-141.46-223.72-283.08-447.69-424.69-671.66-.31.14-.63.28-.94.42v384.36h81.22v286.82H41.04v-286.28h81.05V327.8Z'
-					></path>
-				</svg>
-				<div class='flex flex-col gap-y-1.5'>
-					<div class='flex flex-col gap-y-0.5'>
-						<h1 class='text-lg font-medium'>University of Nebraska-Lincoln</h1>
-						<h2 class='italic text-muted-foreground'>Major: Finance; Minor: Computer Science</h2>
-						<h2 class='text-muted-foreground'>Aug 2021 - Current</h2>
-					</div>
-					<li>
-						GPA: <span class='font-firacode'>3.86/4.00</span>
-					</li>
-				</div>
-			</div>
-		</Section>
 		<Section title='Skills'>
 			<SkillLayout title='Software' skills={software} />
 			<SkillLayout title='Languages' skills={languages} />
@@ -267,6 +287,6 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 			<span class='relative inline-flex h-2 w-2 rounded-full bg-green-400'></span>
 		</span>
 
-		<p class='font-medium'>Connect with me</p>
+		<p class='font-medium'>Connect</p>
 	</a>
 </PageLayout>
