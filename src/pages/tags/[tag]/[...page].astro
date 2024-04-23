@@ -25,7 +25,7 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 }
 
 interface Props {
-	page: Page<CollectionEntry<'post'>>
+	page: Page<CollectionEntry<'project'>>
 }
 
 const { page } = Astro.props
@@ -54,7 +54,7 @@ const paginationProps = {
 
 <PageLayout meta={meta}>
 	<div class='w-full'>
-		<Button title='Back' href='/blog' style='button'>
+		<Button title='Back' href='/projects' style='button'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='14'
@@ -73,24 +73,24 @@ const paginationProps = {
 			Tags:
 			<span class='text-xl'>#{tag}</span>
 		</h1>
-		<section aria-label='Blog post list'>
+		<section aria-label='Project list'>
 			<ul class='flex flex-col gap-y-3 text-start'>
-				{page.data.map((p) => <PostPreview as='h2' post={p} withDesc />)}
+				{page.data.map((p) => <PostPreview as='h2' project={p} withDesc />)}
 			</ul>
 			<Pagination {...paginationProps} />
 		</section>
 		<a
-			href='https://github.com/srleom/astro-theme-resume.git'
+			href='mailto:michael@payne.cx'
 			class='mt-16 inline-flex flex-row items-center gap-x-3 rounded-3xl border border-input px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md'
 		>
 			<span class='relative flex items-center justify-center'>
 				<span
-					class='absolute inline-flex h-2 w-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75'
+					class='absolute inline-flex h-2 w-2 animate-ping rounded-full border border-blue-400 bg-blue-400 opacity-75'
 				></span>
-				<span class='relative inline-flex h-2 w-2 rounded-full bg-green-400'></span>
+				<span class='relative inline-flex h-2 w-2 rounded-full bg-blue-400'></span>
 			</span>
 
-			<p class='font-medium'>Get free template</p>
+			<p class='font-medium'>Connect</p>
 		</a>
 	</div>
 </PageLayout>

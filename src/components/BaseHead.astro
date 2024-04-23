@@ -75,7 +75,6 @@ const socialImageURL = new URL(ogImage ? ogImage : '/social-card.png', Astro.url
 
 <meta name='msapplication-TileColor' content='#da532c' />
 <meta name='msapplication-config' content='/favicon/browserconfig.xml' />
-<meta name='theme-color' content='#ffffff' />
 <link rel='icon' type='image/png' sizes='16x16' href='/favicon/favicon-16x16-dark.png' />
 <link rel='manifest' href='/favicon/site.webmanifest' />
 
@@ -96,7 +95,8 @@ const socialImageURL = new URL(ogImage ? ogImage : '/social-card.png', Astro.url
 <meta content={siteConfig.author} name='author' />
 
 {/* Theme Colour */}
-<meta content='' name='theme-color' />
+<meta content='#ffffff' name='theme-color' media="(prefers-color-scheme: light)" />
+<meta content='#000000' name='theme-color' media="(prefers-color-scheme: dark)" />
 
 {/* Open Graph / Facebook */}
 <meta content={articleDate ? 'article' : 'website'} property='og:type' />

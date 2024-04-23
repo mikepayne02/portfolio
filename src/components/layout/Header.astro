@@ -2,21 +2,21 @@
 import LottieAnimation from 'astro-integration-lottie/Lottie.astro'
 ---
 
-<header class='mb-12 flex w-full flex-wrap pb-3 text-sm sm:flex-nowrap sm:justify-start'>
+<header class='mb-12 gap-y-2 flex w-full flex-wrap pb-3 text-sm sm:flex-nowrap sm:justify-start'>
 	<nav
 		class='relative mx-auto flex w-full items-center justify-between sm:flex sm:items-center'
 		aria-label='global'
 	>
 		<a
-			class='flex flex-row items-start font-firacode text-xl font-bold'
+			class='flex flex-row font-firacode text-xl font-bold'
 			href='/'
 			aria-label='Brand'
 		>
-			<div class='mr-4 h-12 w-12 dark:invisible'>
-				<div class='absolute left-0 top-0 h-12 w-12 dark:invisible'>
+			<div class='mr-4 h-auto w-12 dark:invisible'>
+				<div class='absolute left-0 top-0 h-auto w-12 dark:invisible'>
 					<LottieAnimation src='/logo_black.json' autoplay='visible' loop={false} />
 				</div>
-				<div class='invisible absolute left-0 top-0 h-12 w-12 dark:visible'>
+				<div class='invisible absolute left-0 top-0 h-auto w-12 dark:visible'>
 					<LottieAnimation src='/logo.json' autoplay='visible' loop={false} />
 				</div>
 			</div>
@@ -26,10 +26,10 @@ import LottieAnimation from 'astro-integration-lottie/Lottie.astro'
 
 	<div class='flex flex-row items-center justify-center gap-x-5 sm:gap-x-7'>
 		<a
-			href='/posts'
+			href='/projects'
 			class='flex-none text-[1.05rem] font-medium hover:text-foreground/75'
 			aria-label='Nav Menu Item'
-			>Posts
+			>Projects
 		</a>
 		<a
 			href='/tools'
