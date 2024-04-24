@@ -1,27 +1,6 @@
 ---
-const { slug } = Astro.props
-import { db, Views, sql } from 'astro:db'
-
-try {
-	await db
-		.insert(Views)
-		.values({
-			slug,
-			count: 1
-		})
-		.onConflictDoUpdate({
-			target: Views.slug,
-			set: {
-				count: sql`count + 1`
-			}
-		})
-		.returning({
-			slug: Views.slug,
-			count: Views.count
-		})
-} catch (error) {
-	console.error(error)
-}
+if (!Astro.params.slug) Astro.params.slug = 'index'
+const { slug } = Astro.params
 ---
 
 <view-count class='text-muted-foreground' data-slug={slug}>
@@ -30,14 +9,17 @@ try {
 		views
 	</p>
 </view-count>
+
 <script>
 	class ViewCount extends HTMLElement {
 		constructor() {
 			super()
-			window.requestIdleCallback(async () => {
+
+			const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1))
+			onIdle(async () => {
 				const slug = document.querySelector<HTMLElement>('view-count')!.dataset.slug!
 
-				fetch('/api/views?' + new URLSearchParams({ slug }))
+				fetch('/api/views/' + slug)
 					.then((res) => res.json())
 					.then((data: { count?: number }) => {
 						data.count = data.count || 0
@@ -51,7 +33,6 @@ try {
 				return value.toString()
 			}
 
-			let newValue = ''
 			const suffixes = ['', 'k', 'm', 'b', 't']
 			const suffixNum = Math.floor(('' + value).length / 3)
 			let shortValue = 0
@@ -67,7 +48,7 @@ try {
 			}
 
 			if (shortValue % 1 != 0) return shortValue.toFixed(1) + suffixes[suffixNum]
-			return newValue + suffixes[suffixNum]
+			return shortValue + suffixes[suffixNum]
 		}
 	}
 	customElements.define('view-count', ViewCount)
