@@ -1,12 +1,14 @@
 ---
-title: "Bags For Bryan"
+title: 'Bags For Bryan'
 description: "T-shirt design for DU's 2023 Fall philanthropy event"
-publishDate: "13 Oct 2023"
+publishDate: '13 Oct 2023'
 coverImage:
-  src: "./bags-for-bryan-cover.png"
-  alt: "Bags for Bryan T-shirt design"
-tags: ["Illustrator"]
+  src: './bags-for-bryan-cover.png'
+  alt: 'Bags for Bryan T-shirt design'
+tags: ['Illustrator']
 ---
+
+## Mockup
 
 <div class="w-full">
 <video class="mx-auto" autoplay loop muted playsinline>
