@@ -32,19 +32,102 @@ import '@pagefind/default-ui/css/ui.css'
 				class='ms-auto cursor-pointer rounded-md bg-zinc-200 p-2 font-semibold dark:bg-zinc-700'
 				data-close-modal>Close</button
 			>
-					<div class='search-container'>
-						<div id='site_search'> </div>
+			{
+				import.meta.env.DEV ? (
+					<div class='mx-auto text-center'>
+						<p>
+							Search is only available in production builds. <br />
+							Try building and previewing the site to test it out locally.
+						</p>
 					</div>
-					</button>
+				) : (
+					<div class='search-container'>
+						<div id='portfolio__search' />
+					</div>
+				)
+			}
 		</div>
 	</dialog>
 </site-search>
 
 <script>
-	const { PagefindUI } = await import("@pagefind/default-ui");
-	window.addEventListener('DOMContentLoaded', (event) => {
-        new PagefindUI({ element: "#search", showSubResults: true });
-    });
+	class SiteSearch extends HTMLElement {
+		private closeBtn: HTMLButtonElement
+		private dialog: HTMLDialogElement
+		private dialogFrame: HTMLDivElement
+		private openBtn: HTMLButtonElement
+
+		closeModal = () => {
+			if (this.dialog.open) {
+				this.dialog.close()
+				window.removeEventListener('click', this.onWindowClick)
+			}
+		}
+
+		onWindowClick = (event: MouseEvent) => {
+			// check if it's a link
+			const isLink = 'href' in (event.target || {})
+			// make sure the click is either a link or outside of the dialog
+			if (
+				isLink ||
+				(document.body.contains(event.target as Node) &&
+					!this.dialogFrame.contains(event.target as Node))
+			)
+				this.closeModal()
+		}
+
+		onWindowKeydown = (e: KeyboardEvent) => {
+			// check if it's the / key
+			if (e.key === '/' && !this.dialog.open) {
+				this.openModal()
+				e.preventDefault()
+			}
+		}
+
+		openModal = (event?: MouseEvent) => {
+			this.dialog.showModal()
+			this.querySelector('input')?.focus()
+			event?.stopPropagation()
+			window.addEventListener('click', this.onWindowClick)
+		}
+
+		constructor() {
+			super()
+			this.openBtn = this.querySelector<HTMLButtonElement>('button[data-open-modal]')!
+			this.closeBtn = this.querySelector<HTMLButtonElement>('button[data-close-modal]')!
+			this.dialog = this.querySelector('dialog')!
+			this.dialogFrame = this.querySelector('.dialog-frame')!
+
+			this.openBtn.addEventListener('click', this.openModal)
+			this.openBtn.disabled = false
+			this.closeBtn.addEventListener('click', this.closeModal)
+		}
+
+		connectedCallback() {
+			// Listen for keyboard shortcut
+			window.addEventListener('keydown', this.onWindowKeydown)
+
+			// only add pagefind in production
+			if (import.meta.env.DEV) return
+			const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1))
+			onIdle(async () => {
+				const { PagefindUI } = await import('@pagefind/default-ui')
+				new PagefindUI({
+					baseUrl: import.meta.env.BASE_URL,
+					bundlePath: import.meta.env.BASE_URL.replace(/\/$/, '') + '/pagefind/',
+					element: '#portfolio__search',
+					showImages: false,
+					showSubResults: true
+				})
+			})
+		}
+
+		disconnectedCallback() {
+			window.removeEventListener('keydown', this.onWindowKeydown)
+		}
+	}
+
+	customElements.define('site-search', SiteSearch)
 </script>
 
 <style is:global>
@@ -52,16 +135,16 @@ import '@pagefind/default-ui/css/ui.css'
 		--pagefind-ui-font: inherit;
 	}
 
-	#cactus__search .pagefind-ui__search-clear {
+	#portfolio__search .pagefind-ui__search-clear {
 		width: calc(60px * var(--pagefind-ui-scale));
 		padding: 0;
 		background-color: transparent;
 		overflow: hidden;
 	}
-	#cactus__search .pagefind-ui__search-clear:focus {
+	#portfolio__search .pagefind-ui__search-clear:focus {
 		outline: 1px solid theme('colors.accent.foreground');
 	}
-	#cactus__search .pagefind-ui__search-clear::before {
+	#portfolio__search .pagefind-ui__search-clear::before {
 		content: '';
 		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' %3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M6 18L18 6M6 6l12 12'%3E%3C/path%3E%3C/svg%3E")
 			center / 60% no-repeat;
@@ -73,11 +156,11 @@ import '@pagefind/default-ui/css/ui.css'
 		height: 100%;
 	}
 
-	#cactus__search .pagefind-ui__result {
+	#portfolio__search .pagefind-ui__result {
 		border: 0;
 	}
 
-	#cactus__search .pagefind-ui__result-link {
+	#portfolio__search .pagefind-ui__result-link {
 		background-size: 100% 6px;
 		background-position: bottom;
 		background-repeat: repeat-x;
@@ -89,7 +172,7 @@ import '@pagefind/default-ui/css/ui.css'
 		);
 	}
 
-	#cactus__search .pagefind-ui__result-link:hover {
+	#portfolio__search .pagefind-ui__result-link:hover {
 		text-decoration: none;
 		background-image: linear-gradient(
 			transparent,
@@ -99,15 +182,15 @@ import '@pagefind/default-ui/css/ui.css'
 		);
 	}
 
-	#cactus__search mark {
-		color: theme('colors.muted.DEFAULT');
+	#portfolio__search mark {
+		color: theme('colors.primary.DEFAULT');
 		background-color: transparent;
 		font-weight: 600;
 	}
 </style>
 
 <style>
-	#cactus__search {
+	#portfolio__search {
 		--pagefind-ui-primary: theme('colors.accent.DEFAULT');
 		--pagefind-ui-text: theme('colors.primary.DEFAULT');
 		--pagefind-ui-background: theme('colors.background');

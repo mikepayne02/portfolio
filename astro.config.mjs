@@ -1,43 +1,54 @@
-import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
-import tailwind from '@astrojs/tailwind';
-import sitemap from '@astrojs/sitemap';
-import { remarkReadingTime } from './src/utils/remarkReadingTime.ts';
-import remarkUnwrapImages from 'remark-unwrap-images';
-import rehypeExternalLinks from 'rehype-external-links';
-import expressiveCode from 'astro-expressive-code';
-import { expressiveCodeOptions } from './src/site.config';
-import icon from 'astro-icon';
-import vercel from '@astrojs/vercel/serverless';
-import lottie from 'astro-integration-lottie';
+import { defineConfig } from 'astro/config'
+import mdx from '@astrojs/mdx'
+import tailwind from '@astrojs/tailwind'
+import sitemap from '@astrojs/sitemap'
+import { remarkReadingTime } from './src/utils/remarkReadingTime.ts'
+import remarkUnwrapImages from 'remark-unwrap-images'
+import rehypeExternalLinks from 'rehype-external-links'
+import expressiveCode from 'astro-expressive-code'
+import { expressiveCodeOptions } from './src/site.config'
+import icon from 'astro-icon'
+import vercel from '@astrojs/vercel/serverless'
+import lottie from 'astro-integration-lottie'
 
-import node from "@astrojs/node";
+import db from '@astrojs/db'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.me',
-  integrations: [expressiveCode(expressiveCodeOptions), tailwind({
-    applyBaseStyles: false
-  }), sitemap(), lottie(), mdx(), icon()],
-  markdown: {
-    remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
-    rehypePlugins: [[rehypeExternalLinks, {
-      target: '_blank',
-      rel: ['nofollow, noopener, noreferrer']
-    }]],
-    remarkRehype: {
-      footnoteLabelProperties: {
-        className: ['']
-      }
-    }
-  },
-  prefetch: true,
-  output: 'server'
-  // adapter: vercel({
-  //   webAnalytics: { enabled: true }
-  // })
-  ,
-  adapter: node({
-    mode: "standalone"
-  })
-});
+	site: 'https://mikepayne.me',
+	integrations: [
+		expressiveCode(expressiveCodeOptions),
+		tailwind({
+			applyBaseStyles: false
+		}),
+		sitemap(),
+		lottie(),
+		mdx(),
+		icon(),
+		db()
+	],
+	markdown: {
+		remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
+		rehypePlugins: [
+			[
+				rehypeExternalLinks,
+				{
+					target: '_blank',
+					rel: ['nofollow, noopener, noreferrer']
+				}
+			]
+		],
+		remarkRehype: {
+			footnoteLabelProperties: {
+				className: ['']
+			}
+		}
+	},
+	prefetch: true,
+	output: 'server',
+	adapter: vercel({
+		webAnalytics: {
+			enabled: true
+		}
+	})
+})

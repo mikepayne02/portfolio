@@ -16,11 +16,11 @@ const project = defineCollection({
       publishDate: z
         .string()
         .or(z.date())
-        .transform((val) => new Date(val)),
+        .transform((val: any) => new Date(val)),
       updatedDate: z
         .string()
         .optional()
-        .transform((str) => (str ? new Date(str) : undefined)),
+        .transform((str: any) => (str ? new Date(str) : undefined)),
       coverImage: z
         .object({
           src: image(),

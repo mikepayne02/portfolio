@@ -22,11 +22,6 @@ const socialImageURL = new URL(ogImage ? ogImage : '/social-card.png', Astro.url
 <title>{siteTitle}</title>
 
 {/* Icons / Favicon */}
-<!-- <link href="favicon/favicon.ico" rel="icon" sizes="any" />
-<link href="favicon/icon.svg" rel="icon" type="image/svg+xml" />
-<link href="/apple-touch-icon.png" rel="apple-touch-icon" />
-<link href="/manifest.webmanifest" rel="manifest" /> -->
-
 <link
 	rel='apple-touch-icon'
 	sizes='180x180'
@@ -95,8 +90,8 @@ const socialImageURL = new URL(ogImage ? ogImage : '/social-card.png', Astro.url
 <meta content={siteConfig.author} name='author' />
 
 {/* Theme Colour */}
-<meta content='#ffffff' name='theme-color' media="(prefers-color-scheme: light)" />
-<meta content='#000000' name='theme-color' media="(prefers-color-scheme: dark)" />
+<meta content='#ffffff' name='theme-color' media='(prefers-color-scheme: light)' />
+<meta content='#000000' name='theme-color' media='(prefers-color-scheme: dark)' />
 
 {/* Open Graph / Facebook */}
 <meta content={articleDate ? 'article' : 'website'} property='og:type' />

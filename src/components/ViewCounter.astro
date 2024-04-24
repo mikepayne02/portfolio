@@ -1,0 +1,73 @@
+---
+const { slug } = Astro.props
+import { db, Views, sql } from 'astro:db'
+
+try {
+	await db
+		.insert(Views)
+		.values({
+			slug,
+			count: 1
+		})
+		.onConflictDoUpdate({
+			target: Views.slug,
+			set: {
+				count: sql`count + 1`
+			}
+		})
+		.returning({
+			slug: Views.slug,
+			count: Views.count
+		})
+} catch (error) {
+	console.error(error)
+}
+---
+
+<view-count class='text-muted-foreground' data-slug={slug}>
+	<p>
+		<span id='viewcount' class='font-firacode'></span>
+		views
+	</p>
+</view-count>
+<script>
+	class ViewCount extends HTMLElement {
+		private slug: string = ''
+
+		constructor() {
+			super()
+			this.slug = this.dataset.slug!
+			fetch('/api/views?' + new URLSearchParams({ slug: this.slug }))
+				.then((res) => res.json())
+				.then((data: { count?: number }) => {
+					data.count = data.count || 0
+
+					this.querySelector('#viewcount')!.textContent = this.abbreviateNumber(data.count)
+				})
+		}
+
+		abbreviateNumber(value: number): string {
+			if (value < 1000) {
+				return value.toString()
+			}
+
+			let newValue = ''
+			const suffixes = ['', 'k', 'm', 'b', 't']
+			const suffixNum = Math.floor(('' + value).length / 3)
+			let shortValue = 0
+
+			for (var precision = 2; precision >= 1; precision--) {
+				shortValue = parseFloat(
+					(suffixNum != 0 ? value / Math.pow(1000, suffixNum) : value).toPrecision(precision)
+				)
+				var dotLessShortValue = (shortValue + '').replace(/[^a-zA-Z 0-9]+/g, '')
+				if (dotLessShortValue.length <= 2) {
+					break
+				}
+			}
+			if (shortValue % 1 != 0) return shortValue.toFixed(1) + suffixes[suffixNum]
+			return newValue + suffixes[suffixNum]
+		}
+	}
+	customElements.define('view-count', ViewCount)
+</script>
