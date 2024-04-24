@@ -1,12 +1,12 @@
 <theme-toggle class='ms-2 sm:ms-4'>
-	<button class='relative rounded-md border border-border p-1.5 transition-all hover:bg-border'>
+	<button class='relative h-8 w-8 rounded-md border border-border transition-all hover:bg-border'>
 		<span class='sr-only'>Dark Theme</span>
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
 			aria-hidden='true'
 			viewBox='0 0 24 24'
 			stroke-width='1.5'
-			class='h-6 w-6 scale-100 fill-none stroke-current opacity-100 transition-all transition-all dark:hidden dark:scale-0 dark:opacity-0'
+			class='absolute start-1/2 top-1/2 w-6 w-6 -translate-x-1/2 -translate-y-1/2 rotate-180 scale-0 fill-none stroke-current opacity-0 transition-all dark:rotate-0 dark:scale-100 dark:opacity-100'
 		>
 			<path
 				stroke-linecap='round'
@@ -16,9 +16,11 @@
 		</svg>
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
+			aria-hidden='true'
+			focusable='false'
 			viewBox='0 0 24 24'
 			stroke-width='1.5'
-			class='hidden h-6 w-6 scale-0 fill-none stroke-current opacity-0 transition-all transition-all dark:block dark:scale-100 dark:opacity-100'
+			class='absolute start-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rotate-0 scale-100 fill-none stroke-current opacity-100 transition-all dark:rotate-180 dark:scale-0 dark:opacity-0'
 		>
 			<path
 				stroke-linecap='round'
