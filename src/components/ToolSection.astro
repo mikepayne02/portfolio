@@ -23,12 +23,12 @@ const { class: className, title, tools, ...props } = Astro.props
 	)}
 	{...props}
 >
-	<h2 class='px-2 text-lg font-medium'>{title}</h2>
+	<h2 class='px-2 font-firacode text-lg font-medium'>{title}</h2>
 	<div class='grid grid-cols-1 gap-x-2 gap-y-3 sm:grid-cols-2 sm:gap-y-4'>
 		{
 			tools.map((tool) => (
 				<a
-					class='group relative hover:bg-transparent '
+					class='group relative hover:bg-transparent'
 					href={tool.href}
 					id={tool.name}
 					target='_blank'

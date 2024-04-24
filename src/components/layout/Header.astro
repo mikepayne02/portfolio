@@ -1,7 +1,10 @@
 ---
 import { menuLinks } from '@/site-config'
 import LottieAnimation from 'astro-integration-lottie/Lottie.astro'
+import Search from '../Search.astro'
 import ThemeToggle from '../ThemeToggle.astro'
+
+const url = new URL(Astro.request.url)
 ---
 
 <header class='mb-12 flex w-full flex-wrap gap-y-2 pb-3 text-sm sm:flex-nowrap sm:justify-start'>
@@ -18,18 +21,19 @@ import ThemeToggle from '../ThemeToggle.astro'
 	</nav>
 
 	<div class='flex flex-row items-center justify-center gap-x-5 sm:gap-x-7'>
-		<a
-			href='/projects'
-			class='flex-none text-[1.05rem] font-medium hover:text-foreground/75'
-			aria-label='Nav Menu Item'
-			>Projects
-		</a>
-		<a
-			href='/tools'
-			class='flex-none text-[1.05rem] font-medium hover:text-foreground/75'
-			aria-label='Nav Menu Item'
-			>Tools
-		</a>
+		{
+			menuLinks.map((link) => (
+				<a
+					aria-current={url.pathname === link.path ? 'page' : false}
+					href='{link.path}'
+					data-astro-prefetch
+					class='flex-none text-[1.05rem] font-medium hover:text-foreground/75'
+					aria-label={link.path + ' nav item'}
+				>
+					{link.title}
+				</a>
+			))
+		}
 	</div>
 	<ThemeToggle />
 </header>

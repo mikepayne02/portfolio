@@ -5,7 +5,7 @@ publishDate: '1 May 2024'
 coverImage:
   src: './grafana-cover.png'
   alt: 'Example Wi-Fi traffic iOS home screen widget'
-tags: ['Docker', 'Typescript']
+tags: ['Docker', 'Javascript']
 ---
 
 Graphs are generated server-side with [grafana-iamge-renderer](https://github.com/grafana/grafana-image-renderer). The script fetches the image and displays it on the widget. All home screen, lock screen, and apple watch widget types are supported.
