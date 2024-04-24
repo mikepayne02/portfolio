@@ -3,6 +3,7 @@ import { db, Views, eq } from "astro:db";
 
 export const GET: APIRoute = async ({ request }) => {
   const url = new URL(request.url);
+  console.log(url);
   const params = new URLSearchParams(url.search);
 
   const slug = params.get("slug");

@@ -10,45 +10,47 @@ import { expressiveCodeOptions } from './src/site.config'
 import icon from 'astro-icon'
 import vercel from '@astrojs/vercel/serverless'
 import lottie from 'astro-integration-lottie'
-
+import pagefind from "astro-pagefind";
 import db from '@astrojs/db'
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://mikepayne.me',
-	integrations: [
-		expressiveCode(expressiveCodeOptions),
-		tailwind({
-			applyBaseStyles: false
-		}),
-		sitemap(),
-		lottie(),
-		mdx(),
-		icon(),
-		db()
-	],
-	markdown: {
-		remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
-		rehypePlugins: [
-			[
-				rehypeExternalLinks,
-				{
-					target: '_blank',
-					rel: ['nofollow, noopener, noreferrer']
-				}
-			]
-		],
-		remarkRehype: {
-			footnoteLabelProperties: {
-				className: ['']
-			}
-		}
-	},
-	prefetch: true,
-	output: 'server',
-	adapter: vercel({
-		webAnalytics: {
-			enabled: true
-		}
-	})
+  site: 'https://mikepayne.me',
+  integrations: [
+    expressiveCode(expressiveCodeOptions),
+    tailwind({
+      applyBaseStyles: false
+    }),
+    sitemap(),
+    lottie(),
+    pagefind(),
+    mdx(),
+    icon(),
+
+    db()
+  ],
+  markdown: {
+    remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          target: '_blank',
+          rel: ['nofollow, noopener, noreferrer']
+        }
+      ]
+    ],
+    remarkRehype: {
+      footnoteLabelProperties: {
+        className: ['']
+      }
+    }
+  },
+  prefetch: true,
+  output: 'hybrid',
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true
+    }
+  })
 })

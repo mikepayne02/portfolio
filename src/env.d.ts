@@ -2,8 +2,3 @@
 /// <reference types="astro/client" />
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro-integration-lottie/env" />
-declare module "@pagefind/default-ui" {
-  declare class PagefindUI {
-    constructor(arg: any);
-  }
-}

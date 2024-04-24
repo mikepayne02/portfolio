@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"build": "astro check && astro build --remote && pagefind --site dist/client",
+		"build": "astro check && astro build --remote",
 		"preview": "astro preview",
 		"astro": "astro"
 	},
@@ -22,6 +22,7 @@
 		"astro-expressive-code": "^0.33.5",
 		"astro-icon": "^1.1.0",
 		"astro-integration-lottie": "^0.2.3",
+		"astro-pagefind": "^1.5.0",
 		"clsx": "^2.1.1",
 		"lottie-web": "^5.12.2",
 		"mdast-util-to-string": "^4.0.0",
@@ -35,7 +36,6 @@
 	},
 	"devDependencies": {
 		"@astrojs/ts-plugin": "^1.6.1",
-		"@pagefind/default-ui": "^1.1.0",
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tailwindcss/typography": "^0.5.12",
 		"@typescript-eslint/parser": "^7.7.1",
