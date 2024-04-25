@@ -7,15 +7,11 @@ coverImage:
   alt: 'Summer Rush 2023'
 tags: ['Blender', 'Illustrator', 'Photoshop']
 ---
-
 ## Mockup
 
-<video class="w-full mx-auto" autoplay loop muted playsinline>
+<video data-lightbox="true" class="w-full mx-auto" autoplay loop muted playsinline>
   <source src="https://f004.backblazeb2.com/file/payne-portfolio/scoops.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
 </video>
 
 ## 3D View
-
-![3D View](./3d.png)
-![Text](./text.png)
+[3d View](3d.png)

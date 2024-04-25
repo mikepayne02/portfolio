@@ -16,11 +16,11 @@ tags: ['Illustrator']
 </video>
 </div>
 
-## Control Input
-
+Detail on the building was generated using [stable diffusion Controlnet](https://github.com/lllyasviel/ControlNet)
+## Model Input
 ![Input](input.png)
 
-## Model Output
+## Example Outputs
 
 ![Out 1](out1.png)
 ![Out 2](out2.png)

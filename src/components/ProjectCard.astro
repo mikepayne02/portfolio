@@ -17,13 +17,12 @@ const {
 const images = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/content/project/*.{jpeg,jpg,png,gif}'
 )
-console.log(images)
 ---
 
 <Tag
 	class={cn(
 		className,
-		'flex flex-col gap-y-3 rounded-2xl border border-border bg-primary-foreground ',
+		'flex flex-col gap-y-1 rounded-2xl border border-border bg-primary-foreground ',
 		href && 'transition-all hover:border-foreground/25 hover:shadow-sm'
 	)}
 	href={href}
@@ -31,11 +30,12 @@ console.log(images)
 	<Image
 		transition:name=`media-image-${mediaTransitionName}`
 		src={images[imagePath]()}
+		width='512'
 		alt={altText}
 		class='h-48 w-full rounded-xl rounded-bl-none rounded-br-none object-cover'
 		loading='eager'
 	/>
-	<div class='flex flex-col gap-y-0.5 px-5 py-4'>
+	<div class='flex flex-col gap-y-0.5 px-5 py-3'>
 		<h1 class='text-lg font-medium'>{heading}</h1>
 		<h2 class='text-muted-foreground'>{subheading}</h2>
 	</div>

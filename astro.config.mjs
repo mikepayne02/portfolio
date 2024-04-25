@@ -7,7 +7,6 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 import rehypeExternalLinks from 'rehype-external-links'
 import expressiveCode from 'astro-expressive-code'
 import { expressiveCodeOptions } from './src/site.config'
-import icon from 'astro-icon'
 import vercel from '@astrojs/vercel/serverless'
 import lottie from 'astro-integration-lottie'
 import pagefind from "astro-pagefind";
@@ -25,8 +24,6 @@ export default defineConfig({
     lottie(),
     pagefind(),
     mdx(),
-    icon(),
-
     db()
   ],
   markdown: {
