@@ -41,7 +41,7 @@ const { headings } = await project.render()
 		</Button>
 		<div class='mt-8 gap-x-10 lg:flex lg:items-start'>
 			{!!headings.length && <TOC headings={headings} />}
-			<article class='flex-grow break-words' data-pagefind-body>
+			<article transition:animate='slide' class='flex-grow break-words' data-pagefind-body>
 				<div id='blog-hero'><BlogHero content={project} /></div>
 				<div
 					class='prose prose-base prose-zinc mt-12 text-muted-foreground dark:prose-invert prose-headings:font-medium prose-headings:text-foreground prose-headings:before:absolute prose-headings:before:-ms-4 prose-th:before:content-none'

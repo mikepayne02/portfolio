@@ -7,7 +7,7 @@ import SkillLayout from '../components/SkillLayout.astro'
 import PostPreview from '@/components/blog/PostPreview.astro'
 
 import { Image } from 'astro:assets'
-import profilepic from '../assets/composite.jpg'
+import profilepic from '../assets/profile.png'
 
 import { getAllPosts, sortMDByDate } from '@/utils'
 
@@ -23,12 +23,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 <PageLayout meta={{ title: 'Home' }}>
 	<div class='flex w-full flex-col gap-y-10'>
 		<section class='flex flex-col items-center gap-y-7'>
-			<Image
-				src={profilepic}
-				alt='profile photo'
-				class='h-32 w-32 rounded-full p-2'
-				loading='eager'
-			/>
+			<Image src={profilepic} alt='profile' class='h-32 w-32 rounded-full p-2' loading='eager' />
 
 			<div class='flex flex-col items-center gap-y-4'>
 				<h1 class='text-3xl font-bold'>Making cool stuff</h1>
@@ -119,54 +114,61 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 		<Section title='Designs'>
 			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
 				<ProjectCard
+					mediaTransitionName='du-open'
 					href='/projects/du-open'
 					heading='DU Open 2024'
 					subheading='Definitely not The Masters Logo'
-					imagePath='/src/assets/projects/du-open-pocket.jpg'
+					imagePath='/src/content/project/du-open.png'
 					altText='Example'
 					class='w-full sm:w-1/2'
 				/>
 				<ProjectCard
+					mediaTransitionName='delta-scoopsilon'
+					href='/projects/du-open'
 					href='/projects/delta-scoopsilon'
 					heading='Delta Scoopsilon'
 					subheading="Fall '23 Philanthropy"
-					imagePath='/src/assets/projects/delta-scoopsilon-pocket.jpg'
+					imagePath='/src/content/project/delta-scoopsilon.png'
 					altText='Example'
 					class='w-full sm:w-1/2'
 				/>
 			</div>
 			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
 				<ProjectCard
+					mediaTransitionName='du-donuts'
 					href='/projects/du-donuts'
 					heading='DU Donuts'
 					subheading="Spring '23 Philanthropy"
-					imagePath='/src/assets/projects/du-donuts-pocket.jpg'
+					imagePath='/src/content/project/du-donuts.png'
 					altText='Bags for Bryan Front Pocket'
 					class='w-full sm:w-1/2'
 				/>
 				<ProjectCard
+					mediaTransitionName='rush-23'
 					heading='Rush 2023'
 					href='/projects/rush-23'
 					subheading="Summer '23 Recruitment"
-					imagePath='/src/assets/projects/rush-pocket.jpg'
+					imagePath='/src/content/project/rush.png'
 					altText='Lorem, ipsum dolor sit'
 					class='w-full sm:w-1/2'
 				/>
 			</div>
 			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
 				<ProjectCard
+					mediaTransitionName='formal'
 					heading='Hotel Formal'
 					href='/projects/formal'
 					subheading='Cornhusker Marriot Hotel Art Deco'
-					imagePath='/src/assets/projects/formal-pocket.jpg'
+					imagePath='/src/content/project/formal.png'
 					altText='Lorem, ipsum dolor sit'
 					class='w-full sm:w-1/2'
 				/>
 				<ProjectCard
+					mediaTransitionName='bags-for-bryan'
 					href='/projects/bags-for-bryan'
 					heading='Bags for Bryan'
 					subheading="Fall '22 Philanthropy"
-					imagePath='/src/assets/projects/bags-for-bryan-pocket.jpg'
+					imagePath='/src/content/project/bags-for-bryan.png'
 					altText='Bags for Bryan Front Pocket'
 					class='w-full sm:w-1/2'
 				/>

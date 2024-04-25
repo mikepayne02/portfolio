@@ -13,7 +13,7 @@ const url = new URL(Astro.request.url)
 		aria-label='global'
 	>
 		<a class='flex flex-row font-firacode text-xl font-bold' href='/' aria-label='Brand'>
-			<div class='mr-4 h-auto w-12 dark:invert'>
+			<div transition:persist='logo' class='mr-4 h-auto w-12 dark:invert'>
 				<LottieAnimation src='/logo_black.json' autoplay='visible' loop={false} />
 			</div>
 			<span class='flex-none'>Michael Payne</span>
@@ -52,4 +52,3 @@ const url = new URL(Astro.request.url)
 		document.dispatchEvent(toggleDarkModeEvent)
 	})
 </script>
-<script></script>

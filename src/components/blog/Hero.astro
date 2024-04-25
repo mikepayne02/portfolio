@@ -7,6 +7,7 @@ interface Props {
 	content: CollectionEntry<'project'>
 }
 
+const { slug } = Astro.params
 const {
 	content: { data, render }
 } = Astro.props
@@ -20,7 +21,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 
 {
 	data.coverImage && (
-		<div class='aspect-h-10 aspect-w-16 mb-6'>
+		<div transition:name=`media-image-${slug}` class='aspect-h-9 aspect-w-16 mb-6'>
 			<Image
 				alt={data.coverImage.alt}
 				class='rounded-2xl object-cover'

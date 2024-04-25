@@ -10,15 +10,13 @@ const {
 	heading,
 	subheading,
 	imagePath,
-	altText
+	altText,
+	mediaTransitionName
 } = Astro.props
+
 const images = import.meta.glob<{ default: ImageMetadata }>(
-	'/src/assets/projects/*.{jpeg,jpg,png,gif}'
+	'/src/content/project/*.{jpeg,jpg,png,gif}'
 )
-if (!images[imagePath])
-	throw new Error(
-		`"${imagePath}" does not exist in glob: "src/assets/projects/*.{jpeg,jpg,png,gif}"`
-	)
 ---
 
 <Tag
@@ -30,6 +28,7 @@ if (!images[imagePath])
 	href={href}
 >
 	<Image
+		transition:name=`media-image-${mediaTransitionName}`
 		src={images[imagePath]()}
 		alt={altText}
 		class='h-48 w-full rounded-xl rounded-bl-none rounded-br-none object-cover'
