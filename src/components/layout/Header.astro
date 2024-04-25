@@ -14,7 +14,10 @@ const url = new URL(Astro.request.url)
 			href='/'
 			aria-label='Brand'
 		>
-			<div transition:persist='logo' class='mr-4 h-auto w-12 dark:invert'>
+			<div
+				transition:persist='logo'
+				class='mr-4 h-auto w-12 transition-opacity hover:opacity-70 dark:invert'
+			>
 				<LottieAnimation src='/logo_black.json' autoplay='visible' loop={false} />
 			</div>
 			<span class='flex-none'>Michael Payne</span>
