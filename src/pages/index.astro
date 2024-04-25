@@ -1,18 +1,19 @@
 ---
-import PageLayout from '../layouts/BaseLayout.astro'
-import Section from '../components/Section.astro'
+import PageLayout from '@/layouts/BaseLayout.astro'
+import Section from '@/components/Section.astro'
 import ProjectCard from '../components/ProjectCard.astro'
-import Label from '../components/Label.astro'
-import SkillLayout from '../components/SkillLayout.astro'
+import Label from '@/components/Label.astro'
+import SkillLayout from '@/components/SkillLayout.astro'
 import PostPreview from '@/components/blog/PostPreview.astro'
 
 import { Image } from 'astro:assets'
-import profilepic from '../assets/profile.png'
+import profilepic from '@/assets/profile.png'
+import CTA from '@/components/CTA.astro'
 
 import { getAllPosts, sortMDByDate } from '@/utils'
 
 const languages = ['Python', 'Typescript', 'Java', 'Kotlin', 'PHP', 'SQL', 'Go']
-const software = ['Creative Cloud', 'Blender', 'Linux', 'VMware ESXi', 'MS Office']
+const software = ['Creative Cloud', 'Blender', 'Linux', 'VMware ESXi', 'Office']
 const tools = ['Docker', 'Terraform', 'NextJS', 'Kubernetes', 'AWS', 'Azure']
 
 const MAX_POSTS = 3
@@ -30,22 +31,11 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				class='h-32 w-32 rounded-full p-2'
 				loading='eager'
 			/>
-
 			<div class='flex flex-col items-center gap-y-4'>
-				<h1 class='text-3xl font-bold'>Making cool stuff</h1>
-				<a
-					href='mailto:michael@payne.cx'
-					class='flex flex-row items-center gap-x-3 rounded-3xl border border-input px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md'
-				>
-					<span class='relative flex items-center justify-center'>
-						<span
-							class='absolute inline-flex h-2 w-2 animate-ping rounded-full border border-blue-400 bg-blue-400 opacity-75'
-						></span>
-						<span class='relative inline-flex h-2 w-2 rounded-full bg-blue-400'></span>
-					</span>
-
+				<h1 class='text-3xl font-bold'>Howdy</h1>
+				<CTA color='blue'>
 					<p class='font-medium'>Message</p>
-				</a>
+				</CTA>
 				<div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
 					<Label title='Overland Park, KS'>
 						<svg
@@ -81,7 +71,6 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 							></path>
 						</svg>
 					</Label>
-
 					<Label
 						title='LinkedIn'
 						as='a'
@@ -99,6 +88,21 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 							></path></svg
 						>
 					</Label>
+					<Label as='a' title='Resume' href='/MichaelPayne_Resume_2024.pdf' target='_blank'>
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							slot='icon'
+							viewBox='0 0 24 24'
+							stroke-width='1.5'
+							class='h-6 w-6 fill-none stroke-current text-foreground/75'
+						>
+							<path
+								stroke-linecap='round'
+								stroke-linejoin='round'
+								d='M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3'
+							></path>
+						</svg>
+					</Label>
 				</div>
 			</div>
 		</section>
@@ -111,8 +115,8 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				in those areas.
 			</p>
 			<p class='text-muted-foreground'>
-				In the future, I hope to pursue a field that fufills my those interests. I like to optimize
-				and make systems more efficient, and I think the best way to do that is with a team of
+				In the future, I hope to pursue a field that fufills those interests. I like to optimize and
+				make systems more efficient, and I think the best way to do that is with a team of
 				like-minded people.
 			</p>
 		</Section>
@@ -123,7 +127,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					mediaTransitionName='du-open'
 					href='/projects/du-open'
 					heading='DU Open 2024'
-					subheading='Definitely not The Masters Logo'
+					subheading="Spring '24 tournameant - Definitely not The Masters Logo"
 					imagePath='/src/content/project/du-open.png'
 					altText='Example'
 					class='w-full sm:w-1/2'
@@ -153,7 +157,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					mediaTransitionName='formal'
 					heading='Cornhusker Formal'
 					href='/projects/formal'
-					subheading="1920's theme"
+					subheading="1920's/art deco theme at the Cornhusker Hotel"
 					imagePath='/src/content/project/formal.png'
 					altText='Lorem, ipsum dolor sit'
 					class='w-full sm:w-1/3'
@@ -234,14 +238,14 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				</svg>
 				<div class='col-span-2 flex flex-col gap-y-1.5'>
 					<div class='flex flex-col gap-y-0.5'>
-						<h1 class='text-lg font-medium'>VP Administration</h1>
+						<h1 class='text-lg font-medium'>VP of Administration, T-shirt Chair</h1>
 						<h2 class='italic text-muted-foreground'>Delta Upsilon International Fraternity</h2>
 						<h2 class='text-muted-foreground'>Nov 2022 - Nov 2023</h2>
 					</div>
 
 					<ul class='list-disc text-muted-foreground'>
 						<button
-							onclick="window.open('http://www.unldu.org', '_blank')"
+							onclick="window.open('https://www.unldu.org', '_blank')"
 							class='relative inline-flex items-center rounded-xl bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400'
 						>
 							<svg
@@ -267,6 +271,11 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				</div>
 			</div>
 		</Section>
+		<Section title='Skills'>
+			<SkillLayout title='Software' skills={software} />
+			<SkillLayout title='Languages' skills={languages} />
+			<SkillLayout title='Tools' skills={tools} />
+		</Section>
 		{
 			allPostsByDate.length > 0 && (
 				<Section title='Projects'>
@@ -280,23 +289,8 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				</Section>
 			)
 		}
-		<Section title='Skills'>
-			<SkillLayout title='Software' skills={software} />
-			<SkillLayout title='Languages' skills={languages} />
-			<SkillLayout title='Tools' skills={tools} />
-		</Section>
 	</div>
-	<a
-		href='mailto:michael@payne.cx'
-		class='mt-16 flex flex-row items-center gap-x-3 rounded-3xl border border-input px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md'
-	>
-		<span class='relative flex items-center justify-center'>
-			<span
-				class='absolute inline-flex h-2 w-2 animate-ping rounded-full border border-blue-400 bg-blue-400 opacity-75'
-			></span>
-			<span class='relative inline-flex h-2 w-2 rounded-full bg-blue-400'></span>
-		</span>
-
+	<CTA color='blue' className='mt-16'>
 		<p class='font-medium'>Message</p>
-	</a>
+	</CTA>
 </PageLayout>
