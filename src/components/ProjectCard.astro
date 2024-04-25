@@ -17,6 +17,7 @@ const {
 const images = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/content/project/*.{jpeg,jpg,png,gif}'
 )
+console.log(images)
 ---
 
 <Tag

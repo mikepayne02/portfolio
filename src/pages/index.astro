@@ -105,9 +105,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				in those areas.
 			</p>
 			<p class='text-muted-foreground'>
-				In the future, I hope to pursue a field that joins my interests in business and software. I
-				like to optimize and make systems more efficient, and I think the best way to do that is
-				with a team of like-minded people.
+				In the future, I hope to pursue a field that fufills my those interests. I like to optimize
+				and make systems more efficient, and I think the best way to do that is with a team of
+				like-minded people.
 			</p>
 		</Section>
 
@@ -127,22 +127,13 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					href='/projects/du-open'
 					href='/projects/delta-scoopsilon'
 					heading='Delta Scoopsilon'
-					subheading="Fall '23 Philanthropy"
+					subheading="Fall '23 Philanthropy benefitting The Global Service Initiative"
 					imagePath='/src/content/project/delta-scoopsilon.png'
 					altText='Example'
 					class='w-full sm:w-1/2'
 				/>
 			</div>
 			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
-				<ProjectCard
-					mediaTransitionName='du-donuts'
-					href='/projects/du-donuts'
-					heading='DU Donuts'
-					subheading="Spring '23 Philanthropy"
-					imagePath='/src/content/project/du-donuts.png'
-					altText='Bags for Bryan Front Pocket'
-					class='w-full sm:w-1/2'
-				/>
 				<ProjectCard
 					mediaTransitionName='rush-23'
 					heading='Rush 2023'
@@ -152,22 +143,22 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					altText='Lorem, ipsum dolor sit'
 					class='w-full sm:w-1/2'
 				/>
-			</div>
-			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
 				<ProjectCard
 					mediaTransitionName='formal'
-					heading='Hotel Formal'
+					heading='Cornhusker Hotel Formal'
 					href='/projects/formal'
-					subheading='Cornhusker Marriot Hotel Art Deco'
+					subheading="1920's-themed geometric illustration"
 					imagePath='/src/content/project/formal.png'
 					altText='Lorem, ipsum dolor sit'
 					class='w-full sm:w-1/2'
 				/>
+			</div>
+			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
 				<ProjectCard
 					mediaTransitionName='bags-for-bryan'
 					href='/projects/bags-for-bryan'
 					heading='Bags for Bryan'
-					subheading="Fall '22 Philanthropy"
+					subheading="Fall '22 Philanthropy benefitting Bryan Health"
 					imagePath='/src/content/project/bags-for-bryan.png'
 					altText='Bags for Bryan Front Pocket'
 					class='w-full sm:w-1/2'
@@ -261,7 +252,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					<ul class='list-disc text-muted-foreground'>
 						<button
 							onclick="window.open('http://www.unldu.org', '_blank')"
-							class='inline-flex items-center rounded-xl bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400'
+							class='relative inline-flex items-center rounded-xl bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400'
 						>
 							<svg
 								class='mr-2 h-4 w-4 fill-none stroke-current'
@@ -276,7 +267,11 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 								></path>
 							</svg>
 
-							<span>unldu.org</span>
+							<span class='mr-3'> unldu.org </span>
+							<span
+								class='absolute -right-6 -top-2 inline-flex items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-red-100'
+								>new</span
+							>
 						</button>
 					</ul>
 				</div>
