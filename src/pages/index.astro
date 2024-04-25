@@ -13,7 +13,7 @@ import { getAllPosts, sortMDByDate } from '@/utils'
 
 const languages = ['Python', 'Typescript', 'Java', 'Kotlin', 'PHP', 'SQL', 'Go']
 const software = ['Creative Cloud', 'Blender', 'Linux', 'VMware ESXi', 'MS Office']
-const tools = ['Docker', 'Terraform', 'React', 'NextJS', 'Kubernetes', 'AWS', 'Azure']
+const tools = ['Docker', 'Terraform', 'NextJS', 'Kubernetes', 'AWS', 'Azure']
 
 const MAX_POSTS = 3
 const allPosts = await getAllPosts()
@@ -259,7 +259,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 							<span class='mr-3'> unldu.org </span>
 							<span
-								class='absolute -right-6 -top-2 inline-flex items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-red-100'
+								class='absolute -right-6 -top-2 inline-flex items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-white'
 								>new</span
 							>
 						</button>

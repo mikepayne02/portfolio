@@ -9,6 +9,9 @@ import ThemeProvider from '@/components/ThemeProvider.astro'
 
 import { siteConfig } from '@/site-config'
 
+import '@fontsource/fira-sans'
+import '@fontsource/fira-code'
+
 interface Props {
 	meta: SiteMeta
 }
@@ -27,7 +30,7 @@ const {
 		<ThemeProvider />
 		<SkipLink />
 		<main
-			class='flex min-h-screen w-screen max-w-[60rem] flex-col items-center px-6 pb-10 pt-7 font-firasans text-[0.92rem] leading-relaxed sm:px-10 lg:px-10'
+			class='flex min-h-screen w-screen max-w-[60rem] flex-col items-center px-8 pb-10 pt-7 font-firasans text-[0.92rem] leading-relaxed sm:px-10 lg:px-10'
 		>
 			<Header />
 			<slot />

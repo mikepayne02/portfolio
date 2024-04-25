@@ -5,6 +5,7 @@ import BlogHero from '@/components/blog/Hero.astro'
 import TOC from '@/components/blog/TOC.astro'
 import Button from '@/components/Button.astro'
 
+import LightBox from '@/components/LightBox.astro'
 import PageLayout from './BaseLayout.astro'
 
 interface Props {
@@ -23,6 +24,7 @@ const { headings } = await project.render()
 ---
 
 <PageLayout meta={{ articleDate, description, ogImage: socialImage, title }}>
+	<LightBox />
 	<div class='w-full'>
 		<Button title='Back' href='/projects' style='button'>
 			<svg

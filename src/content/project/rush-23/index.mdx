@@ -1,0 +1,45 @@
+---
+title: 'Summer Rush 2023'
+description: 'Summer Recruitment T-shirts - designed using illustrator and stable diffusion controlnet'
+publishDate: '1 May 2023'
+coverImage:
+  src: '../rush.png'
+  alt: 'Summer Rush 2023'
+tags: ['Illustrator']
+---
+import { Image } from 'astro:assets';
+import input from './input.png';
+import out1 from './out1.png';
+import out2 from './out2.png';
+import out3 from './out3.png';
+import out4 from './out4.png';
+
+## Mockup
+
+<div class="w-full">
+<video class="mx-auto" autoplay loop muted playsinline>
+  <source src="https://f004.backblazeb2.com/file/payne-portfolio/rush.mp4" type="video/mp4" />
+</video>
+</div>
+
+Detail on the building was generated using [stable diffusion ControlNet](https://github.com/lllyasviel/ControlNet)
+
+## Model Input
+
+<div data-lightbox>
+<Image src={input} alt="3d Scene" />
+</div>
+## Example Outputs
+
+<div data-lightbox>
+<Image src={out1} alt="3d Scene" />
+</div>
+<div data-lightbox>
+<Image src={out2} alt="3d Scene" />
+</div>
+<div data-lightbox>
+<Image src={out3} alt="3d Scene" />
+</div>
+<div data-lightbox>
+<Image src={out4} alt="3d Scene" />
+</div>

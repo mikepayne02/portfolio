@@ -21,6 +21,8 @@ const socialImageURL = new URL(ogImage ? ogImage : '/social-card.png', Astro.url
 <meta content='IE=edge' http-equiv='X-UA-Compatible' />
 <title>{siteTitle}</title>
 <ViewTransitions fallback='none' />
+
+{/* Meta tags */}
 {/* Icons / Favicon */}
 <link
 	rel='apple-touch-icon'
@@ -73,14 +75,6 @@ const socialImageURL = new URL(ogImage ? ogImage : '/social-card.png', Astro.url
 <link rel='icon' type='image/png' sizes='16x16' href='/favicon/favicon-16x16-dark.png' />
 <link rel='manifest' href='/favicon/site.webmanifest' />
 
-{/* Font preloads */}
-<link rel='preconnect' href='https://fonts.googleapis.com' />
-<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
-<link
-	href='https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
-	rel='stylesheet'
-/>
-
 {/* Canonical URL */}
 <link rel='canonical' href={canonicalURL} />
 
@@ -90,8 +84,7 @@ const socialImageURL = new URL(ogImage ? ogImage : '/social-card.png', Astro.url
 <meta content={siteConfig.author} name='author' />
 
 {/* Theme Color */}
-<meta content='hsl(210, 33%, 99%)' name='theme-color' media='(prefers-color-scheme: light)' />
-<meta content='hsl(240, 10%, 3.9%)' name='theme-color' media='(prefers-color-scheme: dark)' />
+<meta name='theme-color' />
 
 {/* Open Graph / Facebook */}
 <meta content={articleDate ? 'article' : 'website'} property='og:type' />

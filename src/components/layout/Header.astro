@@ -40,7 +40,7 @@ const url = new URL(Astro.request.url)
 		}
 	</div>
 	<div class='order-2 ml-auto flex flex-row sm:order-3 sm:ml-0'>
-		<Search />
+		<Search uiOptions={{ resetStyles: false }} />
 		<ThemeToggle />
 	</div>
 </header>

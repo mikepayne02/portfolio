@@ -5,7 +5,7 @@ import Search from 'astro-pagefind/components/Search'
 const q = Astro.url.searchParams.get('q') ?? undefined
 ---
 
-<site-search class='ms-2 sm:ms-4' id='search'>
+<site-search class='ms-2 sm:ms-4'>
 	<button
 		data-open-modal
 		disabled
@@ -29,7 +29,7 @@ const q = Astro.url.searchParams.get('q') ?? undefined
 		class='h-2/3 max-h-fit w-full max-w-full border border-border bg-background shadow backdrop:backdrop-blur sm:mx-auto sm:mb-auto sm:mt-16 sm:h-max sm:max-h-[calc(100%-8rem)] sm:min-h-[15rem] sm:w-5/6 sm:max-w-[48rem] sm:rounded-2xl'
 	>
 		<div class='dialog-frame flex flex-col gap-4 p-6 pt-12 sm:pt-6'>
-			<Search id='search' className='pagefind-ui' query={q} uiOptions={{ showImages: false }} />
+			<Search className='pagefind-ui' query={q} uiOptions={{ showImages: false }} />
 		</div>
 	</dialog>
 </site-search>
@@ -98,7 +98,7 @@ const q = Astro.url.searchParams.get('q') ?? undefined
 </script>
 
 <style>
-	:root {
+	site-search {
 		--pagefind-ui-font: inherit;
 		--pagefind-ui-primary: theme('colors.primary.foreground');
 		--pagefind-ui-text: theme('colors.foreground');
