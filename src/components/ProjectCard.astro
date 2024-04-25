@@ -30,7 +30,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 	<Image
 		transition:name=`media-image-${mediaTransitionName}`
 		src={images[imagePath]()}
-		width='512'
+		width={512}
 		alt={altText}
 		class='h-48 w-full rounded-xl rounded-bl-none rounded-br-none object-cover'
 		loading='eager'
