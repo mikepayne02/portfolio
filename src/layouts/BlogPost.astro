@@ -6,7 +6,8 @@ import TOC from '@components/blog/TOC.astro'
 import Button from '@components/Button.astro'
 
 import LightBox from '@components/LightboxPortal.astro'
-import PageLayout from './BaseLayout.astro'
+import PageLayout from './Base.astro'
+import WebMentions from '@components/blog/webmentions/index.astro'
 
 interface Props {
 	project: CollectionEntry<'project'>
@@ -49,6 +50,7 @@ const { headings } = await project.render()
 					class='prose prose-base prose-zinc mt-12 text-muted-foreground dark:prose-invert prose-headings:font-medium prose-headings:text-foreground prose-headings:before:absolute prose-headings:before:-ms-4 prose-th:before:content-none'
 				>
 					<slot />
+					<WebMentions />
 				</div>
 			</article>
 		</div>

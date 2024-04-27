@@ -5,3 +5,4 @@ export { getFormattedDate } from './date'
 export { generateToc } from './generateToc'
 export { LightboxImage as Lightbox }
 export type { TocItem } from './generateToc'
+export { getWebmentionsForUrl } from './webmentions'
