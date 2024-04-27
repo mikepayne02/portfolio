@@ -1,16 +1,16 @@
-import { defineDb, defineTable, column } from 'astro:db';
+import { column, defineDb, defineTable } from 'astro:db'
 
 // https://astro.build/db/config
 
 const Views = defineTable({
-  columns: {
-    slug: column.text({ primaryKey: true }),
-    count: column.number({
-      default: 1,
-    }),
-  },
-});
+	columns: {
+		path: column.text({ primaryKey: true }),
+		count: column.number({
+			default: 1
+		})
+	}
+})
 
 export default defineDb({
-  tables: { Views }
-});
+	tables: { Views }
+})

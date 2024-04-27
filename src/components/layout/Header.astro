@@ -7,10 +7,10 @@ import ThemeToggle from '../ThemeToggle.astro'
 const url = new URL(Astro.request.url)
 ---
 
-<header class='mb-12 flex w-full flex-wrap gap-y-2 pb-3 text-sm sm:flex-nowrap sm:justify-start'>
+<header class='mb-12 flex w-full flex-wrap gap-y-3 pb-3 sm:flex-nowrap sm:justify-start'>
 	<nav class='relative order-1 mr-auto flex sm:flex' aria-label='global'>
 		<a
-			class='align-self-start flex flex-row font-mono text-xl font-bold'
+			class='align-self-start flex flex-row items-center text-lg font-bold'
 			href='/'
 			aria-label='Brand'
 		>
@@ -20,7 +20,7 @@ const url = new URL(Astro.request.url)
 			>
 				<LottieAnimation src='/logo_black.json' autoplay='visible' loop={false} />
 			</div>
-			<span class='flex-none'>Michael Payne</span>
+			<span class='flex-none font-mono'>Michael Payne</span>
 		</a>
 	</nav>
 

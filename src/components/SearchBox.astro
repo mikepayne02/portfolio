@@ -1,28 +1,19 @@
 ---
 // Heavy inspiration taken from Astro Starlight -> https://github.com/withastro/starlight/blob/main/packages/starlight/components/Search.astro
 
+import { Icon } from 'astro-icon/components'
 import Search from 'astro-pagefind/components/Search'
 const q = Astro.url.searchParams.get('q') ?? undefined
 ---
 
-<site-search class='ms-2 sm:ms-4'>
+<site-search transition:persist='search' class='ms-2 sm:ms-4'>
 	<button
 		data-open-modal
 		disabled
+		aria-label='search'
 		class='m-auto h-8 w-8 rounded-md border border-border transition-all hover:bg-border'
 	>
-		<svg
-			xmlns='http://www.w3.org/2000/svg'
-			aria-label='search'
-			viewBox='0 0 24 24'
-			stroke-width='1.5'
-			class='m-auto h-6 w-6 fill-none stroke-current'
-		>
-			<path
-				stroke-linecap='round'
-				stroke-linejoin='round'
-				d='m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z'></path>
-		</svg>
+		<Icon name='heroicons:magnifying-glass' class='m-auto h-6 w-6' />
 	</button>
 	<dialog
 		aria-label='search'

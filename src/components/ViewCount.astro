@@ -1,9 +1,8 @@
 ---
-if (!Astro.params.slug) Astro.params.slug = 'index'
-const { slug } = Astro.params
+const path = Astro.url.pathname == '/' ? '/index' : Astro.url.pathname
 ---
 
-<view-count class='text-muted-foreground' data-slug={slug}>
+<view-count class='text-muted-foreground' data-path={path}>
 	<p>
 		<span id='viewcount' class='font-mono'>---</span>
 		views
@@ -17,9 +16,9 @@ const { slug } = Astro.params
 
 			const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1))
 			onIdle(async () => {
-				const slug = document.querySelector<HTMLElement>('view-count')!.dataset.slug!
+				const path = document.querySelector<HTMLElement>('view-count')!.dataset.path!
 
-				fetch('/api/views/' + slug)
+				fetch('/api/views' + path)
 					.then((res) => res.json())
 					.then((data: { count?: number }) => {
 						data.count = data.count || 0

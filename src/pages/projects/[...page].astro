@@ -2,6 +2,7 @@
 export const prerender = true
 
 import type { GetStaticPaths, Page } from 'astro'
+import { Icon } from 'astro-icon/components'
 import type { CollectionEntry } from 'astro:content'
 
 import Button from '@components/Button.astro'
@@ -47,18 +48,8 @@ const paginationProps = {
 
 <PageLayout meta={meta}>
 	<div class='w-full'>
-		<Button title='Back' href='/' style='button'>
-			<svg
-				xmlns='http://www.w3.org/2000/svg'
-				viewBox='0 0 24 24'
-				stroke-width='1.5'
-				aria-hidden='true'
-				slot='icon-before'
-				class='h-4 w-4 fill-none stroke-current'
-			>
-				<path stroke-linecap='round' stroke-linejoin='round' d='M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18'
-				></path>
-			</svg>
+		<Button transition:persist='back' title='Back' href='/' style='button'>
+			<Icon slot='icon-before' name='heroicons:arrow-left' class='h-4 w-4' />
 		</Button>
 
 		<h1 class='mb-6 mt-5 text-2xl font-bold'>Projects</h1>
@@ -78,20 +69,7 @@ const paginationProps = {
 					{!!uniqueTags.length && (
 						<aside>
 							<h2 class='mb-4 flex items-center text-lg font-semibold'>
-								<svg
-									aria-hidden='true'
-									xmlns='http://www.w3.org/2000/svg'
-									viewBox='0 0 24 24'
-									stroke-width='1.5'
-									class='h-6 w-6 fill-none stroke-current'
-								>
-									<path
-										stroke-linecap='round'
-										stroke-linejoin='round'
-										d='M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z'
-									/>
-									<path stroke-linecap='round' stroke-linejoin='round' d='M6 6h.008v.008H6V6Z' />
-								</svg>
+								<Icon name='heroicons:tag' class='h-6 w-6' />
 								Tags
 							</h2>
 							<ul class='text-bgColor flex flex-wrap gap-2'>

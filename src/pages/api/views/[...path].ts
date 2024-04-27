@@ -4,9 +4,9 @@ import type { APIRoute } from 'astro'
 import { db, Views, sql } from 'astro:db'
 
 export const GET: APIRoute = async ({ params }) => {
-	const slug = params.slug
+	const path = params.path
 
-	if (!slug) {
+	if (!path) {
 		return new Response('Not found', { status: 404 })
 	}
 
@@ -15,23 +15,23 @@ export const GET: APIRoute = async ({ params }) => {
 		item = await db
 			.insert(Views)
 			.values({
-				slug,
+				path,
 				count: 1
 			})
 			.onConflictDoUpdate({
-				target: Views.slug,
+				target: Views.path,
 				set: {
 					count: sql`count + 1`
 				}
 			})
 			.returning({
-				slug: Views.slug,
+				slug: Views.path,
 				count: Views.count
 			})
 			.then((res) => res[0])
 	} catch (error) {
 		console.error(error)
-		item = { slug, count: 1 }
+		item = { path, count: 1 }
 	}
 
 	return new Response(JSON.stringify(item), {
