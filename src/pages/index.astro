@@ -1,16 +1,16 @@
 ---
-import PageLayout from '@/layouts/BaseLayout.astro'
-import Section from '@/components/Section.astro'
+import PageLayout from '@layouts/BaseLayout.astro'
+import Section from '@components/Section.astro'
 import ProjectCard from '../components/ProjectCard.astro'
-import Label from '@/components/Label.astro'
-import SkillLayout from '@/components/SkillLayout.astro'
-import PostPreview from '@/components/blog/PostPreview.astro'
+import Label from '@components/Label.astro'
+import SkillLayout from '@components/SkillLayout.astro'
+import PostPreview from '@components/blog/PostPreview.astro'
 
 import { Image } from 'astro:assets'
-import profilepic from '@/assets/profile.png'
-import CTA from '@/components/CTA.astro'
+import profilepic from '@assets/profile.png'
+import CTA from '@components/CTA.astro'
 
-import { getAllPosts, sortMDByDate } from '@/utils'
+import { getAllPosts, sortMDByDate } from '@utils'
 
 const languages = ['Python', 'Typescript', 'Java', 'Kotlin', 'PHP', 'SQL', 'Go']
 const software = ['Creative Cloud', 'Blender', 'Linux', 'VMware ESXi', 'Office']

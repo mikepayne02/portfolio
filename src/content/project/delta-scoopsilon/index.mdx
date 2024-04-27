@@ -7,7 +7,7 @@ coverImage:
   alt: 'Summer Rush 2023'
 tags: ['Blender', 'Illustrator', 'Photoshop']
 ---
-import { Image } from 'astro:assets';
+import { Lightbox } from '@utils'
 import blender from './blender.png';
 import text from './text.png';
 
@@ -20,9 +20,6 @@ import text from './text.png';
 
 ## 3D View
 
-<div data-lightbox>
-<Image src={text} alt="3d Scene" />
-</div>
-<div data-lightbox>
-<Image src={blender} alt="3D Text" />
-</div>
+The scene is modeled and rendered in Blender, then traced in Illustrator to create the final design. Background elements are from [Google Earth](https://earth.google.com/web/).
+<Lightbox src={blender} alt="3d Scene" />
+<Lightbox src={text} alt="3D Text" />

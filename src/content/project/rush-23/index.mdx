@@ -7,39 +7,30 @@ coverImage:
   alt: 'Summer Rush 2023'
 tags: ['Illustrator' , 'AI']
 ---
-import { Image } from 'astro:assets';
+import { Lightbox } from '@utils'
 import input from './input.png';
 import out1 from './out1.png';
 import out2 from './out2.png';
 import out3 from './out3.png';
 import out4 from './out4.png';
 
+
 ## Mockup
 
-<div class="w-full">
+<p class="w-full">
 <video class="mx-auto" autoplay loop muted playsinline>
   <source src="https://f004.backblazeb2.com/file/payne-portfolio/rush.mp4" type="video/mp4" />
 </video>
-</div>
+</p>
 
 Detail on the building was generated using [stable diffusion ControlNet](https://github.com/lllyasviel/ControlNet)
 
 ## Model Input
 
-<div data-lightbox>
-<Image src={input} alt="3d Scene" />
-</div>
+<Lightbox src={input} alt="Model Input" />
 ## Example Outputs
 
-<div data-lightbox>
-<Image src={out1} alt="3d Scene" />
-</div>
-<div data-lightbox>
-<Image src={out2} alt="3d Scene" />
-</div>
-<div data-lightbox>
-<Image src={out3} alt="3d Scene" />
-</div>
-<div data-lightbox>
-<Image src={out4} alt="3d Scene" />
-</div>
+<Lightbox src={out1} alt="Example 1"/>
+<Lightbox src={out2} alt="Example 2" />
+<Lightbox src={out3} alt="Example 3" />
+<Lightbox src={out4} alt="Example 4" />
