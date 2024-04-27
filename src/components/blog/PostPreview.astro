@@ -11,15 +11,18 @@ type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 
 const { as: Tag = 'div', project, withDesc = false } = Astro.props
 const postDate = project.data.updatedDate ?? project.data.publishDate
+
+const reload = { 'data-astro-reload': project.data.reload }
 ---
 
 <li class='flex flex-col gap-2 sm:flex-row sm:gap-x-4 [&_q]:basis-full'>
-	<FormattedDate class='min-w-[120px] font-firacode' date={postDate} />
+	<FormattedDate class='min-w-[120px] font-mono' date={postDate} />
 
 	<Tag>
 		{project.data.draft && <span class='text-red-500'>(Draft) </span>}
 		<a
 			data-astro-prefetch
+			{...reload}
 			href={`/projects/${project.slug}/`}
 			class='transition-all hover:text-muted-foreground'
 		>

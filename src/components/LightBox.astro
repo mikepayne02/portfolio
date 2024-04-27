@@ -7,13 +7,11 @@
 </light-box>
 
 <script>
-	console.log('LightBox script')
 	class LightBox extends HTMLElement {
 		private portal: HTMLDivElement
 
 		constructor() {
 			super()
-			console.log('LightBox constructed')
 			this.portal = this.querySelector<HTMLDivElement>('.portal')!
 		}
 

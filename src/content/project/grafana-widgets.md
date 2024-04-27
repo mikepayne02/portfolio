@@ -6,6 +6,7 @@ coverImage:
   src: './grafana-widgets.png'
   alt: 'Example Wi-Fi traffic iOS home screen widget'
 tags: ['Docker', 'Javascript']
+reload: true
 ---
 
-<script is:inline data-astro-rerun src="https://gist.github.com/michaelpayne02/cd0c0b628560079b46c9dffce9157495.js"></script>
+<script is:inline src="https://gist.github.com/michaelpayne02/cd0c0b628560079b46c9dffce9157495.js"></script>
