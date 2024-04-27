@@ -39,6 +39,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				<div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
 					<Label title='Overland Park, KS'>
 						<svg
+							aria-hidden='true'
 							xmlns='http://www.w3.org/2000/svg'
 							slot='icon'
 							viewBox='0 0 24 24'
@@ -58,6 +59,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					</Label>
 					<Label title='21'>
 						<svg
+							aria-hidden='true'
 							xmlns='http://www.w3.org/2000/svg'
 							slot='icon'
 							viewBox='0 0 24 24'
@@ -78,6 +80,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 						target='_blank'
 					>
 						<svg
+							aria-hidden='true'
 							slot='icon'
 							class='h-5 w-5 fill-current text-foreground/75'
 							xmlns='http://www.w3.org/2000/svg'
@@ -90,6 +93,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					</Label>
 					<Label as='a' title='Resume' href='/MichaelPayne_Resume_2024.pdf' target='_blank'>
 						<svg
+							aria-hidden='true'
 							xmlns='http://www.w3.org/2000/svg'
 							slot='icon'
 							viewBox='0 0 24 24'
@@ -155,9 +159,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				/>
 				<ProjectCard
 					mediaTransitionName='formal'
-					heading='Cornhusker Formal'
+					heading='Formal'
 					href='/projects/formal'
-					subheading="1920's/art deco theme at the Cornhusker Hotel"
+					subheading="1920's theme at the Cornhusker Hotel"
 					imagePath='/src/content/project/formal.png'
 					altText='Lorem, ipsum dolor sit'
 					class='w-full sm:w-1/3'
@@ -179,6 +183,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				class='relative w-full grid-cols-3 rounded-xl border border-border bg-primary-foreground px-5 py-3 transition-all hover:border-foreground/25 hover:shadow-sm md:mx-auto md:w-2/3'
 			>
 				<svg
+					aria-hidden='true'
 					class='mb-3 h-12 w-auto fill-current md:absolute md:-left-16 md:mb-0'
 					xmlns='http://www.w3.org/2000/svg'
 					viewBox='0 0 1243.86 1247.35'
@@ -192,16 +197,18 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 						d='M122.09,327.8H41.03V41.17h376.37c141.24,223.39,282.79,447.26,424.33,671.14l.97-.24v-384.16h-80.85V41.2h440.98v286.45h-81.23v591.81h81.29v286.72h-376.4c-141.46-223.72-283.08-447.69-424.69-671.66-.31.14-.63.28-.94.42v384.36h81.22v286.82H41.04v-286.28h81.05V327.8Z'
 					></path>
 				</svg>
-				<div class='col-span-2 flex flex-col gap-y-1.5'>
+				<div class='col-span-2 flex flex-col gap-y-2'>
 					<div class='flex flex-col gap-y-0.5'>
 						<h1 class='text-lg font-medium'>University of Nebraska-Lincoln</h1>
 						<h2 class='italic text-muted-foreground'>Major: Finance; Minor: Computer Science</h2>
 						<h2 class='text-muted-foreground'>Aug 2021 - Current</h2>
 					</div>
-					<li>
-						GPA: <span class='font-mono'>3.86/4.00</span>
-					</li>
-					<li>Dean's List: Fall 2021 - Fall 2023</li>
+					<ul class='list-inside list-disc text-muted-foreground'>
+						<li>
+							GPA: <span class='font-mono'>3.86/4.00</span>
+						</li>
+						<li>Dean's List: Fall 2021 - Fall 2023</li>
+					</ul>
 				</div>
 			</div>
 		</Section>
@@ -211,6 +218,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				class='relative grid-cols-3 rounded-xl border border-border bg-primary-foreground px-5 py-3 transition-all hover:border-foreground/25 hover:shadow-sm md:mx-auto md:w-2/3'
 			>
 				<svg
+					aria-hidden='true'
 					class='mb-3 h-12 w-auto fill-current md:absolute md:-left-16 md:mb-0'
 					xmlns='http://www.w3.org/2000/svg'
 					viewBox='0 0 720 720'
@@ -236,38 +244,38 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 						d='M477.37,458.39c-39.1-75.41-77.51-149.47-117.02-225.66-39.5,76.21-77.98,150.43-116.97,225.66h233.99ZM415.76,406.08l11.25,21.69h-11.25v-21.69ZM335.23,347.62l25.06-47.59,24.86,47.59v81.98h-49.92v-81.98ZM304.61,427.77h-10.88l10.88-20.98v20.98Z'
 					></path>
 				</svg>
-				<div class='col-span-2 flex flex-col gap-y-1.5'>
+				<div class='col-span-2 flex flex-col gap-y-2'>
 					<div class='flex flex-col gap-y-0.5'>
 						<h1 class='text-lg font-medium'>VP of Administration, T-shirt Chair</h1>
 						<h2 class='italic text-muted-foreground'>Delta Upsilon International Fraternity</h2>
 						<h2 class='text-muted-foreground'>Nov 2022 - Nov 2023</h2>
 					</div>
 
-					<ul class='list-disc text-muted-foreground'>
-						<button
-							onclick="window.open('https://www.unldu.org', '_blank')"
-							class='relative inline-flex items-center rounded-xl bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400'
+					<a
+						href='https://www.unldu.org'
+						target='_blank'
+						class='relative inline-flex w-min items-center rounded-xl bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400'
+					>
+						<svg
+							aria-hidden='true'
+							class='mr-2 h-4 w-4 fill-none stroke-current'
+							xmlns='http://www.w3.org/2000/svg'
+							viewBox='0 0 24 24'
+							stroke-width='1.5'
 						>
-							<svg
-								class='mr-2 h-4 w-4 fill-none stroke-current'
-								xmlns='http://www.w3.org/2000/svg'
-								viewBox='0 0 24 24'
-								stroke-width='1.5'
-							>
-								<path
-									stroke-linecap='round'
-									stroke-linejoin='round'
-									d='M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25'
-								></path>
-							</svg>
+							<path
+								stroke-linecap='round'
+								stroke-linejoin='round'
+								d='M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25'
+							></path>
+						</svg>
 
-							<span class='mr-3'> unldu.org </span>
-							<span
-								class='absolute -right-6 -top-2 inline-flex items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-white'
-								>new</span
-							>
-						</button>
-					</ul>
+						<span class='mr-3'> unldu.org </span>
+						<span
+							class='absolute -right-5 -top-2 inline-flex items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-white'
+							>new</span
+						>
+					</a>
 				</div>
 			</div>
 		</Section>

@@ -16,6 +16,11 @@
 		}
 
 		connectedCallback() {
+			this.attachLightBox()
+			document.addEventListener('astro:after-swap', this.attachLightBox)
+		}
+
+		attachLightBox() {
 			const lbTriggers = document.querySelectorAll<HTMLImageElement>('[data-lightbox]')
 
 			for (const trig of lbTriggers) {

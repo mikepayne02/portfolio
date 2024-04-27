@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "Mike Payne",
+    "short_name": "Mike Payne",
     "icons": [
         {
             "src": "/favicon-dark/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#070708",
+    "background_color": "#070708",
     "display": "standalone"
 }
