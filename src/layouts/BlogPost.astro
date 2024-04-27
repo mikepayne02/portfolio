@@ -18,7 +18,7 @@ const {
 	slug
 } = project
 
-const socialImage = ogImage ?? `/og-image/${slug}.png`
+const socialImage = ogImage ?? `/content/${slug}-og.png`
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
 const { headings } = await project.render()
 ---

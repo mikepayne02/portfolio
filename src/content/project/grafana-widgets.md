@@ -6,6 +6,7 @@ coverImage:
   src: './grafana-widgets.png'
   alt: 'Example Wi-Fi traffic iOS home screen widget'
 tags: ['Docker', 'Javascript']
+ogImage: './grafana-widgets.png'
 reload: true
 ---
 
