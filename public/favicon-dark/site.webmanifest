@@ -1,12 +1,19 @@
 {
     "name": "Michael Payne",
     "short_name": "mikepayne",
+    "start_url": "https://mikepayne.me",
     "icons": [
         {
-            "src": "/favicon-light/android-chrome-192x192.png",
+            "src": "/favicon-dark/android-chrome-192x192.png",
             "sizes": "196x196",
             "type": "image/png",
             "purpose": "maskable"
+        },
+        {
+            "src": "/favicon-dark/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
         }
     ],
     "theme_color": "#000000",
