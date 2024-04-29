@@ -1,5 +1,4 @@
 ---
-import { cn } from '@/utils'
 import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
 
@@ -23,11 +22,11 @@ if (imagePath) {
 ---
 
 <Tag
-	class={cn(
+	class:list={[
 		className,
 		'relative rounded-xl border border-border bg-primary-foreground px-5 py-3',
 		href && 'transition-all hover:border-foreground/25 hover:shadow-sm'
-	)}
+	]}
 	href={href}
 >
 	{
@@ -35,7 +34,7 @@ if (imagePath) {
 			<Image
 				src={images[imagePath]!()}
 				alt={altText}
-				class={cn('mb-3 md:absolute md:mb-0', imageClass)}
+				class:list={['mb-3 md:absolute md:mb-0', imageClass]}
 				loading='eager'
 			/>
 		)

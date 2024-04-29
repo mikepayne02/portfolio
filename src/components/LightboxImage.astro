@@ -1,11 +1,9 @@
 ---
-import { cn } from '@/utils'
 import { Image } from 'astro:assets'
 
-const { class: className, src, alt } = Astro.props
-const props = { class: cn(className), src, alt }
+const { className, src, alt } = Astro.props
 ---
 
 <p data-lightbox>
-	<Image {...props} />
+	<Image class={className} src={src} alt={alt} />
 </p>

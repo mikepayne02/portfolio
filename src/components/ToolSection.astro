@@ -1,5 +1,4 @@
 ---
-import { cn } from '@/utils'
 import { Image } from 'astro:assets'
 
 interface Props {
@@ -21,10 +20,10 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 ---
 
 <div
-	class={cn(
+	class:list={[
 		className,
-		'flex flex-col rounded-xl border border-border py-5 px-3 gap-y-4 sm:gap-y-6'
-	)}
+		'flex flex-col gap-y-4 rounded-xl border border-border px-3 py-5 sm:gap-y-6'
+	]}
 	{...props}
 >
 	<h2 class='px-2 font-mono text-lg font-medium'>{title}</h2>

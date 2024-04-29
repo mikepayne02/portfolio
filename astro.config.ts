@@ -27,9 +27,7 @@ export default defineConfig({
 		pagefind(),
 		mdx(),
 		db(),
-		icon({
-			iconDir: 'src/icons'
-		})
+		icon()
 	],
 	image: {
 		domains: ['webmention.io']

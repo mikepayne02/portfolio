@@ -1,16 +1,15 @@
 ---
 const { color, className } = Astro.props
-import { cn } from '@/utils'
 if (!color) throw new Error('color is required')
 ---
 
 <a
 	href='mailto:michael@payne.cx'
 	rel='me'
-	class={cn(
+	class:list={[
 		className,
 		'flex flex-row items-center gap-x-3 rounded-full border border-input px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md'
-	)}
+	]}
 >
 	<span class='relative flex items-center justify-center' )}>
 		<span
