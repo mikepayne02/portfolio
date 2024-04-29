@@ -2,7 +2,6 @@ import db from '@astrojs/db'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
-import vercel from '@astrojs/vercel/serverless'
 import expressiveCode from 'astro-expressive-code'
 import icon from 'astro-icon'
 import pagefind from 'astro-pagefind'
@@ -12,6 +11,8 @@ import rehypeExternalLinks from 'rehype-external-links'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import { expressiveCodeOptions } from './src/site.config'
 import { remarkReadingTime } from './src/utils/remark-reading-time'
+
+import cloudflare from '@astrojs/cloudflare'
 
 // https://astro.build/config
 export default defineConfig({
@@ -31,10 +32,13 @@ export default defineConfig({
 		domains: ['webmention.io']
 	},
 	vite: {
-		plugins: [rawFonts(['.ttf', '.woff'])],
-		optimizeDeps: {
-			exclude: ['@resvg/resvg-js']
-		}
+		ssr: {
+			external: ['node:fs']
+		},
+		plugins: [rawFonts(['.ttf', '.woff'])]
+		// optimizeDeps: {
+		// 	exclude: ['@resvg/resvg-js']
+		// }
 	},
 	markdown: {
 		remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
@@ -55,13 +59,8 @@ export default defineConfig({
 	},
 	prefetch: true,
 	output: 'hybrid',
-	adapter: vercel({
-		webAnalytics: {
-			enabled: true
-		}
-	})
+	adapter: cloudflare({ imageService: 'cloudflare' })
 })
-
 function rawFonts(ext: Array<string>) {
 	return {
 		name: 'vite-plugin-raw-fonts',

@@ -17,13 +17,13 @@ const ogOptions: SatoriOptions = {
 	// debug: true,
 	fonts: [
 		{
-			name: 'Roboto Mono',
+			name: 'Fira Code',
 			data: Buffer.from(FiraCode),
 			weight: 400,
 			style: 'normal'
 		},
 		{
-			name: 'Roboto Mono',
+			name: 'Fira Code',
 			data: Buffer.from(FiraCodeBold),
 			weight: 700,
 			style: 'normal'
