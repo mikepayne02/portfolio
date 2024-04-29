@@ -1,5 +1,5 @@
 ---
-import { cn } from '@utils'
+import { cn } from '@/utils'
 import { Image } from 'astro:assets'
 
 interface Props {
@@ -40,7 +40,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 					<div class='relative flex flex-row items-center gap-x-4 px-2 py-0.5 transition-all'>
 						<div class='absolute -inset-0 z-10 rounded-lg border border-border bg-muted opacity-0 transition-all group-hover:opacity-50' />
 						<Image
-							src={images[tool.iconPath]()}
+							src={images[tool.iconPath]!()}
 							alt={tool.name}
 							width='64'
 							height='64'

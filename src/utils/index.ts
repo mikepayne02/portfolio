@@ -1,8 +1,6 @@
-import LightboxImage from '@components/LightboxImage.astro'
+import LightboxImage from '@/components/LightboxImage.astro'
 export { cn } from './tailwind'
-export { getAllPosts, sortMDByDate, getUniqueTags, getUniqueTagsWithCount } from './project'
 export { getFormattedDate } from './date'
-export { generateToc } from './generateToc'
+export { generateToc, type TocItem } from './generateToc'
 export { LightboxImage as Lightbox }
-export type { TocItem } from './generateToc'
 export { getWebmentionsForUrl } from './webmentions'

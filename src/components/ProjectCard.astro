@@ -1,5 +1,5 @@
 ---
-import { cn } from '@utils'
+import { cn } from '@/utils'
 import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
 
@@ -31,7 +31,7 @@ if (!images[imagePath])
 >
 	<Image
 		transition:name=`media-image-${mediaTransitionName}`
-		src={images[imagePath]()}
+		src={images[imagePath]!()}
 		width={512}
 		alt={altText}
 		class='h-48 w-full rounded-2xl rounded-bl-none rounded-br-none object-cover'

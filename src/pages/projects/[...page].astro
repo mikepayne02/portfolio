@@ -5,11 +5,12 @@ import type { GetStaticPaths, Page } from 'astro'
 import { Icon } from 'astro-icon/components'
 import type { CollectionEntry } from 'astro:content'
 
-import Button from '@components/Button.astro'
-import Pagination from '@components/Paginator.astro'
-import PostPreview from '@components/blog/PostPreview.astro'
-import PageLayout from '@layouts/Base.astro'
-import { getAllPosts, getUniqueTags, sortMDByDate } from '@utils'
+import Button from '@/components/Button.astro'
+import Pagination from '@/components/Paginator.astro'
+import PostPreview from '@/components/blog/PostPreview.astro'
+import PageLayout from '@/layouts/Base.astro'
+import { getUniqueTags, sortMDByDate } from '@/data/project'
+import { getAllPosts } from '@/data/project'
 
 export const getStaticPaths = (async ({ paginate }) => {
 	const allPosts = await getAllPosts()

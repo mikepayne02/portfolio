@@ -34,6 +34,7 @@ const path = Astro.url.pathname == '/' ? '/index' : Astro.url.pathname
 
 			const suffixes = ['', 'k', 'm', 'b', 't']
 			const suffixNum = Math.floor(('' + value).length / 3)
+			if (suffixNum > 4) return value.toString()
 			let shortValue = 0
 
 			for (var precision = 2; precision >= 1; precision--) {
@@ -47,7 +48,7 @@ const path = Astro.url.pathname == '/' ? '/index' : Astro.url.pathname
 			}
 
 			if (shortValue % 1 != 0) return shortValue.toFixed(1) + suffixes[suffixNum]
-			return shortValue + suffixes[suffixNum]
+			return shortValue + (suffixes[suffixNum] ?? '')
 		}
 	}
 	customElements.define('view-count', ViewCount)

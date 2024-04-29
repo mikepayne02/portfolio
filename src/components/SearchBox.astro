@@ -3,7 +3,7 @@
 
 import { Icon } from 'astro-icon/components'
 import Search from 'astro-pagefind/components/Search'
-const q = Astro.url.searchParams.get('q') ?? undefined
+const q = Astro.url.searchParams.get('q') ?? ''
 ---
 
 <site-search transition:persist='search' class='ms-2 sm:ms-4'>

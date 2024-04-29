@@ -1,5 +1,5 @@
 ---
-import { cn } from '@utils'
+import { cn } from '@/utils'
 import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
 
@@ -33,7 +33,7 @@ if (imagePath) {
 	{
 		imagePath && (
 			<Image
-				src={images[imagePath]()}
+				src={images[imagePath]!()}
 				alt={altText}
 				class={cn('mb-3 md:absolute md:mb-0', imageClass)}
 				loading='eager'

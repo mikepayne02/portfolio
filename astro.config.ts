@@ -8,10 +8,11 @@ import icon from 'astro-icon'
 import lottie from 'astro-integration-lottie'
 import pagefind from 'astro-pagefind'
 import { defineConfig } from 'astro/config'
+import fs from 'fs'
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import { expressiveCodeOptions } from './src/site.config'
-import { remarkReadingTime } from './src/utils/remarkReadingTime.ts'
+import { remarkReadingTime } from './src/utils/remark-reading-time'
 
 // https://astro.build/config
 export default defineConfig({
@@ -30,6 +31,15 @@ export default defineConfig({
 			iconDir: 'src/icons'
 		})
 	],
+	image: {
+		domains: ['webmention.io']
+	},
+	vite: {
+		plugins: [rawFonts(['.ttf', '.woff'])],
+		optimizeDeps: {
+			exclude: ['@resvg/resvg-js']
+		}
+	},
 	markdown: {
 		remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
 		rehypePlugins: [
@@ -55,3 +65,20 @@ export default defineConfig({
 		}
 	})
 })
+
+function rawFonts(ext: Array<string>) {
+	return {
+		name: 'vite-plugin-raw-fonts',
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore:next-line
+		transform(_, id) {
+			if (ext.some((e) => id.endsWith(e))) {
+				const buffer = fs.readFileSync(id)
+				return {
+					code: `export default ${JSON.stringify(buffer)}`,
+					map: null
+				}
+			}
+		}
+	}
+}

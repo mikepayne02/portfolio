@@ -1,12 +1,12 @@
 ---
-import BlogHero from '@components/blog/Hero.astro'
-import TOC from '@components/blog/TOC.astro'
-import Button from '@components/Button.astro'
+import BlogHero from '@/components/blog/Hero.astro'
+import TOC from '@/components/blog/TOC.astro'
+import Button from '@/components/Button.astro'
 import { Icon } from 'astro-icon/components'
 import type { CollectionEntry } from 'astro:content'
 
-import WebMentions from '@components/blog/webmentions/index.astro'
-import LightBox from '@components/LightboxPortal.astro'
+import WebMentions from '@/components/blog/webmentions/index.astro'
+import LightBox from '@/components/LightboxPortal.astro'
 import PageLayout from './Base.astro'
 
 interface Props {
@@ -19,7 +19,7 @@ const {
 	slug
 } = project
 
-const socialImage = ogImage ?? `/content/${slug}-og.png`
+const socialImage = ogImage ?? `/og-image/${slug}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
 const { headings } = await project.render()
 ---

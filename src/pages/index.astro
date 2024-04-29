@@ -1,17 +1,18 @@
 ---
-import Label from '@components/Label.astro'
-import Section from '@components/Section.astro'
-import SkillLayout from '@components/SkillLayout.astro'
-import PostPreview from '@components/blog/PostPreview.astro'
-import PageLayout from '@layouts/Base.astro'
+import Label from '@/components/Label.astro'
+import Section from '@/components/Section.astro'
+import SkillLayout from '@/components/SkillLayout.astro'
+import PostPreview from '@/components/blog/PostPreview.astro'
+import PageLayout from '@/layouts/Base.astro'
 import ProjectCard from '../components/ProjectCard.astro'
 import { Icon } from 'astro-icon/components'
 
-import profilepic from '@assets/profile.png'
-import CTA from '@components/CTA.astro'
+import profilepic from '@/assets/profile.png'
+import CTA from '@/components/CTA.astro'
 import { Image } from 'astro:assets'
 
-import { getAllPosts, sortMDByDate } from '@utils'
+import { sortMDByDate } from '@/data/project'
+import { getAllPosts } from '@/data/project'
 
 const languages = ['Typescript', 'Python', 'Java', 'Kotlin', 'PHP', 'SQL', 'Go']
 const software = ['Creative Cloud', 'Blender', 'Linux', 'VMware ESXi', 'Office']
