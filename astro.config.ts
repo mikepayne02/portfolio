@@ -5,7 +5,6 @@ import tailwind from '@astrojs/tailwind'
 import vercel from '@astrojs/vercel/serverless'
 import expressiveCode from 'astro-expressive-code'
 import icon from 'astro-icon'
-import lottie from 'astro-integration-lottie'
 import pagefind from 'astro-pagefind'
 import { defineConfig } from 'astro/config'
 import fs from 'fs'
@@ -23,7 +22,6 @@ export default defineConfig({
 			applyBaseStyles: false
 		}),
 		sitemap(),
-		lottie(),
 		pagefind(),
 		mdx(),
 		db(),

@@ -12,7 +12,7 @@
 
 		constructor() {
 			super()
-			this.portal = this.querySelector<HTMLDivElement>('.portal')!
+			this.portal = this.querySelector<HTMLDivElement>('.portal') as HTMLDivElement
 		}
 
 		connectedCallback() {
@@ -20,6 +20,10 @@
 		}
 
 		attachLightBox() {
+			if (!this.portal) {
+				console.error('Portal not found')
+				return
+			}
 			const lbTriggers = document.querySelectorAll<HTMLImageElement>('[data-lightbox]')
 
 			for (const trig of lbTriggers) {

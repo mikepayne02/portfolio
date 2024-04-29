@@ -28,7 +28,7 @@ import { Icon } from 'astro-icon/components'
 		#controller: AbortController | undefined
 
 		connectedCallback() {
-			const button = this.querySelector('button')!
+			const button = this.querySelector<HTMLButtonElement>('button') as HTMLButtonElement
 			// set aria role value
 			button.setAttribute('role', 'switch')
 			button.setAttribute('aria-checked', String(rootInDarkMode()))

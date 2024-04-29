@@ -67,9 +67,11 @@ const q = Astro.url.searchParams.get('q') ?? ''
 
 		constructor() {
 			super()
-			this.openBtn = this.querySelector<HTMLButtonElement>('button[data-open-modal]')!
-			this.dialog = this.querySelector('dialog')!
-			this.dialogFrame = this.querySelector('.dialog-frame')!
+			this.openBtn = this.querySelector<HTMLButtonElement>(
+				'button[data-open-modal]'
+			) as HTMLButtonElement
+			this.dialog = this.querySelector<HTMLDialogElement>('dialog') as HTMLDialogElement
+			this.dialogFrame = this.querySelector<HTMLDivElement>('.dialog-frame') as HTMLDivElement
 
 			this.openBtn.addEventListener('click', this.openModal)
 			this.openBtn.disabled = false

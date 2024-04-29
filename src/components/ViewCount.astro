@@ -16,40 +16,41 @@ const path = Astro.url.pathname == '/' ? '/index' : Astro.url.pathname
 
 			const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1))
 			onIdle(async () => {
-				const path = document.querySelector<HTMLElement>('view-count')!.dataset.path!
+				const viewcount = document.querySelector<ViewCount>('view-count') as HTMLSpanElement
+				const span = document.querySelector<HTMLSpanElement>('#viewcount') as HTMLSpanElement
+				const path = viewcount.dataset.path
 
 				fetch('/api/views' + path)
 					.then((res) => res.json())
 					.then((data: { count?: number }) => {
 						data.count = data.count || 0
-						this.querySelector('#viewcount')!.textContent = this.abbreviateNumber(data.count)
+						span.textContent = abbreviateNumber(data.count)
 					})
 			})
 		}
-
-		abbreviateNumber(value: number): string {
-			if (value < 1000) {
-				return value.toString()
-			}
-
-			const suffixes = ['', 'k', 'm', 'b', 't']
-			const suffixNum = Math.floor(('' + value).length / 3)
-			if (suffixNum > 4) return value.toString()
-			let shortValue = 0
-
-			for (var precision = 2; precision >= 1; precision--) {
-				shortValue = parseFloat(
-					(suffixNum != 0 ? value / Math.pow(1000, suffixNum) : value).toPrecision(precision)
-				)
-				var dotLessShortValue = (shortValue + '').replace(/[^a-zA-Z 0-9]+/g, '')
-				if (dotLessShortValue.length <= 2) {
-					break
-				}
-			}
-
-			if (shortValue % 1 != 0) return shortValue.toFixed(1) + suffixes[suffixNum]
-			return shortValue + (suffixes[suffixNum] ?? '')
+	}
+	const abbreviateNumber = (value: number): string => {
+		if (value < 1000) {
+			return value.toString()
 		}
+
+		const suffixes = ['', 'k', 'm', 'b', 't']
+		const suffixNum = Math.floor(('' + value).length / 3)
+		if (suffixNum > 4) return value.toString()
+		let shortValue = 0
+
+		for (var precision = 2; precision >= 1; precision--) {
+			shortValue = parseFloat(
+				(suffixNum != 0 ? value / Math.pow(1000, suffixNum) : value).toPrecision(precision)
+			)
+			var dotLessShortValue = (shortValue + '').replace(/[^a-zA-Z 0-9]+/g, '')
+			if (dotLessShortValue.length <= 2) {
+				break
+			}
+		}
+
+		if (shortValue % 1 != 0) return shortValue.toFixed(1) + suffixes[suffixNum]
+		return shortValue + (suffixes[suffixNum] ?? '')
 	}
 	customElements.define('view-count', ViewCount)
 </script>
