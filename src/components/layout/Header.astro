@@ -7,7 +7,7 @@ import ThemeToggle from '../ThemeToggle.astro'
 const url = new URL(Astro.request.url)
 ---
 
-<header class='mb-12 flex w-full flex-wrap gap-y-3 pb-3 sm:flex-nowrap sm:justify-start'>
+<header class='mb-12 flex w-full flex-wrap gap-y-3 pb-3 font-mono sm:flex-nowrap sm:justify-start'>
 	<nav class='relative order-1 mr-auto flex sm:flex' aria-label='global'>
 		<a
 			class='align-self-start flex flex-row items-center text-lg font-bold'
@@ -20,11 +20,11 @@ const url = new URL(Astro.request.url)
 			>
 				<LottieAnimation src='/logo_black.json' autoplay='visible' loop={false} />
 			</div>
-			<span class='flex-none font-mono'>Michael Payne</span>
+			<span>Michael Payne</span>
 		</a>
 	</nav>
 
-	<div class='order-3 flex w-full flex-row items-center gap-x-5 sm:order-2 sm:w-auto sm:gap-x-7'>
+	<nav class='order-3 flex w-full flex-row items-center gap-x-5 sm:order-2 sm:w-auto sm:gap-x-7'>
 		{
 			menuLinks.map((link) => (
 				<a
@@ -38,7 +38,7 @@ const url = new URL(Astro.request.url)
 				</a>
 			))
 		}
-	</div>
+	</nav>
 	<div class='order-2 ml-auto flex flex-row sm:order-3 sm:ml-0'>
 		<Search uiOptions={{ resetStyles: false }} />
 		<ThemeToggle />
