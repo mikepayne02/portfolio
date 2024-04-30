@@ -1,14 +1,23 @@
-import * as fs from 'node:fs'
+import { S3Client } from '@aws-sdk/client-s3'
 import type { WebmentionsFeed, WebmentionsCache, WebmentionsChildren } from '@/types'
+import { GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3'
+const bucketName = import.meta.env.COMMENTS_BUCKET_NAME
 
 const DOMAIN = import.meta.env.SITE
 const API_TOKEN = import.meta.env.WEBMENTION_API_KEY
-const CACHE_DIR = '.data'
-const filePath = `${CACHE_DIR}/webmentions.json`
+const cachePath = 'webmentions.json'
 const validWebmentionTypes = ['like-of', 'mention-of', 'in-reply-to']
 
 const hostName = new URL(DOMAIN).hostname
 
+const s3 = new S3Client({
+	endpoint: import.meta.env.BUCKET_ENDPOINT,
+	region: import.meta.env.BUCKET_REGION,
+	credentials: {
+		accessKeyId: import.meta.env.BUCKET_KEY_ID,
+		secretAccessKey: import.meta.env.BUCKET_SECRET
+	}
+})
 // Calls webmention.io api.
 async function fetchWebmentions(timeFrom: string | null, perPage = 1000) {
 	if (!DOMAIN) {
@@ -60,35 +69,39 @@ export function filterWebmentions(webmentions: WebmentionsChildren[]) {
 }
 
 // save combined webmentions in cache file
-function writeToCache(data: WebmentionsCache) {
-	const fileContent = JSON.stringify(data, null, 2)
-
-	// create cache folder if it doesn't exist already
-	if (!fs.existsSync(CACHE_DIR)) {
-		fs.mkdirSync(CACHE_DIR)
+async function writeToCache(data: WebmentionsCache) {
+	try {
+		await s3.send(
+			new PutObjectCommand({
+				Bucket: bucketName,
+				Key: cachePath,
+				Body: JSON.stringify(data, null, 2)
+			})
+		)
+		console.log('Successfully saved comments to ' + bucketName + '/' + cachePath)
+	} catch (err) {
+		console.log('Error: ', err)
 	}
-
-	// write data to cache json file
-	fs.writeFile(filePath, fileContent, (err) => {
-		if (err) throw err
-		console.log(`Webmentions saved to ${filePath}`)
-	})
 }
 
-function getFromCache(): WebmentionsCache {
-	if (fs.existsSync(filePath)) {
-		const data = fs.readFileSync(filePath, 'utf-8')
-		return JSON.parse(data)
-	}
-	// no cache found
-	return {
-		lastFetched: null,
-		children: []
+async function getFromCache(): Promise<WebmentionsCache> {
+	const emptyCache: WebmentionsCache = { lastFetched: null, children: [] }
+	try {
+		const res = await s3.send(
+			new GetObjectCommand({
+				Bucket: bucketName,
+				Key: cachePath
+			})
+		)
+		const data = await res.Body?.transformToString()!
+		return JSON.parse(data) as WebmentionsCache
+	} catch (err) {
+		return emptyCache
 	}
 }
 
 async function getAndCacheWebmentions() {
-	const cache = getFromCache()
+	const cache = await getFromCache()
 	const mentions = await fetchWebmentions(cache.lastFetched)
 
 	if (mentions) {

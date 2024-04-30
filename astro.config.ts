@@ -1,18 +1,19 @@
-import db from '@astrojs/db'
+import fs from 'fs'
+import cloudflare from '@astrojs/cloudflare'
 import mdx from '@astrojs/mdx'
+import million from 'million/compiler'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import expressiveCode from 'astro-expressive-code'
 import icon from 'astro-icon'
 import pagefind from 'astro-pagefind'
 import { defineConfig } from 'astro/config'
-import fs from 'fs'
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import { expressiveCodeOptions } from './src/site.config'
-import { remarkReadingTime } from './src/utils/remark-reading-time'
+import { remarkReadingTime } from './src/lib/remark-reading-time'
 
-import cloudflare from '@astrojs/cloudflare'
+import react from '@astrojs/react'
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,20 +26,21 @@ export default defineConfig({
 		sitemap(),
 		pagefind(),
 		mdx(),
-		db(),
-		icon()
+		icon(),
+		react()
 	],
+	vite: {
+		plugins: [
+			rawFonts(['.ttf', '.otf', '.woff']),
+			million.vite({
+				mode: 'react',
+				server: true,
+				auto: true
+			})
+		]
+	},
 	image: {
 		domains: ['webmention.io']
-	},
-	vite: {
-		ssr: {
-			external: ['node:fs']
-		},
-		plugins: [rawFonts(['.ttf', '.woff'])]
-		// optimizeDeps: {
-		// 	exclude: ['@resvg/resvg-js']
-		// }
 	},
 	markdown: {
 		remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
@@ -53,19 +55,22 @@ export default defineConfig({
 		],
 		remarkRehype: {
 			footnoteLabelProperties: {
-				className: ['']
+				className: ['underline']
 			}
 		}
 	},
 	prefetch: true,
 	output: 'hybrid',
-	adapter: cloudflare({ imageService: 'cloudflare' })
+	adapter: cloudflare({
+		wasmModuleImports: true,
+		platformProxy: { enabled: true },
+		imageService: 'compile'
+	})
 })
-function rawFonts(ext: Array<string>) {
+
+function rawFonts(ext) {
 	return {
 		name: 'vite-plugin-raw-fonts',
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore:next-line
 		transform(_, id) {
 			if (ext.some((e) => id.endsWith(e))) {
 				const buffer = fs.readFileSync(id)

@@ -10,6 +10,10 @@ const path = Astro.url.pathname == '/' ? '/index' : Astro.url.pathname
 </view-count>
 
 <script>
+	interface Views {
+		slug: string
+		count: number
+	}
 	class ViewCount extends HTMLElement {
 		constructor() {
 			super()
@@ -20,16 +24,18 @@ const path = Astro.url.pathname == '/' ? '/index' : Astro.url.pathname
 				const span = document.querySelector<HTMLSpanElement>('#viewcount') as HTMLSpanElement
 				const path = viewcount.dataset.path
 
-				fetch('/api/views' + path)
-					.then((res) => res.json())
-					.then((data: { count?: number }) => {
-						data.count = data.count || 0
-						span.textContent = abbreviateNumber(data.count)
-					})
+				const res = await fetch('/api/views' + path)
+				const json = (await res.json()) as Views
+				if (!res.ok) {
+					throw new Error('Unable to load viewcount')
+				}
+				//ts-ignore
+				span.textContent = abbreviateNumber(json.count || 0)
 			})
 		}
 	}
 	const abbreviateNumber = (value: number): string => {
+		// if (value === 0) return '---'
 		if (value < 1000) {
 			return value.toString()
 		}

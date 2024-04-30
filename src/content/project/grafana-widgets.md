@@ -1,10 +1,10 @@
 ---
-title: 'Grafana iOS Widgets'
-description: 'iOS Home screen widgets for Grafana using Scriptable'
-publishDate: '1 May 2024'
+title: Grafana iOS Widgets
+description: iOS Home screen widgets for Grafana using Scriptable
+publishDate: 1 May 2024
 coverImage:
-  src: './grafana-widgets.png'
-  alt: 'Example Wi-Fi traffic iOS home screen widget'
+  src: '@/images/grafana-widgets.png'
+  alt: Example Wi-Fi traffic iOS home screen widget
 tags: ['Docker', 'Javascript']
 reload: true
 ---

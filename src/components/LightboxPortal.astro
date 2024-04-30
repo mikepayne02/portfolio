@@ -21,12 +21,11 @@
 
 		attachLightBox() {
 			if (!this.portal) {
-				console.error('Portal not found')
-				return
+				throw new Error('Portal not found')
 			}
 			const lbTriggers = document.querySelectorAll<HTMLImageElement>('[data-lightbox]')
 
-			for (const trig of lbTriggers) {
+			lbTriggers.forEach((trig) => {
 				trig.addEventListener('click', () => {
 					this.portal.innerHTML = trig.innerHTML
 
@@ -39,7 +38,7 @@
 					this.classList.add('is-active')
 					document.documentElement.classList.add('scrollIsLocked')
 				})
-			}
+			})
 
 			this.addEventListener('click', () => {
 				this.classList.remove('is-active')

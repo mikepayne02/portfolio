@@ -3,9 +3,8 @@ title: Bags For Bryan
 description: T-shirt design for DU's Fall 2023 philanthropy event
 publishDate: 13 Oct 2022
 coverImage:
-  src: ./bags-for-bryan.png
+  src: '@/images/bags-for-bryan.png'
   alt: Bags for Bryan T-shirt design
-ogImage: ./bags-for-bryan.png
 tags: ['Illustrator']
 ---
 

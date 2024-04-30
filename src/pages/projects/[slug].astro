@@ -8,7 +8,7 @@ import { getAllPosts } from '@/data/project'
 export const getStaticPaths = (async () => {
 	const blogEntries = await getAllPosts()
 	return blogEntries.map((entry) => ({
-		params: { collection: 'project', slug: entry.slug },
+		params: { slug: entry.slug },
 		props: { entry }
 	}))
 }) satisfies GetStaticPaths

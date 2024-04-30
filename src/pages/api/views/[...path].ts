@@ -1,32 +1,28 @@
 export const prerender = false
 
-import type { APIRoute } from 'astro'
-import { db, Views, sql } from 'astro:db'
+import type { APIContext, APIRoute } from 'astro'
+import { connect, views } from '@/db'
+import { sql, eq } from 'drizzle-orm'
 
-export const GET: APIRoute = async ({ params }) => {
-	const path = params.path
+export const GET: APIRoute = async (ctx: APIContext) => {
+	const db = connect(ctx)
+	const path = ctx.params.path
 
 	if (!path) {
-		return new Response('Not found', { status: 404 })
+		return new Response(JSON.stringify({ error: 'Not found' }), { status: 404 })
 	}
 
 	let item: any
 	try {
 		item = await db
-			.insert(Views)
-			.values({
-				path,
-				count: 1
+			.update(views)
+			.set({
+				count: sql`count + 1`
 			})
-			.onConflictDoUpdate({
-				target: Views.path,
-				set: {
-					count: sql`count + 1`
-				}
-			})
+			.where(eq(views.path, path))
 			.returning({
-				slug: Views.path,
-				count: Views.count
+				slug: views.path,
+				count: views.count
 			})
 			.then((res) => res[0])
 	} catch (error) {

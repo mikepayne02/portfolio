@@ -9,7 +9,9 @@ import ThemeProvider from '@/components/ThemeProvider.astro'
 
 import { siteConfig } from '@/site-config'
 
-import { AstroFont } from 'astro-font'
+import '@fontsource/fira-sans/400.css'
+import '@fontsource/fira-sans/500.css'
+import '@fontsource-variable/fira-code'
 
 interface Props {
 	meta: SiteMeta
@@ -22,94 +24,6 @@ const {
 
 <html lang={siteConfig.lang}>
 	<head>
-		<AstroFont
-			config={[
-				{
-					name: 'Fira Sans',
-					src: [
-						{
-							style: 'normal',
-							weight: '400',
-							path: 'https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2'
-						}
-					],
-					preload: true,
-					display: 'swap',
-					selector: 'body',
-					fallback: 'sans-serif'
-				},
-				{
-					name: 'Fira Sans',
-					src: [
-						{
-							style: 'normal',
-							weight: '400',
-							path: 'https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2'
-						}
-					],
-					preload: true,
-					display: 'swap',
-					selector: '',
-					fallback: 'sans-serif'
-				},
-				{
-					name: 'Fira Code',
-					src: [
-						{
-							weight: '400',
-							style: 'normal',
-							path: 'https://fonts.gstatic.com/s/firacode/v22/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7NuzlojwUKQ.woff2'
-						}
-					],
-					preload: true,
-					display: 'swap',
-					selector: '',
-					fallback: 'monospace'
-				},
-				{
-					name: 'Fira Code',
-					src: [
-						{
-							style: 'medium',
-							weight: '500',
-							path: 'https://fonts.gstatic.com/s/firacode/v22/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_A9sJVD7NuzlojwUKQ.woff2'
-						}
-					],
-					preload: true,
-					display: 'swap',
-					selector: '',
-					fallback: 'sans-serif'
-				},
-				{
-					name: 'Fira Code',
-					src: [
-						{
-							style: 'semibold',
-							weight: '600',
-							path: 'https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnSKzeRhf6Xl7Glw.woff2'
-						}
-					],
-					preload: true,
-					display: 'swap',
-					selector: '',
-					fallback: 'sans-serif'
-				},
-				{
-					name: 'Fira Code',
-					src: [
-						{
-							style: 'bold',
-							weight: '700',
-							path: 'https://fonts.gstatic.com/s/firacode/v22/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_NprJVD7NuzlojwUKQ.woff2'
-						}
-					],
-					preload: true,
-					display: 'swap',
-					selector: '',
-					fallback: 'sans-serif'
-				}
-			]}
-		/>
 		<BaseHead articleDate={articleDate} description={description} ogImage={ogImage} title={title} />
 	</head>
 

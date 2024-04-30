@@ -7,9 +7,9 @@ import PageLayout from '@/layouts/Base.astro'
 import ProjectCard from '../components/ProjectCard.astro'
 import { Icon } from 'astro-icon/components'
 
-import profilepic from '@/assets/profile.png'
+import profilepic from '@/images/profile.png'
 import CTA from '@/components/CTA.astro'
-import { Image } from 'astro:assets'
+import { Picture } from 'astro:assets'
 
 import { sortMDByDate } from '@/data/project'
 import { getAllPosts } from '@/data/project'
@@ -26,15 +26,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 <PageLayout meta={{ title: 'Home' }}>
 	<div class='flex w-full flex-col gap-y-10'>
 		<section class='flex flex-col items-center gap-y-7'>
-			<Image
-				src={profilepic}
-				alt='profile'
-				width={128}
-				class='h-32 w-32 rounded-full p-2'
-				loading='eager'
-			/>
+			<Picture src={profilepic} alt='profile' class='h-32 w-32 rounded-full p-2' loading='eager' />
 			<div class='flex flex-col items-center gap-y-4'>
-				<h1 class='text-3xl font-bold'>what's up</h1>
+				<h1 class='font-sans text-3xl font-bold'>what's up</h1>
 				<CTA color='blue'>
 					<p class='font-medium'>Message</p>
 				</CTA>
@@ -81,7 +75,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					href='/projects/du-open'
 					heading='DU Open 2024'
 					subheading="Spring '24 tournameant - Definitely not The Masters Logo"
-					imagePath='/src/content/project/du-open.png'
+					imagePath='/src/assets/images/du-open.png'
 					altText='Example'
 					class='w-full sm:w-1/2'
 					loading='eager'
@@ -92,7 +86,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					href='/projects/delta-scoopsilon'
 					heading='Delta Scoopsilon'
 					subheading="Fall '23 - Benefitting The Global Service Initiative"
-					imagePath='/src/content/project/delta-scoopsilon.png'
+					imagePath='/src/assets/images/delta-scoopsilon.png'
 					altText='Example'
 					class='w-full sm:w-1/2'
 					loading='eager'
@@ -104,7 +98,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					heading='Rush 2023'
 					href='/projects/rush-23'
 					subheading='Greek-themed summer rush design'
-					imagePath='/src/content/project/rush.png'
+					imagePath='/src/assets/images/rush.png'
 					altText='Lorem, ipsum dolor sit'
 					class='w-full sm:w-1/3'
 					loading='lazy'
@@ -114,7 +108,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					heading='Formal'
 					href='/projects/formal'
 					subheading="1920's theme at the Cornhusker Hotel"
-					imagePath='/src/content/project/formal.png'
+					imagePath='/src/assets/images/formal.png'
 					altText='Lorem, ipsum dolor sit'
 					class='w-full sm:w-1/3'
 					loading='lazy'
@@ -124,7 +118,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					href='/projects/bags-for-bryan'
 					heading='Bags for Bryan'
 					subheading="Fall '22 - Benefitting Bryan Health"
-					imagePath='/src/content/project/bags-for-bryan.png'
+					imagePath='/src/assets/images/bags-for-bryan.png'
 					altText='Bags for Bryan Front Pocket'
 					class='w-full sm:w-1/3'
 					loading='lazy'

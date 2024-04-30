@@ -1,8 +1,9 @@
 import rss from '@astrojs/rss'
 import { siteConfig } from '@/site-config'
 import { getAllPosts } from '@/data/project'
+import type { APIRoute } from 'astro'
 
-export const GET = async () => {
+export const GET: APIRoute = async () => {
 	const posts = await getAllPosts()
 
 	return rss({

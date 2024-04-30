@@ -1,23 +1,29 @@
 {
 	"extends": "astro/tsconfigs/strictest",
 	"compilerOptions": {
+		"lib": ["esnext"],
 		"strictNullChecks": true,
 		"baseUrl": ".",
-		"lib": ["es2022", "dom", "dom.iterable"],
+		"types": ["@cloudflare/workers-types"],
 		"paths": {
 			"@/assets/*": ["src/assets/*"],
 			"@/components/*": ["src/components/*"],
+			"@/images/*": ["src/assets/images/*"],
 			"@/data/*": ["src/data/*"],
 			"@/layouts/*": ["src/layouts/*"],
-			"@/utils": ["src/utils/index.ts"],
+			"@/lib": ["src/lib/index.ts"],
 			"@/types": ["src/types.ts"],
+			"@/db": ["src/db.ts"],
 			"@/site-config": ["src/site.config.ts"]
 		},
 		"plugins": [
 			{
 				"name": "@astrojs/ts-plugin"
 			}
-		]
+		],
+		"jsx": "react-jsx",
+		"jsxImportSource": "react"
 	},
-	"exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist"]
+	"include": ["src"],
+	"exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist", "hack"]
 }

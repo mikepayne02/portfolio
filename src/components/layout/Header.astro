@@ -2,6 +2,7 @@
 import { menuLinks } from '@/site-config'
 import Search from '../SearchBox.astro'
 import ThemeToggle from '../ThemeToggle.astro'
+import Logo from '../Logo.astro'
 
 const url = new URL(Astro.request.url)
 ---
@@ -9,22 +10,7 @@ const url = new URL(Astro.request.url)
 <header
 	class='mb-12 flex w-full flex-wrap items-center gap-y-3 pb-3 font-mono sm:flex-nowrap sm:justify-start'
 >
-	<nav
-		id='title'
-		class='relative order-1 mr-auto flex w-2/3 hover:opacity-70 sm:flex sm:w-64'
-		aria-label='global'
-	>
-		<a class='align-self-start' href='/' aria-label='Logo'>
-			<canvas
-				id='rive-canvas'
-				width='500'
-				height='70'
-				transition:persist='logo'
-				class='mr-4 h-full w-full opacity-95 transition-opacity dark:invert'
-			>
-			</canvas>
-		</a>
-	</nav>
+	<Logo />
 
 	<nav class='order-3 flex w-full flex-row gap-x-5 sm:order-2 sm:w-auto sm:gap-x-7'>
 		{
@@ -47,57 +33,7 @@ const url = new URL(Astro.request.url)
 	</div>
 </header>
 <script>
-	import { Rive, StateMachineInputType } from '@rive-app/canvas/rive'
-	const canvas = document.querySelector<HTMLCanvasElement>('#rive-canvas') as HTMLCanvasElement
-	if (!canvas) {
-		console.error('Could not find canvas')
-	}
-
-	const r = new Rive({
-		// Hosted .riv asset.
-		src: './logo.riv',
-		stateMachines: 'State Machine',
-		canvas,
-		autoplay: true,
-		onLoad: (_) => {
-			r.setTextRunValue('NameText', 'Michael Payne')
-			r.setTextRunValue('CursorText', '█████████████')
-			r.resizeDrawingSurfaceToCanvas()
-			const titleDiv = document.querySelector<HTMLDivElement>('#title')
-			if (!titleDiv) {
-				console.error('Could not find title div')
-				return
-			}
-			// Get the inputs via the name of the state machine
-			const inputs = r.stateMachineInputs('State Machine')
-			// Find the input you want to set a value for, or trigger
-			const hoverInput = inputs.find((i) => i.name === 'isHovered')
-			if (!hoverInput) {
-				console.error('Could not find input')
-				return
-			}
-
-			if (hoverInput.type !== StateMachineInputType.Boolean) {
-				console.error('Input is not a boolean')
-				return
-			}
-			titleDiv.onmouseover = () => {
-				hoverInput.value = true
-			}
-			titleDiv.onmouseout = () => {
-				hoverInput.value = false
-			}
-		}
-	})
-
 	// Resize the drawing surface if the window resizes
-	window.addEventListener(
-		'resize',
-		() => {
-			r.resizeDrawingSurfaceToCanvas()
-		},
-		false
-	)
 	function getCurrentTheme() {
 		return localStorage.getItem('theme')
 	}
