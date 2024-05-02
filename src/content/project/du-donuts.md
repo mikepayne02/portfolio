@@ -6,6 +6,7 @@ coverImage:
   src: '@/images/du-donuts.png'
   alt: DU Donuts 2023 T-shirt design
 tags: ['Illustrator']
+ogImage: du-donuts.png
 ---
 
 ## Mockup

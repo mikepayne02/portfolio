@@ -63,13 +63,9 @@
 			hoverInput.value = false
 		}
 
-		window.addEventListener(
-			'resize',
-			() => {
-				r.resizeDrawingSurfaceToCanvas()
-			},
-			false
-		)
+		window.matchMedia('(min-width: 768px)').onchange = () => {
+			r.resizeDrawingSurfaceToCanvas()
+		}
 	}
 
 	document.addEventListener('DOMContentLoaded', () => {

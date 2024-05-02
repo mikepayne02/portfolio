@@ -6,6 +6,7 @@ coverImage:
   src: '@/images/bags-for-bryan.png'
   alt: Bags for Bryan T-shirt design
 tags: ['Illustrator']
+ogImage: bags-for-bryan.png
 ---
 
 ## Mockup

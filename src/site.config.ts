@@ -21,6 +21,8 @@ export const siteConfig: SiteConfig = {
 			year: 'numeric'
 		}
 	},
+	bucketName: 'payne-portfolio',
+	bucketEndpoint: 'https://f004.backblazeb2.com',
 	webmentions: {
 		// Webmention.io API endpoint. Get your own here: https://webmention.io/, and follow this blog post: https://astro-cactus.chriswilliams.dev/posts/webmentions/
 		link: 'https://webmention.io/mikepayne.me/webmention'

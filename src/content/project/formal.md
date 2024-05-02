@@ -6,6 +6,7 @@ coverImage:
   src: '@/images/formal.png'
   alt: T-shirt design for DU's formal at the Cornhusker Hotel
 tags: ['Illustrator']
+ogImage: formal.png
 ---
 
 # Mockup

@@ -1,19 +1,16 @@
-import fs from 'fs'
 import cloudflare from '@astrojs/cloudflare'
 import mdx from '@astrojs/mdx'
-import million from 'million/compiler'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import expressiveCode from 'astro-expressive-code'
-import icon from 'astro-icon'
 import pagefind from 'astro-pagefind'
 import { defineConfig } from 'astro/config'
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import { expressiveCodeOptions } from './src/site.config'
 import { remarkReadingTime } from './src/lib/remark-reading-time'
-
-import react from '@astrojs/react'
+import arraybuffer from 'vite-plugin-arraybuffer'
+import icon from 'astro-icon'
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,18 +23,13 @@ export default defineConfig({
 		sitemap(),
 		pagefind(),
 		mdx(),
-		icon(),
-		react()
+		icon()
 	],
 	vite: {
-		plugins: [
-			rawFonts(['.ttf', '.otf', '.woff']),
-			million.vite({
-				mode: 'react',
-				server: true,
-				auto: true
-			})
-		]
+		plugins: [arraybuffer()],
+		build: {
+			minify: false
+		}
 	},
 	image: {
 		domains: ['webmention.io']
@@ -63,22 +55,7 @@ export default defineConfig({
 	output: 'hybrid',
 	adapter: cloudflare({
 		wasmModuleImports: true,
-		platformProxy: { enabled: true },
-		imageService: 'compile'
+		imageService: 'compile',
+		platformProxy: { enabled: true }
 	})
 })
-
-function rawFonts(ext) {
-	return {
-		name: 'vite-plugin-raw-fonts',
-		transform(_, id) {
-			if (ext.some((e) => id.endsWith(e))) {
-				const buffer = fs.readFileSync(id)
-				return {
-					code: `export default ${JSON.stringify(buffer)}`,
-					map: null
-				}
-			}
-		}
-	}
-}

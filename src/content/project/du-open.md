@@ -6,6 +6,7 @@ coverImage:
   src: '@/images/du-open.png'
   alt: DU Open 2024
 tags: ['Illustrator']
+ogImage: du-open.png
 ---
 
 ## Mockup

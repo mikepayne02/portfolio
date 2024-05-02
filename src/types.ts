@@ -8,6 +8,8 @@ export type SiteConfig = {
 		locale: string | string[] | undefined
 		options: Intl.DateTimeFormatOptions
 	}
+	bucketName: string
+	bucketEndpoint: string
 	webmentions?: {
 		link: string
 		pingback?: string

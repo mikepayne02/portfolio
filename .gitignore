@@ -4,6 +4,7 @@ dist/
 .astro/
 .vercel/
 .wrangler/
+.ogImage/
 
 # dependencies
 node_modules/

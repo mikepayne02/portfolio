@@ -1,7 +1,7 @@
 import { S3Client } from '@aws-sdk/client-s3'
 import type { WebmentionsFeed, WebmentionsCache, WebmentionsChildren } from '@/types'
 import { GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3'
-const bucketName = import.meta.env.COMMENTS_BUCKET_NAME
+const bucketName = import.meta.env.BUCKET_NAME
 
 const DOMAIN = import.meta.env.SITE
 const API_TOKEN = import.meta.env.WEBMENTION_API_KEY
