@@ -1,6 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components'
 import ViewCount from '@/components/ViewCount.astro'
+
+const { showViewCount = false } = Astro.props
 ---
 
 <footer class='mx-auto mt-24 w-full'>
@@ -11,7 +13,7 @@ import ViewCount from '@/components/ViewCount.astro'
 			<div class='flex gap-x-4 text-sm'>
 				<p class='text-muted-foreground'>&copy;{new Date().getFullYear()} Michael Payne</p>
 			</div>
-			<ViewCount />
+			{showViewCount && <ViewCount />}
 			<div class='flex items-center justify-between'>
 				<!-- Social Brands -->
 				<div class='flex items-center gap-x-4'>
@@ -51,6 +53,16 @@ import ViewCount from '@/components/ViewCount.astro'
 						href='https://www.linkedin.com/in/michaelpayne02/'
 					>
 						<Icon name='fa6-brands:linkedin' class='h-5 w-5 flex-shrink-0' />
+					</a>
+					<!-- Email -->
+					<a
+						class='inline-block text-muted-foreground transition-all hover:text-muted-foreground/75'
+						rel='me'
+						aria-label='Email'
+						target='_blank'
+						href='mailto:michael@payne.cx'
+					>
+						<Icon name='heroicons:envelope' class='h-5 w-5 flex-shrink-0' />
 					</a>
 				</div>
 				<!-- End Social Brands -->

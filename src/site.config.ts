@@ -6,6 +6,7 @@ export const siteConfig: SiteConfig = {
 	author: 'Michael Payne',
 	// Meta property used to construct the meta title property, found in src/components/BaseHead.astro L:11
 	title: 'Michael Payne',
+	contactEmail: 'michael@mail.mikepayne.me',
 	// Meta property used as the default description meta property
 	description: "Michael Payne's Portfolio",
 	// HTML lang property, found in src/layouts/Base.astro L:18

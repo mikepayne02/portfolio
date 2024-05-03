@@ -1,10 +1,9 @@
 {
-	"extends": "astro/tsconfigs/strictest",
+	"extends": "astro/tsconfigs/base",
 	"compilerOptions": {
-		"lib": ["esnext"],
-		"strictNullChecks": true,
-		"baseUrl": ".",
+		"lib": ["esnext", "ES2022", "ES2021"],
 		"types": ["@cloudflare/workers-types", "vite-plugin-arraybuffer/types"],
+		"baseUrl": ".",
 		"paths": {
 			"@/assets/*": ["src/assets/*"],
 			"@/components/*": ["src/components/*"],
@@ -14,13 +13,16 @@
 			"@/lib": ["src/lib/index.ts"],
 			"@/types": ["src/types.ts"],
 			"@/db": ["src/db.ts"],
+			"@/emails/*": ["src/emails/*"],
 			"@/site-config": ["src/site.config.ts"]
 		},
 		"plugins": [
 			{
 				"name": "@astrojs/ts-plugin"
 			}
-		]
+		],
+		"jsx": "react-jsx",
+		"jsxImportSource": "react"
 	},
 	"include": ["src"],
 	"exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist"]

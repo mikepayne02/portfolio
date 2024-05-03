@@ -11,6 +11,7 @@ import { expressiveCodeOptions } from './src/site.config'
 import { remarkReadingTime } from './src/lib/remark-reading-time'
 import arraybuffer from 'vite-plugin-arraybuffer'
 import icon from 'astro-icon'
+import react from '@astrojs/react'
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,7 +24,8 @@ export default defineConfig({
 		sitemap(),
 		pagefind(),
 		mdx(),
-		icon()
+		icon(),
+		react()
 	],
 	vite: {
 		plugins: [arraybuffer()],
@@ -56,6 +58,8 @@ export default defineConfig({
 	adapter: cloudflare({
 		wasmModuleImports: true,
 		imageService: 'compile',
-		platformProxy: { enabled: true }
+		platformProxy: {
+			enabled: true
+		}
 	})
 })

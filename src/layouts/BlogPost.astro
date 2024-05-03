@@ -24,7 +24,7 @@ const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
 const { headings } = await project.render()
 ---
 
-<PageLayout meta={{ articleDate, description, ogImage: socialImage, title }}>
+<PageLayout meta={{ articleDate, description, ogImage: socialImage, title }} showViewCount={true}>
 	<LightBox />
 	<div class='w-full'>
 		<Button transition:persist='back' title='Back' href='/projects' style='button'>

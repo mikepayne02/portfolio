@@ -1,5 +1,5 @@
 ---
-title: Bags For Bryan
+title: Bags For Bryan Shirts
 description: T-shirt design for DU's Fall 2023 philanthropy event
 publishDate: 13 Oct 2022
 coverImage:

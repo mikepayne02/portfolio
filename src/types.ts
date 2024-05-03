@@ -2,6 +2,7 @@ export type SiteConfig = {
 	author: string
 	title: string
 	description: string
+	contactEmail: string
 	lang: string
 	ogLocale: string
 	date: {

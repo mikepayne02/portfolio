@@ -75,10 +75,17 @@ const socialImageURL = new URL(ogImage ? ogImage : '/social-card.png', Astro.url
 <link rel='icon' type='image/png' sizes='16x16' href='/favicon-light/favicon-16x16.png' />
 <link rel='manifest' href='/favicon-dark/site.webmanifest' />
 
-{/* Preload two main fonts */}
+{/* Preload three main fonts */}
 <link
 	rel='preload'
-	href='/fonts/fira-sans-v17-latin-500.woff2'
+	href='/fonts/fira-sans-v17-latin-regular.woff2'
+	as='font'
+	type='font/woff2'
+	crossorigin
+/>
+<link
+	rel='preload'
+	href='/fonts/fira-sans-v17-latin-700.woff2'
 	as='font'
 	type='font/woff2'
 	crossorigin

@@ -25,10 +25,10 @@ const allPosts = await getAllPosts()
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 import nebraska from '@/assets/nebraska.svg'
-import du from '@/assets/duBadge.svg'
+import duBadge from '@/assets/duBadge.svg'
 ---
 
-<PageLayout meta={{ title: 'Home' }}>
+<PageLayout meta={{ title: 'Home' }} showViewCount={true}>
 	<div class='flex w-full flex-col gap-y-10'>
 		<section class='flex flex-col items-center gap-y-7'>
 			<Picture
@@ -139,13 +139,13 @@ import du from '@/assets/duBadge.svg'
 
 		<Section title='Education'>
 			<div
-				class='relative w-full rounded-xl border border-border bg-primary-foreground px-5 py-3 transition-all hover:border-foreground/25 hover:shadow-sm md:mx-auto md:w-2/3'
+				class='relative w-full rounded-xl border border-border bg-primary-foreground/50 bg-gradient-to-b from-muted/50 px-5 py-3 transition-all hover:border-foreground/25 hover:shadow-sm md:mx-auto md:w-2/3'
 			>
 				<Image
 					alt="University of Nebraska-Lincoln's logo"
 					src={nebraska}
 					width={64}
-					class='mb-3 h-12 w-auto fill-current md:absolute md:-left-16 md:mb-0'
+					class='mb-3 h-12 w-auto fill-current md:absolute md:-left-16 md:mb-0 dark:invert'
 				/>
 				<div class='flex flex-col gap-y-2'>
 					<div class='flex flex-col gap-y-0.5'>
@@ -165,13 +165,13 @@ import du from '@/assets/duBadge.svg'
 
 		<Section title='Leadership'>
 			<div
-				class='relative grid-cols-4 rounded-xl border border-border bg-primary-foreground px-5 py-3 transition-all hover:border-foreground/25 hover:shadow-sm md:mx-auto md:w-3/4'
+				class='relative grid-cols-4 rounded-xl border border-border bg-primary-foreground/50 bg-gradient-to-b from-muted/50 px-5 py-3 transition-all hover:border-foreground/25 hover:shadow-sm md:mx-auto md:w-3/4'
 			>
 				<Image
-					src={du}
+					src={duBadge}
 					alt='Delta Upsilon International Fraternity'
 					width={64}
-					class='mb-3 h-12 w-auto fill-current md:absolute md:-left-16 md:mb-0'
+					class='mb-3 h-12 w-auto fill-current md:absolute md:-left-16 md:mb-0 dark:invert'
 				/>
 				<div class='flex flex-col gap-y-2'>
 					<div class='flex flex-col gap-y-0.5'>

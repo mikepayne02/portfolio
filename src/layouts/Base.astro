@@ -11,10 +11,12 @@ import { siteConfig } from '@/site-config'
 
 interface Props {
 	meta: SiteMeta
+	showViewCount?: boolean
 }
 
 const {
-	meta: { articleDate, description = siteConfig.description, ogImage, title }
+	meta: { articleDate, description = siteConfig.description, ogImage, title },
+	showViewCount = false
 } = Astro.props
 ---
 
@@ -31,7 +33,7 @@ const {
 		>
 			<Header />
 			<slot />
-			<Footer />
+			<Footer showViewCount={showViewCount} />
 		</main>
 	</body>
 </html>
