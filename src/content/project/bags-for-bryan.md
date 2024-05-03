@@ -9,6 +9,10 @@ tags: ['Illustrator']
 ogImage: bags-for-bryan.png
 ---
 
+## Info
+
+This design was made to promote DU's fall 2022 philanthrophy, Bags For Bryan. The cornhole tournament raised donations for Bryan Health to build a new cancer center.
+
 ## Mockup
 
 <div class="w-full">

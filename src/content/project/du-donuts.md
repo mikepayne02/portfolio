@@ -1,6 +1,6 @@
 ---
 title: DU Donuts Shirts 2023
-description: T-shirt design for DU's fall 2023 philanthropy event
+description: T-shirt design for DU's spring 2023 philanthropy event
 publishDate: 20 Apr 2023
 coverImage:
   src: '@/images/du-donuts.png'
@@ -8,6 +8,10 @@ coverImage:
 tags: ['Illustrator']
 ogImage: du-donuts.png
 ---
+
+# Info
+
+This design was made to promote DU's spring 2023 philanthropy event.
 
 ## Mockup
 
