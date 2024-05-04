@@ -3,20 +3,21 @@ export const prerender = false
 import PageLayout from '@/layouts/Base.astro'
 import { Resend } from 'resend'
 import Email from '@/emails/Contact.tsx'
+import AuthorEmail from '@/emails/ContactAuthor.tsx'
 import { siteConfig } from '@/site-config'
 
-const errors = { name: '', address: '', message: '' }
+const errors = { fullName: '', email: '', message: '' }
 if (Astro.request.method === 'POST') {
 	try {
 		const data = await Astro.request.formData()
-		const name = data.get('name')
-		const address = data.get('email')
+		const fullName = data.get('fullName')
+		const email = data.get('email')
 		const message = data.get('message')
-		if (typeof name !== 'string' || name.length < 1) {
-			errors.name += 'Please enter a name. '
+		if (typeof fullName !== 'string' || fullName.length < 1) {
+			errors.fullName += 'Please enter a name. '
 		}
-		if (typeof address !== 'string' || address.length < 1) {
-			errors.address += 'Please enter an email address. '
+		if (typeof email !== 'string' || email.length < 1) {
+			errors.email += 'Please enter an email address. '
 		}
 		if (typeof message !== 'string' || message.length < 1) {
 			errors.message += 'No message specified'
@@ -25,14 +26,28 @@ if (Astro.request.method === 'POST') {
 		const hasErrors = Object.values(errors).some((msg) => msg)
 		if (!hasErrors) {
 			const resend = new Resend(Astro.locals.runtime.env.RESEND_API_KEY)
-			console.log(Astro.locals.runtime.env.RESEND_API_KEY)
+			if (
+				typeof fullName !== 'string' ||
+				typeof email !== 'string' ||
+				typeof message !== 'string'
+			) {
+				throw new Error('Invalid data')
+			}
+			const firstName = fullName.split(' ')[0]
 			await resend.emails.send({
 				from: siteConfig.contactEmail,
-				to: address.toString(),
-				subject: 'hello world',
-				react: Email({ name: 'Michael' })
+				to: email.toString(),
+				subject: 'Message Received',
+				react: Email({ firstName })
 			})
-			return Astro.redirect('/contact/thanks')
+			await resend.emails.send({
+				from: siteConfig.contactEmail,
+				to: Astro.locals.runtime.env.AUTHOR_EMAIL,
+				subject: `Message from ${fullName}`,
+				reply_to: email,
+				react: AuthorEmail({ fullName, message })
+			})
+			return Astro.redirect('/contact/thanks', 307)
 		}
 	} catch (error) {
 		if (error instanceof Error) {
@@ -55,12 +70,12 @@ const meta = {
 				<span>Name</span>
 				<input
 					required
-					name='name'
+					name='fullName'
 					type='text'
 					class='mt-1 rounded-md border-border bg-input p-2 shadow-sm hover:border-foreground/25 hover:shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
 				/>
 			</label>
-			{errors.name && <p>{errors.name}</p>}
+			{errors.fullName && <p class='text-red-500'>{errors.fullName}</p>}
 			<label class='flex w-full flex-col'>
 				<span>Email address</span>
 				<input
@@ -70,7 +85,7 @@ const meta = {
 					placeholder='email@example.com'
 				/>
 			</label>
-			{errors.address && <p>{errors.address}</p>}
+			{errors.email && <p class='text-red-500'>{errors.email}</p>}
 			<label class='flex w-full flex-col'>
 				<span>Message</span>
 				<textarea
@@ -79,7 +94,7 @@ const meta = {
 					class='mt-1 rounded-md border-border bg-input p-2 shadow-sm hover:border-foreground/25 hover:shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
 				></textarea>
 			</label>
-			{errors.message && <p>{errors.message}</p>}
+			{errors.message && <p class='text-red-500'>{errors.message}</p>}
 			<button class='rounded-md border-border bg-secondary p-2' type='submit'>Submit</button>
 		</form>
 	</div>

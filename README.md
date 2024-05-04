@@ -9,11 +9,13 @@
   - View count for each page using [Astro DB](https://astro.build/db/)
   - Full-width image [lightbox](https://code.juliancataldo.com/component/astro-lightbox/) in mdx content
 - Automatic [sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) and [RSS feed](https://docs.astro.build/en/guides/rss/)
+- Contact page with [React Email](https://react.email/)
 - [Expressive Code](https://expressive-code.com/) syntax highlighter
 - Comments using [Webmentions](https://indieweb.org/Webmention), cached in object store
-- Static social image generation and sync to S3 using WebAssembly
-  - vercel/satori
-  - resvg/wasm
+- Static social image generation using WebAssembly
+  - synced to S3 for Cloudflare compatibility
+  - vercel/satori to generate the SVG
+  - resvg/wasm to render the SVG
 
 ## Credits
 

@@ -1,9 +1,46 @@
 ---
+export const prerender = false
 import PageLayout from '@/layouts/Base.astro'
+import Button from '@/components/Button.astro'
+import { Icon } from 'astro-icon/components'
 const meta = {
 	description: 'Conatact',
 	title: 'Contact'
 }
+
+let firstName = null
+if (Astro.request.method === 'POST') {
+	const data = await Astro.request.formData().catch(() => new FormData())
+	const fullName = data.get('fullName')
+	console.log(fullName)
+	if (typeof fullName === 'string' && fullName.length > 0) {
+		firstName = fullName ? fullName.split(' ')[0] : null
+	}
+}
 ---
 
-<PageLayout meta={meta}> thanks </PageLayout>
+<PageLayout meta={meta}>
+	<div class='px-4 py-10 text-center sm:px-6 lg:px-8'>
+		{firstName && <h1 class='block pb-4 font-mono text-7xl font-bold sm:text-5xl'>Thanks!</h1>}
+		{!firstName && <h1 class='block pb-4 font-mono text-7xl font-bold sm:text-5xl'>Whoops</h1>}
+		{
+			firstName && (
+				<p data-confetti>
+					Thanks for reaching out, {firstName}! I'll be sure to reply as soon as I can.
+				</p>
+			)
+		}
+		{!firstName && <p>Looks like you refreshed the page.</p>}
+		<Button title='Back to home' href='/' style='button' class='mt-5'>
+			<Icon slot='icon-before' name='heroicons:arrow-left' />
+		</Button>
+	</div>
+</PageLayout>
+
+<script>
+	import confetti from 'canvas-confetti'
+
+	document.addEventListener('astro:page-load', () => {
+		if (document.querySelectorAll('[data-confetti]').length > 0) confetti()
+	})
+</script>
