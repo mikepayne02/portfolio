@@ -1,10 +1,11 @@
 ---
 export const prerender = true
+
 import Button from '@/components/Button.astro'
 import PageLayout from '@/layouts/Base.astro'
-
-import { Icon } from 'astro-icon/components'
 import CTA from '@/components/CTA.astro'
+import { Icon } from 'astro-icon/components'
+
 const meta = {
 	description: 'Not found',
 	title: '404'
@@ -20,5 +21,5 @@ const meta = {
 			<Icon slot='icon-before' name='heroicons:arrow-left' />
 		</Button>
 	</div>
-	<CTA color='blue'>Message</CTA>
+	<CTA href='/contact' color='blue'>Contact</CTA>
 </PageLayout>

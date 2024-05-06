@@ -1,16 +1,15 @@
 ---
 export const prerender = true
 
+import Button from '@/components/Button.astro'
+import CTA from '@/components/CTA.astro'
+import Pagination from '@/components/Paginator.astro'
+import PostPreview from '@/components/blog/PostPreview.astro'
+import { getAllPosts, getUniqueTags, sortMDByDate } from '@/data/project'
+import PageLayout from '@/layouts/Base.astro'
 import type { GetStaticPaths, Page } from 'astro'
 import { Icon } from 'astro-icon/components'
 import type { CollectionEntry } from 'astro:content'
-
-import Button from '@/components/Button.astro'
-import Pagination from '@/components/Paginator.astro'
-import PostPreview from '@/components/blog/PostPreview.astro'
-import PageLayout from '@/layouts/Base.astro'
-import { getUniqueTags, sortMDByDate } from '@/data/project'
-import { getAllPosts } from '@/data/project'
 
 export const getStaticPaths = (async ({ paginate }) => {
 	const allPosts = await getAllPosts()
@@ -91,18 +90,6 @@ const paginationProps = {
 			)
 		}
 
-		<a
-			href='mailto:michael@payne.cx'
-			class='mt-16 inline-flex flex-row items-center gap-x-3 rounded-3xl border border-input px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md'
-		>
-			<span class='relative flex items-center justify-center'>
-				<span
-					class='absolute inline-flex h-2 w-2 animate-ping rounded-full border border-blue-400 bg-blue-400 opacity-75'
-				></span>
-				<span class='relative inline-flex h-2 w-2 rounded-full bg-blue-400'></span>
-			</span>
-
-			<p class='font-medium'>Message</p>
-		</a>
+		<CTA href='/contact' color='blue' className='mt-16'> Contact </CTA>
 	</div>
 </PageLayout>

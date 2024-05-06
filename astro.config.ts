@@ -1,17 +1,18 @@
 import cloudflare from '@astrojs/cloudflare'
 import mdx from '@astrojs/mdx'
+import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import expressiveCode from 'astro-expressive-code'
+import icon from 'astro-icon'
 import pagefind from 'astro-pagefind'
 import { defineConfig } from 'astro/config'
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkUnwrapImages from 'remark-unwrap-images'
-import { expressiveCodeOptions } from './src/site.config'
-import { remarkReadingTime } from './src/lib/remark-reading-time'
 import arraybuffer from 'vite-plugin-arraybuffer'
-import icon from 'astro-icon'
-import react from '@astrojs/react'
+import { remarkReadingTime } from './src/lib/remark-reading-time'
+import { expressiveCodeOptions } from './src/site.config'
+import { AstroIntegration } from 'astro'
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,14 +21,15 @@ export default defineConfig({
 		expressiveCode(expressiveCodeOptions),
 		tailwind({
 			applyBaseStyles: false
-		}),
+		}) as AstroIntegration,
 		sitemap(),
-		pagefind(),
-		mdx(),
+		pagefind() as AstroIntegration,
+		mdx() as AstroIntegration,
 		icon(),
 		react()
 	],
 	vite: {
+		// @ts-ignore
 		plugins: [arraybuffer()],
 		build: {
 			minify: false

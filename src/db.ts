@@ -1,6 +1,6 @@
-import { drizzle } from 'drizzle-orm/libsql'
 import { createClient } from '@libsql/client/web'
 import type { APIContext } from 'astro'
+import { drizzle } from 'drizzle-orm/libsql'
 export { views } from 'src/schema'
 
 export const connect = (ctx: APIContext) => {

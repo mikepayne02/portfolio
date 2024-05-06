@@ -3,12 +3,11 @@ export const prerender = true
 
 import type { GetStaticPaths, Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
-
 import Button from '@/components/Button.astro'
 import Pagination from '@/components/Paginator.astro'
 import PostPreview from '@/components/blog/PostPreview.astro'
-import PageLayout from '@/layouts/Base.astro'
 import { getAllPosts, getUniqueTags, sortMDByDate } from '@/data/project'
+import PageLayout from '@/layouts/Base.astro'
 import { Icon } from 'astro-icon/components'
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {

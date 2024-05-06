@@ -1,6 +1,5 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
-/// <reference types="nodemailer" />
 
 type Runtime = import('@astrojs/cloudflare').Runtime<Env>
 

@@ -1,20 +1,19 @@
 ---
 export const prerender = true
+
+import duBadge from '@/assets/duBadge.svg'
+import nebraska from '@/assets/nebraska.svg'
+import profilepic from '@/assets/profile.png'
+import CTA from '@/components/CTA.astro'
 import Label from '@/components/Label.astro'
 import Section from '@/components/Section.astro'
 import SkillLayout from '@/components/SkillLayout.astro'
 import PostPreview from '@/components/blog/PostPreview.astro'
+import { getAllPosts, sortMDByDate } from '@/data/project'
 import PageLayout from '@/layouts/Base.astro'
-import ProjectCard from '../components/ProjectCard.astro'
 import { Icon } from 'astro-icon/components'
-
-import profilepic from '@/assets/profile.png'
-import CTA from '@/components/CTA.astro'
-import { Picture } from 'astro:assets'
-import { Image } from 'astro:assets'
-
-import { sortMDByDate } from '@/data/project'
-import { getAllPosts } from '@/data/project'
+import { Image, Picture } from 'astro:assets'
+import ProjectCard from '../components/ProjectCard.astro'
 
 const languages = ['Typescript', 'Python', 'Java', 'Kotlin', 'PHP', 'SQL', 'Go']
 const software = ['Creative Cloud', 'Blender', 'Linux', 'VMware ESXi', 'Office']
@@ -23,9 +22,6 @@ const tools = ['Docker', 'Terraform', 'NextJS', 'Kubernetes', 'AWS', 'Azure']
 const MAX_POSTS = 3
 const allPosts = await getAllPosts()
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
-
-import nebraska from '@/assets/nebraska.svg'
-import duBadge from '@/assets/duBadge.svg'
 ---
 
 <PageLayout meta={{ title: 'Home' }} showViewCount={true}>
@@ -40,9 +36,7 @@ import duBadge from '@/assets/duBadge.svg'
 			/>
 			<div class='flex flex-col items-center gap-y-4'>
 				<h1 class='font-sans text-3xl font-bold'>what's up</h1>
-				<CTA color='blue'>
-					<p class='font-medium'>Message</p>
-				</CTA>
+				<CTA href='/contact' color='blue'>Contact</CTA>
 				<div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
 					<Label title='Overland Park, KS'>
 						<Icon slot='icon' name='heroicons:map-pin' class='h-5 w-5' />
@@ -216,7 +210,5 @@ import duBadge from '@/assets/duBadge.svg'
 			)
 		}
 	</div>
-	<CTA color='blue' className='mt-16'>
-		<p class='font-medium'>Message</p>
-	</CTA>
+	<CTA href='/contact' color='blue' className='mt-16'> Contact </CTA>
 </PageLayout>

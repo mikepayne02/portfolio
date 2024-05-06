@@ -1,6 +1,5 @@
-import { S3Client } from '@aws-sdk/client-s3'
-import type { WebmentionsFeed, WebmentionsCache, WebmentionsChildren } from '@/types'
-import { GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3'
+import type { WebmentionsCache, WebmentionsChildren, WebmentionsFeed } from '@/types'
+import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
 const bucketName = import.meta.env.BUCKET_NAME
 
 const DOMAIN = import.meta.env.SITE

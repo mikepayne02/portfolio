@@ -1,10 +1,11 @@
 ---
 export const prerender = false
-import PageLayout from '@/layouts/Base.astro'
-import { Resend } from 'resend'
+
 import Email from '@/emails/Contact.tsx'
 import AuthorEmail from '@/emails/ContactAuthor.tsx'
+import PageLayout from '@/layouts/Base.astro'
 import { siteConfig } from '@/site-config'
+import { Resend } from 'resend'
 
 const errors = { fullName: '', email: '', message: '' }
 if (Astro.request.method === 'POST') {
@@ -33,7 +34,7 @@ if (Astro.request.method === 'POST') {
 			) {
 				throw new Error('Invalid data')
 			}
-			const firstName = fullName.split(' ')[0]
+			const firstName = fullName.split(' ')[0]!
 			await resend.emails.send({
 				from: siteConfig.contactEmail,
 				to: email.toString(),

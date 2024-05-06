@@ -1,16 +1,16 @@
-import type { APIRoute, APIContext, InferGetStaticPropsType, GetStaticPaths } from 'astro'
-import { ogImageHeaders } from '@/lib'
 import { getAllPosts } from '@/data/project'
+import { getFormattedDate, ogImageHeaders } from '@/lib'
 import { siteConfig } from '@/site-config'
-import { html } from 'satori-html'
-import satori, { type SatoriOptions } from 'satori'
 import { Resvg, initWasm } from '@resvg/resvg-wasm'
-import { getFormattedDate } from '@/lib'
-import firaCodeRegular from '/src/assets/fonts/FiraCode-Regular.ttf?arraybuffer'
-import firaCodeBold from '/src/assets/fonts/FiraCode-Bold.ttf?arraybuffer'
+import type { APIContext, APIRoute, GetStaticPaths, InferGetStaticPropsType } from 'astro'
 import type { ReactNode } from 'react'
+import satori, { type SatoriOptions } from 'satori'
+import { html } from 'satori-html'
+import firaCodeBold from '/src/assets/fonts/FiraCode-Bold.ttf?arraybuffer'
+import firaCodeRegular from '/src/assets/fonts/FiraCode-Regular.ttf?arraybuffer'
 
 await initWasm(fetch('https://unpkg.com/@resvg/resvg-wasm/index_bg.wasm'))
+
 const svgOptions: SatoriOptions = {
 	width: 1200,
 	height: 630,
