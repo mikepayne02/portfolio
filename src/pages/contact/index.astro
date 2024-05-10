@@ -92,11 +92,14 @@ const meta = {
 				<textarea
 					required
 					name='message'
-					class='mt-1 rounded-md border-border bg-input p-2 shadow-sm hover:border-foreground/25 hover:shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
+					class='mt-1 h-24 rounded-md border-border bg-input p-2 shadow-sm hover:border-foreground/25 hover:shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
 				></textarea>
 			</label>
 			{errors.message && <p class='text-red-500'>{errors.message}</p>}
-			<button class='rounded-md border-border bg-secondary p-2' type='submit'>Submit</button>
+			<button
+				class='border-borde rounded-lg border border-border bg-secondary px-4 py-2 transition-all hover:bg-input'
+				type='submit'>Submit</button
+			>
 		</form>
 	</div>
 </PageLayout>

@@ -2,11 +2,9 @@
 const path = Astro.url.pathname == '/' ? '/index' : Astro.url.pathname
 ---
 
-<view-count class='text-muted-foreground' data-path={path}>
-	<p>
-		<span id='viewcount' class='font-mono'>---</span>
-		views
-	</p>
+<view-count class='text-sm text-muted-foreground' data-path={path}>
+	<span id='viewcount' class='font-mono'>---</span>
+	views
 </view-count>
 
 <script>

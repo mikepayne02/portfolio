@@ -74,10 +74,17 @@ const socialImageURL = new URL(ogImage ? ogImage : '/social-card.png', Astro.url
 <link rel='icon' type='image/png' sizes='16x16' href='/favicon-light/favicon-16x16.png' />
 <link rel='manifest' href='/favicon-dark/site.webmanifest' />
 
-{/* Preload three main fonts */}
+{/* Preload main fonts */}
 <link
 	rel='preload'
 	href='/fonts/fira-sans-v17-latin-regular.woff2'
+	as='font'
+	type='font/woff2'
+	crossorigin
+/>
+<link
+	rel='preload'
+	href='/fonts/fira-sans-v17-latin-600.woff2'
 	as='font'
 	type='font/woff2'
 	crossorigin
@@ -91,7 +98,7 @@ const socialImageURL = new URL(ogImage ? ogImage : '/social-card.png', Astro.url
 />
 <link
 	rel='preload'
-	href='/fonts/fira-code-v22-latin-500.woff2'
+	href='/fonts/fira-code-v22-latin-regular.woff2'
 	as='font'
 	type='font/woff2'
 	crossorigin

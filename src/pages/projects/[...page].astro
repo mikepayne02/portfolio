@@ -79,9 +79,14 @@ const paginationProps = {
 									</li>
 								))}
 							</ul>
-							<span class='mt-4 block sm:text-end'>
-								<a aria-label='View all post categories' class='' href='/tags/' data-astro-prefetch>
-									View all →
+							<span class='mt-4 block  sm:text-end'>
+								<a
+									aria-label='View all post categories'
+									class='inline-flex items-center'
+									href='/tags/'
+									data-astro-prefetch
+								>
+									View all <Icon name='heroicons:arrow-right' class='mx-1 h-4 w-4' />
 								</a>
 							</span>
 						</aside>
@@ -89,7 +94,6 @@ const paginationProps = {
 				</div>
 			)
 		}
-
-		<CTA href='/contact' color='blue' className='mt-16'> Contact </CTA>
 	</div>
+	<CTA href='/contact' color='blue' className='mt-16'>Contact</CTA>
 </PageLayout>

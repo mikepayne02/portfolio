@@ -3,7 +3,6 @@
 @tailwind utilities;
 /* fira-sans-regular - latin */
 @font-face {
-	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 	font-family: 'Fira Sans';
 	font-style: normal;
 	font-weight: 400;
@@ -19,7 +18,6 @@
 }
 /* fira-sans-500 - latin */
 @font-face {
-	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 	font-family: 'Fira Sans';
 	font-style: normal;
 	font-weight: 500;
@@ -35,7 +33,6 @@
 }
 /* fira-sans-600 - latin */
 @font-face {
-	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 	font-family: 'Fira Sans';
 	font-style: normal;
 	font-weight: 600;
@@ -51,7 +48,6 @@
 }
 /* fira-sans-700 - latin */
 @font-face {
-	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 	font-family: 'Fira Sans';
 	font-style: normal;
 	font-weight: 700;
@@ -67,7 +63,6 @@
 }
 /* fira-code-regular - latin */
 @font-face {
-	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 	font-family: 'Fira Code';
 	font-style: normal;
 	font-weight: 400;
@@ -75,7 +70,6 @@
 }
 /* fira-code-500 - latin */
 @font-face {
-	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 	font-family: 'Fira Code';
 	font-style: normal;
 	font-weight: 500;
@@ -83,7 +77,6 @@
 }
 /* fira-code-600 - latin */
 @font-face {
-	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 	font-family: 'Fira Code';
 	font-style: normal;
 	font-weight: 600;
@@ -91,7 +84,6 @@
 }
 /* fira-code-700 - latin */
 @font-face {
-	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 	font-family: 'Fira Code';
 	font-style: normal;
 	font-weight: 700;

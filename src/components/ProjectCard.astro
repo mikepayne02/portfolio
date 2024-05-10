@@ -34,8 +34,8 @@ if (!images[imagePath])
 		transition:name=`media-image-${mediaTransitionName}`
 		src={images[imagePath]!()}
 		alt={altText}
-		widths={[240, 720]}
-		sizes='(max-width: 640px) 720px, (max-width: 768px) 240px'
+		widths={[320, 720]}
+		sizes='(max-width: 640px) 720px, (max-width: 768px) 320px, 320px'
 		class='h-48 w-full rounded-2xl rounded-bl-none rounded-br-none object-cover'
 		loading={loading}
 	/>
