@@ -9,7 +9,7 @@ tags: ['Illustrator']
 ogImage: du-donuts.png
 ---
 
-# Info
+## Info
 
 This design was made to promote DU's spring 2023 philanthropy event.
 

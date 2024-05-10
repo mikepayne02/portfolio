@@ -9,9 +9,9 @@ tags: ['Illustrator']
 ogImage: du-open.png
 ---
 
-# Info
+## Info
 
-This design was made to accompany the 2024 DU Open Golf Tournament, held at Nmark Golf Course in Lincoln.
+This design was made to accompany the 2024 DU Open Golf Tournament, held at NuMark Golf Course in Lincoln.
 
 ## Mockup
 
