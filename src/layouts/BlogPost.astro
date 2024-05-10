@@ -28,7 +28,7 @@ const { headings } = await project.render()
 	<LightBox />
 	<div class='w-full'>
 		<Button transition:persist='back' title='Back' href='/projects' style='button'>
-			<Icon slot='icon-before' name='heroicons:arrow-left' class='h-4 w-4' />
+			<Icon slot='icon-before' name='heroicons:arrow-left' class='size-4' />
 		</Button>
 		<div class='mt-8 gap-x-10 lg:flex lg:items-start'>
 			{!!headings.length && <TOC headings={headings} />}
@@ -45,11 +45,11 @@ const { headings } = await project.render()
 		</div>
 		<button
 			aria-label='Back to Top'
-			class='z-90 fixed bottom-8 end-4 flex h-8 w-8 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-primary-foreground text-3xl opacity-0 transition-all duration-300 hover:border-border/75 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12'
+			class='z-90 fixed bottom-8 end-4 flex size-8 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-primary-foreground text-3xl opacity-0 transition-all duration-300 hover:border-border/75 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12'
 			data-show='false'
 			id='to-top-btn'
 		>
-			<Icon name='heroicons:chevron-up' class='h-4 w-4' />
+			<Icon name='heroicons:chevron-up' class='size-4' />
 		</button>
 	</div>
 </PageLayout>

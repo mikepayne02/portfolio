@@ -14,7 +14,7 @@ const { showViewCount = false } = Astro.props
 			<div class='flex gap-x-4 text-sm'>
 				<p class='text-muted-foreground'>&copy;{new Date().getFullYear()} {siteConfig.author}</p>
 			</div>
-			<div class='sm:absolute sm:left-1/2 sm:-translate-x-1/2'>
+			<div class='sm:absolute sm:start-1/2 sm:-translate-x-1/2'>
 				{showViewCount && <ViewCount />}
 			</div>
 			<div class='flex items-center justify-between'>
@@ -27,7 +27,7 @@ const { showViewCount = false } = Astro.props
 						href='https://snapchat.com/t/uMm9JFth'
 						target='_blank'
 					>
-						<Icon name='fa6-brands:snapchat' class='h-5 w-5 flex-shrink-0' />
+						<Icon name='fa6-brands:snapchat' class='size-5 flex-shrink-0' />
 					</a>
 					<!-- Instagram -->
 					<a
@@ -36,7 +36,7 @@ const { showViewCount = false } = Astro.props
 						href='https://www.instagram.com/michaelpayne02/'
 						target='_blank'
 					>
-						<Icon name='fa6-brands:instagram' class='h-5 w-5 flex-shrink-0' />
+						<Icon name='fa6-brands:instagram' class='size-5 flex-shrink-0' />
 					</a>
 					<!-- GitHub -->
 					<a
@@ -46,7 +46,7 @@ const { showViewCount = false } = Astro.props
 						href='https://github.com/michaelpayne02'
 						target='_blank'
 					>
-						<Icon name='fa6-brands:github' class='h-5 w-5 flex-shrink-0' />
+						<Icon name='fa6-brands:github' class='size-5 flex-shrink-0' />
 					</a>
 					<!-- Linkedin -->
 					<a
@@ -55,7 +55,7 @@ const { showViewCount = false } = Astro.props
 						target='_blank'
 						href='https://www.linkedin.com/in/michaelpayne02/'
 					>
-						<Icon name='fa6-brands:linkedin' class='h-5 w-5 flex-shrink-0' />
+						<Icon name='fa6-brands:linkedin' class='size-5 flex-shrink-0' />
 					</a>
 					<!-- Email -->
 					<a
@@ -65,7 +65,7 @@ const { showViewCount = false } = Astro.props
 						target='_blank'
 						href='mailto:michael@payne.cx'
 					>
-						<Icon name='heroicons:envelope' class='h-5 w-5 flex-shrink-0' />
+						<Icon name='heroicons:envelope' class='size-5 flex-shrink-0' />
 					</a>
 				</div>
 				<!-- End Social Brands -->

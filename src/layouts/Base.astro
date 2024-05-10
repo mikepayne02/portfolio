@@ -26,14 +26,28 @@ const {
 	</head>
 
 	<body class='flex justify-center bg-background'>
+		<div class='absolute -z-10 h-screen w-full overflow-hidden'>
+			<div id='gradient' class='absolute start-1/2 size-[35rem] -translate-x-1/2'></div>
+		</div>
 		<ThemeProvider />
 		<SkipLink />
 		<main
 			class='flex min-h-screen w-screen max-w-[55rem] flex-col items-center px-8 pb-10 pt-7 font-sans text-[0.92rem] leading-relaxed sm:px-10 lg:px-10'
 		>
 			<Header />
+			<!-- Main content element for skip link -->
+			<div id='main'></div>
 			<slot />
 			<Footer showViewCount={showViewCount} />
 		</main>
+		<style>
+			#gradient {
+				background: radial-gradient(
+					circle at top,
+					hsl(var(--primary-foreground)) 0%,
+					transparent 40%
+				);
+			}
+		</style>
 	</body>
 </html>

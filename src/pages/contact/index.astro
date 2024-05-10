@@ -73,7 +73,7 @@ const meta = {
 					required
 					name='fullName'
 					type='text'
-					class='mt-1 rounded-md border-border bg-input p-2 shadow-sm hover:border-foreground/25 hover:shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
+					class='mt-1 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-sm'
 				/>
 			</label>
 			{errors.fullName && <p class='text-red-500'>{errors.fullName}</p>}
@@ -82,7 +82,7 @@ const meta = {
 				<input
 					name='email'
 					type='email'
-					class='mt-1 rounded-md border-border bg-input p-2 shadow-sm hover:border-foreground/25 hover:shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
+					class='mt-1 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-sm'
 					placeholder='email@example.com'
 				/>
 			</label>
@@ -92,12 +92,12 @@ const meta = {
 				<textarea
 					required
 					name='message'
-					class='mt-1 h-24 rounded-md border-border bg-input p-2 shadow-sm hover:border-foreground/25 hover:shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
+					class='mt-1 h-24 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-sm'
 				></textarea>
 			</label>
 			{errors.message && <p class='text-red-500'>{errors.message}</p>}
 			<button
-				class='border-borde rounded-lg border border-border bg-secondary px-4 py-2 transition-all hover:bg-input'
+				class='rounded-lg border border-border bg-primary-foreground px-4 py-1 transition-all hover:bg-input'
 				type='submit'>Submit</button
 			>
 		</form>
