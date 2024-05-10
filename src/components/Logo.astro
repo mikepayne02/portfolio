@@ -20,9 +20,10 @@
 </nav>
 
 <script>
-	import { Rive, StateMachineInput, StateMachineInputType } from '@rive-app/canvas/rive'
+	import { Rive, StateMachineInput, StateMachineInputType } from '@rive-app/canvas-single'
+
 	const options = {
-		src: '/logo.riv',
+		src: 'https://content.mikepayne.me/file/payne-portfolio/logo.riv',
 		stateMachines: 'State Machine',
 		autoplay: true
 	}
@@ -68,13 +69,11 @@
 		}
 	}
 
-	document.addEventListener('DOMContentLoaded', () => {
-		const r = new Rive({
-			canvas,
-			...options,
-			onLoad: () => {
-				attach(r)
-			}
-		})
+	const r = new Rive({
+		canvas,
+		...options,
+		onLoad: () => {
+			attach(r)
+		}
 	})
 </script>
