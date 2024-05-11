@@ -30,6 +30,13 @@ export type SiteMeta = {
 	articleDate?: string | undefined
 }
 
+export type SocialItem = {
+	href: string
+	label?: string
+	icon: string
+	target?: '_blank' | '_self' | '_parent' | '_top'
+}
+
 /** Webmentions */
 export type WebmentionsFeed = {
 	type: string

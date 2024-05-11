@@ -3,7 +3,7 @@ title: DU Open 2024 Shirts
 description: T-shirt designs for the 2024 DU Open tournament
 publishDate: 1 March 2024
 coverImage:
-  src: '@/images/du-open.png'
+  src: '@/assets/images/du-open.png'
   alt: DU Open 2024
 tags: ['Illustrator']
 ogImage: du-open.png

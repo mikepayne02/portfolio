@@ -1,7 +1,8 @@
 ---
 import ViewCount from '@/components/ViewCount.astro'
-import { Icon } from 'astro-icon/components'
-import { siteConfig } from '@/site-config'
+import type { SocialItem } from '@/types'
+import { siteConfig, socialLinks } from '@/site-config'
+import SocialLink from './SocialLink.astro'
 
 const { showViewCount = false } = Astro.props
 ---
@@ -20,53 +21,16 @@ const { showViewCount = false } = Astro.props
 			<div class='flex items-center justify-between'>
 				<!-- Social Brands -->
 				<div class='flex items-center gap-x-4'>
-					<!-- Snapchat -->
-					<a
-						class='inline-block text-muted-foreground transition-all hover:text-muted-foreground/75'
-						aria-label='Snapchat'
-						href='https://snapchat.com/t/uMm9JFth'
-						target='_blank'
-					>
-						<Icon name='fa6-brands:snapchat' class='size-5 flex-shrink-0' />
-					</a>
-					<!-- Instagram -->
-					<a
-						class='inline-block text-muted-foreground transition-all hover:text-muted-foreground/75'
-						aria-label='Instagram'
-						href='https://www.instagram.com/michaelpayne02/'
-						target='_blank'
-					>
-						<Icon name='fa6-brands:instagram' class='size-5 flex-shrink-0' />
-					</a>
-					<!-- GitHub -->
-					<a
-						class='inline-block text-muted-foreground transition-all hover:text-muted-foreground/75'
-						aria-label='Github'
-						rel='me'
-						href='https://github.com/michaelpayne02'
-						target='_blank'
-					>
-						<Icon name='fa6-brands:github' class='size-5 flex-shrink-0' />
-					</a>
-					<!-- Linkedin -->
-					<a
-						class='inline-block text-muted-foreground transition-all hover:text-muted-foreground/75'
-						aria-label='LinkedIn'
-						target='_blank'
-						href='https://www.linkedin.com/in/michaelpayne02/'
-					>
-						<Icon name='fa6-brands:linkedin' class='size-5 flex-shrink-0' />
-					</a>
-					<!-- Email -->
-					<a
-						class='inline-block text-muted-foreground transition-all hover:text-muted-foreground/75'
-						rel='me'
-						aria-label='Email'
-						target='_blank'
-						href='mailto:michael@payne.cx'
-					>
-						<Icon name='heroicons:envelope' class='size-5 flex-shrink-0' />
-					</a>
+					{
+						socialLinks.map((social: SocialItem) => (
+							<SocialLink
+								href={social.href}
+								label={social.label}
+								icon={social.icon}
+								target={social.target}
+							/>
+						))
+					}
 				</div>
 				<!-- End Social Brands -->
 			</div>

@@ -1,6 +1,5 @@
 ---
 import type { SiteMeta } from '@/types'
-
 import BaseHead from '@/components/Head.astro'
 import Footer from '@/components/layout/Footer.astro'
 import Header from '@/components/layout/Header.astro'
@@ -27,7 +26,7 @@ const {
 
 	<body class='flex justify-center bg-background'>
 		<div class='absolute -z-10 h-screen w-full overflow-hidden'>
-			<div id='gradient' class='absolute start-1/2 size-[35rem] -translate-x-1/2'></div>
+			<div id='gradient' class='absolute start-1/2 size-[70rem] -translate-x-1/2'></div>
 		</div>
 		<ThemeProvider />
 		<SkipLink />
@@ -45,7 +44,7 @@ const {
 				background: radial-gradient(
 					circle at top,
 					hsl(var(--primary-foreground)) 0%,
-					transparent 40%
+					transparent 35%
 				);
 			}
 		</style>

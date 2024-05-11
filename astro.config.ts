@@ -12,28 +12,22 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 import arraybuffer from 'vite-plugin-arraybuffer'
 import { remarkReadingTime } from './src/lib/remark-reading-time'
 import { expressiveCodeOptions } from './src/site.config'
-import { AstroIntegration } from 'astro'
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://mikepayne.me',
 	integrations: [
 		expressiveCode(expressiveCodeOptions),
-		tailwind({
-			applyBaseStyles: false
-		}) as AstroIntegration,
 		sitemap(),
-		pagefind() as AstroIntegration,
-		mdx() as AstroIntegration,
+		pagefind(),
+		mdx(),
 		icon(),
-		react()
+		react(),
+		tailwind({ applyBaseStyles: false })
 	],
 	vite: {
 		// @ts-ignore
-		plugins: [arraybuffer()],
-		build: {
-			minify: false
-		}
+		plugins: [arraybuffer()]
 	},
 	image: {
 		domains: ['webmention.io']

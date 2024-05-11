@@ -1,0 +1,15 @@
+---
+import type { SocialItem } from '@/types'
+const { href, label, icon, target = '_blank' } = Astro.props as SocialItem
+import { Icon } from 'astro-icon/components'
+---
+
+<a
+	class='inline-block text-muted-foreground transition-all hover:text-muted-foreground/75'
+	aria-label={label}
+	rel='me'
+	href={href}
+	target={target}
+>
+	<Icon name={icon} class='size-5 flex-shrink-0' />
+</a>

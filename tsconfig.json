@@ -4,15 +4,9 @@
 		"types": ["@cloudflare/workers-types", "vite-plugin-arraybuffer/types"],
 		"baseUrl": ".",
 		"paths": {
-			"@/assets/*": ["src/assets/*"],
-			"@/components/*": ["src/components/*"],
-			"@/images/*": ["src/assets/images/*"],
-			"@/data/*": ["src/data/*"],
-			"@/layouts/*": ["src/layouts/*"],
-			"@/lib": ["src/lib/index.ts"],
+			"@/*": ["src/*"],
 			"@/types": ["src/types.ts"],
 			"@/db": ["src/db.ts"],
-			"@/emails/*": ["src/emails/*"],
 			"@/site-config": ["src/site.config.ts"]
 		},
 		"plugins": [
@@ -20,7 +14,6 @@
 				"name": "@astrojs/ts-plugin"
 			}
 		],
-		"verbatimModuleSyntax": true,
 		"jsx": "react-jsx",
 		"jsxImportSource": "react"
 	},

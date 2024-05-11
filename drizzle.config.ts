@@ -7,6 +7,7 @@ if (!process.env.TURSO_DATABASE_URL || !process.env.TURSO_AUTH_TOKEN) {
 export default defineConfig({
 	schema: 'src/schema.ts',
 	driver: 'turso',
+	dialect: 'sqlite',
 	out: './drizzle',
 	dbCredentials: {
 		url: process.env.TURSO_DATABASE_URL,

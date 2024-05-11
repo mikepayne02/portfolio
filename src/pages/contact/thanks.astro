@@ -20,7 +20,7 @@ if (Astro.request.method === 'POST') {
 }
 ---
 
-<PageLayout meta={meta}>
+<PageLayout {meta}>
 	<div class='px-4 py-10 text-center sm:px-6 lg:px-8'>
 		{firstName && <h1 class='block pb-4 font-mono text-7xl font-bold sm:text-5xl'>Thanks!</h1>}
 		{!firstName && <h1 class='block pb-4 font-mono text-7xl font-bold sm:text-5xl'>Whoops</h1>}

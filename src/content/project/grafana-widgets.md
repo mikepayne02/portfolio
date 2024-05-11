@@ -3,7 +3,7 @@ title: Grafana iOS Widgets
 description: iOS Home screen widgets for Grafana using Scriptable
 publishDate: 1 May 2024
 coverImage:
-  src: '@/images/grafana-widgets.png'
+  src: '@/assets/images/grafana-widgets.png'
   alt: Example Wi-Fi traffic iOS home screen widget
 tags: ['Docker', 'Javascript']
 ogImage: grafana-widgets.png
