@@ -74,6 +74,7 @@
     "satori": "^0.10.13",
     "satori-html": "^0.3.2",
     "sharp": "^0.33.3",
+    "valibot": "^0.31.0-rc.5",
     "vite-plugin-arraybuffer": "^0.0.7",
     "wrangler": "^3.53.0"
   }

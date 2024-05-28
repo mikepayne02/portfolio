@@ -2,7 +2,7 @@ import { getAllPosts } from '@/data/project'
 import { getFormattedDate, ogImageHeaders } from '@/lib'
 import { siteConfig } from '@/site-config'
 import { Resvg, initWasm } from '@resvg/resvg-wasm'
-import type { APIContext, APIRoute, GetStaticPaths, InferGetStaticPropsType } from 'astro'
+import type { APIRoute, GetStaticPaths } from 'astro'
 import type { ReactNode } from 'react'
 import satori, { type SatoriOptions } from 'satori'
 import { html } from 'satori-html'
@@ -61,8 +61,8 @@ const Opengraph = (
 	</div>
 `
 
-export const GET: APIRoute = async (ctx: APIContext) => {
-	const { title, pubDate, tags, ogImage } = ctx.props as Props
+export const GET: APIRoute = async ({ props }) => {
+	const { title, pubDate, tags, ogImage } = props
 
 	const baseUrl = siteConfig.bucketEndpoint
 	const bucketName = siteConfig.bucketName
@@ -79,8 +79,6 @@ export const GET: APIRoute = async (ctx: APIContext) => {
 	const svg = await satori(component as ReactNode, svgOptions)
 	return new Response(new Resvg(svg).render().asPng(), ogImageHeaders)
 }
-
-type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 export const getStaticPaths = (async () => {
 	const posts = await getAllPosts()
