@@ -4,7 +4,7 @@ import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import expressiveCode from 'astro-expressive-code'
-import icon from 'astro-icon'
+import Icons from 'unplugin-icons/vite'
 import pagefind from 'astro-pagefind'
 import { defineConfig } from 'astro/config'
 import rehypeExternalLinks from 'rehype-external-links'
@@ -12,6 +12,8 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 import arraybuffer from 'vite-plugin-arraybuffer'
 import { remarkReadingTime } from './src/lib/remark-reading-time'
 import { expressiveCodeOptions } from './src/site.config'
+
+import svelte from '@astrojs/svelte'
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,13 +23,19 @@ export default defineConfig({
 		sitemap(),
 		pagefind(),
 		mdx(),
-		icon(),
 		react(),
-		tailwind({ applyBaseStyles: false })
+		tailwind({
+			applyBaseStyles: false
+		}),
+		svelte()
 	],
 	vite: {
-		// @ts-ignore
-		plugins: [arraybuffer()]
+		plugins: [
+			Icons({
+				compiler: 'astro'
+			}),
+			arraybuffer()
+		]
 	},
 	image: {
 		domains: ['webmention.io']

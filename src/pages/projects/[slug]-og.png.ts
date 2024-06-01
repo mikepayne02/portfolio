@@ -65,10 +65,9 @@ export const GET: APIRoute = async ({ props }) => {
 	const { title, pubDate, tags, ogImage } = props
 
 	const baseUrl = siteConfig.bucketEndpoint
-	const bucketName = siteConfig.bucketName
 
-	const coverUrl = `${baseUrl}/file/${bucketName}/og/${ogImage}`
-	const profileUrl = `${baseUrl}/file/${bucketName}/profile.jpg`
+	const coverUrl = `${baseUrl}/og/${ogImage}`
+	const profileUrl = `${baseUrl}/profile.jpg`
 
 	const postDate = getFormattedDate(pubDate, {
 		weekday: 'long',

@@ -1,19 +1,17 @@
 ---
-import { Icon } from 'astro-icon/components'
+import HeroiconsSun from '~icons/heroicons/sun'
+import HeroiconsMoon from '~icons/heroicons/moon'
 ---
 
 <theme-toggle class='ms-2 sm:ms-4'>
 	<button class='relative size-8 rounded-md border border-border transition-all hover:bg-border'>
 		<span class='sr-only'>Dark Theme</span>
-		<Icon
-			name='heroicons:sun'
-			size={24}
-			class='absolute start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-180 scale-0 fill-none stroke-current opacity-0 transition-all dark:rotate-0 dark:scale-100 dark:opacity-100'
+		<HeroiconsSun
+			class='absolute start-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 rotate-180 scale-0 fill-none stroke-current opacity-0 transition-all dark:rotate-0 dark:scale-100 dark:opacity-100'
 		/>
-		<Icon
+		<HeroiconsMoon
 			name='heroicons:moon'
-			size={24}
-			class='absolute start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-0 scale-100 fill-none stroke-current opacity-100 transition-all dark:rotate-180 dark:scale-0 dark:opacity-0'
+			class='absolute start-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 rotate-0 scale-100 fill-none stroke-current opacity-100 transition-all dark:rotate-180 dark:scale-0 dark:opacity-0'
 		/>
 	</button>
 </theme-toggle>

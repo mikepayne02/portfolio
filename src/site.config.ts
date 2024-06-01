@@ -1,4 +1,4 @@
-import type { SiteConfig, SocialItem } from '@/types'
+import type { SiteConfig } from '@/types'
 import type { AstroExpressiveCodeOptions } from 'astro-expressive-code'
 
 export const siteConfig: SiteConfig = {
@@ -22,8 +22,7 @@ export const siteConfig: SiteConfig = {
 			year: 'numeric'
 		}
 	},
-	bucketName: 'payne-portfolio',
-	bucketEndpoint: 'https://f004.backblazeb2.com',
+	bucketEndpoint: 'https://content.mikepayne.me',
 	webmentions: {
 		// Webmention.io API endpoint. Get your own here: https://webmention.io/, and follow this blog post: https://astro-cactus.chriswilliams.dev/posts/webmentions/
 		link: 'https://webmention.io/mikepayne.me/webmention'
@@ -38,39 +37,6 @@ export const menuLinks: Array<{ title: string; path: string }> = [
 	{
 		title: 'Tools',
 		path: '/tools/'
-	}
-]
-
-export const socialLinks: Array<SocialItem> = [
-	{
-		label: 'Snapchat',
-		href: 'https://snapchat.com/t/uMm9JFth',
-		icon: 'fa6-brands:snapchat'
-	},
-	{
-		label: 'Instagram',
-		href: 'https://www.instagram.com/michaelpayne02/',
-		icon: 'fa6-brands:instagram'
-	},
-	{
-		label: 'Github',
-		href: 'https://github.com/michaelpayne02',
-		icon: 'fa6-brands:github'
-	},
-	{
-		label: 'LinkedIn',
-		href: 'https://www.linkedin.com/in/michaelpayne02/',
-		icon: 'fa6-brands:linkedin'
-	},
-	{
-		label: 'Ethereum',
-		href: 'https://etherscan.io/address/0x964D98dfa07549cB7571a4D6A161D825d76f9070',
-		icon: 'ri:eth-fill'
-	},
-	{
-		label: 'Email',
-		href: 'mailto:michael@payne.cx',
-		icon: 'heroicons:envelope'
 	}
 ]
 

@@ -1,12 +1,18 @@
 name = "portfolio"
 
+[[ d1_databases ]]
+binding = "DB"
+database_name = "portfolio"
+database_id = ""
+
 [vars]
-BUCKET_ENDPOINT = ""
+ACCOUNT_ID = ""
+AUTHOR_EMAIL = ""
 BUCKET_KEY_ID = ""
 BUCKET_NAME = ""
-BUCKET_REGION = ""
 BUCKET_SECRET = ""
-TURSO_AUTH_TOKEN = ""
-TURSO_DATABASE_URL = ""
+RECAPTCHA_SECRET = ""
+RECAPTCHA_SITEKEY = ""
 WEBMENTION_API_KEY = ""
 RESEND_API_KEY = ""
+MAPTILER_API_KEY = ""

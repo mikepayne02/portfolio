@@ -1,17 +1,18 @@
 import { defineConfig } from 'drizzle-kit'
 
-if (!process.env.TURSO_DATABASE_URL || !process.env.TURSO_AUTH_TOKEN) {
-	throw new Error('Please provide TURSO_DATABASE_URL and TURSO_AUTH_TOKEN in the environment')
+if (!process.env.DATABASE_ID || !process.env.D1_TOKEN) {
+	throw new Error('Please provide DATABASE_ID and D1_TOKEN in the environment')
 }
 
 export default defineConfig({
 	schema: 'src/schema.ts',
-	driver: 'turso',
 	dialect: 'sqlite',
+	driver: 'd1-http',
 	out: './drizzle',
 	dbCredentials: {
-		url: process.env.TURSO_DATABASE_URL,
-		authToken: process.env.TURSO_AUTH_TOKEN
+		accountId: process.env.ACCOUNT_ID!,
+		databaseId: process.env.DATABASE_ID!,
+		token: process.env.D1_TOKEN!
 	},
 	// verbose: true,
 	strict: true

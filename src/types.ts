@@ -9,7 +9,6 @@ export type SiteConfig = {
 		locale: string | string[] | undefined
 		options: Intl.DateTimeFormatOptions
 	}
-	bucketName: string
 	bucketEndpoint: string
 	webmentions?: {
 		link: string
@@ -28,13 +27,6 @@ export type SiteMeta = {
 	description?: string
 	ogImage?: string | undefined
 	articleDate?: string | undefined
-}
-
-export type SocialItem = {
-	href: string
-	label?: string
-	icon: string
-	target?: '_blank' | '_self' | '_parent' | '_top'
 }
 
 /** Webmentions */

@@ -9,9 +9,9 @@ const validWebmentionTypes = ['like-of', 'mention-of', 'in-reply-to']
 
 const hostName = new URL(DOMAIN).hostname
 
-const s3 = new S3Client({
-	endpoint: import.meta.env.BUCKET_ENDPOINT,
-	region: import.meta.env.BUCKET_REGION,
+const S3 = new S3Client({
+	region: 'auto',
+	endpoint: `https://${import.meta.env.ACCOUNT_ID}.r2.cloudflarestorage.com`,
 	credentials: {
 		accessKeyId: import.meta.env.BUCKET_KEY_ID,
 		secretAccessKey: import.meta.env.BUCKET_SECRET
@@ -70,7 +70,7 @@ export function filterWebmentions(webmentions: WebmentionsChildren[]) {
 // save combined webmentions in cache file
 async function writeToCache(data: WebmentionsCache) {
 	try {
-		await s3.send(
+		await S3.send(
 			new PutObjectCommand({
 				Bucket: bucketName,
 				Key: cachePath,
@@ -86,7 +86,7 @@ async function writeToCache(data: WebmentionsCache) {
 async function getFromCache(): Promise<WebmentionsCache> {
 	const emptyCache: WebmentionsCache = { lastFetched: null, children: [] }
 	try {
-		const res = await s3.send(
+		const res = await S3.send(
 			new GetObjectCommand({
 				Bucket: bucketName,
 				Key: cachePath

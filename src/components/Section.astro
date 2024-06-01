@@ -30,7 +30,6 @@ const { className, title } = Astro.props
 					if (this.bumpElem.classList.contains('bump') || (e?.intersectionRatio ?? 0) >= 1) return
 					const bcr = this.bumpElem.getBoundingClientRect()
 					if (bcr.bottom < window.innerHeight) this.bumpElem.classList.toggle('bump')
-					console.log(e?.intersectionRatio)
 					setTimeout(() => this.bumpElem.classList.remove('bump'), 400)
 				},
 				{
@@ -38,7 +37,6 @@ const { className, title } = Astro.props
 					threshold: [1]
 				}
 			).observe(this)
-			console.log('mount')
 		}
 	}
 

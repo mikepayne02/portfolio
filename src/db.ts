@@ -1,14 +1,8 @@
-import { createClient } from '@libsql/client/web'
 import type { APIContext } from 'astro'
-import { drizzle } from 'drizzle-orm/libsql'
+import { drizzle } from 'drizzle-orm/d1'
 export { views } from 'src/schema'
 
-export const connect = (ctx: APIContext) => {
-	const { env } = ctx.locals.runtime
-	return drizzle(
-		createClient({
-			url: env.TURSO_DATABASE_URL,
-			authToken: env.TURSO_AUTH_TOKEN
-		})
-	)
+export const connect = ({ locals }: APIContext) => {
+	const { DB } = locals.runtime.env
+	return drizzle(DB)
 }

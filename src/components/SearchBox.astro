@@ -1,7 +1,7 @@
 ---
 // Heavy inspiration taken from Astro Starlight -> https://github.com/withastro/starlight/blob/main/packages/starlight/components/Search.astro
 
-import { Icon } from 'astro-icon/components'
+import MdiMagnify from '~icons/mdi/magnify'
 import Search from 'astro-pagefind/components/Search'
 const q = Astro.url.searchParams.get('q') ?? ''
 ---
@@ -13,7 +13,7 @@ const q = Astro.url.searchParams.get('q') ?? ''
 		aria-label='search'
 		class='m-auto size-8 rounded-md border border-border transition-all hover:bg-border'
 	>
-		<Icon name='heroicons:magnifying-glass' class='m-auto size-6' />
+		<MdiMagnify class='m-auto size-6' />
 	</button>
 	<dialog
 		aria-label='search'

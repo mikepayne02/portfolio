@@ -8,8 +8,9 @@ import Pagination from '@/components/Paginator.astro'
 import PostPreview from '@/components/blog/PostPreview.astro'
 import { getAllPosts, getUniqueTags, sortMDByDate } from '@/data/project'
 import PageLayout from '@/layouts/Base.astro'
-import { Icon } from 'astro-icon/components'
 import CTA from '@/components/CTA.astro'
+
+import HeroiconsArrowLeft from '~icons/heroicons/arrow-left'
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 	const allPosts = await getAllPosts()
@@ -56,7 +57,7 @@ const paginationProps = {
 <PageLayout {meta}>
 	<div class='w-full'>
 		<Button transition:persist='back' title='Back' href='/projects' style='button'>
-			<Icon slot='icon-before' name='heroicons:arrow-left' class='size-4' />
+			<HeroiconsArrowLeft slot='icon-before' name='heroicons:arrow-left' class='size-4' />
 		</Button>
 		<h1 class='mb-6 mt-5 flex items-end gap-x-2 text-2xl font-bold'>
 			Tags:

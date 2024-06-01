@@ -17,11 +17,11 @@ export const GET: APIRoute = async (ctx: APIContext) => {
 		item = await db
 			.update(views)
 			.set({
-				count: sql`count + 1`
+				count: sql`${views.count} + 1`
 			})
 			.where(eq(views.path, path))
 			.returning({
-				slug: views.path,
+				path: views.path,
 				count: views.count
 			})
 			.then((res) => res[0])

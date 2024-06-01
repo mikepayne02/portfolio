@@ -1,7 +1,10 @@
 ---
-import type { SocialItem } from '@/types'
-const { href, label, icon, target = '_blank' } = Astro.props as SocialItem
-import { Icon } from 'astro-icon/components'
+type Props = {
+	href: string
+	label?: string
+	target?: '_blank' | '_self' | '_parent' | '_top'
+}
+const { href, label, target = '_blank' } = Astro.props
 ---
 
 <a
@@ -11,5 +14,5 @@ import { Icon } from 'astro-icon/components'
 	href={href}
 	target={target}
 >
-	<Icon name={icon} class='size-5 flex-shrink-0' />
+	<slot name='icon' class='size-5 flex-shrink-0' />
 </a>

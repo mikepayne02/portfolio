@@ -14,7 +14,7 @@
 - Comments using [Webmentions](https://indieweb.org/Webmention), cached in object store
 - [Rive](https://github.com/rive-app/rive-wasm) logo animation
 - Static social image generation using WebAssembly
-  - synced to S3 for Cloudflare compatibility
+  - optimised with [sharp](https://sharp.pixelplumbing.com/) and synced to S3 for Cloudflare compatibility
   - [vercel/satori](https://github.com/vercel/satori) and [satori-html](https://github.com/natemoo-re/satori-html) to generate an SVG
   - [Resvg Wasm](https://github.com/yisibl/resvg-js) to render a PNG from the SVG
 

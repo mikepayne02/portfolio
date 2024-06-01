@@ -4,8 +4,9 @@ export const prerender = true
 import Button from '@/components/Button.astro'
 import { getAllPosts, getUniqueTagsWithCount } from '@/data/project'
 import PageLayout from '@/layouts/Base.astro'
-import { Icon } from 'astro-icon/components'
 import CTA from '@/components/CTA.astro'
+
+import HeroiconsArrowLeft from '~icons/heroicons/arrow-left'
 
 const allPosts = await getAllPosts()
 const allTags = getUniqueTagsWithCount(allPosts)
@@ -19,7 +20,7 @@ const meta = {
 <PageLayout {meta}>
 	<div class='w-full'>
 		<Button transition:persist='back' title='Back' href='/projects' style='button'>
-			<Icon slot='icon-before' name='heroicons:arrow-left' class='size-4' />
+			<HeroiconsArrowLeft slot='icon-before' class='size-4' />
 		</Button>
 
 		<h1 class='mb-6 mt-5 text-2xl font-bold'>Tags</h1>

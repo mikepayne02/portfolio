@@ -3,7 +3,7 @@ export const prerender = true
 
 import DUBadge from '@/assets/du_badge.svg'
 import Nebraska from '@/assets/nebraska.svg'
-import Ink from '@/assets/402ink.svg'
+// import Ink from '@/assets/402ink.svg'
 import Profile from '@/assets/profile.png'
 import CTA from '@/components/CTA.astro'
 import Label from '@/components/Label.astro'
@@ -12,9 +12,15 @@ import SkillLayout from '@/components/SkillLayout.astro'
 import PostPreview from '@/components/blog/PostPreview.astro'
 import { getAllPosts, sortMDByDate } from '@/data/project'
 import PageLayout from '@/layouts/Base.astro'
-import { Icon } from 'astro-icon/components'
 import { Image, Picture } from 'astro:assets'
-import ProjectCard from '../components/ProjectCard.astro'
+import ProjectCard from '@/components/ProjectCard.astro'
+import Map from '@/components/Map.svelte'
+
+import HeroiconsMapPin from '~icons/heroicons/map-pin'
+import HeroiconsCake from '~icons/heroicons/cake'
+import MdiLinkedin from '~icons/mdi/linkedin'
+import HeroiconsArrowDownTray from '~icons/heroicons/arrow-down-tray'
+import HeroiconsArrowTopRightOnSquare from '~icons/heroicons/arrow-top-right-on-square'
 
 const languages = ['Typescript', 'Python', 'Java', 'Kotlin', 'PHP', 'SQL', 'Go']
 const software = ['Creative Cloud', 'Blender', 'Linux', 'VMware ESXi', 'Office']
@@ -40,10 +46,10 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				<CTA>Contact</CTA>
 				<div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
 					<Label title='Overland Park, KS'>
-						<Icon slot='icon' name='heroicons:map-pin' class='size-5' />
+						<HeroiconsMapPin slot='icon' class='size-5' />
 					</Label>
 					<Label title='21'>
-						<Icon slot='icon' name='heroicons:cake' class='size-5' />
+						<HeroiconsCake slot='icon' name='heroicons:cake' class='size-5' />
 					</Label>
 					<Label
 						title='LinkedIn'
@@ -51,15 +57,15 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 						href='https://www.linkedin.com/in/michaelpayne02/'
 						target='_blank'
 					>
-						<Icon slot='icon' name='fa6-brands:linkedin' class='size-5 text-foreground/75' />
+						<MdiLinkedin slot='icon' class='size-5 text-foreground/75' />
 					</Label>
 					<Label
 						as='a'
 						title='Resume'
-						href='https://content.mikepayne.me/file/payne-portfolio/MichaelPayne_Resume_2024.pdf'
+						href='https://content.mikepayne.me/MichaelPayne_Resume_2024.pdf'
 						target='_blank'
 					>
-						<Icon slot='icon' name='heroicons:arrow-down-tray' class='size-5 text-foreground/75' />
+						<HeroiconsArrowDownTray slot='icon' class='size-5 text-foreground/75' />
 					</Label>
 				</div>
 			</div>
@@ -78,7 +84,6 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				like-minded people.
 			</p>
 		</Section>
-
 		<Section title='Designs'>
 			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
 				<ProjectCard
@@ -133,7 +138,6 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				/>
 			</div>
 		</Section>
-
 		<Section title='Education'>
 			<div
 				class='relative grid-cols-4 rounded-xl border border-border bg-primary-foreground/50 bg-gradient-to-b from-secondary/15 px-5 py-3 transition-all hover:border-foreground/25 hover:shadow-sm md:mx-auto md:w-3/4'
@@ -159,7 +163,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				</div>
 			</div>
 		</Section>
-		<Section title='Experience'>
+		<!-- <Section title='Experience'>
 			<div
 				class='relative grid-cols-4 rounded-xl border border-border bg-primary-foreground/50 bg-gradient-to-b from-secondary/15 px-5 py-3 transition-all hover:border-foreground/25 hover:shadow-sm md:mx-auto md:w-3/4'
 			>
@@ -189,7 +193,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					</a>
 				</div>
 			</div>
-		</Section>
+		</Section> -->
 
 		<Section title='Leadership'>
 			<div
@@ -215,7 +219,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 						target='_blank'
 						class='relative mx-auto my-2 inline-flex items-center rounded-lg bg-foreground/90 px-4 py-2 font-bold text-background hover:bg-foreground/80'
 					>
-						<Icon name='heroicons:arrow-top-right-on-square' class='mr-2 size-4' />
+						<HeroiconsArrowTopRightOnSquare class='mr-2 size-4' />
 						<span class='mr-3'> unldu.org </span>
 						<span
 							class='absolute -right-5 -top-2 inline-flex items-center justify-center rounded-full bg-red-700 px-2 py-1 text-xs font-bold leading-none text-white'
@@ -243,6 +247,15 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				</Section>
 			)
 		}
+		<CTA>Contact</CTA>
+		<Map
+			client:only='svelte'
+			zoom={5.2}
+			mapStyle='https://api.maptiler.com/maps/toner-v2/style.json?key=bPyoF5op4HSnAi5Dw0wV'
+			class='mx-auto h-56 w-96 overflow-hidden rounded-xl dark:invert'
+			interactive={true}
+			latitude={39.8807948544334}
+			longitude={-95.6983122797664}
+		/>
 	</div>
-	<CTA className='mt-16'>Contact</CTA>
 </PageLayout>

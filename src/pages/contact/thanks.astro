@@ -3,7 +3,8 @@ export const prerender = false
 
 import PageLayout from '@/layouts/Base.astro'
 import Button from '@/components/Button.astro'
-import { Icon } from 'astro-icon/components'
+import HeroiconsArrowLeft from '~icons/heroicons/arrow-left'
+
 const meta = {
 	description: 'Conatact',
 	title: 'Contact'
@@ -13,7 +14,6 @@ let firstName = null
 if (Astro.request.method === 'POST') {
 	const data = await Astro.request.formData().catch(() => new FormData())
 	const fullName = data.get('fullName')
-	console.log(fullName)
 	if (typeof fullName === 'string' && fullName.length > 0) {
 		firstName = fullName ? fullName.split(' ')[0] : null
 	}
@@ -33,7 +33,7 @@ if (Astro.request.method === 'POST') {
 		}
 		{!firstName && <p>Looks like you refreshed the page.</p>}
 		<Button title='Back to home' href='/' style='button' class='mt-5'>
-			<Icon slot='icon-before' name='heroicons:arrow-left' />
+			<HeroiconsArrowLeft slot='icon-before' />
 		</Button>
 	</div>
 </PageLayout>

@@ -17,7 +17,7 @@ This design was made to accompany the 2024 DU Open Golf Tournament, held at NuMa
 
 <div class="w-full">
 <video class="mx-auto" autoplay loop muted playsinline>
-  <source src="https://content.mikepayne.me/file/payne-portfolio/du-open.mp4" type="video/mp4" />
+  <source src="https://content.mikepayne.me/videos%2Fdu-open.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
 </div>

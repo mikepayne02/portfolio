@@ -1,8 +1,14 @@
 ---
 import ViewCount from '@/components/ViewCount.astro'
-import type { SocialItem } from '@/types'
-import { siteConfig, socialLinks } from '@/site-config'
+import { siteConfig } from '@/site-config'
 import SocialLink from './SocialLink.astro'
+
+import MdiSnapchat from '~icons/mdi/snapchat'
+import MdiInstagram from '~icons/mdi/instagram'
+import MdiGithub from '~icons/mdi/github'
+import MdiLinkedin from '~icons/mdi/linkedin'
+import MdiEthereum from '~icons/mdi/ethereum'
+import HeroiconsEnvelope from '~icons/heroicons/envelope'
 
 const { showViewCount = false } = Astro.props
 ---
@@ -21,16 +27,36 @@ const { showViewCount = false } = Astro.props
 			<div class='flex items-center justify-between'>
 				<!-- Social Brands -->
 				<div class='flex items-center gap-x-4'>
-					{
-						socialLinks.map((social: SocialItem) => (
-							<SocialLink
-								href={social.href}
-								label={social.label}
-								icon={social.icon}
-								target={social.target}
-							/>
-						))
-					}
+					<SocialLink label='Snapchat' href='https://snapchat.com/t/uMm9JFth' target='_blank'>
+						<MdiSnapchat slot='icon' class='size-5' />
+					</SocialLink>
+					<SocialLink
+						label='Instagram'
+						href='https://www.instagram.com/michaelpayne02/'
+						target='_blank'
+					>
+						<MdiInstagram slot='icon' class='size-5' />
+					</SocialLink>
+					<SocialLink label='GitHub' href='https://github.com/michaelpayne02' target='_blank'>
+						<MdiGithub slot='icon' class='size-5' />
+					</SocialLink>
+					<SocialLink
+						label='LinkedIn'
+						href='https://www.linkedin.com/in/michaelpayne02/'
+						target='_blank'
+					>
+						<MdiLinkedin slot='icon' class='size-5' />
+					</SocialLink>
+					<SocialLink
+						label='Ethereum'
+						href='https://etherscan.io/address/0x964D98dfa07549cB7571a4D6A161D825d76f9070'
+						target='_blank'
+					>
+						<MdiEthereum slot='icon' class='size-5' />
+					</SocialLink>
+					<SocialLink label='Email' href='mailto:michael@payne.cx' target='_blank'>
+						<HeroiconsEnvelope slot='icon' class='size-5' />
+					</SocialLink>
 				</div>
 				<!-- End Social Brands -->
 			</div>
