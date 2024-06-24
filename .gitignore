@@ -4,7 +4,7 @@ dist/
 .astro/
 .vercel/
 .wrangler/
-.ogImage/
+.ogimage/
 worker-configuration.d.ts
 
 # dependencies

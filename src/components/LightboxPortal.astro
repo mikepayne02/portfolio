@@ -3,104 +3,105 @@
 ---
 
 <light-box class='app-lightbox'>
-	<div class='portal'></div>
+  <div class='portal'></div>
 </light-box>
 
 <script>
-	class LightBox extends HTMLElement {
-		private portal: HTMLDivElement
+  class LightBox extends HTMLElement {
+    private portal: HTMLDivElement
 
-		constructor() {
-			super()
-			this.portal = this.querySelector<HTMLDivElement>('.portal') as HTMLDivElement
-		}
+    constructor() {
+      super()
+      this.portal = this.querySelector<HTMLDivElement>(
+        '.portal'
+      ) as HTMLDivElement
+    }
 
-		connectedCallback() {
-			this.attachLightBox()
-		}
+    connectedCallback() {
+      this.attachLightBox()
+    }
 
-		attachLightBox() {
-			if (!this.portal) {
-				throw new Error('Portal not found')
-			}
-			const lbTriggers = document.querySelectorAll<HTMLImageElement>('[data-lightbox]')
+    attachLightBox() {
+      if (!this.portal) {
+        throw new Error('Portal not found')
+      }
+      const lbTriggers =
+        document.querySelectorAll<HTMLImageElement>('[data-lightbox]')
 
-			lbTriggers.forEach((trig) => {
-				trig.addEventListener('click', () => {
-					this.portal.innerHTML = trig.innerHTML
+      lbTriggers.forEach((trig) => {
+        trig.addEventListener('click', () => {
+          this.portal.innerHTML = trig.innerHTML
 
-					setTimeout(() => {
-						// Adapt size attribute dynamically
-						const img = this.portal.querySelectorAll('img')[0]!
-						const ratio = img.naturalWidth / img.naturalHeight
-						img.sizes = `${window.innerHeight * ratio}px`
-					}, 352)
-					this.classList.add('is-active')
-					document.documentElement.classList.add('scrollIsLocked')
-				})
-			})
+          setTimeout(() => {
+            // Adapt size attribute dynamically
+            const img = this.portal.querySelectorAll('img')[0]!
+            const ratio = img.naturalWidth / img.naturalHeight
+            img.sizes = `${window.innerHeight * ratio}px`
+          }, 352)
+          this.classList.add('is-active')
+          document.documentElement.classList.add('scrollIsLocked')
+        })
+      })
 
-			this.addEventListener('click', () => {
-				this.classList.remove('is-active')
-				document.documentElement.classList.remove('scrollIsLocked')
-			})
+      this.addEventListener('click', () => {
+        this.classList.remove('is-active')
+        document.documentElement.classList.remove('scrollIsLocked')
+      })
 
-			document.addEventListener('keydown', (e) => {
-				if (e.key === 'Escape') {
-					this.classList.remove('is-active')
-					document.documentElement.classList.remove('scrollIsLocked')
-				}
-			})
-		}
-	}
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          this.classList.remove('is-active')
+          document.documentElement.classList.remove('scrollIsLocked')
+        }
+      })
+    }
+  }
 
-	customElements.define('light-box', LightBox)
+  customElements.define('light-box', LightBox)
 </script>
 
-<style lang='scss'>
-	.app-lightbox {
-		position: fixed;
-		top: 0;
-		z-index: 99999;
-		width: 100%;
-		height: 100%;
-		pointer-events: none;
-		cursor: zoom-out;
-		// TODO: map color to API
-		background-color: hsl(var(--background) / 0.9);
-		opacity: 0;
-		transition: opacity 0.35s;
+<style>
+  .app-lightbox {
+    position: fixed;
+    top: 0;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    cursor: zoom-out;
+    background-color: #000;
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
 
-		&.is-active {
-			pointer-events: initial;
-			opacity: 1;
-		}
-	}
+  .app-lightbox.is-active {
+    pointer-events: initial;
+    opacity: 1;
+  }
 
-	:global([data-lightbox]) {
-		cursor: zoom-in;
-	}
+  :global([data-lightbox]) {
+    cursor: zoom-in;
+  }
 
-	.portal {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-		// TODO: map speed to API
-		transition:
-			opacity 0.35s,
-			transform 0.35s;
-		transform: scale(0.2);
+  .portal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transition:
+      opacity 0.35s,
+      transform 0.35s;
+    transform: scale(0.2);
+  }
 
-		:global(img) {
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-		}
+  .portal :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 
-		.is-active & {
-			transform: scale(1);
-		}
-	}
+  .is-active .portal {
+    transform: scale(1);
+  }
 </style>

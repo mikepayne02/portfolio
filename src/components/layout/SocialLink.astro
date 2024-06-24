@@ -1,18 +1,18 @@
 ---
 type Props = {
-	href: string
-	label?: string
-	target?: '_blank' | '_self' | '_parent' | '_top'
+  href: string
+  label?: string
+  target?: '_blank' | '_self' | '_parent' | '_top'
 }
 const { href, label, target = '_blank' } = Astro.props
 ---
 
 <a
-	class='inline-block text-muted-foreground transition-all hover:text-muted-foreground/75'
-	aria-label={label}
-	rel='me'
-	href={href}
-	target={target}
+  class='inline-block w-9 px-2 text-muted-foreground transition-all hover:w-12 hover:scale-150 hover:text-muted-foreground/75'
+  aria-label={label}
+  rel='me'
+  href={href}
+  target={target}
 >
-	<slot name='icon' class='size-5 flex-shrink-0' />
+  <slot name='icon' />
 </a>

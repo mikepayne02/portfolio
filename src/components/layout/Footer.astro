@@ -1,5 +1,5 @@
 ---
-import ViewCount from '@/components/ViewCount.astro'
+import ViewCount from './ViewCount.astro'
 import { siteConfig } from '@/site-config'
 import SocialLink from './SocialLink.astro'
 
@@ -14,50 +14,65 @@ const { showViewCount = false } = Astro.props
 ---
 
 <footer class='mx-auto mt-24 w-full'>
-	<div class='border-t border-border pt-5'>
-		<div
-			class='flex flex-col-reverse items-center justify-between gap-y-3 sm:flex sm:flex-row sm:gap-y-0'
-		>
-			<div class='flex gap-x-4 text-sm'>
-				<p class='text-muted-foreground'>&copy;{new Date().getFullYear()} {siteConfig.author}</p>
-			</div>
-			<div class='sm:absolute sm:start-1/2 sm:-translate-x-1/2'>
-				{showViewCount && <ViewCount />}
-			</div>
-			<div class='flex items-center justify-between'>
-				<div class='flex items-center gap-x-4'>
-					<SocialLink label='Snapchat' href='https://snapchat.com/t/uMm9JFth' target='_blank'>
-						<MdiSnapchat slot='icon' class='size-5' />
-					</SocialLink>
-					<SocialLink
-						label='Instagram'
-						href='https://www.instagram.com/michaelpayne02/'
-						target='_blank'
-					>
-						<MdiInstagram slot='icon' class='size-5' />
-					</SocialLink>
-					<SocialLink label='GitHub' href='https://github.com/michaelpayne02' target='_blank'>
-						<MdiGithub slot='icon' class='size-5' />
-					</SocialLink>
-					<SocialLink
-						label='LinkedIn'
-						href='https://www.linkedin.com/in/michaelpayne02/'
-						target='_blank'
-					>
-						<MdiLinkedin slot='icon' class='size-5' />
-					</SocialLink>
-					<SocialLink
-						label='Ethereum'
-						href='https://etherscan.io/address/0x964D98dfa07549cB7571a4D6A161D825d76f9070'
-						target='_blank'
-					>
-						<MdiEthereum slot='icon' class='size-5' />
-					</SocialLink>
-					<SocialLink label='Email' href='mailto:michael@payne.cx' target='_blank'>
-						<HeroiconsEnvelope slot='icon' class='size-5' />
-					</SocialLink>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class='border-t border-border pt-5'>
+    <div
+      class='flex flex-col-reverse items-center justify-between gap-y-3 sm:flex sm:flex-row sm:gap-y-0'
+    >
+      <div class='flex gap-x-4 text-sm'>
+        <p class='text-muted-foreground'>
+          &copy;{new Date().getFullYear()}
+          {siteConfig.author}
+        </p>
+      </div>
+      <div class='sm:absolute sm:start-1/2 sm:-translate-x-1/2'>
+        {showViewCount && <ViewCount />}
+      </div>
+      <div class='flex items-center justify-between'>
+        <div class='flex items-center'>
+          <SocialLink
+            label='Snapchat'
+            href='https://snapchat.com/t/uMm9JFth'
+            target='_blank'
+          >
+            <MdiSnapchat slot='icon' class='w-full' />
+          </SocialLink>
+          <SocialLink
+            label='Instagram'
+            href='https://www.instagram.com/michaelpayne02/'
+            target='_blank'
+          >
+            <MdiInstagram slot='icon' class='w-full' />
+          </SocialLink>
+          <SocialLink
+            label='GitHub'
+            href='https://github.com/michaelpayne02'
+            target='_blank'
+          >
+            <MdiGithub slot='icon' class='w-full' />
+          </SocialLink>
+          <SocialLink
+            label='LinkedIn'
+            href='https://www.linkedin.com/in/michaelpayne02/'
+            target='_blank'
+          >
+            <MdiLinkedin slot='icon' class='w-full' />
+          </SocialLink>
+          <SocialLink
+            label='Ethereum'
+            href='https://etherscan.io/address/0x964D98dfa07549cB7571a4D6A161D825d76f9070'
+            target='_blank'
+          >
+            <MdiEthereum slot='icon' class='w-full' />
+          </SocialLink>
+          <SocialLink
+            label='Email'
+            href='mailto:michael@payne.cx'
+            target='_blank'
+          >
+            <HeroiconsEnvelope slot='icon' class='w-full' />
+          </SocialLink>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>

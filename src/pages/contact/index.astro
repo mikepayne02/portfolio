@@ -9,139 +9,143 @@ import { Resend } from 'resend'
 import * as v from 'valibot'
 
 const contactFormSchema = v.object({
-	fullName: v.pipe(v.string('Please enter a name.'), v.minLength(2)),
-	email: v.pipe(v.string('Please enter a valid email.'), v.email()),
-	message: v.string('Please enter a message.'),
-	captcha: v.string('Please complete the captcha.')
+  fullName: v.pipe(v.string('Please enter a name.'), v.minLength(2)),
+  email: v.pipe(v.string('Please enter a valid email.'), v.email()),
+  message: v.string('Please enter a message.'),
+  captcha: v.string('Please complete the captcha.')
 })
 
-// Infer output TypeScript type of login schema
+// Infer output type of contact form schema
 type ContactFormSchema = v.InferOutput<typeof contactFormSchema>
 
 const sendEmails = async (formData: ContactFormSchema) => {
-	const resend = new Resend(Astro.locals.runtime.env.RESEND_API_KEY)
-	const { fullName, message, email } = formData
+  const resend = new Resend(Astro.locals.runtime.env.RESEND_API_KEY)
+  const { fullName, message, email } = formData
 
-	const firstName = fullName.split(' ')[0]!
+  const firstName = fullName.split(' ')[0] ?? fullName
 
-	await resend.emails.send({
-		from: siteConfig.contactEmail,
-		to: email,
-		subject: 'Message Received',
-		react: Email({ firstName })
-	})
-	await resend.emails.send({
-		from: siteConfig.contactEmail,
-		to: Astro.locals.runtime.env.AUTHOR_EMAIL,
-		subject: `Message from ${fullName}`,
-		reply_to: email,
-		react: AuthorEmail({ fullName, message })
-	})
+  await resend.emails.send({
+    from: siteConfig.contactEmail,
+    to: email,
+    subject: 'Message Received',
+    react: Email({ firstName })
+  })
+  await resend.emails.send({
+    from: siteConfig.contactEmail,
+    to: Astro.locals.runtime.env.AUTHOR_EMAIL,
+    subject: `Message from ${fullName}`,
+    reply_to: email,
+    react: AuthorEmail({ fullName, message })
+  })
 }
 
 type CaptchaResponse = {
-	success: boolean
-	score: number
-	'error-codes'?: string[]
+  success: boolean
+  score: number
+  'error-codes'?: string[]
 }
 
 const { RECAPTCHA_SITEKEY, RECAPTCHA_SECRET } = Astro.locals.runtime.env
 const verifyEndpoint = 'https://www.google.com/recaptcha/api/siteverify'
 
 const verifyCaptcha = async (form: ContactFormSchema) => {
-	const res = (await fetch(verifyEndpoint, {
-		method: 'POST',
-		headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-		body: new URLSearchParams({
-			secret: RECAPTCHA_SECRET,
-			response: form.captcha // the user's generated "Captcha" token
-		})
-	}).then((res) => res.json())) as CaptchaResponse
+  const res = (await fetch(verifyEndpoint, {
+    method: 'POST',
+    headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      secret: RECAPTCHA_SECRET,
+      response: form.captcha // the user's generated "Captcha" token
+    })
+  }).then((res) => res.json())) as CaptchaResponse
 
-	if (!res.success) {
-		return res['error-codes']![0]
-	}
-	if (res.score < 0.5) {
-		return 'Captcha failed'
-	}
-	return false
+  if (!res.success) {
+    return res['error-codes']![0]
+  }
+  if (res.score < 0.5) {
+    return 'Captcha failed'
+  }
+  return false
 }
 
 let formData: FormData | undefined, issues
 if (Astro.request.method === 'POST') {
-	formData = await Astro.request.formData()
-	const result = v.safeParse(contactFormSchema, Object.fromEntries(formData))
+  formData = await Astro.request.formData()
+  const result = v.safeParse(contactFormSchema, Object.fromEntries(formData))
 
-	if (result.success) {
-		const error = await verifyCaptcha(result.output)
-		if (error) {
-			return new Response(JSON.stringify({ status: 'error', error }), { status: 400 })
-		}
-		await sendEmails(result.output)
-		return Astro.redirect('/contact/thanks', 307)
-	} else {
-		issues = result.issues
-	}
+  if (result.success) {
+    const error = await verifyCaptcha(result.output)
+    if (error) {
+      return new Response(JSON.stringify({ status: 'error', error }), {
+        status: 400
+      })
+    }
+    await sendEmails(result.output)
+    return Astro.redirect('/contact/thanks', 307)
+  } else {
+    issues = result.issues
+  }
 }
 
 const meta = {
-	description: 'Conatact',
-	title: 'Contact'
+  description: 'Conatact',
+  title: 'Contact'
 }
 ---
 
 <script is:inline src='https://www.google.com/recaptcha/api.js'></script>
 <script is:inline>
-	function onSubmit(token) {
-		document.querySelector('input[name=captcha]').value = token
-		document.querySelector('#contact').submit()
-	}
+  function onSubmit(token) {
+    document.querySelector('input[name=captcha]').value = token
+    document.querySelector('#contact').submit()
+  }
 </script>
 <PageLayout {meta}>
-	<div class='m-10 flex flex w-full flex-col justify-center text-center sm:w-2/3'>
-		<h2 class='text-2xl font-bold'>Contact</h2>
-		<div class='flex flex-col gap-2'>
-			{issues?.map((issue) => <p class='text-red-500'>{issue.message}</p>)}
-		</div>
-		<form
-			id='contact'
-			class='mt-8 flex flex-col items-center gap-y-7'
-			action='/contact'
-			method='post'
-		>
-			<label class='flex w-full flex-col'>
-				<span>Name</span>
-				<input
-					required
-					name='fullName'
-					type='text'
-					class='mt-1 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-sm'
-				/>
-			</label>
-			<label class='flex w-full flex-col'>
-				<span>Email address</span>
-				<input
-					name='email'
-					type='email'
-					class='mt-1 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-sm'
-					placeholder='email@example.com'
-				/>
-			</label>
-			<label class='flex w-full flex-col'>
-				<span>Message</span>
-				<textarea
-					required
-					name='message'
-					class='mt-1 h-24 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-sm'
-				></textarea>
-			</label>
-			<input type='hidden' name='captcha' />
-			<button
-				class='g-recaptcha rounded-lg border border-border bg-primary-foreground px-4 py-1 transition-all hover:bg-input'
-				data-sitekey={RECAPTCHA_SITEKEY}
-				data-callback='onSubmit'
-				data-action='contact'>Submit</button
-			>
-		</form>
-	</div>
+  <div
+    class='m-10 flex flex w-full flex-col justify-center text-center sm:w-2/3'
+  >
+    <h2 class='text-2xl font-bold'>Contact</h2>
+    <div class='flex flex-col gap-2'>
+      {issues?.map((issue) => <p class='text-red-500'>{issue.message}</p>)}
+    </div>
+    <form
+      id='contact'
+      class='mt-8 flex flex-col items-center gap-y-7'
+      action='/contact'
+      method='post'
+    >
+      <label class='flex w-full flex-col'>
+        <span>Name</span>
+        <input
+          required
+          name='fullName'
+          type='text'
+          class='mt-1 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-md'
+        />
+      </label>
+      <label class='flex w-full flex-col'>
+        <span>Email address</span>
+        <input
+          name='email'
+          type='email'
+          class='mt-1 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25'
+          placeholder='email@example.com'
+        />
+      </label>
+      <label class='flex w-full flex-col'>
+        <span>Message</span>
+        <textarea
+          required
+          name='message'
+          class='mt-1 h-24 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25'
+        ></textarea>
+      </label>
+      <input type='hidden' name='captcha' />
+      <button
+        class='g-recaptcha rounded-lg border border-border bg-primary-foreground px-4 py-1 transition hover:bg-border/25'
+        data-sitekey={RECAPTCHA_SITEKEY}
+        data-callback='onSubmit'
+        data-action='contact'>Submit</button
+      >
+    </form>
+  </div>
 </PageLayout>

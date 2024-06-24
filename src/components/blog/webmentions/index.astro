@@ -11,20 +11,24 @@ const webMentions = await getWebmentionsForUrl(`${url}`)
 ---
 
 {
-	!!webMentions.length && (
-		<>
-			<hr class='border-solid' />
-			<h2 class='mb-8 before:hidden'>Comments</h2>
-			<div class='space-y-10'>
-				<Likes mentions={webMentions} />
-				<Comments mentions={webMentions} />
-			</div>
-			<p class='mt-8'>
-				Responses powered by{' '}
-				<a href='https://webmention.io' rel='noopener noreferrer' target='_blank'>
-					Webmentions
-				</a>
-			</p>
-		</>
-	)
+  !!webMentions.length && (
+    <>
+      <hr class='border-solid' />
+      <h2 class='mb-8 before:hidden'>Comments</h2>
+      <div class='space-y-10'>
+        <Likes mentions={webMentions} />
+        <Comments mentions={webMentions} />
+      </div>
+      <p class='mt-8'>
+        Responses powered by{' '}
+        <a
+          href='https://webmention.io'
+          rel='noopener noreferrer'
+          target='_blank'
+        >
+          Webmentions
+        </a>
+      </p>
+    </>
+  )
 }

@@ -5,8 +5,8 @@ export { getWebmentionsForUrl } from './webmentions.ts'
 export { LightboxImage as Lightbox }
 
 export const ogImageHeaders = {
-	headers: {
-		'Content-Type': 'image/png',
-		'Cache-Control': 'public, max-age=31536000, immutable'
-	}
+  headers: {
+    'Content-Type': 'image/png',
+    'Cache-Control': 'public, max-age=31536000, immutable'
+  }
 }

@@ -1,0 +1,119 @@
+---
+type Props = {
+  className: string
+  latitude: number
+  longitude: number
+  zoom: number
+  pitch?: number
+  deck: string
+  interactive?: boolean
+}
+
+const {
+  className,
+  latitude,
+  longitude,
+  zoom,
+  pitch,
+  deck,
+  interactive = false
+} = Astro.props
+
+const { MAPTILER_API_KEY } = import.meta.env
+---
+
+<maplibre-map
+  data-latitude={latitude}
+  data-longitude={longitude}
+  data-zoom={zoom}
+  data-pitch={pitch}
+  data-interactive={interactive}
+  data-deck={deck}
+  data-maptiler_key={MAPTILER_API_KEY}
+  id='map'
+  class:list={[className]}
+>
+</maplibre-map>
+
+<script>
+  import { Map, type IControl } from 'maplibre-gl'
+  import { MapboxOverlay } from '@deck.gl/mapbox'
+  import { ArcLayer } from '@deck.gl/layers'
+
+  class MapLibreMap extends HTMLElement {
+    constructor() {
+      super()
+
+      const lightModePref = window.matchMedia('(prefers-color-scheme: light)')
+
+      const storedTheme =
+        typeof localStorage !== 'undefined' && localStorage.getItem('theme')
+
+      const initTheme =
+        storedTheme || (lightModePref.matches ? 'light' : 'dark')
+
+      const getStyle = (theme: string) => {
+        return (
+          (theme == 'dark'
+            ? 'https://api.maptiler.com/maps/dataviz-dark/style.json?key='
+            : 'https://api.maptiler.com/maps/dataviz-light/style.json?key=') +
+          this.dataset.maptiler_key
+        )
+      }
+
+      const map = new Map({
+        container: 'map',
+        interactive: this.dataset.interactive != undefined,
+        center: [
+          parseFloat(this.dataset.longitude ?? '0'),
+          parseFloat(this.dataset.latitude ?? '0')
+        ],
+        zoom: parseFloat(this.dataset.zoom ?? '0'),
+        pitch: parseFloat(this.dataset.pitch ?? '0'),
+        style: getStyle(initTheme)
+      })
+
+      lightModePref.addEventListener('change', (e) =>
+        map.setStyle(getStyle(e.matches ? 'light' : 'dark'))
+      )
+
+      document.addEventListener('theme-change', (e) => {
+        map.setStyle(getStyle((e as CustomEvent).detail.theme))
+      })
+
+      map.scrollZoom.disable()
+
+      // https://maplibre.org/maplibre-gl-js/docs/examples/animate-camera-around-point/
+      const rotateCamera = (timestamp: number) => {
+        // clamp the rotation between 0 -360 degrees
+        // Divide timestamp by 100 to slow rotation to ~10 degrees / sec
+        map.rotateTo((timestamp / 100) % 360, { duration: 0 })
+        // Request the next frame of the animation.
+        requestAnimationFrame(rotateCamera)
+      }
+
+      map.on('load', async () => {
+        // Start the animation.
+        rotateCamera(0)
+
+        const overlay = new MapboxOverlay({
+          interleaved: true,
+          layers: [
+            new ArcLayer({
+              id: 'arc-layer',
+              data: this.dataset.deck ?? '',
+              getSourceColor: [66, 135, 245],
+              getTargetColor: [48, 98, 179],
+              getWidth: 12,
+              beforeId: 'Place labels'
+            })
+          ]
+        })
+
+        map.addControl(overlay as IControl)
+      })
+    }
+  }
+
+  window.customElements.define('maplibre-map', MapLibreMap)
+</script>

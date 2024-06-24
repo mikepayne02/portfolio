@@ -17,7 +17,7 @@ This design was made to promote DU's spring 2023 philanthropy event.
 
 <div class="w-full">
 <video class="mx-auto" autoplay loop muted playsinline>
-  <source src="https://content.mikepayne.me/videos%2Fdu-donuts.mp4" type="video/mp4" />
+  <source src="https://content.mikepayne.me/videos/du-donuts.webm" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
 </div>
