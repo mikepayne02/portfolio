@@ -1,6 +1,7 @@
 ---
+import 'maplibre-gl/dist/maplibre-gl.css'
 type Props = {
-  className: string
+  className?: string
   latitude: number
   longitude: number
   zoom: number
@@ -23,6 +24,7 @@ const { MAPTILER_API_KEY } = import.meta.env
 ---
 
 <maplibre-map
+  id='map'
   data-latitude={latitude}
   data-longitude={longitude}
   data-zoom={zoom}
@@ -30,7 +32,6 @@ const { MAPTILER_API_KEY } = import.meta.env
   data-interactive={interactive}
   data-deck={deck}
   data-maptiler_key={MAPTILER_API_KEY}
-  id='map'
   class:list={[className]}
 >
 </maplibre-map>
@@ -81,28 +82,23 @@ const { MAPTILER_API_KEY } = import.meta.env
         map.setStyle(getStyle((e as CustomEvent).detail.theme))
       })
 
-      map.scrollZoom.disable()
-
       // https://maplibre.org/maplibre-gl-js/docs/examples/animate-camera-around-point/
       const rotateCamera = (timestamp: number) => {
         // clamp the rotation between 0 -360 degrees
         // Divide timestamp by 100 to slow rotation to ~10 degrees / sec
-        map.rotateTo((timestamp / 100) % 360, { duration: 0 })
+        map.rotateTo((timestamp / 120) % 360, { animate: false })
         // Request the next frame of the animation.
         requestAnimationFrame(rotateCamera)
       }
 
       map.on('load', async () => {
-        // Start the animation.
-        rotateCamera(0)
-
         const overlay = new MapboxOverlay({
           interleaved: true,
           layers: [
             new ArcLayer({
               id: 'arc-layer',
               data: this.dataset.deck ?? '',
-              getSourceColor: [66, 135, 245],
+              getSourceColor: [96, 165, 250],
               getTargetColor: [48, 98, 179],
               getWidth: 12,
               beforeId: 'Place labels'
@@ -111,9 +107,18 @@ const { MAPTILER_API_KEY } = import.meta.env
         })
 
         map.addControl(overlay as IControl)
+
+        // Start the animation.
+        rotateCamera(0)
       })
     }
   }
 
   window.customElements.define('maplibre-map', MapLibreMap)
 </script>
+
+<style is:global>
+  .maplibregl-ctrl-attrib {
+    display: none;
+  }
+</style>

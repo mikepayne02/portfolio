@@ -5,6 +5,9 @@ dist/
 .vercel/
 .wrangler/
 .ogimage/
+
+# wrangler
+wrangler.toml
 worker-configuration.d.ts
 
 # dependencies

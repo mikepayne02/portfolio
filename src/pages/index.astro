@@ -260,15 +260,15 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         </Section>
       )
     }
-    <CTA>Contact</CTA>
     <Map
       zoom={6}
-      className='mx-auto h-96 w-full overflow-hidden rounded-xl '
       pitch={45}
-      interactive={true}
+      className='mt-12 h-96 w-full rounded-xl border border-border shadow'
+      interactive={false}
       latitude={39.8807948544334}
       longitude={-95.6983122797664}
       deck='https://content.mikepayne.me/map-data.json'
     />
+    <CTA className='my-6'>Contact</CTA>
   </div>
 </PageLayout>

@@ -9,7 +9,7 @@ import { Upload } from '@aws-sdk/lib-storage'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 
-dotenv.config()
+dotenv.config({ path: ".dev.vars"})
 const { env } = process
 
 const S3 = new S3Client({
