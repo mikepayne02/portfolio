@@ -1,24 +1,20 @@
 name = "portfolio"
+compatibility_flags = ["nodejs_als"]
+
+kv_namespaces = [
+    { binding = "COMMENTS", id = "a8b96ad55a6b4bcf9329ad26c294e181" },
+]
 
 [[d1_databases]]
 binding = "DB"
 database_name = "portfolio"
-database_id = ""
+database_id = "6d4dbbba-aa9d-43bd-b982-5ab3447283b2"
 preview_database_id = "DB"
 
-[[r2_buckets]]
-binding = 'BUCKET'        # <~ valid JavaScript variable name
-bucket_name = 'portfolio'
-
 [vars]
-ACCOUNT_ID = ""
-BUCKET_KEY_ID = ""
-BUCKET_NAME = ""
-BUCKET_SECRET = ""
-DATABASE_ID = ""
-D1_TOKEN = ""
-WEBMENTION_API_KEY = ""
-RESEND_API_KEY = ""
-RECAPTCHA_SITEKEY = ""
-RECAPTCHA_SECRET = ""
+AUTHOR_EMAIL = ""
 MAPTILER_API_KEY = ""
+RECAPTCHA_SECRET = ""
+RECAPTCHA_SITE_KEY = ""
+RESEND_API_KEY = ""
+WEBMENTION_API_KEY = ""

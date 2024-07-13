@@ -3,19 +3,28 @@ import type { HTMLTag, Polymorphic } from 'astro/types'
 import type { CollectionEntry } from 'astro:content'
 
 import FormattedDate from '../FormattedDate.astro'
+import { truncate } from '@/utils'
 
 type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
-  project: CollectionEntry<'project'>
+  project: CollectionEntry<'projects'>
   withDesc?: boolean
 }
 
-const { as: Tag = 'div', project, withDesc = false } = Astro.props
+const {
+  as: Tag = 'div',
+  project,
+  withDesc = false,
+  ...props
+} = Astro.props as Props<HTMLTag>
 const postDate = project.data.updatedDate ?? project.data.publishDate
 
 const reload = { 'data-astro-reload': project.data.reload }
 ---
 
-<li class='flex flex-col gap-2 sm:flex-row sm:gap-x-4 [&_q]:basis-full'>
+<li
+  class='flex flex-col gap-2 sm:flex-row sm:gap-x-4 [&_q]:basis-full'
+  {...props}
+>
   <FormattedDate class='min-w-[120px] font-mono' date={postDate} />
 
   <Tag>
@@ -30,8 +39,8 @@ const reload = { 'data-astro-reload': project.data.reload }
     </a>
     {
       withDesc && (
-        <p class='line-clamp-3 block text-sm italic text-muted-foreground'>
-          {project.data.description}
+        <p class='line-clamp-3 italic text-muted-foreground'>
+          {truncate(project.data.description, 100)}
         </p>
       )
     }

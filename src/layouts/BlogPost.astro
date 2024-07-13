@@ -12,7 +12,7 @@ import HeroiconsArrowLeft from '~icons/heroicons/arrow-left'
 import HeroiconsChevronUp from '~icons/heroicons/chevron-up'
 
 interface Props {
-  project: CollectionEntry<'project'>
+  project: CollectionEntry<'projects'>
 }
 
 const { project } = Astro.props
@@ -44,7 +44,7 @@ const { headings } = await project.render()
           class='prose prose-base prose-zinc mt-12 text-muted-foreground dark:prose-invert prose-headings:font-medium prose-headings:text-foreground prose-headings:before:absolute prose-headings:before:-ms-4 prose-th:before:content-none'
         >
           <slot />
-          <WebMentions />
+          <WebMentions server:defer />
         </div>
       </article>
     </div>

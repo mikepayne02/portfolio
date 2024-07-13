@@ -1,5 +1,7 @@
 ---
 import type { PaginationLink } from '@/types'
+import MdiArrowRight from '~icons/mdi/arrow-right'
+import MdiArrowLeft from '~icons/mdi/arrow-left'
 
 interface Props {
   nextUrl?: PaginationLink
@@ -14,6 +16,7 @@ const { nextUrl, prevUrl } = Astro.props
     <nav class='mt-8 flex items-center gap-x-4'>
       {prevUrl && (
         <a class='me-auto py-2' data-astro-prefetch href={prevUrl.url}>
+          <MdiArrowLeft class='mx-2 inline' />
           {prevUrl.srLabel && <span class='sr-only'>{prevUrl.srLabel}</span>}
           {prevUrl.text ? prevUrl.text : 'Previous'}
         </a>
@@ -22,6 +25,7 @@ const { nextUrl, prevUrl } = Astro.props
         <a class='ms-auto py-2' data-astro-prefetch href={nextUrl.url}>
           {nextUrl.srLabel && <span class='sr-only'>{nextUrl.srLabel}</span>}
           {nextUrl.text ? nextUrl.text : 'Next'}
+          <MdiArrowRight class='mx-2 inline' />
         </a>
       )}
     </nav>

@@ -5,7 +5,7 @@ import type { CollectionEntry } from 'astro:content'
 import FormattedDate from '../FormattedDate.astro'
 
 interface Props {
-  content: CollectionEntry<'project'>
+  content: CollectionEntry<'projects'>
 }
 
 const { slug } = Astro.params
@@ -32,7 +32,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
         width={720}
         fetchpriority='high'
         loading='eager'
-        src={data.coverImage.src as ImageMetadata}
+        src={data.coverImage.src}
       />
     </div>
   )

@@ -2,29 +2,31 @@ import cloudflare from '@astrojs/cloudflare'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
-import expressiveCode from 'astro-expressive-code'
 import Icons from 'unplugin-icons/vite'
 import pagefind from 'astro-pagefind'
-import { defineConfig } from 'astro/config'
+import { defineConfig, envField } from 'astro/config'
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import arraybuffer from 'vite-plugin-arraybuffer'
-import { remarkReadingTime } from './src/lib/remark-reading-time'
-import { expressiveCodeOptions } from './src/site.config'
+import { remarkReadingTime } from './src/utils/remark-reading-time'
+import { og } from './src/utils/opengraph'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mikepayne.me',
+  site: 'https://www.mikepayne.me',
   integrations: [
-    expressiveCode(expressiveCodeOptions),
     sitemap(),
     pagefind(),
     mdx(),
     tailwind({
       applyBaseStyles: false
-    })
+    }),
+    og()
   ],
   vite: {
+    ssr: {
+      external: ['node:async_hooks']
+    },
     plugins: [
       Icons({
         compiler: 'astro'
@@ -54,8 +56,12 @@ export default defineConfig({
   },
   prefetch: true,
   output: 'hybrid',
+  experimental: {
+    actions: true,
+    contentCollectionCache: true,
+    serverIslands: true,
+  },
   adapter: cloudflare({
-    wasmModuleImports: true,
     imageService: 'compile',
     platformProxy: {
       enabled: true

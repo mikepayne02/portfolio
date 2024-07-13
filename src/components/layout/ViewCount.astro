@@ -1,43 +1,54 @@
 ---
-const path = Astro.url.pathname == '/' ? '/index' : Astro.url.pathname
----
+import { drizzle } from 'drizzle-orm/d1'
+import { views } from 'src/schema'
+import { sql } from 'drizzle-orm'
 
-<view-count class='text-center text-sm text-muted-foreground' data-path={path}>
-  <span id='viewcount' class='font-mono'>--</span>
-  views
-</view-count>
+const { path } = Astro.props
 
-<script>
-  interface Views {
-    slug: string
-    count: number
+const abbreviateNumber = (value: number): string => {
+  if (value < 1000) {
+    return value.toString()
   }
-  class ViewCount extends HTMLElement {
-    constructor() {
-      super()
 
-      const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1))
-      onIdle(async () => {
-        const viewcount = document.querySelector<ViewCount>(
-          'view-count'
-        ) as HTMLSpanElement
+  const suffixes = ['', 'k', 'm', 'b', 't']
+  const suffixNum = Math.floor(('' + value).length / 3)
+  if (suffixNum > 4) return value.toString()
+  let shortValue = 0
 
-        const span = document.querySelector<HTMLSpanElement>(
-          '#viewcount'
-        ) as HTMLSpanElement
-
-        const path = viewcount.dataset.path
-
-        const res = await fetch('/api/views' + path)
-        if (!res.ok) {
-          throw new Error('Unable to load viewcount')
-        }
-
-        const json = (await res.json()) as Views
-        span.textContent = json.count.toString()
-      })
+  for (var precision = 2; precision >= 1; precision--) {
+    shortValue = parseFloat(
+      (suffixNum != 0 ? value / Math.pow(1000, suffixNum) : value).toPrecision(
+        precision
+      )
+    )
+    var dotLessShortValue = (shortValue + '').replace(/[^a-zA-Z 0-9]+/g, '')
+    if (dotLessShortValue.length <= 2) {
+      break
     }
   }
 
-  customElements.define('view-count', ViewCount)
-</script>
+  if (shortValue % 1 != 0) return shortValue.toFixed(1) + suffixes[suffixNum]
+  return shortValue + (suffixes[suffixNum] ?? '')
+}
+
+const db = drizzle(Astro.locals.runtime.env.DB)
+
+const res = await db
+  .insert(views)
+  .values({
+    path: path,
+    count: 1
+  })
+  .onConflictDoUpdate({
+    target: views.path,
+    set: {
+      count: sql`${views.count} + 1`
+    }
+  })
+  .returning({
+    count: views.count
+  })
+  .then((res) => res[0])
+---
+
+{res && abbreviateNumber(res.count)} views

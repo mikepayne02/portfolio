@@ -5,6 +5,7 @@ export type SiteConfig = {
   contactEmail: string
   lang: string
   ogLocale: string
+  sortPostsByUpdatedDate: boolean,
   date: {
     locale: string | string[] | undefined
     options: Intl.DateTimeFormatOptions

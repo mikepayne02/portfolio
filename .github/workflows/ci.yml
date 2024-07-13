@@ -3,16 +3,38 @@ name: ci
 on:
   push:
     branches: [main]
-
+env:
+  AUTHOR_EMAIL: ${{secrets.AUTHOR_EMAIL }}
+  MAPTILER_API_KEY: ${{secrets.MAPTILER_API_KEY }}
+  RECAPTCHA_SITE_KEY: ${{secrets.RECAPTCHA_SITE_KEY }}
 jobs:
   ci:
     name: Check for build and type issues
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
         with:
-          bun-version: latest
-      - run: bun install
-      - run: bun astro check
-      - run: bun run build
+          version: 8
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      # use astro check for issues
+      - name: Run check
+        run: pnpm astro check
+
+      # ensure build works
+      - name: Run build
+        run: pnpm build

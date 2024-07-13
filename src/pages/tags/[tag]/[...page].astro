@@ -6,19 +6,19 @@ import type { CollectionEntry } from 'astro:content'
 import Button from '@/components/Button.astro'
 import Pagination from '@/components/Paginator.astro'
 import PostPreview from '@/components/blog/PostPreview.astro'
-import { getAllPosts, getUniqueTags, sortMDByDate } from '@/data/project'
+import { getAllProjects, getUniqueTags, sortMDByDate } from '@/data/project'
 import PageLayout from '@/layouts/Base.astro'
 import CTA from '@/components/CTA.astro'
 
 import HeroiconsArrowLeft from '~icons/heroicons/arrow-left'
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
-  const allPosts = await getAllPosts()
-  const allPostsByDate = sortMDByDate(allPosts)
-  const uniqueTags = getUniqueTags(allPostsByDate)
+  const allProjects = await getAllProjects()
+  const allProjectsByDate = sortMDByDate(allProjects)
+  const uniqueTags = getUniqueTags(allProjectsByDate)
 
   return uniqueTags.flatMap((tag) => {
-    const filterPosts = allPostsByDate.filter((post) =>
+    const filterPosts = allProjectsByDate.filter((post) =>
       post.data.tags.includes(tag)
     )
     return paginate(filterPosts, {
@@ -29,7 +29,7 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 }
 
 interface Props {
-  page: Page<CollectionEntry<'project'>>
+  page: Page<CollectionEntry<'projects'>>
 }
 
 const { page } = Astro.props
@@ -43,13 +43,13 @@ const meta = {
 const paginationProps = {
   ...(page.url.prev && {
     prevUrl: {
-      text: 'Previous Tags',
+      text: 'Previous Page',
       url: page.url.prev
     }
   }),
   ...(page.url.next && {
     nextUrl: {
-      text: 'Next Tags',
+      text: 'Next Page',
       url: page.url.next
     }
   })
@@ -70,11 +70,17 @@ const paginationProps = {
       <span class='text-xl'>#{tag}</span>
     </h1>
     <section aria-label='Project list'>
-      <ul class='flex flex-col gap-y-3 text-start'>
-        {page.data.map((p) => <PostPreview as='h2' project={p} withDesc />)}
+      <ul class='flex flex-col gap-3 text-start'>
+        {
+          page.data.map((p) => (
+            <li class='flex flex-col flex-wrap gap-2 sm:flex-row [&_q]:basis-full'>
+              <PostPreview as='h2' project={p} withDesc />
+            </li>
+          ))
+        }
       </ul>
       <Pagination {...paginationProps} />
     </section>
-    <CTA className='mt-16'>Contact</CTA>
   </div>
+  <CTA className='mt-16'>Contact</CTA>
 </PageLayout>

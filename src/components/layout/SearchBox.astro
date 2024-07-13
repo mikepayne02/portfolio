@@ -3,19 +3,16 @@
 
 import MdiMagnify from '~icons/mdi/magnify'
 import Search from 'astro-pagefind/components/Search'
-const { className } = Astro.props
+const props = Astro.props
 const q = Astro.url.searchParams.get('q') ?? ''
 ---
 
-<site-search class='ms-2 sm:ms-4'>
+<site-search {...props} class='ms-2 sm:ms-4'>
   <button
     data-open-modal
     disabled
     aria-label='search'
-    class:list={[
-      className,
-      'm-auto size-8 rounded-md border border-border bg-primary-foreground shadow-sm transition hover:bg-border/25 hover:shadow'
-    ]}
+    class='m-auto size-8 rounded-md border border-border bg-primary-foreground shadow-sm transition hover:bg-border/25 hover:shadow'
   >
     <MdiMagnify class='m-auto size-6' />
   </button>

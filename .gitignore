@@ -4,11 +4,10 @@ dist/
 .astro/
 .vercel/
 .wrangler/
-.ogimage/
 
 # wrangler
-wrangler.toml
 worker-configuration.d.ts
+wrangler.toml
 
 # dependencies
 node_modules/

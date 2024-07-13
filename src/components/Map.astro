@@ -1,23 +1,14 @@
 ---
 import 'maplibre-gl/dist/maplibre-gl.css'
-type Props = {
-  className?: string
-  latitude: number
-  longitude: number
-  zoom: number
-  pitch?: number
-  deck: string
-  interactive?: boolean
-}
 
 const {
-  className,
   latitude,
   longitude,
   zoom,
   pitch,
   deck,
-  interactive = false
+  interactive = false,
+  ...props
 } = Astro.props
 
 const { MAPTILER_API_KEY } = import.meta.env
@@ -32,12 +23,12 @@ const { MAPTILER_API_KEY } = import.meta.env
   data-interactive={interactive}
   data-deck={deck}
   data-maptiler_key={MAPTILER_API_KEY}
-  class:list={[className]}
+  {...props}
 >
 </maplibre-map>
 
 <script>
-  import { Map, type IControl } from 'maplibre-gl'
+  import { Map } from 'maplibre-gl'
   import { MapboxOverlay } from '@deck.gl/mapbox'
   import { ArcLayer } from '@deck.gl/layers'
 
@@ -91,22 +82,22 @@ const { MAPTILER_API_KEY } = import.meta.env
         requestAnimationFrame(rotateCamera)
       }
 
-      map.on('load', async () => {
-        const overlay = new MapboxOverlay({
-          interleaved: true,
-          layers: [
-            new ArcLayer({
-              id: 'arc-layer',
-              data: this.dataset.deck ?? '',
-              getSourceColor: [96, 165, 250],
-              getTargetColor: [48, 98, 179],
-              getWidth: 12,
-              beforeId: 'Place labels'
-            })
-          ]
+      map.on('load', () => {
+        const layer = new ArcLayer({
+          id: 'arc-layer',
+          data: this.dataset.deck ?? '',
+          getSourceColor: [96, 165, 250],
+          getTargetColor: [48, 98, 179],
+          getWidth: 12,
+          beforeId: 'Place labels'
         })
 
-        map.addControl(overlay as IControl)
+        const overlay = new MapboxOverlay({
+          interleaved: true,
+          layers: [layer]
+        })
+
+        map.addControl(overlay)
 
         // Start the animation.
         rotateCamera(0)

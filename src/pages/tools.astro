@@ -4,19 +4,29 @@ import ToolSection from '@/components/ToolSection.astro'
 import PageLayout from '@/layouts/Base.astro'
 import HeroiconsArrowLeft from '~icons/heroicons/arrow-left'
 
+import illustrator from '@/assets/icons/Illustrator.png'
+import photoshop from '@/assets/icons/Photoshop.png'
+import davinciResolve from '@/assets/icons/DavinciResolve.png'
+import afterEffects from '@/assets/icons/AfterEffects.png'
+import blender from '@/assets/icons/Blender.png'
+import abletonLive from '@/assets/icons/AbletonLive.png'
+import flStudio from '@/assets/icons/FLStudio.png'
+import obsidian from '@/assets/icons/Obsidian.png'
+import neovim from '@/assets/icons/Neovim.png'
+
 const PHOTO = [
   {
     name: 'Illustrator',
     description: 'Vector Graphics',
     href: 'https://www.adobe.com/products/illustrator.html',
-    iconPath: '/src/assets/icons/Illustrator.png',
+    icon: illustrator,
     iconBgColour: '#000001'
   },
   {
     name: 'Photoshop',
     description: 'Raster Graphics',
     href: 'https://www.adobe.com/products/photoshop.html',
-    iconPath: '/src/assets/icons/Photoshop.png',
+    icon: photoshop,
     iconBgColour: '#000001'
   }
 ]
@@ -26,21 +36,21 @@ const VIDEO = [
     name: 'Davinci Resolve',
     description: 'Video Editing',
     href: 'https://www.blackmagicdesign.com/products/davinciresolve',
-    iconPath: '/src/assets/icons/DavinciResolve.png',
+    icon: davinciResolve,
     iconBgColour: '#000001'
   },
   {
     name: 'After Effects',
     description: 'Motion Graphics',
     href: 'https://www.adobe.com/products/aftereffects.html',
-    iconPath: '/src/assets/icons/AfterEffects.png',
+    icon: afterEffects,
     iconBgColour: '#000001'
   },
   {
     name: 'Blender',
     description: '3D Graphics',
     href: 'https://www.blender.org/',
-    iconPath: '/src/assets/icons/Blender.png',
+    icon: blender,
     iconBgColour: '#000001'
   }
 ]
@@ -49,14 +59,14 @@ const AUDIO = [
     name: 'Ableton Live',
     description: 'Digital Audio Workstation',
     href: 'https://www.ableton.com/',
-    iconPath: '/src/assets/icons/AbletonLive.png',
+    icon: abletonLive,
     iconBgColour: '#000001'
   },
   {
     name: 'FL Studio',
     description: 'Digital Audio Workstation',
     href: 'https://www.image-line.com/',
-    iconPath: '/src/assets/icons/FLStudio.png',
+    icon: flStudio,
     iconBgColour: '#000001'
   }
 ]
@@ -65,7 +75,7 @@ const PRODUCTIVITY = [
     name: 'Obsidian',
     description: 'Note Taking',
     href: 'https://obsidian.md/',
-    iconPath: '/src/assets/icons/Obsidian.png',
+    icon: obsidian,
     iconBgColour: '#7A3EE8'
   }
 ]
@@ -75,7 +85,7 @@ const DEVELOPMENT = [
     name: 'Neovim',
     description: 'Editor',
     href: 'https://neovim.io/',
-    iconPath: '/src/assets/icons/Neovim.png',
+    icon: neovim,
     iconBgColour: '#2C2C32'
   }
 ]

@@ -2,28 +2,18 @@
 import { Image } from 'astro:assets'
 
 interface Props {
-  class?: string
+  className?: string
   title: string
   tools: {
     name: string
     description: string
     href: string
-    iconPath: string
+    icon: ImageMetadata
     iconBgColour: string
   }[]
 }
 
-const { class: className, title, tools, ...props } = Astro.props
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/icons/*.{jpeg,jpg,png,gif}'
-)
-
-for (const tool of tools) {
-  if (!images[tool.iconPath])
-    throw new Error(
-      `"${tool.iconPath}" does not exist in glob: "src/assets/icons/*.{jpeg,jpg,png,gif}"`
-    )
-}
+const { className, title, tools, ...props } = Astro.props as Props
 ---
 
 <div
@@ -46,7 +36,7 @@ for (const tool of tools) {
           <div class='relative flex flex-row items-center gap-x-4 px-2 py-0.5 transition'>
             <div class='absolute -inset-0 z-10 rounded-lg border border-border bg-muted opacity-0 transition group-hover:opacity-50' />
             <Image
-              src={images[tool.iconPath]!()}
+              src={tool.icon}
               alt={tool.name}
               width='64'
               height='64'

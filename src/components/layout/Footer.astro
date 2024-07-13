@@ -1,13 +1,14 @@
 ---
-import ViewCount from './ViewCount.astro'
 import { siteConfig } from '@/site-config'
 import SocialLink from './SocialLink.astro'
+import ViewCount from './ViewCount.astro'
 
 import MdiSnapchat from '~icons/mdi/snapchat'
 import MdiInstagram from '~icons/mdi/instagram'
 import MdiGithub from '~icons/mdi/github'
 import MdiLinkedin from '~icons/mdi/linkedin'
 import MdiEthereum from '~icons/mdi/ethereum'
+import Loading from '~icons/mdi/loading'
 import HeroiconsEnvelope from '~icons/heroicons/envelope'
 
 const { showViewCount = false } = Astro.props
@@ -27,8 +28,16 @@ const { showViewCount = false } = Astro.props
       <div
         class='flex flex-col gap-y-3 sm:absolute sm:start-1/2 sm:-translate-x-1/2'
       >
-        {showViewCount && <ViewCount />}
-        <a href='https://uptime.mikepayne.me/status/portfolio' target='_blank'>
+        {
+          showViewCount && (
+            <span class='text-center text-sm text-muted-foreground'>
+              <ViewCount path={Astro.url.pathname} server:defer>
+                <Loading slot='fallback' class='mx-auto h-5 w-5 animate-spin' />
+              </ViewCount>
+            </span>
+          )
+        }
+        <a href='https://uptime.mikepayne.me/status/main' target='_blank'>
           <img
             class='w-40 overflow-hidden rounded-full shadow'
             src='https://uptime.mikepayne.me/api/badge/1/avg-response?color=%233b82f6&labelColor=%23fcfcfd&style=flat-square'

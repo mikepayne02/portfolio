@@ -1,10 +1,10 @@
-import { getAllPosts } from '@/data/project'
+import { getAllProjects } from '@/data/project'
 import { siteConfig } from '@/site-config'
 import rss from '@astrojs/rss'
 import type { APIRoute } from 'astro'
 
 export const GET: APIRoute = async () => {
-  const posts = await getAllPosts()
+  const posts = await getAllProjects()
 
   return rss({
     title: siteConfig.title,
