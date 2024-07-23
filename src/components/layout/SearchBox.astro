@@ -7,7 +7,7 @@ const props = Astro.props
 const q = Astro.url.searchParams.get('q') ?? ''
 ---
 
-<site-search {...props} class='ms-2 sm:ms-4'>
+<site-search {...props}>
   <button
     data-open-modal
     disabled

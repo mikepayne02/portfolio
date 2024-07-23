@@ -1,15 +1,16 @@
 // https://github.com/sdnts/dietcode/blob/914e3970f6a0f555113768b12db3229dd822e6f1/astro.config.ts
 
-import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime'
-import fs from 'fs/promises'
+import { access, copyFile, mkdir, writeFile, readFile } from 'fs/promises'
 import { siteConfig } from '../site.config'
 import { getFormattedDate } from './date'
 import type { AstroIntegration } from 'astro'
 import parseFrontmatter from 'gray-matter'
-import satori from 'satori'
+import satori, { type SatoriOptions } from 'satori'
 import { Resvg, initWasm } from '@resvg/resvg-wasm'
+import { createHash } from 'crypto'
+import { join } from 'path'
 
-const render = async ({
+const render = ({
   title,
   profileImage,
   tags,
@@ -17,10 +18,10 @@ const render = async ({
   coverImage
 }: {
   title: string
-  profileImage: ArrayBufferLike
+  profileImage: Buffer
   tags: string[]
   date: Date
-  coverImage: ArrayBufferLike
+  coverImage: Buffer
 }) => {
   const formattedDate = getFormattedDate(date)
 
@@ -37,7 +38,7 @@ const render = async ({
             tw: "rounded-full m-12",
             width: "220",
             height: "220",
-            src: profileImage
+            src: profileImage.buffer
           },
         },
         {
@@ -46,7 +47,7 @@ const render = async ({
           props: {
             tw: "absolute rounded-xl right-5 m-5",
             height: "350",
-            src: coverImage
+            src: coverImage.buffer
           },
         },
         {
@@ -149,73 +150,102 @@ export const og = (): AstroIntegration => ({
   name: 'og-image',
   hooks: {
     'astro:build:done': async ({ dir, pages }) => {
-      try {
-        await initWasm(await fs.readFile('node_modules/@resvg/resvg-wasm/index_bg.wasm'))
-        // Read a custom font into an ArrayBuffer
-        const firaCodeRegular = await fs.readFile(
-          'src/assets/fonts/FiraCode-Regular.ttf'
-        )
-        const firaCodeBold = await fs.readFile(
-          'src/assets/fonts/FiraCode-Bold.ttf'
-        )
+      const startTime = performance.now()
 
-        const profileImage = (await fs.readFile('src/assets/profile.png')).buffer
+      // Create cache directory if it doesn't exist
+      const cachePath = 'node_modules/.astro/og'
+      await access(cachePath).then(() => undefined).catch(() => mkdir(cachePath))
 
-        const ogPaths = new RegExp(`^projects/.+`)
+      // Load and initialize the resvg wasm module
+      const index_bg = await readFile('node_modules/@resvg/resvg-wasm/index_bg.wasm')
+      await initWasm(index_bg)
 
-        for (const { pathname } of pages) {
-          // 1. For every resolved page, do the following:
+      // Read custom fonts into Buffers
+      const firaCodeRegular = await readFile(
+        'src/assets/fonts/FiraCode-Regular.ttf'
+      )
+      const firaCodeBold = await readFile(
+        'src/assets/fonts/FiraCode-Bold.ttf'
+      )
 
-          if (!ogPaths.test(pathname)) {
-            // Skip over all pages that aren't posts and hence don't require a custom image
-            continue
+      // Set dimension and font options
+      const satoriOptions: SatoriOptions = {
+        width: 1200,
+        height: 630,
+        fonts: [
+          {
+            name: 'Fira Code',
+            data: firaCodeRegular,
+            weight: 400
+          },
+          {
+            name: 'Fira Code',
+            data: firaCodeBold,
+            weight: 600
           }
+        ]
+      }
 
-          console.log(`\x1b[32mog:\x1b[0m Rendering ${pathname}`)
-          // 3. Locate the source file for this resolved page. This depends heavily on your setup, but it should be straight-forward to do. After all, resolved pages and your source content would follow a similar structure!
-          const file = await fs.readFile(
-            `src/content/${pathname.slice(0, -1)}.mdx`,
-          ).catch(() => fs.readFile(`src/content/${pathname.slice(0, -1)}/index.mdx`))
+      // Load profile image common to all thumbnails
+      const profileImage = (await readFile('src/assets/profile.png'))
 
-          // 4. Parse frontmatter for our source file, and get our title
-          const { title, tags, publishDate, ogImage } = parseFrontmatter(file).data
+      // Configurable pattern to match pages
+      const ogPaths = new RegExp(`^projects/.+`)
 
-          const coverImage = (await fs.readFile(ogImage)).buffer
+      // For every resolved page, do the following:
+      for (const { pathname } of pages) {
 
-          // 5. Render our SVG. The `render` function returns the JSX object that we talked about. I've separated this out just to keep things easy to follow
-          const svg = await satori(
-            await render({ title, profileImage, tags, coverImage, date: publishDate }),
-            {
-              width: 1200,
-              height: 630,
-              fonts: [
-                {
-                  name: 'Fira Code',
-                  data: firaCodeRegular,
-                  weight: 400
-                },
-                {
-                  name: 'Fira Code',
-                  data: firaCodeBold,
-                  weight: 600
-                }
-              ]
-            }
-          )
-
-          // 8. Write this PNG to a predictable location. I keep this right next to the page itself. That way, I can link to it easily.
-          await fs.writeFile(
-            `${dir.pathname}${pathname}og.png`,
-            new Resvg(svg).render().asPng()
-          )
+        // Skip over all pages that aren't posts and hence don't require a custom image
+        if (!ogPaths.test(pathname)) {
+          continue
         }
 
-        // Just some fancy success message to make this plugin look like it belongs
-        console.log(`\x1b[32mog:\x1b[0m Generated OpenGraph images`)
-      } catch (e) {
-        console.error(e)
-        console.log(`\x1b[31mog:\x1b[0m OpenGraph image generation failed`)
+        // Start a hash to test for a chached image later
+        const hash = createHash('sha256')
+
+        console.log(`\x1b[32mog:\x1b[0m Rendering ${pathname}`)
+
+        // 3. Locate the source file for this resolved page. This depends heavily on your setup, but it should be straight-forward to do. After all, resolved pages and your source content would follow a similar structure!
+        const page = pathname.slice(0, -1)
+        const file = await readFile(
+          `src/content/${page}.mdx`,
+        ).catch(() => readFile(`src/content/${page}/index.mdx`))
+
+        // 4. Parse frontmatter for our source file and extract important details
+        const frontMatterData = parseFrontmatter(file).data
+        const { title, tags, publishDate, ogImage } = frontMatterData
+        hash.update(JSON.stringify(frontMatterData))
+
+        const coverImage = (await readFile(ogImage))
+        hash.update(coverImage)
+
+        // Compute the cached file path and the corresponding path in the dist folder where it should be placed during build
+        const digest = hash.digest('hex')
+        const cacheFilePath = join(cachePath, digest)
+        const outputFilePath = join(dir.pathname, pathname, 'og.png')
+
+        try {
+          // If we can access the cached thumbnail, copy it to its final location
+          await access(cacheFilePath)
+          await copyFile(cacheFilePath, outputFilePath)
+        } catch (err) {
+          const jsx = render({ title, profileImage, tags, coverImage: coverImage, date: publishDate })
+          // Render our SVG. The `render` function returns the JSX object that we talked about. I've separated this out just to keep things easy to follow
+          const svg = await satori(jsx, satoriOptions)
+          const png = new Resvg(svg).render().asPng()
+          // Write this PNG to a predictable location. I keep this right next to the page itself. That way, I can link to it easily.
+          await writeFile(outputFilePath, png)
+          // Save the cached PNG to the cache folder so it doesn't have to be re-generated on every build
+          await writeFile(cacheFilePath, png)
+        }
       }
+
+      const endTime = performance.now()
+
+      const elapsedTime = ((endTime - startTime) / 1000).toFixed(2)
+
+      // Just some fancy success message to make this plugin look like it belongs
+      console.log(`\x1b[32mog:\x1b[0m Generated OpenGraph images in ${elapsedTime}s`)
     }
   }
 })

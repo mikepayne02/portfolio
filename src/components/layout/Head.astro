@@ -139,7 +139,7 @@ const socialImageURL = new URL(
 <meta content={siteConfig.author} name='author' />
 
 {/* Theme Color */}
-<meta name='theme-color' />
+<meta name='theme-color' content='hsl(210 33% 99%)' />
 
 {/* Open Graph / Facebook */}
 <meta content={articleDate ? 'article' : 'website'} property='og:type' />
@@ -190,8 +190,9 @@ const socialImageURL = new URL(
 }
 <meta content={Astro.generator} name='generator' />
 
+{/* Umami analytics in production */}
 {
-  import.meta.env.MODE === 'production' && (
+  import.meta.env.PROD && (
     <script
       is:inline
       defer

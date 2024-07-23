@@ -9,7 +9,7 @@ import MdiGithub from '~icons/mdi/github'
 import MdiLinkedin from '~icons/mdi/linkedin'
 import MdiEthereum from '~icons/mdi/ethereum'
 import Loading from '~icons/mdi/loading'
-import HeroiconsEnvelope from '~icons/heroicons/envelope'
+import MdiEmailOutline from '~icons/mdi/email-outline'
 
 const { showViewCount = false } = Astro.props
 ---
@@ -39,8 +39,13 @@ const { showViewCount = false } = Astro.props
         }
         <a href='https://uptime.mikepayne.me/status/main' target='_blank'>
           <img
-            class='w-40 overflow-hidden rounded-full shadow'
-            src='https://uptime.mikepayne.me/api/badge/1/avg-response?color=%233b82f6&labelColor=%23fcfcfd&style=flat-square'
+            class='block w-40 dark:hidden'
+            src='https://uptime.mikepayne.me/api/badge/1/avg-response?color=%233b82f6&labelColor=%23fcfcfd&style=flat'
+            alt='Uptime Badge'
+          />
+          <img
+            class='hidden w-40 dark:block'
+            src='https://uptime.mikepayne.me/api/badge/1/avg-response?color=%233b82f6&labelColor=%2318181b&style=flat'
             alt='Uptime Badge'
           />
         </a>
@@ -87,7 +92,7 @@ const { showViewCount = false } = Astro.props
             href='mailto:michael@payne.cx'
             target='_blank'
           >
-            <HeroiconsEnvelope slot='icon' class='w-full' />
+            <MdiEmailOutline slot='icon' class='w-full' />
           </SocialLink>
         </div>
       </div>

@@ -15,9 +15,9 @@ import PageLayout from '@/layouts/Base.astro'
 import type { GetStaticPaths, Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 
-import HeroiconsArrowLeft from '~icons/heroicons/arrow-left'
-import HeroiconsTag from '~icons/heroicons/tag'
-import HeroiconsArrowRight from '~icons/heroicons/arrow-right'
+import MdiArrowLeft from '~icons/mdi/arrow-left'
+import MdiTag from '~icons/mdi/tag'
+import MdiArrowRight from '~icons/mdi/arrow-right'
 
 export const getStaticPaths = (async ({ paginate }) => {
   const MAX_POSTS_PER_PAGE = 10
@@ -64,7 +64,7 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a)
 <PageLayout {meta}>
   <div class='w-full'>
     <Button title='Back' href='/' style='button'>
-      <HeroiconsArrowLeft slot='icon-before' class='size-4' />
+      <MdiArrowLeft slot='icon-before' class='size-4' />
     </Button>
 
     <h1 class='mb-6 mt-5 text-2xl font-bold'>Projects</h1>
@@ -91,7 +91,7 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a)
           {!!uniqueTags.length && (
             <aside>
               <h2 class='mb-4 flex items-center text-lg font-semibold'>
-                <HeroiconsTag class='size-6' />
+                <MdiTag class='size-6' />
                 Tags
               </h2>
               <ul class='text-bgColor flex flex-wrap gap-2'>
@@ -108,7 +108,7 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a)
                   href='/tags/'
                   data-astro-prefetch
                 >
-                  View all <HeroiconsArrowRight class='mx-1 size-4' />
+                  View all <MdiArrowRight class='mx-1 size-4' />
                 </a>
               </span>
             </aside>

@@ -14,11 +14,11 @@ import { Image } from 'astro:assets'
 import ProjectCard from '@/components/ProjectCard.astro'
 import Map from '@/components/Map.astro'
 
-import HeroiconsMapPin from '~icons/heroicons/map-pin'
-import HeroiconsCake from '~icons/heroicons/cake'
+import MdiMapMarkerOutline from '~icons/mdi/map-marker-outline'
+import MdiCakeVariantOutline from '~icons/mdi/cake-variant-outline'
 import MdiLinkedin from '~icons/mdi/linkedin'
-import HeroiconsArrowDownTray from '~icons/heroicons/arrow-down-tray'
-import HeroiconsArrowTopRightOnSquare from '~icons/heroicons/arrow-top-right-on-square'
+import MdiDownloadOutline from '~icons/mdi/download-outline'
+import MdiExternalLink from '~icons/mdi/external-link'
 
 const languages = ['Typescript', 'Python', 'Java', 'Kotlin', 'PHP', 'SQL', 'Go']
 const software = ['Creative Cloud', 'Blender', 'Linux', 'VMware ESXi', 'Office']
@@ -48,10 +48,10 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         <CTA>Contact</CTA>
         <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
           <Label title='Overland Park, KS'>
-            <HeroiconsMapPin slot='icon' class='size-5' />
+            <MdiMapMarkerOutline slot='icon' class='size-5' />
           </Label>
           <Label title='21'>
-            <HeroiconsCake slot='icon' name='heroicons:cake' class='size-5' />
+            <MdiCakeVariantOutline slot='icon' class='size-5' />
           </Label>
           <Label
             title='LinkedIn'
@@ -67,10 +67,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
             href='https://content.mikepayne.me/MichaelPayne_Resume_2024.pdf'
             target='_blank'
           >
-            <HeroiconsArrowDownTray
-              slot='icon'
-              class='size-5 text-foreground/75'
-            />
+            <MdiDownloadOutline slot='icon' class='size-5 text-foreground/75' />
           </Label>
         </div>
       </div>
@@ -136,7 +133,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
           alt='University of Nebraska-Lincoln logo'
           src={Nebraska}
           width={64}
-          class='mb-3 h-12 w-auto md:absolute md:-left-16 md:mb-0 dark:invert'
+          class='mb-3 h-12 w-auto dark:invert md:absolute md:-left-16 md:mb-0'
         />
         <div class='flex flex-col gap-y-2'>
           <div class='flex flex-col gap-y-0.5'>
@@ -177,7 +174,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
             target='_blank'
             class='relative mx-auto my-2 inline-flex items-center rounded-lg bg-foreground/90 px-4 py-2 font-bold text-background shadow-[0_0_25px_hsl(var(--foreground)/25%)] hover:bg-foreground/80'
           >
-            <HeroiconsArrowTopRightOnSquare class='mr-2 size-4' />
+            <MdiExternalLink class='mr-2 size-4' />
             <span class='mr-3'>402.ink</span>
             <span
               class='absolute -right-5 -top-2 inline-flex items-center justify-center rounded-full bg-red-700 px-2 py-1 text-xs font-bold leading-none text-white'
@@ -196,7 +193,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
           src={DUBadge}
           alt='Delta Upsilon International Fraternity'
           width={64}
-          class='mb-3 h-12 w-auto md:absolute md:-left-16 md:mb-0 dark:invert'
+          class='mb-3 h-12 w-auto dark:invert md:absolute md:-left-16 md:mb-0'
         />
         <div class='flex flex-col gap-y-2'>
           <div class='flex flex-col gap-y-0.5'>
@@ -214,7 +211,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
             target='_blank'
             class='relative mx-auto my-2 inline-flex items-center rounded-lg bg-foreground/90 px-4 py-2 font-bold text-background shadow-[0_0_25px_hsl(var(--foreground)/25%)] hover:bg-foreground/80'
           >
-            <HeroiconsArrowTopRightOnSquare class='mr-2 size-4' />
+            <MdiExternalLink class='mr-2 size-4' />
             <span class='mr-3'> unldu.org </span>
             <span
               class='absolute -right-5 -top-2 inline-flex items-center justify-center rounded-full bg-red-700 px-2 py-1 text-xs font-bold leading-none text-white'
@@ -245,11 +242,11 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
     <Map
       zoom={6}
       pitch={45}
-      class='mt-12 h-96 w-full rounded-xl border border-border shadow'
       interactive={false}
       latitude={39.8807948544334}
       longitude={-95.6983122797664}
       deck='https://content.mikepayne.me/map-data.json'
+      class='mt-12 h-96 w-full rounded-xl border border-border shadow'
     />
     <CTA className='my-6'>Contact</CTA>
   </div>

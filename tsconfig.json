@@ -1,11 +1,7 @@
 {
   "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
-    "types": [
-      "@cloudflare/workers-types",
-      "vite-plugin-arraybuffer/types",
-      "unplugin-icons/types/astro"
-    ],
+    "types": ["@cloudflare/workers-types", "unplugin-icons/types/astro"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
@@ -18,8 +14,7 @@
         "name": "@astrojs/ts-plugin"
       }
     ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "jsx": "react-jsx"
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist"]

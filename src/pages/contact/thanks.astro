@@ -3,50 +3,27 @@ export const prerender = false
 
 import PageLayout from '@/layouts/Base.astro'
 import Button from '@/components/Button.astro'
-import HeroiconsArrowLeft from '~icons/heroicons/arrow-left'
+import MdiArrowLeft from '~icons/mdi/arrow-left'
 
 const meta = {
   description: 'Conatact',
   title: 'Contact'
 }
 
-let firstName = null
-if (Astro.request.method === 'POST') {
-  const data = await Astro.request.formData().catch(() => new FormData())
-  const fullName = data.get('fullName')
-  if (typeof fullName === 'string' && fullName.length > 0) {
-    firstName = fullName ? fullName.split(' ')[0] : null
-  }
+const name = Astro.url.searchParams.get('name')
+if (!(typeof name === 'string' && name.length > 0)) {
+  return Astro.redirect('/404')
 }
 ---
 
 <PageLayout {meta}>
   <div class='px-4 py-10 text-center sm:px-6 lg:px-8'>
-    {
-      firstName && (
-        <h1 class='block pb-4 font-mono text-7xl font-bold sm:text-5xl'>
-          Thanks!
-        </h1>
-      )
-    }
-    {
-      !firstName && (
-        <h1 class='block pb-4 font-mono text-7xl font-bold sm:text-5xl'>
-          Whoops
-        </h1>
-      )
-    }
-    {
-      firstName && (
-        <p data-confetti>
-          Thanks for reaching out, {firstName}! I'll be sure to reply as soon as
-          I can.
-        </p>
-      )
-    }
-    {!firstName && <p>Looks like you refreshed the page.</p>}
+    <h1 class='block pb-4 font-mono text-7xl font-bold sm:text-5xl'>Thanks!</h1>
+    <p data-confetti>
+      Thanks for reaching out, {name}! I'll be sure to reply as soon as I can.
+    </p>
     <Button title='Home' href='/' style='button' class='mt-5'>
-      <HeroiconsArrowLeft slot='icon-before' />
+      <MdiArrowLeft slot='icon-before' />
     </Button>
   </div>
 </PageLayout>

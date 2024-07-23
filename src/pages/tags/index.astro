@@ -6,7 +6,7 @@ import { getAllProjects, getUniqueTagsWithCount } from '@/data/project'
 import PageLayout from '@/layouts/Base.astro'
 import CTA from '@/components/CTA.astro'
 
-import HeroiconsArrowLeft from '~icons/heroicons/arrow-left'
+import MdiArrowLeft from '~icons/mdi/arrow-left'
 
 const allPosts = await getAllProjects()
 const allTags = getUniqueTagsWithCount(allPosts)
@@ -20,7 +20,7 @@ const meta = {
 <PageLayout {meta}>
   <div class='w-full'>
     <Button title='Back' href='/projects' style='button'>
-      <HeroiconsArrowLeft slot='icon-before' class='size-4' />
+      <MdiArrowLeft slot='icon-before' class='size-4' />
     </Button>
 
     <h1 class='mb-6 mt-5 text-2xl font-bold'>Tags</h1>

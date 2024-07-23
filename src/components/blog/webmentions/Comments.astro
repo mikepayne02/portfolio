@@ -1,7 +1,7 @@
 ---
 import type { WebmentionsChildren } from '@/types'
 
-import HeroiconsArrowTopRightOnSquare from '~icons/heroicons/arrow-top-right-on-square'
+import MdiExternalLink from '~icons/mdi/external-link'
 import { Image } from 'astro:assets'
 
 interface Props {
@@ -75,7 +75,7 @@ const comments = mentions.filter(
                   <span class='hidden' id='cmt-source'>
                     Vist the source of this webmention
                   </span>
-                  <HeroiconsArrowTopRightOnSquare class='size-5' />
+                  <MdiExternalLink class='size-5' />
                 </a>
               </div>
               <p class='mb-0 mt-1 break-words [word-break:break-word]'>

@@ -8,7 +8,7 @@ kv_namespaces = [
 [[d1_databases]]
 binding = "DB"
 database_name = "portfolio"
-database_id = "6d4dbbba-aa9d-43bd-b982-5ab3447283b2"
+database_id = ""
 preview_database_id = "DB"
 
 [vars]

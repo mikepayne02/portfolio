@@ -1,6 +1,8 @@
 ---
 import 'maplibre-gl/dist/maplibre-gl.css'
 
+import { MAPTILER_API_KEY } from 'astro:env/client'
+
 const {
   latitude,
   longitude,
@@ -10,8 +12,6 @@ const {
   interactive = false,
   ...props
 } = Astro.props
-
-const { MAPTILER_API_KEY } = import.meta.env
 ---
 
 <maplibre-map
@@ -28,30 +28,53 @@ const { MAPTILER_API_KEY } = import.meta.env
 </maplibre-map>
 
 <script>
-  import { Map } from 'maplibre-gl'
-  import { MapboxOverlay } from '@deck.gl/mapbox'
-  import { ArcLayer } from '@deck.gl/layers'
-
   class MapLibreMap extends HTMLElement {
+    private observer: IntersectionObserver
+
     constructor() {
       super()
 
-      const lightModePref = window.matchMedia('(prefers-color-scheme: light)')
+      this.observer = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((entry) => {
+            if (entry.isIntersecting)
+              this.load().then(() => this.observer.disconnect())
+          }),
+        {
+          rootMargin: '240px'
+        }
+      )
+    }
+
+    connectedCallback() {
+      this.observer.observe(this)
+    }
+
+    disconnectedCallback() {
+      this.observer.disconnect()
+    }
+
+    getStyle(theme: string) {
+      return (
+        (theme == 'dark'
+          ? 'https://api.maptiler.com/maps/dataviz-dark/style.json?key='
+          : 'https://api.maptiler.com/maps/dataviz-light/style.json?key=') +
+        this.dataset.maptiler_key
+      )
+    }
+
+    async load() {
+      const { Map } = await import('maplibre-gl')
+      const { ArcLayer } = await import('@deck.gl/layers')
+      const { MapboxOverlay } = await import('@deck.gl/mapbox')
 
       const storedTheme =
         typeof localStorage !== 'undefined' && localStorage.getItem('theme')
 
+      const lightModePref = window.matchMedia('(prefers-color-scheme: light)')
+
       const initTheme =
         storedTheme || (lightModePref.matches ? 'light' : 'dark')
-
-      const getStyle = (theme: string) => {
-        return (
-          (theme == 'dark'
-            ? 'https://api.maptiler.com/maps/dataviz-dark/style.json?key='
-            : 'https://api.maptiler.com/maps/dataviz-light/style.json?key=') +
-          this.dataset.maptiler_key
-        )
-      }
 
       const map = new Map({
         container: 'map',
@@ -62,15 +85,7 @@ const { MAPTILER_API_KEY } = import.meta.env
         ],
         zoom: parseFloat(this.dataset.zoom ?? '0'),
         pitch: parseFloat(this.dataset.pitch ?? '0'),
-        style: getStyle(initTheme)
-      })
-
-      lightModePref.addEventListener('change', (e) =>
-        map.setStyle(getStyle(e.matches ? 'light' : 'dark'))
-      )
-
-      document.addEventListener('theme-change', (e) => {
-        map.setStyle(getStyle((e as CustomEvent).detail.theme))
+        style: this.getStyle(initTheme)
       })
 
       // https://maplibre.org/maplibre-gl-js/docs/examples/animate-camera-around-point/
@@ -82,10 +97,20 @@ const { MAPTILER_API_KEY } = import.meta.env
         requestAnimationFrame(rotateCamera)
       }
 
+      lightModePref.addEventListener('change', (e) =>
+        map.setStyle(this.getStyle(e.matches ? 'light' : 'dark'))
+      )
+
+      document.addEventListener('theme-change', (e) => {
+        map.setStyle(this.getStyle((e as CustomEvent).detail.theme))
+      })
+
       map.on('load', () => {
+        if (!this.dataset.deck) return
+
         const layer = new ArcLayer({
           id: 'arc-layer',
-          data: this.dataset.deck ?? '',
+          data: this.dataset.deck,
           getSourceColor: [96, 165, 250],
           getTargetColor: [48, 98, 179],
           getWidth: 12,

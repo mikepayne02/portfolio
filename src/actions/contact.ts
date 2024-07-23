@@ -5,6 +5,8 @@ import { render } from '@react-email/render'
 import { ActionError, defineAction, z } from 'astro:actions'
 import { Resend } from 'resend'
 
+import { AUTHOR_EMAIL, RECAPTCHA_SECRET, RESEND_API_KEY } from 'astro:env/server'
+
 type CaptchaResponse = {
   success: boolean
   score: number
@@ -25,19 +27,14 @@ export default defineAction({
       .min(2, { message: 'Must be at least two characters long' }),
     captcha: z.string({ required_error: 'Please complete the captcha.' })
   }),
-  handler: async ({ fullName, message, email, captcha }, { locals }) => {
-    const { env } = locals.runtime
-    const {
-      AUTHOR_EMAIL,
-      RECAPTCHA_SECRET,
-      RESEND_API_KEY
-    } = env
+  handler: async ({ fullName, message, email, captcha }, ctx) => {
     const res = (await fetch(verifyEndpoint, {
       method: 'POST',
       headers: { 'Content-type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({
         secret: RECAPTCHA_SECRET as string,
-        response: captcha // the user's generated "Captcha" token
+        response: captcha, // the user's generated "Captcha" token
+        remoteip: ctx.clientAddress // the user's IP address
       })
     }).then((res) => res.json())) as CaptchaResponse
 
@@ -71,6 +68,6 @@ export default defineAction({
       html: render(AuthorEmail({ fullName, message }))
     })
 
-    return { success: true }
+    return { name: firstName }
   }
 })

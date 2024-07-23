@@ -1,6 +1,6 @@
 ---
 import { menuLinks } from '@/site-config'
-import Search from './SearchBox.astro'
+import SearchBox from './SearchBox.astro'
 import ThemeToggle from './ThemeToggle.astro'
 import Logo from './Logo.astro'
 
@@ -13,7 +13,7 @@ const url = new URL(Astro.request.url)
   <Logo />
 
   <nav
-    class='order-3 flex w-full flex-row gap-x-5 font-medium sm:order-2 sm:w-auto sm:gap-x-4'
+    class='order-3 me-2 flex w-full flex-row gap-x-5 font-medium sm:order-2 sm:w-auto sm:gap-x-4'
   >
     {
       menuLinks.map((link) => (
@@ -29,21 +29,28 @@ const url = new URL(Astro.request.url)
       ))
     }
   </nav>
-  <div class='order-2 ml-auto flex flex-row sm:order-3 sm:ml-0'>
-    <Search uiOptions={{ resetStyles: false }} />
+  <div
+    class='relative order-2 ms-0 flex h-8 flex-row gap-x-2 sm:order-3 sm:ms-2 sm:gap-x-4'
+  >
+    <SearchBox />
     <ThemeToggle />
   </div>
 </header>
 <script>
-  function getCurrentTheme() {
-    return localStorage.getItem('theme')
-  }
-  const toggleDarkModeButton = document.getElementById('toggleDarkMode')
+  const theme = (() => {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme')
+    }
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark'
+    }
+    return 'light'
+  })()
 
-  toggleDarkModeButton?.addEventListener('click', () => {
-    const toggleDarkModeEvent = new CustomEvent('theme-change', {
-      detail: { theme: getCurrentTheme() === 'light' ? 'dark' : 'light' }
-    })
-    document.dispatchEvent(toggleDarkModeEvent)
-  })
+  const root = document.documentElement
+  if (theme === 'light') {
+    root.classList.remove('dark')
+  } else {
+    root.classList.add('dark')
+  }
 </script>

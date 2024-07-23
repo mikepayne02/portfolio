@@ -9,7 +9,7 @@ import type {
   WebmentionsFeed
 } from '@/types'
 
-const { WEBMENTION_API_KEY } = Astro.locals.runtime.env
+import { WEBMENTION_API_KEY } from 'astro:env/server'
 
 // const cachePath = 'webmentions.json'
 const validWebmentionTypes = ['like-of', 'mention-of', 'in-reply-to']

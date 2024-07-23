@@ -3,38 +3,31 @@ name: ci
 on:
   push:
     branches: [main]
-env:
-  AUTHOR_EMAIL: ${{secrets.AUTHOR_EMAIL }}
-  MAPTILER_API_KEY: ${{secrets.MAPTILER_API_KEY }}
-  RECAPTCHA_SITE_KEY: ${{secrets.RECAPTCHA_SITE_KEY }}
+
 jobs:
   ci:
     name: Check for build and type issues
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          version: 8
-          run_install: false
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'pnpm'
+          bun-version: 1.1.21
 
       - name: Install dependencies
-        run: pnpm install
+        run: bun install
 
-      # use astro check for issues
-      - name: Run check
-        run: pnpm astro check
-
-      # ensure build works
-      - name: Run build
-        run: pnpm build
+      # check for issues and ensure build works
+      - name: Build app
+        run: bun run build
+        env:
+          AUTHOR_EMAIL: ${{vars.AUTHOR_EMAIL }}
+          MAPTILER_API_KEY: ${{vars.MAPTILER_API_KEY }}
+          RECAPTCHA_SECRET: ${{secrets.RECAPTCHA_SECRET}}
+          RECAPTCHA_SITE_KEY: ${{vars.RECAPTCHA_SITE_KEY }}
+          RESEND_API_KEY: ${{secrets.RESEND_API_KEY}}
+          WEBMENTION_API_KEY: ${{secrets.WEBMENTION_API_KEY}}

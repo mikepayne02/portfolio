@@ -18,11 +18,11 @@
     const root = document.documentElement
 
     // root already set to newTheme, exit early
-    if (newTheme === root.getAttribute('data-theme')) {
-      return
+    if (newTheme === 'dark') {
+      root.classList.toggle('dark', true)
+    } else {
+      root.classList.toggle('dark', false)
     }
-
-    root.setAttribute('data-theme', newTheme)
 
     const colorThemeMetaTag = document.querySelector("meta[name='theme-color']")
     const bgColour = getComputedStyle(document.body).getPropertyValue(

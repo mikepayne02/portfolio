@@ -8,14 +8,16 @@ import WebMentions from '@/components/blog/webmentions/index.astro'
 import LightBox from '@/components/LightboxPortal.astro'
 import PageLayout from './Base.astro'
 
-import HeroiconsArrowLeft from '~icons/heroicons/arrow-left'
-import HeroiconsChevronUp from '~icons/heroicons/chevron-up'
+import MdiArrowLeft from '~icons/mdi/arrow-left'
+import MdiChevronUp from '~icons/mdi/chevron-up'
+import type { MarkdownHeading } from 'astro'
 
 interface Props {
   project: CollectionEntry<'projects'>
+  headings: MarkdownHeading[]
 }
 
-const { project } = Astro.props
+const { project, headings } = Astro.props
 const {
   data: { description, ogImage, ogManual, publishDate, title, updatedDate },
   slug
@@ -23,7 +25,6 @@ const {
 
 const socialImage = ogManual ? ogImage : `/projects/${slug}-og.png`
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
-const { headings } = await project.render()
 ---
 
 <PageLayout
@@ -33,7 +34,7 @@ const { headings } = await project.render()
   <LightBox />
   <div class='w-full'>
     <Button title='Back' href='/projects' style='button'>
-      <HeroiconsArrowLeft slot='icon-before' class='size-4' />
+      <MdiArrowLeft slot='icon-before' class='size-4' />
     </Button>
     <div class='mt-8 gap-x-10 lg:flex lg:items-start'>
       {!!headings.length && <TOC headings={headings} />}
@@ -54,7 +55,7 @@ const { headings } = await project.render()
       data-show='false'
       id='to-top-btn'
     >
-      <HeroiconsChevronUp class='size-4' />
+      <MdiChevronUp class='size-4' />
     </button>
   </div>
 </PageLayout>

@@ -4,7 +4,7 @@ export const prerender = true
 import Button from '@/components/Button.astro'
 import PageLayout from '@/layouts/Base.astro'
 import CTA from '@/components/CTA.astro'
-import HeroiconsArrowLeft from '~icons/heroicons/arrow-left'
+import MdiArrowLeft from '~icons/mdi/arrow-left'
 
 const meta = {
   description: 'Not found',
@@ -18,7 +18,7 @@ const meta = {
     <p class='mt-3 text-muted-foreground'>How could this happen</p>
     <p>We couldn't find that page</p>
     <Button title='Home' href='/' style='button' class='mt-5'>
-      <HeroiconsArrowLeft slot='icon-before' />
+      <MdiArrowLeft slot='icon-before' />
     </Button>
   </div>
   <CTA>Contact</CTA>
