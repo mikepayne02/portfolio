@@ -24,7 +24,7 @@ const likesToShow = likes
         {likes.length > 1 ? ' People' : ' Person'} liked this
       </p>
       {!!likesToShow.length && (
-        <ul class='flex list-none flex-wrap overflow-hidden ps-2' role='list'>
+        <ul class='flex list-none flex-wrap overflow-hidden ps-2'>
           {likesToShow.map((like) => (
             <li class='-ms-2'>
               <a

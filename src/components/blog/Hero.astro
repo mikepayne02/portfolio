@@ -1,11 +1,12 @@
 ---
-import MdiTag from '~icons/mdi/tag'
+import MdiTagOutline from '~icons/mdi/tag-outline'
 import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 import FormattedDate from '../FormattedDate.astro'
 
 interface Props {
   content: CollectionEntry<'projects'>
+  minutesRead: string
 }
 
 const { slug } = Astro.params
@@ -53,7 +54,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 {
   !!data.tags?.length && (
     <div class='mt-3 flex flex-row items-center gap-x-1'>
-      <MdiTag class='size-6' />
+      <MdiTagOutline class='size-6' />
       {data.tags.map((tag, i) => (
         <div>
           <a

@@ -5,5 +5,5 @@ const { src, alt, ...props } = Astro.props
 ---
 
 <p data-lightbox>
-  <Image {...props} src={src} alt={alt} />
+  <Image class='rounded-md' src={src} alt={alt} {...props} />
 </p>

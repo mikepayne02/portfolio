@@ -12,9 +12,9 @@ const q = Astro.url.searchParams.get('q') ?? ''
     data-open-modal
     disabled
     aria-label='search'
-    class='m-auto size-8 rounded-md border border-border bg-primary-foreground shadow-sm transition hover:bg-border/25 hover:shadow'
+    class='flex size-8 items-center justify-center rounded-md border border-border bg-primary-foreground shadow-sm transition hover:bg-border/25 hover:text-foreground/75 hover:shadow'
   >
-    <MdiMagnify class='m-auto size-6' />
+    <MdiMagnify class='size-6' />
   </button>
   <dialog
     aria-label='search'

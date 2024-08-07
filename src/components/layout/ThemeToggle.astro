@@ -9,16 +9,16 @@ const { className } = Astro.props
   <button
     class:list={[
       className,
-      'relative size-8 rounded-md border border-border bg-primary-foreground shadow-sm transition-colors hover:bg-border/25 hover:shadow'
+      'relative size-8 rounded-md border border-border bg-primary-foreground shadow-sm transition-colors hover:bg-border/25 hover:text-foreground/75 hover:shadow'
     ]}
   >
     <span class='sr-only'>Dark Theme</span>
     <MdiWeatherSunny
-      class='absolute start-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 rotate-180 scale-0 fill-current opacity-0 transition-opacity transition-transform dark:rotate-0 dark:scale-100 dark:opacity-100'
+      name='heroicons:moon'
+      class='absolute start-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 rotate-0 scale-100 opacity-100 transition-opacity transition-transform dark:rotate-180 dark:scale-0 dark:opacity-0'
     />
     <MdiMoonAndStars
-      name='heroicons:moon'
-      class='absolute start-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 rotate-0 scale-100 fill-current opacity-100 transition-opacity transition-transform dark:rotate-180 dark:scale-0 dark:opacity-0'
+      class='absolute start-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 rotate-180 scale-0 opacity-0 transition-opacity transition-transform dark:rotate-0 dark:scale-100 dark:opacity-100'
     />
   </button>
 </theme-toggle>

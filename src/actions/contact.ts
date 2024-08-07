@@ -25,7 +25,7 @@ export default defineAction({
     message: z
       .string({ required_error: 'Please enter a message.' })
       .min(2, { message: 'Must be at least two characters long' }),
-    captcha: z.string({ required_error: 'Please complete the captcha.' })
+    captcha: z.string({ required_error: 'Please complete the captcha.' }).regex(/[0-9a-zA-Z_-]/)
   }),
   handler: async ({ fullName, message, email, captcha }, ctx) => {
     const res = (await fetch(verifyEndpoint, {

@@ -17,8 +17,14 @@ const meta = {
     <h1 class='block font-mono text-7xl font-bold sm:text-9xl'>404</h1>
     <p class='mt-3 text-muted-foreground'>How could this happen</p>
     <p>We couldn't find that page</p>
-    <Button title='Home' href='/' style='button' class='mt-5'>
-      <MdiArrowLeft slot='icon-before' />
+    <Button
+      title='Home'
+      href='/'
+      style='button'
+      class='mt-5'
+      data-astro-prefetch
+    >
+      <MdiArrowLeft />
     </Button>
   </div>
   <CTA>Contact</CTA>

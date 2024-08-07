@@ -21,7 +21,7 @@ const url = new URL(Astro.request.url)
           aria-current={url.pathname === link.path ? 'page' : false}
           href={link.path}
           data-astro-prefetch
-          class='flex-none hover:text-foreground/75 sm:text-[1.05rem]'
+          class='flex-none [text-shadow:_0_0_25px_hsl(var(--foreground)/25%)] hover:text-foreground/75 sm:text-[1.05rem]'
           aria-label={link.path + ' nav item'}
         >
           {link.title}

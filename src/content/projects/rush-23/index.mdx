@@ -9,7 +9,9 @@ tags: ['Illustrator']
 ogImage: src/assets/images/rush.png
 ---
 
-import { Lightbox } from '@/utils'
+import Image from '@/components/LightboxImage.astro'
+import Video from '@/components/LightboxVideo.astro'
+
 import input from './input.png'
 import out1 from './out1.png'
 import out2 from './out2.png'
@@ -18,19 +20,16 @@ import out4 from './out4.png'
 
 ## Mockup
 
-<video class='w-full' autoplay loop muted playsinline>
-  <source src="https://content.mikepayne.me/videos/rush-23.webm" type="video/webm codecs=av01.0.08M" />
-  <source src="https://content.mikepayne.me/videos/rush-23.mp4" type="video/mp4" />
-</video>
+<Video src="rush-23" />
 
 Detail on the building was generated using [stable diffusion ControlNet](https://github.com/lllyasviel/ControlNet)
 
 ## Model Input
 
-<Lightbox src={input} alt='Model Input' />
+<Image src={input} alt='Model Input' />
 ## Example Outputs
 
-<Lightbox src={out1} alt='Example 1' />
-<Lightbox src={out2} alt='Example 2' />
-<Lightbox src={out3} alt='Example 3' />
-<Lightbox src={out4} alt='Example 4' />
+<Image src={out1} alt='Example 1' />
+<Image src={out2} alt='Example 2' />
+<Image src={out3} alt='Example 3' />
+<Image src={out4} alt='Example 4' />

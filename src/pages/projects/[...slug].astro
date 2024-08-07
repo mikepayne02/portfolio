@@ -13,9 +13,13 @@ export const getStaticPaths = async () => {
 }
 
 const { entry } = Astro.props
-const { Content, headings } = await entry.render()
+const { Content, headings, remarkPluginFrontmatter } = await entry.render()
 ---
 
-<PostLayout project={entry} {headings}>
+<PostLayout
+  project={entry}
+  {headings}
+  minutesRead={remarkPluginFrontmatter.minutesRead as string}
+>
   <Content />
 </PostLayout>

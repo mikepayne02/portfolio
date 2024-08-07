@@ -4,22 +4,23 @@ const {
   class: className,
   title,
   href,
-  style = 'button'
+  style = 'button',
+  ...props
 } = Astro.props
 ---
 
 <Tag
   class:list={[
     className,
-    'inline-flex items-center gap-x-1 rounded-lg border border-border bg-primary-foreground px-2 py-1 text-sm transition hover:bg-border/25',
-    !href && 'cursor-default',
-    href && 'shadow-sm hover:shadow',
-    style === 'pill' && 'rounded-xl'
+    'flex max-w-fit flex-row items-center justify-center gap-x-1 border border-border bg-primary-foreground text-sm transition',
+    title && 'px-2 py-1',
+    href && 'shadow-sm hover:bg-border/25 hover:shadow',
+    style === 'pill' ? 'rounded-full px-3' : 'rounded-lg'
   ]}
   href={href}
-  data-astro-prefetch
+  {...props}
 >
-  <slot name='icon-before' />
-  <p>{title}</p>
-  <slot name='icon-after' />
+  <slot />
+  {title && <span>{title}</span>}
+  <slot name='after' />
 </Tag>

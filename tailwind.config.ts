@@ -1,9 +1,9 @@
 import type { Config } from "tailwindcss";
 
-import plugin from "tailwindcss/plugin";
+import typography from "@tailwindcss/typography";
+import aspectRatio from "@tailwindcss/aspect-ratio";
 import { fontFamily } from 'tailwindcss/defaultTheme'
 
-/** @type {import('tailwindcss').Config} */
 const config = {
   darkMode: ['class'],
   content: [
@@ -14,8 +14,8 @@ const config = {
     aspectRatio: false,
   },
   plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio')
+    typography,
+    aspectRatio,
   ],
   theme: {
     container: {
@@ -64,9 +64,19 @@ const config = {
       fontFamily: {
         sans: ['Fira Sans', ...fontFamily.sans],
         mono: ['Fira Code', ...fontFamily.mono]
+      },
+      keyframes: {
+        appear: {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          },
+        }
       }
     }
   }
-}
+} as Config
 
 export default config

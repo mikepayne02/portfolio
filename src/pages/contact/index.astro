@@ -8,8 +8,7 @@ import { RECAPTCHA_SITE_KEY } from 'astro:env/client'
 
 const result = Astro.getActionResult(actions.contact)
 
-const inputError = isInputError(result?.error) ? result.error : null
-const unknownError = !inputError ? result?.error : null
+const inputError = isInputError(result?.error) ? result.error : undefined
 
 if (result?.data) {
   return Astro.redirect(`/contact/thanks?name=${result.data.name}`)
@@ -30,11 +29,12 @@ const meta = {
 
 <script is:inline>
   document.addEventListener('astro:page-load', function () {
-    const form = document.querySelector('#contact')
-    document.getElementById('submitBtn').addEventListener('click', (e) => {
-      e.preventDefault()
+    const form = document.getElementById('contact')
+    document.getElementById('submitBtn').addEventListener('click', () => {
       if (!form.reportValidity()) return
+      // eslint-disable-next-line no-undef
       grecaptcha.ready(function () {
+        // eslint-disable-next-line no-undef
         grecaptcha
           .execute(form.dataset.recaptcha_sitekey, { action: 'submit' })
           .then(function (token) {
@@ -51,8 +51,8 @@ const meta = {
     <h2 class='text-2xl font-bold'>Contact</h2>
     <div class='flex flex-col gap-y-7'>
       {
-        unknownError && (
-          <div class='text-red-500'>Unknown Error:{unknownError.message}</div>
+        result?.error && !isInputError(result?.error) && (
+          <div class='text-red-500'>Unknown Error: {result?.error.message}</div>
         )
       }
       <form
@@ -117,6 +117,7 @@ const meta = {
         }
         <input type='hidden' name='captcha' />
         <button
+          type='button'
           id='submitBtn'
           class='rounded-lg border border-border bg-primary-foreground px-4 py-1 transition hover:bg-border/25'
           >Submit</button

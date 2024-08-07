@@ -15,9 +15,11 @@ import type { MarkdownHeading } from 'astro'
 interface Props {
   project: CollectionEntry<'projects'>
   headings: MarkdownHeading[]
+  minutesRead: string
 }
 
-const { project, headings } = Astro.props
+const { project, headings, minutesRead } = Astro.props
+
 const {
   data: { description, ogImage, ogManual, publishDate, title, updatedDate },
   slug
@@ -33,13 +35,13 @@ const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
 >
   <LightBox />
   <div class='w-full'>
-    <Button title='Back' href='/projects' style='button'>
-      <MdiArrowLeft slot='icon-before' class='size-4' />
+    <Button title='Back' href='/projects' style='button' data-astro-prefetch>
+      <MdiArrowLeft class='size-4' />
     </Button>
     <div class='mt-8 gap-x-10 lg:flex lg:items-start'>
       {!!headings.length && <TOC headings={headings} />}
-      <article class='flex-grow break-words' data-pagefind-body>
-        <div id='blog-hero'><BlogHero content={project} /></div>
+      <article class='break-words' data-pagefind-body>
+        <div id='blog-hero'><BlogHero content={project} {minutesRead} /></div>
         <div
           transition:animate='slide'
           class='prose prose-base prose-zinc mt-12 text-muted-foreground dark:prose-invert prose-headings:font-medium prose-headings:text-foreground prose-headings:before:absolute prose-headings:before:-ms-4 prose-th:before:content-none'
@@ -51,11 +53,11 @@ const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
     </div>
     <button
       aria-label='Back to Top'
-      class='z-90 fixed bottom-8 end-4 flex size-8 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-primary-foreground text-3xl opacity-0 transition duration-300 hover:border-border/75 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12'
+      class='z-90 fixed bottom-8 end-4 flex size-8 translate-y-28 items-center justify-center rounded-full border border-border bg-primary-foreground text-3xl opacity-0 transition duration-300 hover:border-border/75 hover:bg-border/25 hover:text-foreground/75 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12'
       data-show='false'
       id='to-top-btn'
     >
-      <MdiChevronUp class='size-4' />
+      <MdiChevronUp class='size-6' />
     </button>
   </div>
 </PageLayout>
