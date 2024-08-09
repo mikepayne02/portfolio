@@ -25,14 +25,14 @@
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/ts-plugin": "^1.9.1",
     "@cloudflare/workers-types": "^4.20240806.0",
-    "@deck.gl/layers": "^9.0.26",
-    "@deck.gl/mapbox": "^9.0.26",
+    "@deck.gl/layers": "^9.0.27",
+    "@deck.gl/mapbox": "^9.0.27",
     "@eslint/js": "^9.8.0",
     "@iconify-json/mdi": "^1.1.68",
     "@react-email/components": "0.0.22",
     "@react-email/render": "^0.0.17",
     "@resvg/resvg-wasm": "^2.6.2",
-    "@rive-app/canvas-single": "^2.19.6",
+    "@rive-app/canvas-single": "^2.19.7",
     "@silvia-odwyer/photon-node": "^0.3.3",
     "@svgr/core": "^8.1.0",
     "@svgr/plugin-jsx": "^8.1.0",
@@ -60,7 +60,7 @@
     "prettier": "^3.3.3",
     "prettier-config-standard": "^7.0.0",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.6.5",
+    "prettier-plugin-tailwindcss": "^0.6.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-email": "2.1.6",
@@ -74,6 +74,6 @@
     "tsx": "^4.17.0",
     "typescript-eslint": "^8.0.1",
     "unplugin-icons": "^0.19.2",
-    "wrangler": "^3.69.1"
+    "wrangler": "^3.70.0"
   }
 }
