@@ -3,7 +3,15 @@ const { src, ...props } = Astro.props
 ---
 
 <div data-lightbox>
-  <video class='rounded-md' autoplay loop muted playsinline {...props}>
+  <video
+    data-lightbox-video
+    class='rounded-md'
+    autoplay
+    loop
+    muted
+    playsinline
+    {...props}
+  >
     <source
       src=`https://content.mikepayne.me/videos/${src}.webm`
       type='video/webm codecs=av01.0.08M'

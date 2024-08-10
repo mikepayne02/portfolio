@@ -48,8 +48,8 @@ export default defineConfig({
       schema: {
         AUTHOR_EMAIL: envField.string({ context: "server", access: "public" }),
         MAPTILER_API_KEY: envField.string({ context: "client", access: "public" }),
-        RECAPTCHA_SECRET: envField.string({ context: 'server', access: 'secret' }),
-        RECAPTCHA_SITE_KEY: envField.string({ context: "client", access: "public" }),
+        TURNSTILE_SITE_KEY: envField.string({ context: "client", access: "public" }),
+        TURNSTILE_SECRET: envField.string({ context: 'server', access: 'secret' }),
         RESEND_API_KEY: envField.string({ context: "server", access: "secret" }),
         WEBMENTION_API_KEY: envField.string({ context: "server", access: "secret" })
       }

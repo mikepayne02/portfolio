@@ -8,14 +8,14 @@
     return storedTheme || (lightModePref.matches ? 'light' : 'dark')
   }
 
-  function setTheme(newTheme) {
+  function setTheme(page, newTheme) {
     if (newTheme !== 'light' && newTheme !== 'dark') {
       return console.warn(
         `Invalid theme value '${newTheme}' received. Expected 'light' or 'dark'.`
       )
     }
 
-    const root = document.documentElement
+    const root = page.documentElement
 
     // root already set to newTheme, exit early
     if (newTheme === 'dark') {
@@ -24,8 +24,8 @@
       root.classList.toggle('dark', false)
     }
 
-    const colorThemeMetaTag = document.querySelector("meta[name='theme-color']")
-    const bgColour = getComputedStyle(document.body).getPropertyValue(
+    const colorThemeMetaTag = page.querySelector("meta[name='theme-color']")
+    const bgColour = getComputedStyle(page.body).getPropertyValue(
       '--background'
     )
     colorThemeMetaTag.setAttribute('content', `hsl(${bgColour})`)
@@ -35,14 +35,16 @@
   }
 
   // initial setup
-  setTheme(getUserPref())
+  setTheme(document, getUserPref())
 
   // View Transitions hook to restore theme
-  document.addEventListener('astro:after-swap', () => setTheme(getUserPref()))
+  document.addEventListener('astro:after-swap', () =>
+    setTheme(document, getUserPref())
+  )
 
   // listen for theme-change custom event, fired in src/components/ThemeToggle.astro
   document.addEventListener('theme-change', (e) => {
-    setTheme(e.detail.theme)
+    setTheme(document, e.detail.theme)
     document
       .querySelector('meta[name="theme-color"]')
       ?.setAttribute(
@@ -55,6 +57,6 @@
 
   // listen for prefers-color-scheme change.
   lightModePref.addEventListener('change', (e) =>
-    setTheme(e.matches ? 'light' : 'dark')
+    setTheme(document, e.matches ? 'light' : 'dark')
   )
 </script>

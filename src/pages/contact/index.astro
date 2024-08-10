@@ -4,17 +4,10 @@ export const prerender = false
 import PageLayout from '@/layouts/Base.astro'
 import { actions, isInputError } from 'astro:actions'
 
-import { RECAPTCHA_SITE_KEY } from 'astro:env/client'
+import { TURNSTILE_SITE_KEY } from 'astro:env/client'
 
 const result = Astro.getActionResult(actions.contact)
-
-const inputError = isInputError(result?.error) ? result.error : undefined
-
-if (result?.data) {
-  return Astro.redirect(`/contact/thanks?name=${result.data.name}`)
-}
-
-const formData = await Astro.request.formData().catch(() => null)
+const inputErrors = isInputError(result?.error) ? result.error.fields : {}
 
 const meta = {
   description: 'Conatact',
@@ -24,23 +17,17 @@ const meta = {
 
 <script
   is:inline
-  src=`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`
+  src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
 ></script>
 
-<script is:inline>
+<script define:vars={{ TURNSTILE_SITE_KEY }} is:inline>
   document.addEventListener('astro:page-load', function () {
-    const form = document.getElementById('contact')
-    document.getElementById('submitBtn').addEventListener('click', () => {
-      if (!form.reportValidity()) return
+    // eslint-disable-next-line no-undef
+    turnstile.ready(function () {
       // eslint-disable-next-line no-undef
-      grecaptcha.ready(function () {
-        // eslint-disable-next-line no-undef
-        grecaptcha
-          .execute(form.dataset.recaptcha_sitekey, { action: 'submit' })
-          .then(function (token) {
-            document.querySelector('input[name=captcha]').value = token
-            form.submit()
-          })
+      turnstile.render('#turnstile', {
+        sitekey: TURNSTILE_SITE_KEY,
+        'response-field-name': 'turnstile'
       })
     })
   })
@@ -51,31 +38,29 @@ const meta = {
     <h2 class='text-2xl font-bold'>Contact</h2>
     <div class='flex flex-col gap-y-7'>
       {
-        result?.error && !isInputError(result?.error) && (
+        result?.error && !isInputError(result.error) && (
           <div class='text-red-500'>Unknown Error: {result?.error.message}</div>
         )
       }
       <form
-        id='contact'
         class='mt-8 flex flex-col items-center gap-y-7'
         method='POST'
-        action={actions.contact}
-        data-recaptcha_sitekey={RECAPTCHA_SITE_KEY}
+        action={'/contact/thanks' + actions.contact}
       >
         <label class='flex w-full flex-col'>
           <span>Name</span>
           {
-            inputError?.fields?.fullName && (
+            inputErrors.fullName && (
               <span class='text-red-500'>
-                Captcha error: {inputError.fields.fullName}
+                Captcha error: {inputErrors.fullName.join(', ')}
               </span>
             )
           }
           <input
+            transition:persist='name'
             required
             name='fullName'
             type='text'
-            value={formData?.get('fullName')?.toString()}
             minlength='2'
             class='mt-1 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-md'
           />
@@ -83,14 +68,14 @@ const meta = {
         <label class='flex w-full flex-col'>
           <span>Email address</span>
           {
-            inputError?.fields?.email && (
-              <span class='text-red-500'>{inputError.fields.email}</span>
+            inputErrors.email && (
+              <span class='text-red-500'>{inputErrors.email.join(', ')}</span>
             )
           }
           <input
+            transition:persist
             name='email'
             type='email'
-            value={formData?.get('email')?.toString()}
             class='mt-1 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25'
             placeholder='email@example.com'
           />
@@ -98,27 +83,28 @@ const meta = {
         <label class='flex w-full flex-col'>
           <span>Message</span>
           {
-            inputError?.fields?.message && (
-              <span class='text-red-500'>{inputError.fields.message}</span>
+            inputErrors.message && (
+              <span class='text-red-500'>{inputErrors.message.join(', ')}</span>
             )
           }
           <textarea
+            transition:persist
             required
             name='message'
             minlength='2'
-            class='mt-1 h-24 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25'
-            >{formData?.get('message')?.toString()}</textarea
-          >
+            class='mt-1 h-24 w-full rounded-md border border-border bg-primary-foreground p-2 shadow-sm [field-sizing:content] hover:border-foreground/25'
+          ></textarea>
         </label>
         {
-          inputError?.fields?.captcha && (
-            <span class='text-red-500'>{inputError.fields.captcha}</span>
+          inputErrors.turnstile && (
+            <span class='text-red-500'>
+              Verificaion token: {inputErrors.turnstile.join(', ')}
+            </span>
           )
         }
-        <input type='hidden' name='captcha' />
+        <div id='turnstile'></div>
         <button
-          type='button'
-          id='submitBtn'
+          type='submit'
           class='rounded-lg border border-border bg-primary-foreground px-4 py-1 transition hover:bg-border/25'
           >Submit</button
         >

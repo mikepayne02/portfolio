@@ -5,47 +5,50 @@ import { render } from '@react-email/render'
 import { ActionError, defineAction, z } from 'astro:actions'
 import { Resend } from 'resend'
 
-import { AUTHOR_EMAIL, RECAPTCHA_SECRET, RESEND_API_KEY } from 'astro:env/server'
+import { AUTHOR_EMAIL, TURNSTILE_SECRET, RESEND_API_KEY } from 'astro:env/server'
 
-type CaptchaResponse = {
+type TurnstileOutcome = {
   success: boolean
-  score: number
   'error-codes'?: string[]
 }
-
-const verifyEndpoint = 'https://www.google.com/recaptcha/api/siteverify'
 
 export default defineAction({
   accept: 'form',
   input: z.object({
     fullName: z
       .string({ required_error: 'Please enter a name' })
-      .min(2, 'Must be at least two characters long.'),
+      .min(2, 'Name must be at least two characters long.'),
     email: z.string().email({ message: 'Please enter a valid email' }),
     message: z
       .string({ required_error: 'Please enter a message.' })
-      .min(2, { message: 'Must be at least two characters long' }),
-    captcha: z.string({ required_error: 'Please complete the captcha.' }).regex(/[0-9a-zA-Z_-]/)
+      .min(5, { message: 'Message must be at least two characters long.' }),
+    turnstile: z.string({ required_error: 'Please complete verification.' }).max(2048, 'Turnstile response is invalid.')
   }),
-  handler: async ({ fullName, message, email, captcha }, ctx) => {
-    const res = (await fetch(verifyEndpoint, {
-      method: 'POST',
-      headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        secret: RECAPTCHA_SECRET as string,
-        response: captcha, // the user's generated "Captcha" token
-        remoteip: ctx.clientAddress // the user's IP address
-      })
-    }).then((res) => res.json())) as CaptchaResponse
+  handler: async ({ fullName, message, email, turnstile }, ctx) => {
+    // Validate the token by calling the
+    // "/siteverify" API endpoint.
+    let formData = new FormData();
+    formData.append('secret', TURNSTILE_SECRET);
+    formData.append('response', turnstile);
+    formData.append('remoteip', ctx.clientAddress);
 
-    if (!res.success && res['error-codes']) {
+    const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+    const result = await fetch(url, {
+      body: formData,
+      method: 'POST',
+    });
+
+    const outcome = await result.json() as TurnstileOutcome
+    console.log(outcome)
+
+    if (outcome['error-codes']?.length) {
       throw new ActionError({
         code: 'BAD_REQUEST',
-        message: `Captcha error: ${res['error-codes'][0]!}`
+        message: `Captcha error: ${outcome['error-codes']}`
       })
     }
 
-    if (res.score < 0.7) {
+    if (!outcome.success) {
       throw new ActionError({ code: 'BAD_REQUEST', message: 'Captcha failed' })
     }
 
@@ -69,5 +72,5 @@ export default defineAction({
     })
 
     return { name: firstName }
-  }
+  },
 })

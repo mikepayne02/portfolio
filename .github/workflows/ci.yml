@@ -27,7 +27,7 @@ jobs:
         env:
           AUTHOR_EMAIL: ${{vars.AUTHOR_EMAIL }}
           MAPTILER_API_KEY: ${{vars.MAPTILER_API_KEY }}
-          RECAPTCHA_SECRET: ${{secrets.RECAPTCHA_SECRET}}
-          RECAPTCHA_SITE_KEY: ${{vars.RECAPTCHA_SITE_KEY }}
+          TURNSTILE_SITE_KEY: ${{vars.TURNSTILE_SITE_KEY }}
+          TURNSTILE_SECRET: ${{secrets.TURNSTILE_SECRET}}
           RESEND_API_KEY: ${{secrets.RESEND_API_KEY}}
           WEBMENTION_API_KEY: ${{secrets.WEBMENTION_API_KEY}}

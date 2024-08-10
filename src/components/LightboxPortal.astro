@@ -7,6 +7,15 @@
 </light-box>
 
 <script>
+  // Fix for Safari when using view transitions
+  document.addEventListener('astro:page-load', () => {
+    document
+      .querySelectorAll<HTMLVideoElement>('video[data-lightbox-video]')
+      .forEach((video) => {
+        video.play()
+      })
+  })
+
   class LightBox extends HTMLElement {
     private portal: HTMLDivElement
 
@@ -35,6 +44,7 @@
           setTimeout(() => {
             // Adapt size attribute dynamically
             const img = this.portal.querySelectorAll('img')[0]!
+            if (!img) return
             const ratio = img.naturalWidth / img.naturalHeight
             img.sizes = `${window.innerHeight * ratio}px`
           }, 352)

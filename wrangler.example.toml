@@ -1,9 +1,6 @@
 name = "portfolio"
-compatibility_flags = ["nodejs_als"]
 
-kv_namespaces = [
-    { binding = "COMMENTS", id = "a8b96ad55a6b4bcf9329ad26c294e181" },
-]
+kv_namespaces = [{ binding = "COMMENTS", id = "" }]
 
 [[d1_databases]]
 binding = "DB"
@@ -14,7 +11,7 @@ preview_database_id = "DB"
 [vars]
 AUTHOR_EMAIL = ""
 MAPTILER_API_KEY = ""
-RECAPTCHA_SECRET = ""
-RECAPTCHA_SITE_KEY = ""
+TURNSTILE_SITE_KEY = ""
+TURNSTILE_SECRET = ""
 RESEND_API_KEY = ""
 WEBMENTION_API_KEY = ""
