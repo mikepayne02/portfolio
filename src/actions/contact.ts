@@ -2,7 +2,8 @@ import Email from '@/emails/Contact.tsx'
 import AuthorEmail from '@/emails/ContactAuthor.tsx'
 import { siteConfig } from '@/site-config'
 import { render } from '@react-email/render'
-import { ActionError, defineAction, z } from 'astro:actions'
+import { ActionError, defineAction } from 'astro:actions'
+import { z } from 'astro:schema'
 import { Resend } from 'resend'
 
 import { AUTHOR_EMAIL, TURNSTILE_SECRET, RESEND_API_KEY } from 'astro:env/server'
@@ -21,7 +22,7 @@ export default defineAction({
     email: z.string().email({ message: 'Please enter a valid email' }),
     message: z
       .string({ required_error: 'Please enter a message.' })
-      .min(5, { message: 'Message must be at least two characters long.' }),
+      .min(2, { message: 'Message must be at least two characters long.' }),
     turnstile: z.string({ required_error: 'Please complete verification.' }).max(2048, 'Turnstile response is invalid.')
   }),
   handler: async ({ fullName, message, email, turnstile }, ctx) => {

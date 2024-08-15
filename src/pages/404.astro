@@ -1,6 +1,4 @@
 ---
-export const prerender = true
-
 import Button from '@/components/Button.astro'
 import PageLayout from '@/layouts/Base.astro'
 import CTA from '@/components/CTA.astro'
@@ -13,7 +11,7 @@ const meta = {
 ---
 
 <PageLayout {meta}>
-  <div class='px-4 py-10 text-center sm:px-6 lg:px-8'>
+  <div class='flex flex-col gap-y-3 px-4 py-10 text-center sm:px-6 lg:px-8'>
     <h1 class='block font-mono text-7xl font-bold sm:text-9xl'>404</h1>
     <p class='mt-3 text-muted-foreground'>How could this happen</p>
     <p>We couldn't find that page</p>
@@ -21,7 +19,7 @@ const meta = {
       title='Home'
       href='/'
       style='button'
-      class='mx-auto mt-5'
+      class='mx-auto w-5 w-min'
       data-astro-prefetch
     >
       <MdiArrowLeft />

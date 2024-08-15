@@ -1,0 +1,159 @@
+---
+export const prerender = false
+
+import PageLayout from '@/layouts/Base.astro'
+import { actions, isInputError } from 'astro:actions'
+
+import Button from '@/components/Button.astro'
+import MdiArrowLeft from '~icons/mdi/arrow-left'
+import MdiReload from '~icons/mdi/reload'
+
+import { TURNSTILE_SITE_KEY } from 'astro:env/client'
+
+const result = Astro.getActionResult(actions.contact)
+const inputErrors = isInputError(result?.error) ? result.error.fields : {}
+
+const meta = {
+  description: 'Conatact',
+  title: 'Contact'
+}
+---
+
+<script
+  is:inline
+  src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
+></script>
+
+<script>
+  import confetti from 'canvas-confetti'
+  const spinner = document.getElementById('spinner')
+
+  document.addEventListener('astro:page-load', () => {
+    if (document.querySelectorAll('[data-confetti]').length > 0) confetti()
+    document.getElementById('confetti')?.addEventListener('click', () => {
+      confetti()
+      spinner?.classList.add('animate-[spin_250ms_ease-out]')
+      setTimeout(
+        () => spinner?.classList.remove('animate-[spin_250ms_ease-out]'),
+        250
+      )
+    })
+  })
+</script>
+
+<script define:vars={{ TURNSTILE_SITE_KEY }} is:inline>
+  document.addEventListener('astro:page-load', function () {
+    // eslint-disable-next-line no-undef
+    turnstile.ready(function () {
+      // eslint-disable-next-line no-undef
+      turnstile.render('#turnstile', {
+        sitekey: TURNSTILE_SITE_KEY,
+        'response-field-name': 'turnstile'
+      })
+    })
+  })
+</script>
+
+<PageLayout {meta}>
+  {
+    result?.data?.name && (
+      <div class='flex flex-col items-center px-4 py-10 sm:px-6 lg:px-8'>
+        <h1
+          data-confetti
+          class='block pb-4 font-mono text-7xl font-bold sm:text-5xl'
+        >
+          Thanks!
+        </h1>
+        <p>
+          Thanks for reaching out, {result.data.name}! I'll be sure to reply as
+          soon as I can.
+        </p>
+        <div class='mt-5 flex flex-row'>
+          <Button title='Home' href='/' data-astro-prefetch>
+            <MdiArrowLeft />
+          </Button>
+          <Button
+            as='button'
+            class='ms-2 size-8 animate-[appear_1500ms_ease-in-out_1500ms_forwards] cursor-pointer opacity-0 transition hover:text-muted-foreground/75'
+            id='confetti'
+          >
+            <MdiReload class='size-5 origin-[46%_50%]' id='spinner' />
+          </Button>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    !result?.data?.name && (
+      <div class='m-10 flex w-full flex-col justify-center text-center sm:w-2/3'>
+        <h2 class='text-2xl font-bold'>Contact</h2>
+        <div class='flex flex-col gap-y-7'>
+          {result?.error && !isInputError(result.error) && (
+            <p class='text-red-500'>Unknown Error: {result?.error.message}</p>
+          )}
+          <form
+            class='mt-8 flex flex-col items-center gap-y-7'
+            method='POST'
+            action={actions.contact}
+          >
+            <label class='flex w-full flex-col'>
+              <span>Name</span>
+              {inputErrors.fullName && (
+                <p class='text-red-500'>
+                  Captcha error: {inputErrors.fullName.join(', ')}
+                </p>
+              )}
+              <input
+                transition:persist
+                required
+                name='fullName'
+                type='text'
+                minlength='2'
+                class='mt-1 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-md'
+              />
+            </label>
+            <label class='flex w-full flex-col'>
+              <span>Email address</span>
+              {inputErrors.email && (
+                <p class='text-red-500'>{inputErrors.email.join(', ')}</p>
+              )}
+              <input
+                transition:persist
+                name='email'
+                type='email'
+                class='mt-1 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25'
+                placeholder='email@example.com'
+              />
+            </label>
+            <label class='flex w-full flex-col'>
+              <span>Message</span>
+              {inputErrors.message && (
+                <p class='text-red-500'>{inputErrors.message.join(', ')}</p>
+              )}
+              <textarea
+                transition:persist
+                required
+                name='message'
+                minlength='2'
+                class='mt-1 h-24 w-full rounded-md border border-border bg-primary-foreground p-2 shadow-sm [field-sizing:content] hover:border-foreground/25'
+              />
+            </label>
+            {inputErrors.turnstile && (
+              <p class='text-red-500'>
+                Verificaion token: {inputErrors.turnstile.join(', ')}
+              </p>
+            )}
+            <div id='turnstile' />
+            <button
+              type='submit'
+              class='rounded-lg border border-border bg-primary-foreground px-4 py-1 transition hover:bg-border/25'
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    )
+  }
+</PageLayout>

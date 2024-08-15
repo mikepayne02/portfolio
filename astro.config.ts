@@ -17,9 +17,6 @@ export default defineConfig({
     applyBaseStyles: false
   }), og()],
   vite: {
-    ssr: {
-      external: ['node:async_hooks']
-    },
     plugins: [Icons({
       compiler: 'astro',
     })]
@@ -42,7 +39,7 @@ export default defineConfig({
   prefetch: true,
   output: 'hybrid',
   experimental: {
-    actions: true,
+    contentIntellisense: true,
     serverIslands: true,
     env: {
       schema: {

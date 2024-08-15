@@ -207,20 +207,22 @@ export const og = (): AstroIntegration => ({
           `src/content/${page}.mdx`,
         ).catch(() => readFile(`src/content/${page}/index.mdx`))
 
+        const itemStart = performance.now()
+
         // 4. Parse frontmatter for our source file and extract important details
         const frontMatterData = parseFrontmatter(file).data
         const { title, tags, publishDate, ogImage } = frontMatterData
         hash.update(JSON.stringify(frontMatterData))
 
-        const coverImage = (await readFile(ogImage))
-        hash.update(coverImage)
+        // Mix the cover image into the hash
+        const coverImage = await readFile(ogImage)
+
+        hash.update(new Uint8Array(coverImage))
 
         // Compute the cached file path and the corresponding path in the dist folder where it should be placed during build
         const digest = hash.digest('base64').substring(0, 10).replace('/', '_')
         const cacheFilePath = join(cachePath, `${digest}.png`)
         const outputFilePath = join(dir.pathname, pathname, 'og.png')
-
-        const itemStart = performance.now()
 
         const cacheHit = await access(cacheFilePath).then(() => true).catch(() => false)
 
