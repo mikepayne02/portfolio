@@ -12,6 +12,8 @@ import Loading from '~icons/mdi/loading'
 import MdiEmailOutline from '~icons/mdi/email-outline'
 
 const { showViewCount = false } = Astro.props
+
+const year = new Date().getFullYear()
 ---
 
 <footer class='mx-auto mt-12 w-full'>
@@ -21,7 +23,7 @@ const { showViewCount = false } = Astro.props
     >
       <div class='flex gap-x-4 text-sm'>
         <p class='text-muted-foreground'>
-          &copy;{new Date().getFullYear()}
+          &copy; <span id='footer-year'>{year}</span>
           {siteConfig.author}
         </p>
       </div>
@@ -99,3 +101,7 @@ const { showViewCount = false } = Astro.props
     </div>
   </div>
 </footer>
+
+<script is:inline data-astro-rerun>
+  document.getElementById('footer-year').innerText = new Date().getFullYear()
+</script>

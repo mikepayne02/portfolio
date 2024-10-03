@@ -20,9 +20,8 @@ const meta = {
 ---
 
 <script
-  is:inline
-  src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
-></script>
+  src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback'
+  data-astro-rerun></script>
 
 <script>
   import confetti from 'canvas-confetti'
@@ -41,22 +40,19 @@ const meta = {
   })
 </script>
 
-<script define:vars={{ TURNSTILE_SITE_KEY }} is:inline>
-  document.addEventListener('astro:page-load', function () {
+<script define:vars={{ TURNSTILE_SITE_KEY }} is:inline data-astro-rerun>
+  window.onloadTurnstileCallback = function () {
     // eslint-disable-next-line no-undef
-    turnstile.ready(function () {
-      // eslint-disable-next-line no-undef
-      turnstile.render('#turnstile', {
-        sitekey: TURNSTILE_SITE_KEY,
-        'response-field-name': 'turnstile'
-      })
+    turnstile.render('#turnstile', {
+      sitekey: TURNSTILE_SITE_KEY,
+      'response-field-name': 'turnstile'
     })
-  })
+  }
 </script>
 
 <PageLayout {meta}>
   {
-    result?.data?.name && (
+    result?.data?.name ? (
       <div class='flex flex-col items-center px-4 py-10 sm:px-6 lg:px-8'>
         <h1
           data-confetti
@@ -81,11 +77,7 @@ const meta = {
           </Button>
         </div>
       </div>
-    )
-  }
-
-  {
-    !result?.data?.name && (
+    ) : (
       <div class='m-10 flex w-full flex-col justify-center text-center sm:w-2/3'>
         <h2 class='text-2xl font-bold'>Contact</h2>
         <div class='flex flex-col gap-y-7'>

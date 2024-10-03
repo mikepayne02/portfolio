@@ -1,7 +1,7 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
-import typography from "@tailwindcss/typography";
-import aspectRatio from "@tailwindcss/aspect-ratio";
+import typography from '@tailwindcss/typography'
+import aspectRatio from '@tailwindcss/aspect-ratio'
 import { fontFamily } from 'tailwindcss/defaultTheme'
 
 const config = {
@@ -11,12 +11,9 @@ const config = {
     '!./src/pages/og-image/[slug].png.ts'
   ],
   corePlugins: {
-    aspectRatio: false,
+    aspectRatio: false
   },
-  plugins: [
-    typography,
-    aspectRatio,
-  ],
+  plugins: [typography, aspectRatio],
   theme: {
     container: {
       center: true,
@@ -67,12 +64,12 @@ const config = {
       },
       keyframes: {
         appear: {
-          "0%": {
-            opacity: "0",
+          '0%': {
+            opacity: '0'
           },
-          "100%": {
-            opacity: "1",
-          },
+          '100%': {
+            opacity: '1'
+          }
         }
       }
     }

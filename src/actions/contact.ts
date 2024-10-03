@@ -6,7 +6,11 @@ import { ActionError, defineAction } from 'astro:actions'
 import { z } from 'astro:schema'
 import { Resend } from 'resend'
 
-import { AUTHOR_EMAIL, TURNSTILE_SECRET, RESEND_API_KEY } from 'astro:env/server'
+import {
+  AUTHOR_EMAIL,
+  TURNSTILE_SECRET,
+  RESEND_API_KEY
+} from 'astro:env/server'
 
 type TurnstileOutcome = {
   success: boolean
@@ -23,23 +27,25 @@ export default defineAction({
     message: z
       .string({ required_error: 'Please enter a message.' })
       .min(2, { message: 'Message must be at least two characters long.' }),
-    turnstile: z.string({ required_error: 'Please complete verification.' }).max(2048, 'Turnstile response is invalid.')
+    turnstile: z
+      .string({ required_error: 'Please complete verification.' })
+      .max(2048, 'Turnstile response is invalid.')
   }),
   handler: async ({ fullName, message, email, turnstile }, ctx) => {
     // Validate the token by calling the
     // "/siteverify" API endpoint.
-    let formData = new FormData();
-    formData.append('secret', TURNSTILE_SECRET);
-    formData.append('response', turnstile);
-    formData.append('remoteip', ctx.clientAddress);
+    let formData = new FormData()
+    formData.append('secret', TURNSTILE_SECRET)
+    formData.append('response', turnstile)
+    formData.append('remoteip', ctx.clientAddress)
 
-    const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+    const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
     const result = await fetch(url, {
       body: formData,
-      method: 'POST',
-    });
+      method: 'POST'
+    })
 
-    const outcome = await result.json() as TurnstileOutcome
+    const outcome = (await result.json()) as TurnstileOutcome
     console.log(outcome)
 
     if (outcome['error-codes']?.length) {
@@ -73,5 +79,5 @@ export default defineAction({
     })
 
     return { name: firstName }
-  },
+  }
 })

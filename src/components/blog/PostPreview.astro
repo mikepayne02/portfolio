@@ -2,7 +2,6 @@
 import type { CollectionEntry } from 'astro:content'
 
 import FormattedDate from '../FormattedDate.astro'
-import { truncate } from '@/utils'
 
 interface Props {
   project: CollectionEntry<'projects'>
@@ -12,7 +11,7 @@ interface Props {
 const { project, withDesc = false, ...props } = Astro.props as Props
 const postDate = project.data.updatedDate ?? project.data.publishDate
 
-const { reload } = project.data
+const { reload, description } = project.data
 ---
 
 <li
@@ -34,7 +33,10 @@ const { reload } = project.data
     {
       withDesc && (
         <p class='line-clamp-3 italic text-muted-foreground'>
-          {truncate(project.data.description, 100)}
+          {description &&
+            (description.length > 100
+              ? description.slice(0, 100) + '...'
+              : description)}
         </p>
       )
     }

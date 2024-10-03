@@ -2,7 +2,6 @@
 import type { CollectionEntry } from 'astro:content'
 
 import { Image } from 'astro:assets'
-import { truncate } from '@/utils'
 
 interface Props {
   project: CollectionEntry<'projects'>
@@ -51,7 +50,7 @@ const {
       {heading ?? project.data.title}
     </h1>
     <h2 class='text-muted-foreground'>
-      {subheading ?? truncate(project.data.description, 50)}
+      {subheading && (subheading.length > 50 ? subheading.slice(0, 50) + '...' : subheading)}
     </h2>
   </div>
 
