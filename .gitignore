@@ -7,7 +7,6 @@ dist/
 
 # wrangler
 worker-configuration.d.ts
-wrangler.toml
 
 # dependencies
 node_modules/
@@ -22,8 +21,10 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.dev.vars
 
 # macOS-specific files
 .DS_Store
+
+# Vercel
 .vercel
-.dev.vars

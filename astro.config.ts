@@ -56,6 +56,10 @@ export default defineConfig({
     serverIslands: true,
     env: {
       schema: {
+        AUTHOR_BIRTHDAY: envField.string({
+          context: 'server',
+          access: 'secret'
+        }),
         AUTHOR_EMAIL: envField.string({ context: 'server', access: 'public' }),
         MAPTILER_API_KEY: envField.string({
           context: 'client',

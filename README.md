@@ -16,6 +16,23 @@
   - Animated map using [MapLibre GL JS](https://maplibre.org/) and [Deck.gl](https://deck.gl/). Hydration isn't necessary, an intersection observer dynamically imports the necessary chunks.
 - [Bun](https://bun.sh/) to build the site on Github Actions
 
+Side note: I chose to encrypt my secreets using Mozilla's [SOPS](https://github.com/getsops/sops) tool so they can be safely committed to the repo. To use a normal secrets workflow, you need to alter the deployment action. Remove the two steps named `Sops Binary Installer` `Decrypt variables`. Then add the following variables and secrets to Bun's build step:
+
+```yaml
+- name: Build app
+  run: bun run build
+  env:
+    AUTHOR_BIRTHDAY: ${{vars.AUTHOR_BIRTHDAY }}
+    AUTHOR_EMAIL: ${{vars.AUTHOR_EMAIL }}
+    MAPTILER_API_KEY: ${{vars.MAPTILER_API_KEY }}
+    TURNSTILE_SITE_KEY: ${{vars.TURNSTILE_SITE_KEY }}
+    TURNSTILE_SECRET: ${{secrets.TURNSTILE_SECRET}}
+    RESEND_API_KEY: ${{secrets.RESEND_API_KEY}}
+    WEBMENTION_API_KEY: ${{secrets.WEBMENTION_API_KEY}}
+```
+
+Now set the corresponding variables and secrets in the Actions section of your repository's `Secrets and variables` settings. You will also need to set the `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` secrets for wrangler to deploy the built site to Cloudflare Pages during the final workflow step.
+
 ## Credits
 
 Heavily modified from [astro-theme-resume](https://github.com/srleom/astro-theme-resume) and

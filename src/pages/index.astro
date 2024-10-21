@@ -1,7 +1,6 @@
 ---
 import DUBadge from '@/assets/du_badge.svg'
 import Nebraska from '@/assets/nebraska.svg'
-// import Ink from '@/assets/402ink.svg'
 import Profile from '@/assets/profile.png'
 import CTA from '@/components/CTA.astro'
 import Label from '@/components/Label.astro'
@@ -13,6 +12,7 @@ import PageLayout from '@/layouts/Base.astro'
 import { Image } from 'astro:assets'
 import ProjectCard from '@/components/ProjectCard.astro'
 import Map from '@/components/Map.astro'
+import Birthday from '@/components/Birthday.astro'
 
 import MdiMapMarkerOutline from '~icons/mdi/map-marker-outline'
 import MdiCakeVariantOutline from '~icons/mdi/cake-variant-outline'
@@ -47,27 +47,31 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         </h1>
         <CTA>Contact</CTA>
         <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
-          <Label title='Overland Park, KS'>
+          <Label>
             <MdiMapMarkerOutline slot='icon' class='size-5' />
+            <span slot='title'>Overland Park, KS</span>
           </Label>
-          <Label title='21'>
+          <Label>
             <MdiCakeVariantOutline slot='icon' class='size-5' />
+            <Birthday slot='title' server:defer>
+              <span slot='fallback'>22</span>
+            </Birthday>
           </Label>
           <Label
-            title='LinkedIn'
             as='a'
             href='https://www.linkedin.com/in/michaelpayne02/'
             target='_blank'
           >
+            <span slot='title'>LinkedIn</span>
             <MdiLinkedin slot='icon' class='size-5 text-foreground/75' />
           </Label>
           <Label
             as='a'
-            title='Resume'
             href='https://content.mikepayne.me/MichaelPayne_Resume_2024.pdf'
             target='_blank'
           >
             <MdiDownloadOutline slot='icon' class='size-5 text-foreground/75' />
+            <span slot='title'>Resume</span>
           </Label>
         </div>
       </div>

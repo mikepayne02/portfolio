@@ -5,29 +5,48 @@ on:
     branches: [main]
 
 jobs:
-  ci:
-    name: Check for build and type issues
+  deploy:
+    name: Build and deploy
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      deployments: write
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Install Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.1.22
+          bun-version: 1.1.31
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      # check for issues and ensure build works
+      - name: Sops Binary Installer
+        uses: mdgreenwald/mozilla-sops-action@v1.6.0
+        id: install
+
+      - name: Decrypt variables
+        run: |-
+          export SOPS_AGE_KEY=${{ secrets.SOPS_AGE_KEY }}
+          sops decrypt .enc.env > .env
+
+      - name: Cache Astro assets
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules/.astro
+          key: ${{ runner.os }}-astro-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            ${{ runner.os }}-astro-
+
       - name: Build app
         run: bun run build
-        env:
-          AUTHOR_EMAIL: ${{vars.AUTHOR_EMAIL }}
-          MAPTILER_API_KEY: ${{vars.MAPTILER_API_KEY }}
-          TURNSTILE_SITE_KEY: ${{vars.TURNSTILE_SITE_KEY }}
-          TURNSTILE_SECRET: ${{secrets.TURNSTILE_SECRET}}
-          RESEND_API_KEY: ${{secrets.RESEND_API_KEY}}
-          WEBMENTION_API_KEY: ${{secrets.WEBMENTION_API_KEY}}
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=portfolio

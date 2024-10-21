@@ -8,7 +8,7 @@ interface Props {
   className?: string
   heading?: string
   subheading?: string
-  loading?: 'lazy' | 'eager',
+  loading?: 'lazy' | 'eager'
 }
 
 const {
@@ -25,24 +25,24 @@ const {
   data-astro-prefetch
   class:list={[
     className,
-    'flex flex-col overflow-hidden gap-y-1 rounded-2xl border border-border bg-primary-foreground bg-gradient-to-b from-secondary/50 shadow-sm transition-all hover:border-foreground/25 hover:shadow'
+    'flex flex-col gap-y-1 overflow-hidden rounded-2xl border border-border bg-primary-foreground bg-gradient-to-b from-secondary/50 shadow-sm transition-all hover:border-foreground/25 hover:shadow'
   ]}
   href={`/projects/${project.slug}/`}
   {...props}
 >
   {
-  project.data.coverImage && (
-  <Image
-    transition:name=`media-image-${project.slug}`
-    src={project.data.coverImage.src}
-    alt={project.data.coverImage.alt}
-    widths={[320, 720]}
-    sizes='(max-width: 640px) 720px, (max-width: 768px) 320px, 320px'
-    class='h-48 w-full object-cover'
-    loading={loading}
-  />
-  )
-}
+    project.data.coverImage && (
+      <Image
+        transition:name={`media-image-${project.slug}`}
+        src={project.data.coverImage.src}
+        alt={project.data.coverImage.alt}
+        widths={[320, 720]}
+        sizes='(max-width: 640px) 720px, (max-width: 768px) 320px, 320px'
+        class='h-48 w-full object-cover'
+        loading={loading}
+      />
+    )
+  }
   <div class='flex flex-col gap-y-0.5 px-5 py-3'>
     <h1
       class='text-lg font-medium [text-shadow:_0_0_25px_hsl(var(--foreground)/25%)]'
@@ -50,7 +50,12 @@ const {
       {heading ?? project.data.title}
     </h1>
     <h2 class='text-muted-foreground'>
-      {subheading && (subheading.length > 50 ? subheading.slice(0, 50) + '...' : subheading)}
+      {
+        subheading &&
+          (subheading.length > 50
+            ? subheading.slice(0, 50) + '...'
+            : subheading)
+      }
     </h2>
   </div>
 
