@@ -1,9 +1,13 @@
 import type { APIRoute } from 'astro'
 
+import { siteConfig } from '@/site-config'
+
+const { title } = siteConfig
+
 export const GET: APIRoute = () => {
   return new Response(
     JSON.stringify({
-      name: 'Michael Payne',
+      name: title,
       short_name: 'Mike Payne',
       start_url: import.meta.env.BASE_URL,
       icons: [

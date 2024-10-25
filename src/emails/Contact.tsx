@@ -12,11 +12,15 @@ import {
   Text
 } from '@react-email/components'
 
+import { siteConfig } from '@/site-config'
+
+const { author } = siteConfig
+
 interface ContactEmailProps {
   firstName?: string
 }
 
-const baseUrl = import.meta.env.SITE ?? ''
+const baseUrl = import.meta.env.BASE_URL
 
 export const ContactEmail = ({ firstName }: ContactEmailProps) => (
   <Html>
@@ -38,7 +42,7 @@ export const ContactEmail = ({ firstName }: ContactEmailProps) => (
         </Section>
         <Text style={paragraph}>
           Sincerely,
-          <br />- Michael Payne
+          <br />- {author}
         </Text>
         <Hr style={hr} />
         <Img
@@ -51,7 +55,7 @@ export const ContactEmail = ({ firstName }: ContactEmailProps) => (
             margin: '20px 0'
           }}
         />
-        <Text style={footer}>Michael Payne llc.</Text>
+        <Text style={footer}>{author} ltd.</Text>
       </Container>
     </Body>
   </Html>

@@ -29,6 +29,7 @@ const { className } = Astro.props
   function rootInDarkMode() {
     return document.documentElement.classList.contains('dark')
   }
+
   class ThemeToggle extends HTMLElement {
     #controller: AbortController | undefined
 

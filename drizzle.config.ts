@@ -10,7 +10,7 @@ export default defineConfig({
   driver: 'd1-http',
   out: './drizzle',
   dbCredentials: {
-    accountId: process.env.ACCOUNT_ID!,
+    accountId: process.env.CLOUDFLARE_ACCOUNT_ID!,
     databaseId: process.env.DATABASE_ID!,
     token: process.env.D1_TOKEN!
   },

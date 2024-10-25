@@ -24,11 +24,16 @@
       root.classList.toggle('dark', false)
     }
 
-    const colorThemeMetaTag = page.querySelector("meta[name='theme-color']")
+    const themeColorMetaTag = page.querySelector("meta[name='theme-color']")
+    const colorSchemeMetaTag = page.querySelector("meta[name='color-scheme']")
+
     const bgColour = getComputedStyle(page.body).getPropertyValue(
       '--background'
     )
-    colorThemeMetaTag.setAttribute('content', `hsl(${bgColour})`)
+
+    themeColorMetaTag.setAttribute('content', `hsl(${bgColour})`)
+    colorSchemeMetaTag.setAttribute('content', newTheme)
+
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem('theme', newTheme)
     }
