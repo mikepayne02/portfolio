@@ -3,7 +3,7 @@
 // all pages through the use of the <BaseHead /> component.
 import { siteConfig } from '@/site-config'
 import type { SiteMeta } from '@/types'
-import { ViewTransitions } from 'astro:transitions'
+import { ClientRouter } from 'astro:transitions'
 import '@/styles/app.css'
 
 type Props = SiteMeta
@@ -26,7 +26,7 @@ const socialImageURL = new URL(
 />
 <meta content='IE=edge' http-equiv='X-UA-Compatible' />
 <title>{siteTitle}</title>
-<ViewTransitions />
+<ClientRouter />
 
 {/* Meta tags */}
 {/* Icons / Favicon */}
@@ -91,7 +91,7 @@ const socialImageURL = new URL(
   sizes='16x16'
   href='/favicon-light/favicon-16x16.png'
 />
-<link rel='manifest' href='/favicon-dark/site.webmanifest' />
+<link rel='manifest' href='/site.webmanifest' />
 
 {/* Preload main fonts */}
 <link
