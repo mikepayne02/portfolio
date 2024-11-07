@@ -193,7 +193,7 @@ const socialImageURL = new URL(
 }
 <meta content={Astro.generator} name='generator' />
 
-{/* Umami analytics in production */}
+{/* Plausible analytics only in production */}
 {
   import.meta.env.PROD && (
     <script

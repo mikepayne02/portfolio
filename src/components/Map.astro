@@ -78,7 +78,7 @@ const {
 
       const map = new Map({
         container: 'map',
-        interactive: this.dataset.interactive != undefined,
+        interactive: this.dataset.interactive == 'true',
         center: [
           parseFloat(this.dataset.longitude ?? '0'),
           parseFloat(this.dataset.latitude ?? '0')

@@ -6,16 +6,24 @@
   <div class='portal'></div>
 </light-box>
 
-<script>
+<script is:inline>
   // Fix for Safari when using view transitions
-  document.addEventListener('astro:page-load', () => {
-    document
-      .querySelectorAll<HTMLVideoElement>('video[data-lightbox-video]')
-      .forEach((video) => {
-        video.play()
-      })
-  })
+  const UA = navigator.userAgent
+  const isWebkit =
+    /\b(iPad|iPhone|iPod)\b/.test(UA) &&
+    /WebKit/.test(UA) &&
+    !/Edge/.test(UA) &&
+    !window.MSStream
 
+  if (isWebkit) {
+    document.querySelectorAll('video[data-lightbox-video]').forEach((video) => {
+      console.log('playing video')
+      video.play()
+    })
+  }
+</script>
+
+<script>
   class LightBox extends HTMLElement {
     private portal: HTMLDivElement
 

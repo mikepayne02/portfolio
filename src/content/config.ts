@@ -31,7 +31,6 @@ const projects = defineCollection({
       tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
       ogImage: z.string().optional(),
       ogManual: z.boolean().optional(),
-      reload: z.boolean().optional()
     })
 })
 

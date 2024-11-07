@@ -11,7 +11,7 @@ interface Props {
 const { project, withDesc = false, ...props } = Astro.props as Props
 const postDate = project.data.updatedDate ?? project.data.publishDate
 
-const { reload, description } = project.data
+const { description } = project.data
 ---
 
 <li
@@ -24,7 +24,6 @@ const { reload, description } = project.data
     {project.data.draft && <span class='text-red-500'>(Draft) </span>}
     <a
       data-astro-prefetch
-      data-astro-reload={reload}
       href={`/projects/${project.slug}/`}
       class='transition hover:text-muted-foreground'
     >
