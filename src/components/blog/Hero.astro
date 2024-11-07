@@ -5,16 +5,15 @@ import type { CollectionEntry } from 'astro:content'
 import FormattedDate from '../FormattedDate.astro'
 
 interface Props {
-  content: CollectionEntry<'projects'>
-  minutesRead: string
+  project: CollectionEntry<'projects'>
+  readingTime: string
 }
 
 const { slug } = Astro.params
 const {
-  content: { data, render }
+  project: { data },
+  readingTime
 } = Astro.props
-
-const { remarkPluginFrontmatter } = await render()
 
 const dateTimeOptions: Intl.DateTimeFormatOptions = {
   month: 'long'
@@ -43,7 +42,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
     <FormattedDate date={data.publishDate} dateTimeOptions={dateTimeOptions} /> /{
       ' '
     }
-    {remarkPluginFrontmatter.minutesRead}
+    {readingTime}
   </p>
 </div>
 <h1 class='mt-2 text-3xl font-medium sm:mb-1'>

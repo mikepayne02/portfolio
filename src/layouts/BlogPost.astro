@@ -1,5 +1,5 @@
 ---
-import BlogHero from '@/components/blog/Hero.astro'
+import Hero from '@/components/blog/Hero.astro'
 import TOC from '@/components/blog/TOC.astro'
 import Button from '@/components/Button.astro'
 import type { CollectionEntry } from 'astro:content'
@@ -15,10 +15,10 @@ import type { MarkdownHeading } from 'astro'
 interface Props {
   project: CollectionEntry<'projects'>
   headings: MarkdownHeading[]
-  minutesRead: string
+  readingTime: string
 }
 
-const { project, headings, minutesRead } = Astro.props
+const { project, headings, readingTime } = Astro.props
 
 const {
   data: { description, ogImage, ogManual, publishDate, title, updatedDate },
@@ -47,7 +47,9 @@ const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
     <div class='mt-8 gap-x-10 lg:flex lg:items-start'>
       {!!headings.length && <TOC headings={headings} />}
       <article class='flex-grow break-words' data-pagefind-body>
-        <div id='blog-hero'><BlogHero content={project} {minutesRead} /></div>
+        <div id='blog-hero'>
+          <Hero {project} {readingTime} />
+        </div>
         <div
           transition:animate='slide'
           class='prose prose-base prose-zinc mt-12 text-muted-foreground dark:prose-invert prose-headings:font-medium prose-headings:text-foreground prose-headings:before:absolute prose-headings:before:-ms-4 prose-th:before:content-none'
