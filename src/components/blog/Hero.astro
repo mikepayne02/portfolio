@@ -6,13 +6,13 @@ import FormattedDate from '../FormattedDate.astro'
 
 interface Props {
   project: CollectionEntry<'projects'>
-  readingTime: string
+  minutesRead: string
 }
 
 const { slug } = Astro.params
 const {
   project: { data },
-  readingTime
+  minutesRead
 } = Astro.props
 
 const dateTimeOptions: Intl.DateTimeFormatOptions = {
@@ -42,7 +42,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
     <FormattedDate date={data.publishDate} dateTimeOptions={dateTimeOptions} /> /{
       ' '
     }
-    {readingTime}
+    {minutesRead}
   </p>
 </div>
 <h1 class='mt-2 text-3xl font-medium sm:mb-1'>

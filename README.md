@@ -15,7 +15,6 @@
 - Animated map using [MapLibre GL JS](https://maplibre.org/) and [Deck.gl](https://deck.gl/). Hydration isn't necessary because an intersection observer asynchronously imports the necessary chunks.
 - Contact form using [Astro Actions](https://github.com/withastro/roadmap/blob/actions/proposals/0046-actions.md) and [React Email](https://react.email/), protected by [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/)
 
-
 ## Environment
 
 The following variables and secrets are required for the application to build.
@@ -55,10 +54,10 @@ You will need to set the `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` repo
 >
 > ```yaml
 > - name: Build app
->   run: bun run build
+>   run: deno task build
 >   env:
 >     AUTHOR_BIRTHDAY: ${{ vars.AUTHOR_BIRTHDAY }}
->     AUTHOR_EMAIL: ${{ vars.AUTHOR_EMAIL }} 
+>     AUTHOR_EMAIL: ${{ vars.AUTHOR_EMAIL }}
 >     MAPTILER_API_KEY: ${{ vars.MAPTILER_API_KEY }}
 >     TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
 >     TURNSTILE_SECRET: ${{ secrets.TURNSTILE_SECRET }}

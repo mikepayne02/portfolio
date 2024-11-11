@@ -44,21 +44,21 @@ export function groupProjectsByYear(posts: CollectionEntry<'projects'>[]) {
 
 /** returns all tags created from posts (inc duplicate tags)
  *  Note: This function doesn't filter draft posts, pass it the result of getAllPosts above to do so.
- *  */
+ */
 export function getAllTags(posts: CollectionEntry<'projects'>[]) {
   return posts.flatMap((post) => [...post.data.tags])
 }
 
 /** returns all unique tags created from posts
  *  Note: This function doesn't filter draft posts, pass it the result of getAllPosts above to do so.
- *  */
+ */
 export function getUniqueTags(posts: CollectionEntry<'projects'>[]) {
   return [...new Set(getAllTags(posts))]
 }
 
 /** returns a count of each unique tag - [[tagName, count], ...]
  *  Note: This function doesn't filter draft posts, pass it the result of getAllPosts above to do so.
- *  */
+ */
 export function getUniqueTagsWithCount(
   posts: CollectionEntry<'projects'>[]
 ): [string, number][] {

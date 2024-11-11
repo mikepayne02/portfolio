@@ -15,10 +15,10 @@ import type { MarkdownHeading } from 'astro'
 interface Props {
   project: CollectionEntry<'projects'>
   headings: MarkdownHeading[]
-  readingTime: string
+  minutesRead: string
 }
 
-const { project, headings, readingTime } = Astro.props
+const { project, headings, minutesRead } = Astro.props
 
 const {
   data: { description, ogImage, ogManual, publishDate, title, updatedDate },
@@ -48,7 +48,7 @@ const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
       {!!headings.length && <TOC headings={headings} />}
       <article class='flex-grow break-words' data-pagefind-body>
         <div id='blog-hero'>
-          <Hero {project} {readingTime} />
+          <Hero {project} {minutesRead} />
         </div>
         <div
           transition:animate='slide'

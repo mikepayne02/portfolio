@@ -1,4 +1,5 @@
 import cloudflare from '@astrojs/cloudflare'
+// import deno from "@deno/astro-adapter";
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
@@ -6,7 +7,7 @@ import Icons from 'unplugin-icons/vite'
 import pagefind from 'astro-pagefind'
 import { defineConfig, envField } from 'astro/config'
 import rehypeExternalLinks from 'rehype-external-links'
-import remarkUnwrapImages from 'remark-unwrap-images'
+import rehypeUnwrapImages from 'rehype-unwrap-images'
 import { remarkReadingTime } from './src/utils/remark-reading-time.mjs'
 import { og } from './src/utils/opengraph'
 
@@ -59,11 +60,13 @@ export default defineConfig({
     ]
   },
   image: {
-    domains: ['webmention.io']
+    domains: ['webmention.io'],
+    experimentalLayout: 'responsive'
   },
   markdown: {
-    remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
+    remarkPlugins: [remarkReadingTime],
     rehypePlugins: [
+      rehypeUnwrapImages,
       [
         rehypeExternalLinks,
         {
@@ -82,6 +85,8 @@ export default defineConfig({
   output: 'static',
   experimental: {
     contentIntellisense: true,
+    responsiveImages: true,
+    clientPrerender: true
   },
   adapter: cloudflare({
     imageService: 'compile',

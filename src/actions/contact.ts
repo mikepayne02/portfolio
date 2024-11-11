@@ -8,8 +8,8 @@ import { Resend } from 'resend'
 
 import {
   AUTHOR_EMAIL,
-  TURNSTILE_SECRET,
-  RESEND_API_KEY
+  RESEND_API_KEY,
+  TURNSTILE_SECRET
 } from 'astro:env/server'
 
 type TurnstileOutcome = {

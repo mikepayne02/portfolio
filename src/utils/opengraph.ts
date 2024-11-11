@@ -1,12 +1,12 @@
 // https://github.com/sdnts/dietcode/blob/914e3970f6a0f555113768b12db3229dd822e6f1/astro.config.ts
 
-import { access, copyFile, mkdir, writeFile, readFile } from 'fs/promises'
+import { access, copyFile, mkdir, readFile, writeFile } from 'fs/promises'
 import { siteConfig } from '../site.config'
 import { getFormattedDate } from './date'
 import type { AstroIntegration } from 'astro'
 import parseFrontmatter from 'gray-matter'
 import satori, { type SatoriOptions } from 'satori'
-import { Resvg, initWasm } from '@resvg/resvg-wasm'
+import { initWasm, Resvg } from '@resvg/resvg-wasm'
 import { createHash } from 'crypto'
 import { join } from 'path'
 
@@ -256,7 +256,9 @@ export const og = (): AstroIntegration => ({
         logger.info(
           `/${pathname}og.png \x1b[90m ` +
             (cacheHit ? '(reused cache entry) ' : '') +
-            `(+${(itemEnd - itemStart).toFixed(0)}ms) (${index + 1}/${filteredPages.length})\x1b[0m`
+            `(+${(itemEnd - itemStart).toFixed(0)}ms) (${
+              index + 1
+            }/${filteredPages.length})\x1b[0m`
         )
       }
 
@@ -264,7 +266,9 @@ export const og = (): AstroIntegration => ({
 
       // Just some fancy success message to make this plugin look like it belongs
       logger.info(
-        `Generated OpenGraph images in ${((endTime - startTime) / 1000).toFixed(2)}s`
+        `Generated OpenGraph images in ${((endTime - startTime) / 1000).toFixed(
+          2
+        )}s`
       )
     }
   }

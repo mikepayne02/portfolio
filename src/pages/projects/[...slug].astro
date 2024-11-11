@@ -14,10 +14,10 @@ const { entry } = Astro.props
 const {
   Content,
   headings,
-  remarkPluginFrontmatter: { readingTime }
+  remarkPluginFrontmatter: { minutesRead }
 } = await entry.render()
 ---
 
-<PostLayout project={entry} {headings} {readingTime}>
+<PostLayout project={entry} {headings} {minutesRead}>
   <Content />
 </PostLayout>
