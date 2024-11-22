@@ -24,15 +24,15 @@
       root.classList.toggle('dark', false)
     }
 
-    const themeColorMetaTag = page.querySelector("meta[name='theme-color']")
     const colorSchemeMetaTag = page.querySelector("meta[name='color-scheme']")
+    const themeColorMetaTag = page.querySelector("meta[name='theme-color']")
 
     const bgColour = getComputedStyle(page.body).getPropertyValue(
       '--background'
     )
 
-    themeColorMetaTag.setAttribute('content', `hsl(${bgColour})`)
     colorSchemeMetaTag.setAttribute('content', newTheme)
+    themeColorMetaTag.setAttribute('content', `hsl(${bgColour})`)
 
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem('theme', newTheme)
@@ -50,14 +50,6 @@
   // listen for theme-change custom event, fired in src/components/ThemeToggle.astro
   document.addEventListener('theme-change', (e) => {
     setTheme(document, e.detail.theme)
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute(
-        'content',
-        e.detail.theme === 'light'
-          ? 'hsl(210, 33%, 99%)'
-          : 'hsl(240, 10%, 3.9%)'
-      )
   })
 
   // listen for prefers-color-scheme change.

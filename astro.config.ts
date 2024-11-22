@@ -1,5 +1,6 @@
 import cloudflare from '@astrojs/cloudflare'
 // import deno from "@deno/astro-adapter";
+import react from '@astrojs/react';
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
@@ -15,6 +16,7 @@ import { og } from './src/utils/opengraph'
 export default defineConfig({
   site: 'https://www.mikepayne.me',
   integrations: [
+    react(),
     sitemap(),
     pagefind(),
     mdx(),
@@ -55,7 +57,7 @@ export default defineConfig({
   vite: {
     plugins: [
       Icons({
-        compiler: 'astro'
+        compiler: 'jsx', jsx: 'react'
       })
     ]
   },

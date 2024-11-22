@@ -1,7 +1,7 @@
 ---
 import { menuLinks } from '@/site-config'
 import SearchBox from './SearchBox.astro'
-import ThemeToggle from './ThemeToggle.astro'
+import ThemeToggle from './ThemeToggle.tsx'
 import Logo from './Logo.astro'
 
 const url = new URL(Astro.request.url)
@@ -33,6 +33,6 @@ const url = new URL(Astro.request.url)
     class='relative order-2 ms-0 flex h-8 flex-row gap-x-2 sm:order-3 sm:ms-2 sm:gap-x-4'
   >
     <SearchBox />
-    <ThemeToggle />
+    <ThemeToggle client:idle />
   </div>
 </header>

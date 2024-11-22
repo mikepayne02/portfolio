@@ -8,18 +8,17 @@
 
 <script is:inline>
   // Fix for Safari when using view transitions
-  const UA = navigator.userAgent
-  const isWebkit =
-    /\b(iPad|iPhone|iPod)\b/.test(UA) &&
-    /WebKit/.test(UA) &&
-    !/Edge/.test(UA) &&
-    !window.MSStream
 
-  if (isWebkit) {
-    document.querySelectorAll('video[data-lightbox-video]').forEach((video) => {
-      console.log('playing video')
-      video.play()
-    })
+  if (
+    /\b(iPad|iPhone|iPod)\b/.test(navigator.userAgent) &&
+    /WebKit/.test(navigator.userAgent) &&
+    !/Edge/.test(navigator.userAgent)
+  ) {
+    document
+      .querySelectorAll<HTMLVideoElement>('video[data-lightbox-video]')
+      .forEach((video) => {
+        video.play()
+      })
   }
 </script>
 

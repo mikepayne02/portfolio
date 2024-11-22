@@ -1,7 +1,7 @@
 ---
 // Heavy inspiration taken from Astro Starlight -> https://github.com/withastro/starlight/blob/main/packages/starlight/components/Search.astro
 
-import MdiMagnify from '~icons/mdi/magnify'
+import LineMdSearch from '~icons/line-md/search'
 import Search from 'astro-pagefind/components/Search'
 const props = Astro.props
 const q = Astro.url.searchParams.get('q') ?? ''
@@ -12,9 +12,15 @@ const q = Astro.url.searchParams.get('q') ?? ''
     data-open-modal
     disabled
     aria-label='search'
-    class='flex size-8 items-center justify-center rounded-md border border-border bg-primary-foreground shadow-sm transition hover:bg-border/25 hover:text-foreground/75 hover:shadow'
+    class='relative size-8 rounded-md border border-border bg-primary-foreground shadow-sm transition-colors hover:bg-border/25 hover:text-foreground/75 hover:shadow'
   >
-    <MdiMagnify class='size-6' />
+    <div
+      class='absolute start-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2'
+    >
+      <LineMdSearch
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+      />
+    </div>
   </button>
   <dialog
     aria-label='search'

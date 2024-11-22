@@ -4,6 +4,7 @@
     "npm:@astrojs/check@~0.9.4": "0.9.4_typescript@5.6.3_prettier@3.3.3_prettier-plugin-astro@0.14.1",
     "npm:@astrojs/cloudflare@^12.0.0-beta.1": "12.0.0-beta.1_astro@5.0.0-beta.9__typescript@5.6.3__tsx@4.19.2__vite@6.0.0-beta.6___tsx@4.19.2__zod@3.23.8_astro@4.16.10__@babel+core@7.26.0__typescript@5.6.3__vite@5.4.10__zod@3.23.8_@cloudflare+workers-types@4.20241112.0_typescript@5.6.3_tsx@4.19.2",
     "npm:@astrojs/mdx@4.0.0-beta.3": "4.0.0-beta.3_astro@5.0.0-beta.9__typescript@5.6.3__tsx@4.19.2__vite@6.0.0-beta.6___tsx@4.19.2__zod@3.23.8_typescript@5.6.3_tsx@4.19.2_acorn@8.14.0",
+    "npm:@astrojs/react@^3.6.3": "3.6.3_@types+react@18.3.12_@types+react-dom@18.3.1_react@18.3.1_react-dom@18.3.1__react@18.3.1_vite@5.4.10",
     "npm:@astrojs/rss@4.0.9": "4.0.9",
     "npm:@astrojs/sitemap@3.2.1": "3.2.1",
     "npm:@astrojs/tailwind@5.1.2": "5.1.2_astro@5.0.0-beta.9__typescript@5.6.3__tsx@4.19.2__vite@6.0.0-beta.6___tsx@4.19.2__zod@3.23.8_tailwindcss@3.4.15__postcss@8.4.48_postcss@8.4.48_typescript@5.6.3_tsx@4.19.2",
@@ -14,7 +15,10 @@
     "npm:@deck.gl/mapbox@^9.0.35": "9.0.35_@deck.gl+core@9.0.35__@loaders.gl+core@4.3.2__@luma.gl+core@9.0.27_@luma.gl+core@9.0.27",
     "npm:@deno/astro-adapter@~0.1.5": "0.1.5_astro@4.16.10__@babel+core@7.26.0__typescript@5.6.3__vite@5.4.10__zod@3.23.8_typescript@5.6.3",
     "npm:@eslint/js@^9.15.0": "9.15.0",
+    "npm:@iconify-json/line-md@^1.2.2": "1.2.2",
     "npm:@iconify-json/mdi@^1.2.1": "1.2.1",
+    "npm:@iconify-json/svg-spinners@^1.2.1": "1.2.1",
+    "npm:@nanostores/react@0.8": "0.8.0_nanostores@0.11.3_react@18.3.1",
     "npm:@react-email/components@^0.0.28": "0.0.28_react@18.3.1_react-dom@18.3.1__react@18.3.1",
     "npm:@react-email/render@^0.0.17": "0.0.17_react@18.3.1_react-dom@18.3.1__react@18.3.1",
     "npm:@resvg/resvg-wasm@^2.6.2": "2.6.2",
@@ -37,7 +41,7 @@
     "npm:canvas-confetti@^1.9.3": "1.9.3",
     "npm:debug@^4.3.7": "4.3.7",
     "npm:drizzle-kit@~0.28.1": "0.28.1_esbuild@0.19.11",
-    "npm:drizzle-orm@~0.36.3": "0.36.3_@cloudflare+workers-types@4.20241106.0_@types+react@18.3.12_react@18.3.1",
+    "npm:drizzle-orm@~0.36.3": "0.36.3_@cloudflare+workers-types@4.20241106.0_@types+react@18.3.12",
     "npm:eslint-plugin-astro@^1.3.1": "1.3.1_eslint@9.15.0_typescript@5.6.3",
     "npm:eslint-plugin-jsx-a11y@^6.10.2": "6.10.2_eslint@9.15.0",
     "npm:eslint@^9.15.0": "9.15.0",
@@ -45,6 +49,7 @@
     "npm:install@0.13": "0.13.0",
     "npm:maplibre-gl@5.0.0-pre.7": "5.0.0-pre.7",
     "npm:mdast-util-to-string@4": "4.0.0",
+    "npm:nanostores@~0.11.3": "0.11.3",
     "npm:pagefind@^1.2.0": "1.2.0",
     "npm:prettier-config-standard@7": "7.0.0_prettier@3.3.3",
     "npm:prettier-plugin-astro@~0.14.1": "0.14.1",
@@ -57,7 +62,7 @@
     "npm:reading-time@^1.5.0": "1.5.0",
     "npm:rehype-external-links@3": "3.0.0",
     "npm:rehype-unwrap-images@1": "1.0.0",
-    "npm:resend@^3.5.0": "3.5.0_react@18.3.1_react-dom@18.3.1__react@18.3.1",
+    "npm:resend@^3.5.0": "3.5.0_react-dom@18.3.1__react@18.3.1",
     "npm:satori@0.12": "0.12.0",
     "npm:sharp@~0.33.5": "0.33.5",
     "npm:tailwindcss@^3.4.15": "3.4.15_postcss@8.4.48",
@@ -214,6 +219,18 @@
       "integrity": "sha512-Z9IYjuXSArkAUx3N6xj6+Bnvx8OdUSHA8YoOgyepp3+zJmtVYJIl/I18GozdJVW1p5u/CNpl3Km7/gwTJK85cw==",
       "dependencies": [
         "prismjs"
+      ]
+    },
+    "@astrojs/react@3.6.3_@types+react@18.3.12_@types+react-dom@18.3.1_react@18.3.1_react-dom@18.3.1__react@18.3.1_vite@5.4.10": {
+      "integrity": "sha512-5ihLQDH5Runddug5AZYlnp/Q5T81QxhwnWJXA9rchBAdh11c6UhBbv9Kdk7b2PkXoEU70CGWBP9hSh0VCR58eA==",
+      "dependencies": [
+        "@types/react@18.3.12",
+        "@types/react-dom",
+        "@vitejs/plugin-react",
+        "react",
+        "react-dom",
+        "ultrahtml",
+        "vite@5.4.10"
       ]
     },
     "@astrojs/rss@4.0.9": {
@@ -406,6 +423,20 @@
     },
     "@babel/plugin-syntax-jsx@7.25.9_@babel+core@7.26.0": {
       "integrity": "sha512-ld6oezHQMZsZfp6pWtbjaNDF2tiiCYYDqQszHt5VV437lewP9aSi2Of99CK0D0XB21k7FLgnLcmQKyKzynfeAA==",
+      "dependencies": [
+        "@babel/core@7.26.0",
+        "@babel/helper-plugin-utils"
+      ]
+    },
+    "@babel/plugin-transform-react-jsx-self@7.25.9_@babel+core@7.26.0": {
+      "integrity": "sha512-y8quW6p0WHkEhmErnfe58r7x0A70uKphQm8Sp8cV7tjNQwK56sNVK0M73LK3WuYmsuyrftut4xAkjjgU0twaMg==",
+      "dependencies": [
+        "@babel/core@7.26.0",
+        "@babel/helper-plugin-utils"
+      ]
+    },
+    "@babel/plugin-transform-react-jsx-source@7.25.9_@babel+core@7.26.0": {
+      "integrity": "sha512-+iqjT8xmXhhYv4/uiYd8FNQsraMFZIfxVSqxxVSZP0WbbSAWvBXAul0m/zu+7Vv4O/3WtApy9pmaTMiumEZgfg==",
       "dependencies": [
         "@babel/core@7.26.0",
         "@babel/helper-plugin-utils"
@@ -1136,8 +1167,20 @@
     "@humanwhocodes/retry@0.4.1": {
       "integrity": "sha512-c7hNEllBlenFTHBky65mhq8WD2kbN9Q6gk0bTk8lSBvc554jpXSkST1iePudpt7+A/AQvuHs9EMqjHDXMY1lrA=="
     },
+    "@iconify-json/line-md@1.2.2": {
+      "integrity": "sha512-UCYTTO5aARoVbOOPCaomOoXDC8maSolIV8KVDmK9VuzfjpqkMg/vJo/nWaoQPIf310SZjdvAqHvIwsbzr6J+sw==",
+      "dependencies": [
+        "@iconify/types"
+      ]
+    },
     "@iconify-json/mdi@1.2.1": {
       "integrity": "sha512-dSkQU78gsZV6Yxnq78+LuX7jzeFC/5NAmz7O3rh558GimGFcwMVY/OtqRowIzjqJBmMmWZft7wkFV4TrwRXjlg==",
+      "dependencies": [
+        "@iconify/types"
+      ]
+    },
+    "@iconify-json/svg-spinners@1.2.1": {
+      "integrity": "sha512-QZNA4YzFD2zqdC6nIBJM6WlAGakUCjvMt92Ks1R4XFxkd76Ps3rdiauYWESDRZvNYURAByp2b9cwZarFula65g==",
       "dependencies": [
         "@iconify/types"
       ]
@@ -1468,6 +1511,13 @@
         "unist-util-stringify-position",
         "unist-util-visit",
         "vfile"
+      ]
+    },
+    "@nanostores/react@0.8.0_nanostores@0.11.3_react@18.3.1": {
+      "integrity": "sha512-MhbVB7NQLboq/Z9fRTDen9zib/YCffe6mn+3Xg5MOYByMX5Xx98SOZjk/Nd3yvOd/g7GjlQqwXj0KF2lPb6CEQ==",
+      "dependencies": [
+        "nanostores",
+        "react"
       ]
     },
     "@next/env@14.1.4": {
@@ -2320,8 +2370,8 @@
         "tslib"
       ]
     },
-    "@swc/types@0.1.12": {
-      "integrity": "sha512-wBJA+SdtkbFhHjTMYH+dEH1y4VpfGdAc2Kw/LK09i9bXd/K6j6PkDcFCEzb6iVfZMkPRrl/q0e3toqTAJdkIVA==",
+    "@swc/types@0.1.17": {
+      "integrity": "sha512-V5gRru+aD8YVyCOMAjMpWR1Ui577DD5KSJsHP8RAxopAH22jFz6GZd/qxqjO6MJHQhcsjvjOFXyDhyLQUnMveQ==",
       "dependencies": [
         "@swc/counter"
       ]
@@ -2637,6 +2687,17 @@
     },
     "@ungap/structured-clone@1.2.0": {
       "integrity": "sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ=="
+    },
+    "@vitejs/plugin-react@4.3.3_vite@5.4.10_@babel+core@7.26.0": {
+      "integrity": "sha512-NooDe9GpHGqNns1i8XDERg0Vsg5SSYRhRxxyTGogUdkdNt47jal+fbuYi+Yfq6pzRCKXyoPcWisfxE6RIM3GKA==",
+      "dependencies": [
+        "@babel/core@7.26.0",
+        "@babel/plugin-transform-react-jsx-self",
+        "@babel/plugin-transform-react-jsx-source",
+        "@types/babel__core",
+        "react-refresh",
+        "vite@5.4.10"
+      ]
     },
     "@volar/kit@2.4.10_typescript@5.6.3": {
       "integrity": "sha512-ul+rLeO9RlFDgkY/FhPWMnpFqAsjvjkKz8VZeOY5YCJMwTblmmSBlNJtFNxSBx9t/k1q80nEthLyxiJ50ZbIAg==",
@@ -3703,12 +3764,11 @@
         "esbuild-register"
       ]
     },
-    "drizzle-orm@0.36.3_@cloudflare+workers-types@4.20241106.0_@types+react@18.3.12_react@18.3.1": {
+    "drizzle-orm@0.36.3_@cloudflare+workers-types@4.20241106.0_@types+react@18.3.12": {
       "integrity": "sha512-ffQB7CcyCTvQBK6xtRLMl/Jsd5xFTBs+UTHrgs1hbk68i5TPkbsoCPbKEwiEsQZfq2I7VH632XJpV1g7LS2H9Q==",
       "dependencies": [
         "@cloudflare/workers-types@4.20241106.0",
-        "@types/react@18.3.12",
-        "react"
+        "@types/react@18.3.12"
       ]
     },
     "dset@3.1.4": {
@@ -5083,7 +5143,7 @@
       "dependencies": [
         "config-chain",
         "editorconfig",
-        "glob@10.3.4",
+        "glob@10.4.5",
         "js-cookie",
         "nopt"
       ]
@@ -5977,6 +6037,9 @@
     "nanoid@3.3.7": {
       "integrity": "sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g=="
     },
+    "nanostores@0.11.3": {
+      "integrity": "sha512-TUes3xKIX33re4QzdxwZ6tdbodjmn3tWXCEc1uokiEmo14sI1EaGYNs2k3bU2pyyGNmBqFGAVl6jAGWd06AVIg=="
+    },
     "natural-compare@1.4.0": {
       "integrity": "sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw=="
     },
@@ -6559,6 +6622,9 @@
         "fast-deep-equal@2.0.1"
       ]
     },
+    "react-refresh@0.14.2": {
+      "integrity": "sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA=="
+    },
     "react-remove-scroll-bar@2.3.6_@types+react@18.2.47_react@18.3.1": {
       "integrity": "sha512-DtSYaao4mBmX+HDo5YWYdBWQwYIQQshUV/dVxFxK+KM26Wjwp1gZ6rv6OC3oujI6Bfu6Xyg3TwK533AQutsn/g==",
       "dependencies": [
@@ -6810,7 +6876,7 @@
     "require-from-string@2.0.2": {
       "integrity": "sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw=="
     },
-    "resend@3.5.0_react@18.3.1_react-dom@18.3.1__react@18.3.1": {
+    "resend@3.5.0_react-dom@18.3.1__react@18.3.1": {
       "integrity": "sha512-bKu4LhXSecP6krvhfDzyDESApYdNfjirD5kykkT1xO0Cj9TKSiGh5Void4pGTs3Am+inSnp4dg0B5XzdwHBJOQ==",
       "dependencies": [
         "@react-email/render@0.0.16_react@18.3.1_react-dom@18.3.1__react@18.3.1"
@@ -8306,6 +8372,7 @@
         "npm:@astrojs/check@~0.9.4",
         "npm:@astrojs/cloudflare@^12.0.0-beta.1",
         "npm:@astrojs/mdx@4.0.0-beta.3",
+        "npm:@astrojs/react@^3.6.3",
         "npm:@astrojs/rss@4.0.9",
         "npm:@astrojs/sitemap@3.2.1",
         "npm:@astrojs/tailwind@5.1.2",
@@ -8315,7 +8382,10 @@
         "npm:@deck.gl/mapbox@^9.0.35",
         "npm:@deno/astro-adapter@~0.1.5",
         "npm:@eslint/js@^9.15.0",
+        "npm:@iconify-json/line-md@^1.2.2",
         "npm:@iconify-json/mdi@^1.2.1",
+        "npm:@iconify-json/svg-spinners@^1.2.1",
+        "npm:@nanostores/react@0.8",
         "npm:@react-email/components@^0.0.28",
         "npm:@react-email/render@^0.0.17",
         "npm:@resvg/resvg-wasm@^2.6.2",
@@ -8344,6 +8414,7 @@
         "npm:install@0.13",
         "npm:maplibre-gl@5.0.0-pre.7",
         "npm:mdast-util-to-string@4",
+        "npm:nanostores@~0.11.3",
         "npm:pagefind@^1.2.0",
         "npm:prettier-config-standard@7",
         "npm:prettier-plugin-astro@~0.14.1",

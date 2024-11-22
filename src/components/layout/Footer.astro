@@ -8,7 +8,7 @@ import MdiInstagram from '~icons/mdi/instagram'
 import MdiGithub from '~icons/mdi/github'
 import MdiLinkedin from '~icons/mdi/linkedin'
 import MdiEthereum from '~icons/mdi/ethereum'
-import Loading from '~icons/mdi/loading'
+import SvgSpinners3DotsScale from '~icons/svg-spinners/3-dots-scale'
 import MdiEmailOutline from '~icons/mdi/email-outline'
 
 const { showViewCount = false } = Astro.props
@@ -34,7 +34,10 @@ const year = new Date().getFullYear()
           showViewCount && (
             <span class='text-center text-sm text-muted-foreground'>
               <ViewCount path={Astro.url.pathname} server:defer>
-                <Loading slot='fallback' class='mx-auto h-5 w-5 animate-spin' />
+                <SvgSpinners3DotsScale
+                  slot='fallback'
+                  class='mx-auto h-5 w-5 animate-spin'
+                />
               </ViewCount>
             </span>
           )

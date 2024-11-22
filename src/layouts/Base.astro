@@ -4,7 +4,8 @@ import BaseHead from '@/components/Head.astro'
 import Footer from '@/components/layout/Footer.astro'
 import Header from '@/components/layout/Header.astro'
 import SkipLink from '@/components/layout/SkipLink.astro'
-import ThemeProvider from '@/components/ThemeProvider.astro'
+import ThemeLoader from '@/components/ThemeLoader.astro'
+import ThemeProvider from '@/components/ThemeProvider'
 
 import { siteConfig } from '@/site-config'
 
@@ -37,7 +38,8 @@ const {
       >
       </div>
     </div>
-    <ThemeProvider />
+    <ThemeLoader />
+    <ThemeProvider client:only='react' />
     <SkipLink />
     <!-- Main content element for skip link -->
     <div

@@ -11,13 +11,13 @@ import { getAllProjects, sortMDByDate } from '@/data/project'
 import PageLayout from '@/layouts/Base.astro'
 import { Image } from 'astro:assets'
 import ProjectCard from '@/components/ProjectCard.astro'
-import Map from '@/components/Map.astro'
+import MapLoader from '@/components/MapLoader.tsx'
 import Birthday from '@/components/Birthday.astro'
 
-import MdiMapMarkerOutline from '~icons/mdi/map-marker-outline'
-import MdiCakeVariantOutline from '~icons/mdi/cake-variant-outline'
+import LineMdMapMarkerLoop from '~icons/line-md/map-marker-loop'
+import LineMdCake from '~icons/line-md/cake'
 import MdiLinkedin from '~icons/mdi/linkedin'
-import MdiDownloadOutline from '~icons/mdi/download-outline'
+import LineMdDownloadLoop from '~icons/line-md/download-loop'
 import MdiExternalLink from '~icons/mdi/external-link'
 
 const languages = ['Typescript', 'Python', 'Java', 'Kotlin', 'PHP', 'SQL', 'Go']
@@ -48,11 +48,11 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         <CTA>Contact</CTA>
         <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
           <Label>
-            <MdiMapMarkerOutline slot='icon' class='size-5' />
+            <LineMdMapMarkerLoop slot='icon' class='size-5' />
             <span slot='title'>Overland Park, KS</span>
           </Label>
           <Label>
-            <MdiCakeVariantOutline slot='icon' class='size-5' />
+            <LineMdCake slot='icon' class='size-5' />
             <Birthday slot='title' server:defer>
               <span slot='fallback'>22</span>
             </Birthday>
@@ -70,7 +70,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
             href='https://content.mikepayne.me/MichaelPayne_Resume_2024.pdf'
             target='_blank'
           >
-            <MdiDownloadOutline slot='icon' class='size-5 text-foreground/75' />
+            <LineMdDownloadLoop slot='icon' class='size-5 text-foreground/75' />
             <span slot='title'>Resume</span>
           </Label>
         </div>
@@ -210,15 +210,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         </Section>
       )
     }
-    <Map
-      zoom={6}
-      pitch={45}
-      interactive={false}
-      latitude={39.8807948544334}
-      longitude={-95.6983122797664}
-      deck='https://content.mikepayne.me/map-data.json'
-      class='mt-12 h-96 w-full rounded-xl border border-border shadow'
-    />
+    <MapLoader client:visible />
     <CTA className='my-6'>Contact</CTA>
   </div>
 </PageLayout>
