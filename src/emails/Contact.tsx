@@ -55,7 +55,9 @@ export const ContactEmail = ({ firstName }: ContactEmailProps) => (
             margin: '20px 0'
           }}
         />
-        <Text style={footer}>{author} ltd.</Text>
+        <Text style={footer}>
+          This is an automated message. Please do not reply.
+        </Text>
       </Container>
     </Body>
   </Html>

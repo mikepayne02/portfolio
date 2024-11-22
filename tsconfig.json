@@ -1,11 +1,7 @@
 {
   "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
-    "types": [
-      "@cloudflare/workers-types",
-      "unplugin-icons/types/astro",
-      "unplugin-icons/types/react"
-    ],
+    "types": ["@cloudflare/workers-types", "unplugin-icons/types/astro"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],

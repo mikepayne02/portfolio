@@ -21,34 +21,32 @@ const meta = {
 
 <script
   src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback'
-  is:inline
-  data-astro-rerun></script>
+  is:inline></script>
 
-<script>
-  import confetti from 'canvas-confetti'
-  const spinner = document.getElementById('spinner')
-
-  document.addEventListener('astro:page-load', () => {
-    if (document.querySelectorAll('[data-confetti]').length > 0) confetti()
-    document.getElementById('confetti')?.addEventListener('click', () => {
-      confetti()
-      spinner?.classList.add('animate-[spin_250ms_ease-out]')
-      setTimeout(
-        () => spinner?.classList.remove('animate-[spin_250ms_ease-out]'),
-        250
-      )
-    })
-  })
-</script>
-
-<script define:vars={{ TURNSTILE_SITE_KEY }} is:inline data-astro-rerun>
+<script is:inline define:vars={{ TURNSTILE_SITE_KEY }}>
   window.onloadTurnstileCallback = function () {
     // eslint-disable-next-line no-undef
-    turnstile.render('#turnstile', {
+    turnstile.render('#turnstile-container', {
       sitekey: TURNSTILE_SITE_KEY,
       'response-field-name': 'turnstile'
     })
   }
+</script>
+
+<script>
+  import confetti from 'canvas-confetti'
+
+  document.addEventListener('astro:page-load', () => {
+    if (document.querySelectorAll('[data-confetti]').length > 0) confetti()
+    const spinner = document.getElementById('spinner')
+    document.getElementById('confetti')?.addEventListener('click', () => {
+      confetti()
+      spinner?.classList.add('animate-[spin_250ms_ease-out]')
+      setTimeout(() => {
+        spinner?.classList.remove('animate-[spin_250ms_ease-out]')
+      }, 250)
+    })
+  })
 </script>
 
 <PageLayout {meta}>
@@ -137,7 +135,7 @@ const meta = {
                 Verificaion token: {inputErrors.turnstile.join(', ')}
               </p>
             )}
-            <div id='turnstile' />
+            <div id='turnstile-container' />
             <button
               type='submit'
               class='rounded-lg border border-border bg-primary-foreground px-4 py-1 transition hover:bg-border/25'

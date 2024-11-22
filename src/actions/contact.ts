@@ -1,7 +1,6 @@
 import Email from '@/emails/Contact.tsx'
 import AuthorEmail from '@/emails/ContactAuthor.tsx'
 import { siteConfig } from '@/site-config'
-import { render } from '@react-email/render'
 import { ActionError, defineAction } from 'astro:actions'
 import { z } from 'astro:schema'
 import { Resend } from 'resend'
@@ -67,15 +66,15 @@ export default defineAction({
       from: siteConfig.contactEmail,
       to: email,
       subject: 'Message Received',
-      html: render(Email({ firstName }))
+      react: Email({ firstName })
     })
 
     await resend.emails.send({
       from: siteConfig.contactEmail,
       to: AUTHOR_EMAIL,
       subject: `Message from ${fullName}`,
-      reply_to: email,
-      html: render(AuthorEmail({ fullName, message }))
+      replyTo: email,
+      react: AuthorEmail({ fullName, message })
     })
 
     return { name: firstName }

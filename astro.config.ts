@@ -36,6 +36,7 @@ export default defineConfig({
         context: 'client',
         access: 'public'
       }),
+      MAP_DATA: envField.string({ context: 'client', access: 'public' }),
       TURNSTILE_SITE_KEY: envField.string({
         context: 'client',
         access: 'public'
@@ -57,13 +58,12 @@ export default defineConfig({
   vite: {
     plugins: [
       Icons({
-        compiler: 'jsx', jsx: 'react'
-      })
-    ]
+        compiler: 'astro'
+      }),
+    ],
   },
   image: {
     domains: ['webmention.io'],
-    experimentalLayout: 'responsive'
   },
   markdown: {
     remarkPlugins: [remarkReadingTime],
@@ -87,7 +87,6 @@ export default defineConfig({
   output: 'static',
   experimental: {
     contentIntellisense: true,
-    responsiveImages: true,
     clientPrerender: true
   },
   adapter: cloudflare({

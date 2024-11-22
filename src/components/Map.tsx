@@ -3,27 +3,22 @@ import { ArcLayer } from '@deck.gl/layers'
 import { MapboxOverlay } from '@deck.gl/mapbox'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import maplibre from 'maplibre-gl'
+import '@/styles/map.css'
 
 const { Map } = maplibre
 
-import { MAPTILER_API_KEY } from 'astro:env/client'
+import { MAPTILER_API_KEY, MAP_DATA } from 'astro:env/client'
 
 interface MapProps {
   latitude: number
   longitude: number
   zoom: number
   pitch: number
-  deck: string
   interactive: boolean
 }
 
 function getStyle(theme: string): string {
-  return (
-    (theme == 'dark'
-      ? 'https://api.maptiler.com/maps/dataviz-dark/style.json?key='
-      : 'https://api.maptiler.com/maps/dataviz-light/style.json?key=') +
-    MAPTILER_API_KEY
-  )
+  return `https://api.maptiler.com/maps/dataviz-${theme}/style.json?key=${MAPTILER_API_KEY}`
 }
 
 export default (props: MapProps) => {
@@ -31,9 +26,7 @@ export default (props: MapProps) => {
   const map = useRef<maplibregl.Map | null>(null)
 
   useEffect(() => {
-    if (map.current) {
-      return
-    }
+    if (map.current) return
 
     const rootInDarkMode = document.documentElement.classList.contains('dark')
 
@@ -46,25 +39,24 @@ export default (props: MapProps) => {
       style: getStyle(rootInDarkMode ? 'dark' : 'light')
     })
 
-    const initMap = map.current
-
     // https://maplibre.org/maplibre-gl-js/docs/examples/animate-camera-around-point/
     const rotateCamera = (timestamp: number) => {
       // clamp the rotation between 0 -360 degrees
       // Divide timestamp by 100 to slow rotation to ~10 degrees / sec
-      initMap.rotateTo((timestamp / 120) % 360, { animate: false })
+      map.current?.rotateTo((timestamp / 120) % 360, { animate: false })
       // Request the next frame of the animation.
       requestAnimationFrame(rotateCamera)
     }
 
     document.addEventListener('theme-change', (e) => {
-      initMap.setStyle(getStyle((e as CustomEvent).detail.theme))
+      map.current?.setStyle(getStyle((e as CustomEvent).detail.theme))
     })
 
-    initMap.on('load', () => {
+    map.current.on('load', () => {
+      const DECK_DATA = JSON.parse(window.atob(MAP_DATA))
       const layer = new ArcLayer({
         id: 'arc-layer',
-        data: props.deck,
+        data: DECK_DATA,
         getSourceColor: [96, 165, 250],
         getTargetColor: [48, 98, 179],
         getWidth: 12,
@@ -76,7 +68,7 @@ export default (props: MapProps) => {
         layers: [layer]
       })
 
-      initMap.addControl(overlay)
+      map.current?.addControl(overlay)
 
       // Start the animation.
       rotateCamera(0)
@@ -85,7 +77,9 @@ export default (props: MapProps) => {
 
   return (
     <div ref={mapContainer} className='relative h-full w-full'>
-      <div className='absolute inset-0 z-10 cursor-default'></div>
+      {!props.interactive && (
+        <div className='absolute inset-0 z-10 bg-black opacity-0'></div>
+      )}
     </div>
   )
 }

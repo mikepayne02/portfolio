@@ -8,18 +8,11 @@
 
 <script is:inline>
   // Fix for Safari when using view transitions
-
-  if (
-    /\b(iPad|iPhone|iPod)\b/.test(navigator.userAgent) &&
-    /WebKit/.test(navigator.userAgent) &&
-    !/Edge/.test(navigator.userAgent)
-  ) {
-    document
-      .querySelectorAll<HTMLVideoElement>('video[data-lightbox-video]')
-      .forEach((video) => {
-        video.play()
-      })
-  }
+  document.querySelectorAll('video[data-lightbox-video]').forEach((video) => {
+    if (video.paused) {
+      video.play()
+    }
+  })
 </script>
 
 <script>
