@@ -17,6 +17,11 @@ interface MapProps {
   interactive: boolean
 }
 
+type Arc = {
+  sourcePosition: [longitude: number, latitude: number]
+  targetPosition: [longitude: number, latitude: number]
+}
+
 function getStyle(theme: string): string {
   return `https://api.maptiler.com/maps/dataviz-${theme}/style.json?key=${MAPTILER_API_KEY}`
 }
@@ -36,6 +41,7 @@ export default (props: MapProps) => {
       center: [props.longitude, props.latitude],
       zoom: props.zoom,
       pitch: props.pitch,
+      maxPitch: 85,
       style: getStyle(rootInDarkMode ? 'dark' : 'light')
     })
 
@@ -53,14 +59,30 @@ export default (props: MapProps) => {
     })
 
     map.current.on('load', () => {
-      const DECK_DATA = JSON.parse(window.atob(MAP_DATA))
+      const arcData = JSON.parse(window.atob(MAP_DATA)) as Arc[]
       const layer = new ArcLayer({
         id: 'arc-layer',
-        data: DECK_DATA,
+        data: arcData,
         getSourceColor: [96, 165, 250],
         getTargetColor: [48, 98, 179],
-        getWidth: 12,
+        getWidth: 5,
         beforeId: 'Place labels'
+      })
+
+      arcData.forEach((arc) => {
+        // Create source marker
+        new maplibre.Marker({
+          color: '#60A5FA' // blue-400
+        })
+          .setLngLat([arc.sourcePosition[0], arc.sourcePosition[1]])
+          .addTo(map.current!)
+
+        // Create target marker
+        new maplibre.Marker({
+          color: '#3062B3' // darker blue
+        })
+          .setLngLat([arc.targetPosition[0], arc.targetPosition[1]])
+          .addTo(map.current!)
       })
 
       const overlay = new MapboxOverlay({
@@ -75,11 +97,5 @@ export default (props: MapProps) => {
     })
   })
 
-  return (
-    <div ref={mapContainer} className='relative h-full w-full'>
-      {!props.interactive && (
-        <div className='absolute inset-0 z-10 bg-black opacity-0'></div>
-      )}
-    </div>
-  )
+  return <div ref={mapContainer} className='relative h-full w-full' />
 }

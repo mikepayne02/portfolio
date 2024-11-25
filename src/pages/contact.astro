@@ -11,6 +11,7 @@ import MdiReload from '~icons/mdi/reload'
 import { TURNSTILE_SITE_KEY } from 'astro:env/client'
 
 const result = Astro.getActionResult(actions.contact)
+const success = result?.data?.name ? true : false
 const inputErrors = isInputError(result?.error) ? result.error.fields : {}
 
 const meta = {
@@ -20,7 +21,7 @@ const meta = {
 ---
 
 {
-  !result?.data?.name && (
+  !success && (
     <script
       src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback'
       is:inline
@@ -38,38 +39,41 @@ const meta = {
   }
 </script>
 
-<script>
-  import confetti from 'canvas-confetti'
+<script
+  src='https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js'
+></script>
 
-  document.addEventListener('astro:page-load', () => {
-    if (document.querySelectorAll('[data-confetti]').length > 0) confetti()
+<script define:vars={{ success }} is:inline type='module'>
+  if (success) {
+    // eslint-disable-next-line no-undef
+    confetti()
     const spinner = document.getElementById('spinner')
-    document.getElementById('confetti')?.addEventListener('click', () => {
+    document.getElementById('confetti').addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
       confetti()
-      spinner?.classList.add('animate-[spin_250ms_ease-out]')
+      spinner.classList.add('animate-[spin_250ms_ease-out]')
       setTimeout(() => {
-        spinner?.classList.remove('animate-[spin_250ms_ease-out]')
+        spinner.classList.remove('animate-[spin_250ms_ease-out]')
       }, 250)
     })
-  })
+  }
+</script>
 
-  const submit = document.querySelector<HTMLButtonElement>('#submit')!
-  document
-    .querySelector<HTMLFormElement>('#contact-form')
-    ?.addEventListener('submit', () => {
-      submit.disabled = true
-      submit.textContent = 'Sending...'
-    })
+<script is:inline>
+  // eslint-disable-next-line no-unused-vars
+  function onSubmit() {
+    console.log('submitting...')
+    const submit = document.querySelector('#submit')
+    submit.disabled = true
+    submit.textContent = 'Sending...'
+  }
 </script>
 
 <PageLayout {meta}>
   {
     result?.data?.name ? (
       <div class='flex flex-col items-center px-4 py-10 sm:px-6 lg:px-8'>
-        <h1
-          data-confetti
-          class='block pb-4 font-mono text-7xl font-bold sm:text-5xl'
-        >
+        <h1 class='block pb-4 font-mono text-7xl font-bold sm:text-5xl'>
           Thanks!
         </h1>
         <p>
@@ -99,6 +103,7 @@ const meta = {
           <form
             class='mt-8 flex flex-col items-center gap-y-7'
             id='contact-form'
+            onsubmit='onSubmit()'
             method='POST'
             action={actions.contact}
           >
