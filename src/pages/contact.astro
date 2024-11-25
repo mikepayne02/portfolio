@@ -19,9 +19,14 @@ const meta = {
 }
 ---
 
-<script
-  src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback'
-  is:inline></script>
+{
+  !result?.data?.name && (
+    <script
+      src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback'
+      is:inline
+    />
+  )
+}
 
 <script is:inline define:vars={{ TURNSTILE_SITE_KEY }}>
   window.onloadTurnstileCallback = function () {
@@ -47,6 +52,14 @@ const meta = {
       }, 250)
     })
   })
+
+  const submit = document.querySelector<HTMLButtonElement>('#submit')!
+  document
+    .querySelector<HTMLFormElement>('#contact-form')
+    ?.addEventListener('submit', () => {
+      submit.disabled = true
+      submit.textContent = 'Sending...'
+    })
 </script>
 
 <PageLayout {meta}>
@@ -85,6 +98,7 @@ const meta = {
           )}
           <form
             class='mt-8 flex flex-col items-center gap-y-7'
+            id='contact-form'
             method='POST'
             action={actions.contact}
           >
@@ -138,6 +152,7 @@ const meta = {
             <div id='turnstile-container' />
             <button
               type='submit'
+              id='submit'
               class='rounded-lg border border-border bg-primary-foreground px-4 py-1 transition hover:bg-border/25'
             >
               Submit

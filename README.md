@@ -22,6 +22,8 @@ The following variables and secrets are required for the application to build.
 ```
 AUTHOR_BIRTHDAY=YYYY-MM-DD
 AUTHOR_EMAIL=example@example.com # Inbox for contact form
+# base64-encoded json string in the format [ { "sourcePosition": [ lat, lng ], "targetPosition": [ lat, lng ] } ]
+MAP_DATA=
 # https://docs.maptiler.com/cloud/api/authentication-key/
 MAPTILER_API_KEY=
 # https://developers.cloudflare.com/turnstile/
