@@ -50,14 +50,7 @@ const {
     >
       {heading ?? project.data.title}
     </h1>
-    <h2 class='text-muted-foreground'>
-      {
-        subheading &&
-          (subheading.length > 50
-            ? subheading.slice(0, 50) + '...'
-            : subheading)
-      }
-    </h2>
+    {subheading && <h2 class='text-muted-foreground'>{subheading}</h2>}
   </div>
 
   <slot />
