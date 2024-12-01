@@ -2,7 +2,7 @@
 const {
   as: Tag = 'a',
   class: className,
-  title,
+  text,
   href,
   style = 'button',
   ...props
@@ -13,7 +13,7 @@ const {
   class:list={[
     className,
     'flex flex-row items-center justify-center gap-x-1 border border-border bg-primary-foreground text-sm transition',
-    title && 'px-2 py-1',
+    text && 'px-2 py-1',
     href && 'shadow-sm hover:bg-border/25 hover:shadow',
     style === 'pill' ? 'rounded-full px-3' : 'rounded-lg'
   ]}
@@ -21,6 +21,6 @@ const {
   {...props}
 >
   <slot />
-  {title && <span>{title}</span>}
+  {text && <span>{text}</span>}
   <slot name='after' />
 </Tag>

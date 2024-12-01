@@ -61,7 +61,7 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a)
 
 <PageLayout {meta}>
   <div class='w-full'>
-    <Button title='Back' class='max-w-fit' href='/' data-astro-prefetch>
+    <Button text='Back' class='max-w-fit' href='/' data-astro-prefetch>
       <MdiArrowLeft class='size-4' />
     </Button>
 
@@ -96,7 +96,7 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a)
                 {uniqueTags.map((tag) => (
                   <li>
                     <Button
-                      title={tag}
+                      text={tag}
                       href={`/tags/${tag}/`}
                       style='pill'
                       data-astro-prefetch

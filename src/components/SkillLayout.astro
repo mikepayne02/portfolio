@@ -8,7 +8,7 @@ const { title, skills } = Astro.props
   <div class='flex w-4/5 flex-row flex-wrap gap-x-4 gap-y-2'>
     {
       skills.map((skill: string[]) => (
-        <Button as='div' class='font-mono' title={skill} style='pill' />
+        <Button as='div' class='font-mono' text={skill} style='pill' />
       ))
     }
   </div>

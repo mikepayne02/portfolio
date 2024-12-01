@@ -7,6 +7,7 @@ import { actions, isInputError } from 'astro:actions'
 import Button from '@/components/Button.astro'
 import MdiArrowLeft from '~icons/mdi/arrow-left'
 import MdiReload from '~icons/mdi/reload'
+import SvgSpinners3DotsScale from '~icons/svg-spinners/3-dots-scale'
 
 import { TURNSTILE_SITE_KEY } from 'astro:env/client'
 
@@ -25,6 +26,8 @@ const meta = {
     <script
       src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback'
       is:inline
+      defer
+      async
     />
   )
 }
@@ -62,10 +65,8 @@ const meta = {
 <script is:inline>
   // eslint-disable-next-line no-unused-vars
   function onSubmit() {
-    console.log('submitting...')
     const submit = document.querySelector('#submit')
     submit.disabled = true
-    submit.textContent = 'Sending...'
   }
 </script>
 
@@ -81,11 +82,12 @@ const meta = {
           soon as I can.
         </p>
         <div class='mt-5 flex flex-row'>
-          <Button title='Home' href='/' data-astro-prefetch>
+          <Button text='Home' href='/' data-astro-prefetch>
             <MdiArrowLeft />
           </Button>
           <Button
             as='button'
+            title='Replay confetti'
             class='ms-2 size-8 animate-[appear_1500ms_ease-in-out_1500ms_forwards] cursor-pointer opacity-0 transition hover:text-muted-foreground/75'
             id='confetti'
           >
@@ -101,27 +103,30 @@ const meta = {
             <p class='text-red-500'>Unknown Error: {result?.error.message}</p>
           )}
           <form
-            class='mt-8 flex flex-col items-center gap-y-7'
+            class='group mt-8 flex flex-col items-center gap-y-7'
             id='contact-form'
             onsubmit='onSubmit()'
             method='POST'
             action={actions.contact}
+            novalidate
           >
             <label class='flex w-full flex-col'>
               <span>Name</span>
               {inputErrors.fullName && (
-                <p class='text-red-500'>
-                  Captcha error: {inputErrors.fullName.join(', ')}
-                </p>
+                <p class='text-red-500'>{inputErrors.fullName.join(', ')}</p>
               )}
               <input
                 transition:persist
                 required
+                placeholder='Enter your name'
                 name='fullName'
                 type='text'
                 minlength='2'
-                class='mt-1 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-md'
+                class='peer mt-1 rounded-md border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
               />
+              <span class='mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block'>
+                Please enter a name
+              </span>
             </label>
             <label class='flex w-full flex-col'>
               <span>Email address</span>
@@ -132,9 +137,12 @@ const meta = {
                 transition:persist
                 name='email'
                 type='email'
-                class='mt-1 rounded-md border border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25'
-                placeholder='email@example.com'
+                class='peer mt-1 rounded-md border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
+                placeholder='Enter your email address'
               />
+              <span class='mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block'>
+                Please enter an email address
+              </span>
             </label>
             <label class='flex w-full flex-col'>
               <span>Message</span>
@@ -145,22 +153,27 @@ const meta = {
                 transition:persist
                 required
                 name='message'
+                placeholder='Enter your message'
                 minlength='2'
-                class='mt-1 h-24 w-full rounded-md border border-border bg-primary-foreground p-2 shadow-sm [field-sizing:content] hover:border-foreground/25'
+                class='peer mt-1 h-24 w-full rounded-md border-border bg-primary-foreground p-2 shadow-sm [field-sizing:content] hover:border-foreground/25 hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
               />
+              <span class='mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block'>
+                Please enter a message at least 2 characters long
+              </span>
             </label>
             {inputErrors.turnstile && (
-              <p class='text-red-500'>
-                Verificaion token: {inputErrors.turnstile.join(', ')}
-              </p>
+              <p class='text-red-500'>{inputErrors.turnstile.join(', ')}</p>
             )}
             <div id='turnstile-container' />
             <button
               type='submit'
               id='submit'
-              class='rounded-lg border border-border bg-primary-foreground px-4 py-1 transition hover:bg-border/25'
+              class='group rounded-lg border border-border bg-primary-foreground px-4 py-1 transition hover:bg-border/25 disabled:pointer-events-none disabled:opacity-50 group-invalid:pointer-events-none group-invalid:opacity-50'
             >
-              Submit
+              <span class='block group-disabled:hidden'>Submit</span>
+              <span class='hidden group-disabled:block'>
+                Submitting <SvgSpinners3DotsScale class='inline' />
+              </span>
             </button>
           </form>
         </div>

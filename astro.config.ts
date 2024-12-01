@@ -1,6 +1,6 @@
 import cloudflare from '@astrojs/cloudflare'
 // import deno from "@deno/astro-adapter";
-import react from '@astrojs/react';
+import react from '@astrojs/react'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
@@ -59,11 +59,11 @@ export default defineConfig({
     plugins: [
       Icons({
         compiler: 'astro'
-      }),
-    ],
+      })
+    ]
   },
   image: {
-    domains: ['webmention.io'],
+    domains: ['webmention.io']
   },
   markdown: {
     remarkPlugins: [remarkReadingTime],

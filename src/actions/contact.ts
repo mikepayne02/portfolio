@@ -4,6 +4,7 @@ import { siteConfig } from '@/site-config'
 import { ActionError, defineAction } from 'astro:actions'
 import { z } from 'astro:schema'
 import { Resend } from 'resend'
+import domains from 'disposable-email-domains'
 
 import {
   AUTHOR_EMAIL,
@@ -20,14 +21,16 @@ export default defineAction({
   accept: 'form',
   input: z.object({
     fullName: z
-      .string({ required_error: 'Please enter a name' })
+      .string({ message: 'Please enter a name' })
       .min(2, 'Name must be at least two characters long.'),
-    email: z.string().email({ message: 'Please enter a valid email' }),
+    email: z
+      .string({ message: 'Please enter an email' })
+      .email({ message: 'Please enter a valid email' }),
     message: z
-      .string({ required_error: 'Please enter a message.' })
+      .string({ message: 'Please enter a message.' })
       .min(2, { message: 'Message must be at least two characters long.' }),
     turnstile: z
-      .string({ required_error: 'Please complete verification.' })
+      .string({ message: 'Please complete verification.' })
       .max(2048, 'Turnstile response is invalid.')
   }),
   handler: async ({ fullName, message, email, turnstile }, ctx) => {
@@ -45,7 +48,6 @@ export default defineAction({
     })
 
     const outcome = (await result.json()) as TurnstileOutcome
-    console.log(outcome)
 
     if (outcome['error-codes']?.length) {
       throw new ActionError({
@@ -56,6 +58,15 @@ export default defineAction({
 
     if (!outcome.success) {
       throw new ActionError({ code: 'BAD_REQUEST', message: 'Captcha failed' })
+    }
+
+    // Check if the email domain is disposable
+    const domain = email.split('@')[1]!
+    if (domains.includes(domain)) {
+      throw new ActionError({
+        code: 'BAD_REQUEST',
+        message: 'Disposable email addresses are not allowed.'
+      })
     }
 
     const resend = new Resend(RESEND_API_KEY)

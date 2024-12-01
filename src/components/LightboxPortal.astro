@@ -6,15 +6,6 @@
   <div class='portal'></div>
 </light-box>
 
-<script is:inline>
-  // Fix for Safari when using view transitions
-  document.querySelectorAll('video[data-lightbox-video]').forEach((video) => {
-    if (video.paused) {
-      video.play()
-    }
-  })
-</script>
-
 <script>
   class LightBox extends HTMLElement {
     private portal: HTMLDivElement
@@ -67,10 +58,24 @@
     }
   }
 
-  customElements.define('light-box', LightBox)
+  if (!customElements.get('light-box'))
+    customElements.define('light-box', LightBox)
+</script>
+
+<script is:inline>
+  // Fix for Safari when using view transitions
+  document.querySelectorAll('video[data-lightbox-video]').forEach((video) => {
+    if (video.paused) {
+      video.play()
+    }
+  })
 </script>
 
 <style>
+  :root.scrollIsLocked {
+    overflow: hidden;
+  }
+
   .app-lightbox {
     position: fixed;
     top: 0;

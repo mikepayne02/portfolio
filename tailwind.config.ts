@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss'
 
 import typography from '@tailwindcss/typography'
 import aspectRatio from '@tailwindcss/aspect-ratio'
+import forms from '@tailwindcss/forms'
 import { fontFamily } from 'tailwindcss/defaultTheme'
 
 const config = {
@@ -13,7 +14,7 @@ const config = {
   corePlugins: {
     aspectRatio: false
   },
-  plugins: [typography, aspectRatio],
+  plugins: [typography, aspectRatio, forms],
   theme: {
     container: {
       center: true,

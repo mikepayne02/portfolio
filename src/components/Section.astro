@@ -18,6 +18,7 @@ const { className, title } = Astro.props
     <slot />
   </div>
 </section>
+
 <script>
   class StickyTitle extends HTMLElement {
     private bumpElem: HTMLHeadingElement
@@ -51,8 +52,10 @@ const { className, title } = Astro.props
     }
   }
 
-  customElements.define('sticky-title', StickyTitle)
+  if (!customElements.get('sticky-title'))
+    customElements.define('sticky-title', StickyTitle)
 </script>
+
 <style>
   .bump {
     animation: bump 0.4s;
