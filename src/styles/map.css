@@ -12,7 +12,9 @@
   content: '';
   background: radial-gradient(
     circle,
-    rgba(0, 85, 255, 8%) 30%,
-    rgba(25, 25, 25, 98%) 110%
+    rgb(255, 255, 255) 30%,
+    rgb(0, 0, 0) 110%
   );
+  mix-blend-mode: multiply;
+  opacity: 15%;
 }
