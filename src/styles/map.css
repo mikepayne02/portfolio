@@ -1,7 +1,3 @@
-.maplibregl-ctrl-attrib {
-  display: none;
-}
-
 .maplibregl-map::before {
   position: relative;
   display: block;

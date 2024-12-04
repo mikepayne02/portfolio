@@ -90,6 +90,7 @@ export default (props: MapProps) => {
         layers: [layer]
       })
 
+      // @ts-ignore
       map.current?.addControl(overlay)
 
       // Start the animation.

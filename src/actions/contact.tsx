@@ -73,19 +73,21 @@ export default defineAction({
 
     const firstName = fullName.split(' ')[0] ?? fullName
 
+    // Send email to the user
     await resend.emails.send({
       from: siteConfig.contactEmail,
       to: email,
       subject: 'Message Received',
-      react: Email({ firstName })
+      react: <Email firstName={firstName} />
     })
 
+    // Send email to the author
     await resend.emails.send({
       from: siteConfig.contactEmail,
       to: AUTHOR_EMAIL,
       subject: `Message from ${fullName}`,
       replyTo: email,
-      react: AuthorEmail({ fullName, message })
+      react: <AuthorEmail fullName={fullName} message={message} />
     })
 
     return { name: firstName }

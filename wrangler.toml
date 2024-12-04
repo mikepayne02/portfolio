@@ -1,4 +1,8 @@
 name = "portfolio"
+compatibility_flags = ["nodejs_compat"]
+compatibility_date = "2024-11-11"
+pages_build_output_dir = "dist"
+
 
 # change account_id to your own
 [[kv_namespaces]]
