@@ -17,12 +17,7 @@
 
     const root = page.documentElement
 
-    // root already set to newTheme, exit early
-    if (newTheme === 'dark') {
-      root.classList.toggle('dark', true)
-    } else {
-      root.classList.toggle('dark', false)
-    }
+    root.classList.toggle('dark', newTheme === 'dark')
 
     const colorSchemeMetaTag = page.querySelector("meta[name='color-scheme']")
     const themeColorMetaTag = page.querySelector("meta[name='theme-color']")
@@ -34,9 +29,7 @@
     colorSchemeMetaTag.setAttribute('content', newTheme)
     themeColorMetaTag.setAttribute('content', `hsl(${bgColour})`)
 
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('theme', newTheme)
-    }
+    localStorage.setItem('theme', newTheme)
   }
 
   // initial setup

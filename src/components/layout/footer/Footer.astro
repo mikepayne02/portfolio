@@ -22,10 +22,13 @@ const year = new Date().getFullYear()
       class='mb-5 flex flex-col-reverse items-center justify-between gap-y-3 sm:flex sm:flex-row sm:items-start sm:gap-y-0'
     >
       <div class='flex gap-x-4 text-sm'>
-        <p class='text-muted-foreground'>
-          &copy; <span id='footer-year'>{year}</span>
+        <site-copyright
+          data-author={siteConfig.author}
+          class='text-muted-foreground'
+        >
+          &copy; {year}
           {siteConfig.author}
-        </p>
+        </site-copyright>
       </div>
       <div
         class='order-first flex flex-col gap-y-3 sm:absolute sm:start-1/2 sm:order-none sm:-translate-x-1/2'
@@ -105,6 +108,12 @@ const year = new Date().getFullYear()
   </div>
 </footer>
 
-<script is:inline data-astro-rerun>
-  document.getElementById('footer-year').innerText = new Date().getFullYear()
+<script>
+  class Copyright extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `&copy; ${new Date().getFullYear()} ${this.dataset.author}`
+    }
+  }
+
+  customElements.define('site-copyright', Copyright)
 </script>

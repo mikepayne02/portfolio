@@ -3,10 +3,11 @@ import type { Config } from 'tailwindcss'
 import typography from '@tailwindcss/typography'
 import aspectRatio from '@tailwindcss/aspect-ratio'
 import forms from '@tailwindcss/forms'
-import { fontFamily } from 'tailwindcss/defaultTheme'
+import defaultTheme from 'tailwindcss/defaultTheme'
+
 
 const config = {
-  darkMode: ['class'],
+  darkMode: 'selector',
   content: [
     './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
     '!./src/pages/og-image/[slug].png.ts'
@@ -60,8 +61,8 @@ const config = {
         }
       },
       fontFamily: {
-        sans: ['Fira Sans', ...fontFamily.sans],
-        mono: ['Fira Code', ...fontFamily.mono]
+        sans: ['Fira Sans', ...defaultTheme.fontFamily.sans],
+        mono: ['Fira Code', ...defaultTheme.fontFamily.mono]
       },
       keyframes: {
         appear: {
