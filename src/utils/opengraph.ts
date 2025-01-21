@@ -155,7 +155,7 @@ export const og = (): AstroIntegration => ({
 
       // Create cache directory if it doesn't exist
       const cachePath = 'node_modules/.astro/og'
-      await mkdir(cachePath).catch(() => {})
+      await mkdir(cachePath).catch(() => { })
 
       // Load and initialize the resvg wasm module
       const index_bg = await readFile(
@@ -205,8 +205,8 @@ export const og = (): AstroIntegration => ({
 
         // 3. Locate the source file for this resolved page. This depends heavily on your setup, but it should be straight-forward to do. After all, resolved pages and your source content would follow a similar structure!
         const page = pathname.slice(0, -1)
-        const file = await readFile(`src/content/${page}.mdx`).catch(() =>
-          readFile(`src/content/${page}/index.mdx`)
+        const file = await readFile(`src/${page}.mdx`).catch(() =>
+          readFile(`src/${page}/index.mdx`)
         )
 
         const itemStart = performance.now()
@@ -255,10 +255,9 @@ export const og = (): AstroIntegration => ({
         const itemEnd = performance.now()
         logger.info(
           `/${pathname}og.png \x1b[90m ` +
-            (cacheHit ? '(reused cache entry) ' : '') +
-            `(+${(itemEnd - itemStart).toFixed(0)}ms) (${
-              index + 1
-            }/${filteredPages.length})\x1b[0m`
+          (cacheHit ? '(reused cache entry) ' : '') +
+          `(+${(itemEnd - itemStart).toFixed(0)}ms) (${index + 1
+          }/${filteredPages.length})\x1b[0m`
         )
       }
 

@@ -11,8 +11,9 @@
     "npm:@astrojs/tailwind@^6.0.0-beta.0": "6.0.0-beta.0_astro@4.16.18__@babel+core@7.26.0__vite@5.4.11__zod@3.24.1_tailwindcss@3.4.17__postcss@8.5.1_postcss@8.5.1",
     "npm:@astrojs/ts-plugin@1.10.4": "1.10.4",
     "npm:@cloudflare/workers-types@^4.20250109.0": "4.20250109.0",
-    "npm:@deck.gl/layers@^9.1.0-beta.3": "9.1.0-beta.3_@deck.gl+core@9.1.0-beta.3__@loaders.gl+core@4.3.3__@luma.gl+core@9.1.0-beta.16__@luma.gl+shadertools@9.1.0-beta.16___@luma.gl+core@9.1.0-beta.16_@loaders.gl+core@4.3.3_@luma.gl+core@9.1.0-beta.16_@luma.gl+engine@9.1.0-beta.16__@luma.gl+core@9.1.0-beta.16__@luma.gl+shadertools@9.1.0-beta.16___@luma.gl+core@9.1.0-beta.16",
-    "npm:@deck.gl/mapbox@^9.1.0-beta.3": "9.1.0-beta.3_@deck.gl+core@9.1.0-beta.3__@loaders.gl+core@4.3.3__@luma.gl+core@9.1.0-beta.16__@luma.gl+shadertools@9.1.0-beta.16___@luma.gl+core@9.1.0-beta.16_@luma.gl+core@9.1.0-beta.16",
+    "npm:@cloudflare/workers-types@^4.20250121.0": "4.20250121.0",
+    "npm:@deck.gl/layers@^9.1.0": "9.1.0_@deck.gl+core@9.1.0__@loaders.gl+core@4.3.3__@luma.gl+core@9.1.0__@luma.gl+shadertools@9.1.0___@luma.gl+core@9.1.0_@loaders.gl+core@4.3.3_@luma.gl+core@9.1.0_@luma.gl+engine@9.1.0__@luma.gl+core@9.1.0__@luma.gl+shadertools@9.1.0___@luma.gl+core@9.1.0",
+    "npm:@deck.gl/mapbox@^9.1.0": "9.1.0_@deck.gl+core@9.1.0__@loaders.gl+core@4.3.3__@luma.gl+core@9.1.0__@luma.gl+shadertools@9.1.0___@luma.gl+core@9.1.0_@luma.gl+core@9.1.0",
     "npm:@deno/astro-adapter@0.2": "0.2.0_astro@5.1.8__tsx@4.19.2__vite@6.0.10___tsx@4.19.2__zod@3.24.1_tsx@4.19.2",
     "npm:@eslint/js@10": "10.0.0",
     "npm:@eslint/js@^9.18.0": "9.18.0",
@@ -27,8 +28,8 @@
     "npm:@svgr/core@^8.1.0": "8.1.0_@babel+core@7.26.0",
     "npm:@svgr/plugin-jsx@^8.1.0": "8.1.0_@svgr+core@8.1.0__@babel+core@7.26.0_@babel+core@7.26.0",
     "npm:@tailwindcss/aspect-ratio@~0.4.2": "0.4.2_tailwindcss@3.4.17__postcss@8.5.1",
-    "npm:@tailwindcss/forms@~0.5.10": "0.5.10_tailwindcss@4.0.0-beta.9",
-    "npm:@tailwindcss/typography@~0.5.16": "0.5.16_tailwindcss@4.0.0-beta.9",
+    "npm:@tailwindcss/forms@~0.5.10": "0.5.10_tailwindcss@4.0.0",
+    "npm:@tailwindcss/typography@~0.5.16": "0.5.16_tailwindcss@4.0.0",
     "npm:@types/canvas-confetti@^1.9.0": "1.9.0",
     "npm:@types/eslint__js@^8.42.3": "8.42.3",
     "npm:@types/react-dom@^19.0.3": "19.0.3_@types+react@19.0.7",
@@ -37,7 +38,8 @@
     "npm:@typescript-eslint/utils@^8.21.0": "8.21.0_eslint@9.18.0_typescript@5.7.3",
     "npm:@vitejs/plugin-react@^4.3.4": "4.3.4_vite@6.0.7__tsx@4.19.2_@babel+core@7.26.0_tsx@4.19.2",
     "npm:astro-pagefind@^1.7.0": "1.7.0_astro@5.1.8__tsx@4.19.2__vite@6.0.10___tsx@4.19.2__zod@3.24.1_tsx@4.19.2",
-    "npm:astro@^5.1.8": "5.1.8_tsx@4.19.2_vite@6.0.10__tsx@4.19.2_zod@3.24.1",
+    "npm:astro@5.1.8": "5.1.8_typescript@5.7.3_tsx@4.19.2_vite@6.0.10__tsx@4.19.2_zod@3.24.1",
+    "npm:astro@^5.1.8": "5.1.8_typescript@5.7.3_tsx@4.19.2_vite@6.0.10__tsx@4.19.2_zod@3.24.1",
     "npm:babel-plugin-react-compiler@^19.0.0-beta-e552027-20250112": "19.0.0-beta-e552027-20250112",
     "npm:canvas-confetti@^1.9.3": "1.9.3",
     "npm:debug@^4.4.0": "4.4.0",
@@ -67,7 +69,7 @@
     "npm:resend@^4.1.1": "4.1.1",
     "npm:satori@~0.12.1": "0.12.1",
     "npm:sharp@~0.33.5": "0.33.5",
-    "npm:tailwindcss@^4.0.0-beta.9": "4.0.0-beta.9",
+    "npm:tailwindcss@4": "4.0.0",
     "npm:tsx@^4.19.2": "4.19.2",
     "npm:typescript@^5.7.3": "5.7.3",
     "npm:unplugin-icons@22": "22.0.0_@svgr+core@8.1.0__@babel+core@7.26.0",
@@ -116,7 +118,7 @@
       "dependencies": [
         "@astrojs/internal-helpers@0.4.2",
         "@astrojs/underscore-redirects",
-        "@cloudflare/workers-types",
+        "@cloudflare/workers-types@4.20250109.0",
         "astro@5.1.8_tsx@4.19.2_vite@6.0.10__tsx@4.19.2_zod@3.24.1",
         "esbuild@0.24.2",
         "estree-walker@3.0.3",
@@ -584,14 +586,17 @@
     "@cloudflare/workers-types@4.20250109.0": {
       "integrity": "sha512-Y1zgSaEOOevl9ORpzgMcm4j535p3nK2lrblHHvYM2yxR50SBKGh+wvkRFAIxWRfjUGZEU+Fp6923EGioDBbobA=="
     },
+    "@cloudflare/workers-types@4.20250121.0": {
+      "integrity": "sha512-2bBosmudcwvUOKzuCL/Jum18LDh3QoU0QnTNMXIgcVwuq3LaNzyZnOW14bFXPhLU/84ZjNO3zO5R/U11Zgag2Q=="
+    },
     "@cspotcode/source-map-support@0.8.1": {
       "integrity": "sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==",
       "dependencies": [
         "@jridgewell/trace-mapping@0.3.9"
       ]
     },
-    "@deck.gl/core@9.1.0-beta.3_@loaders.gl+core@4.3.3_@luma.gl+core@9.1.0-beta.16_@luma.gl+shadertools@9.1.0-beta.16__@luma.gl+core@9.1.0-beta.16": {
-      "integrity": "sha512-b71nr2yVtA2wfa8+rntsviF+Ru1Cd5O9FmHkCEw4ed19q7wChb6VvYcaPycm7FDV/3ylwLFfSPOrVKAioFsfrg==",
+    "@deck.gl/core@9.1.0_@loaders.gl+core@4.3.3_@luma.gl+core@9.1.0_@luma.gl+shadertools@9.1.0__@luma.gl+core@9.1.0": {
+      "integrity": "sha512-leocNGky9jZ0HUk8xm+HH4f+EL86PKiG8O4REpw4l/K1UbMssekR/L2moYwt7Bx98jSIibcUbhDWOBatKAUaTA==",
       "dependencies": [
         "@loaders.gl/core",
         "@loaders.gl/images",
@@ -604,16 +609,16 @@
         "@math.gl/sun",
         "@math.gl/types",
         "@math.gl/web-mercator",
-        "@probe.gl/env@4.1.0-alpha.2",
-        "@probe.gl/log@4.1.0-alpha.2",
-        "@probe.gl/stats@4.1.0-alpha.2",
+        "@probe.gl/env",
+        "@probe.gl/log",
+        "@probe.gl/stats",
         "@types/offscreencanvas",
         "gl-matrix",
         "mjolnir.js"
       ]
     },
-    "@deck.gl/layers@9.1.0-beta.3_@deck.gl+core@9.1.0-beta.3__@loaders.gl+core@4.3.3__@luma.gl+core@9.1.0-beta.16__@luma.gl+shadertools@9.1.0-beta.16___@luma.gl+core@9.1.0-beta.16_@loaders.gl+core@4.3.3_@luma.gl+core@9.1.0-beta.16_@luma.gl+engine@9.1.0-beta.16__@luma.gl+core@9.1.0-beta.16__@luma.gl+shadertools@9.1.0-beta.16___@luma.gl+core@9.1.0-beta.16": {
-      "integrity": "sha512-nGlCCOi9jLyfkWCI4QrHvCmVgtLW2yVPmPwaakdokC7bczIdd/lRWNATiZTIatmt+WOkKoJhAdq1zdVl9rqOJw==",
+    "@deck.gl/layers@9.1.0_@deck.gl+core@9.1.0__@loaders.gl+core@4.3.3__@luma.gl+core@9.1.0__@luma.gl+shadertools@9.1.0___@luma.gl+core@9.1.0_@loaders.gl+core@4.3.3_@luma.gl+core@9.1.0_@luma.gl+engine@9.1.0__@luma.gl+core@9.1.0__@luma.gl+shadertools@9.1.0___@luma.gl+core@9.1.0": {
+      "integrity": "sha512-0GWZyHk5G48avEuGRbzHk60E0aNpo5h/3lSpzl0BSyqZnVTqsGa1jLJvjS17eaEkR51KIhUBf6NSCyGK1Tp22g==",
       "dependencies": [
         "@deck.gl/core",
         "@loaders.gl/core",
@@ -628,8 +633,8 @@
         "earcut@2.2.4"
       ]
     },
-    "@deck.gl/mapbox@9.1.0-beta.3_@deck.gl+core@9.1.0-beta.3__@loaders.gl+core@4.3.3__@luma.gl+core@9.1.0-beta.16__@luma.gl+shadertools@9.1.0-beta.16___@luma.gl+core@9.1.0-beta.16_@luma.gl+core@9.1.0-beta.16": {
-      "integrity": "sha512-1ovw3982OUtmli4EfpGyieFnkI9cRgR+E93nVGVUFZ4lGwPudOKr6Vb3CErFChqiHA8j16HUUyLcG97InHdH0g==",
+    "@deck.gl/mapbox@9.1.0_@deck.gl+core@9.1.0__@loaders.gl+core@4.3.3__@luma.gl+core@9.1.0__@luma.gl+shadertools@9.1.0___@luma.gl+core@9.1.0_@luma.gl+core@9.1.0": {
+      "integrity": "sha512-4ARArlKJ26QLzmDVcdzLGUL2hZnI7DP7Yh/zfwE43oadWE2zupFHU0GZprE/WA33VLZUK0G79Vhx6BBbaC6ksQ==",
       "dependencies": [
         "@deck.gl/core",
         "@luma.gl/constants",
@@ -1454,7 +1459,7 @@
         "@loaders.gl/loader-utils",
         "@loaders.gl/schema",
         "@loaders.gl/worker-utils",
-        "@probe.gl/log@4.0.9"
+        "@probe.gl/log"
       ]
     },
     "@loaders.gl/images@4.3.3_@loaders.gl+core@4.3.3": {
@@ -1470,8 +1475,8 @@
         "@loaders.gl/core",
         "@loaders.gl/schema",
         "@loaders.gl/worker-utils",
-        "@probe.gl/log@4.0.9",
-        "@probe.gl/stats@4.0.9"
+        "@probe.gl/log",
+        "@probe.gl/stats"
       ]
     },
     "@loaders.gl/schema@4.3.3_@loaders.gl+core@4.3.3": {
@@ -1487,32 +1492,32 @@
         "@loaders.gl/core"
       ]
     },
-    "@luma.gl/constants@9.1.0-beta.16": {
-      "integrity": "sha512-yDv3MJaAGDX5K5Zu0sIfXDS600u/i64dC86QQCoxcf/t9F1+4OeF/GbbuWTD8REWO0cvcYKkPKV+ELkML96N7w=="
+    "@luma.gl/constants@9.1.0": {
+      "integrity": "sha512-BIkRHF36eE1FoghbEKzBjbs7+tX6RUH7gI7ZFKzVJEgXvT6xg12HM7uk+6L54fR/rUxEMjgL+uRzIxprCOGjOg=="
     },
-    "@luma.gl/core@9.1.0-beta.16": {
-      "integrity": "sha512-GmkNv03DoWzCsQEAGQ2lKVoRyFGTFtSA/a55+EwF/89nS0Bs2qKjevXtCmS8b0wXAH+ODh7XJfR0hjfjZC82ag==",
+    "@luma.gl/core@9.1.0": {
+      "integrity": "sha512-HkcqDlxal6gOP7Y6KTRcEjnPuxSFMy+oJYfk623TGIxrEbN3x5uLqvbNgqLMXhV60WWq5Fj0LG1gHs1NyJHrLg==",
       "dependencies": [
         "@math.gl/types",
-        "@probe.gl/env@4.0.9",
-        "@probe.gl/log@4.0.9",
-        "@probe.gl/stats@4.0.9",
+        "@probe.gl/env",
+        "@probe.gl/log",
+        "@probe.gl/stats",
         "@types/offscreencanvas"
       ]
     },
-    "@luma.gl/engine@9.1.0-beta.16_@luma.gl+core@9.1.0-beta.16_@luma.gl+shadertools@9.1.0-beta.16__@luma.gl+core@9.1.0-beta.16": {
-      "integrity": "sha512-kfYn9bQhFV8b6ZurNmjj/2MH4xwcko1PUWazFQUOzZ9c3AwQoH6VVeI7T/sQldsdWXI8oilw0oCTmEF9qV32dw==",
+    "@luma.gl/engine@9.1.0_@luma.gl+core@9.1.0_@luma.gl+shadertools@9.1.0__@luma.gl+core@9.1.0": {
+      "integrity": "sha512-fKa4XqUqS/wmhAPlmkemjJ6YZM3QEzRWX1bZXtVCsydZOun8KCVZsSMpCj1W1+cpoAOBVIqvBqZFF8fZClj5XQ==",
       "dependencies": [
         "@luma.gl/core",
         "@luma.gl/shadertools",
         "@math.gl/core",
         "@math.gl/types",
-        "@probe.gl/log@4.0.9",
-        "@probe.gl/stats@4.0.9"
+        "@probe.gl/log",
+        "@probe.gl/stats"
       ]
     },
-    "@luma.gl/shadertools@9.1.0-beta.16_@luma.gl+core@9.1.0-beta.16": {
-      "integrity": "sha512-NDfto3+xwHJ2Rd/wLu52UnN8I7dHVTdDA7VSCaZ1hSJCn7jhQnmOJ/X0urMlQBPKVv+ZiQRj4YYCYdgTHmRg2A==",
+    "@luma.gl/shadertools@9.1.0_@luma.gl+core@9.1.0": {
+      "integrity": "sha512-BRDKnf2g+Xq86f1OK00F2PA2QbmkcKiM8HJ/Iw8wZB3DvPu2jBKBaboHmEoo6gxq46P32vFGyvxso8umai5eJw==",
       "dependencies": [
         "@luma.gl/core",
         "@math.gl/core",
@@ -1520,13 +1525,13 @@
         "wgsl_reflect"
       ]
     },
-    "@luma.gl/webgl@9.1.0-beta.16_@luma.gl+core@9.1.0-beta.16": {
-      "integrity": "sha512-epCyFNK0wUw8TEYxc5KthTFmHsDqXv9l5RP8lsEZkj+JFNY9ejd2sqoyrjGVrzMOtWenKUz4T+qYRGmBp7XJjw==",
+    "@luma.gl/webgl@9.1.0_@luma.gl+core@9.1.0": {
+      "integrity": "sha512-dTftLUfOnW6F9vYOl1ZvO2I28OYFdiqHkN7BpPd+8GPzepFT8OtEZwbcb/JjF9TsVhaeLyl1oDckQg2ckre3sw==",
       "dependencies": [
         "@luma.gl/constants",
         "@luma.gl/core",
         "@math.gl/types",
-        "@probe.gl/env@4.0.9"
+        "@probe.gl/env"
       ]
     },
     "@mapbox/geojson-rewind@0.5.2": {
@@ -1728,29 +1733,17 @@
         "zeptomatch-is-static"
       ]
     },
-    "@probe.gl/env@4.0.9": {
-      "integrity": "sha512-AOmVMD0/j78mX+k4+qX7ZhE0sY9H+EaJgIO6trik0BwV6VcrwxTGCGFAeuRsIGhETDnye06tkLXccYatYxAYwQ=="
+    "@probe.gl/env@4.1.0": {
+      "integrity": "sha512-5ac2Jm2K72VCs4eSMsM7ykVRrV47w32xOGMvcgqn8vQdEMF9PRXyBGYEV9YbqRKWNKpNKmQJVi4AHM/fkCxs9w=="
     },
-    "@probe.gl/env@4.1.0-alpha.2": {
-      "integrity": "sha512-CAOcjBCqU1NdeGJ7Xsg9taXaVCgF43v9E11qAEYwk671kg6xqojap/juvXJttN46Fb8I7d7/d+4bwlPtgtNXIw=="
-    },
-    "@probe.gl/log@4.0.9": {
-      "integrity": "sha512-ebuZaodSRE9aC+3bVC7cKRHT8garXeT1jTbj1R5tQRqQYc9iGeT3iemVOHx5bN9Q6gAs/0j54iPI+1DvWMAW4A==",
+    "@probe.gl/log@4.1.0": {
+      "integrity": "sha512-r4gRReNY6f+OZEMgfWEXrAE2qJEt8rX0HsDJQXUBMoc+5H47bdB7f/5HBHAmapK8UydwPKL9wCDoS22rJ0yq7Q==",
       "dependencies": [
-        "@probe.gl/env@4.0.9"
+        "@probe.gl/env"
       ]
     },
-    "@probe.gl/log@4.1.0-alpha.2": {
-      "integrity": "sha512-ySRRoLJkELShcnC7iHKyAVuTX1ipFe7257Ewjc//YSLZS1NmwBePSOCbspQSIXAfirPtW/d6WOQ9eQaGZLMc6Q==",
-      "dependencies": [
-        "@probe.gl/env@4.1.0-alpha.2"
-      ]
-    },
-    "@probe.gl/stats@4.0.9": {
-      "integrity": "sha512-Q9Xt/sJUQaMsbjRKjOscv2t7wXIymTrOEJ4a3da4FTCn7bkKvcdxdyFAQySCrtPxE+YZ5I5lXpWPgv9BwmpE1g=="
-    },
-    "@probe.gl/stats@4.1.0-alpha.2": {
-      "integrity": "sha512-xwzLKjynjtUmivplpN0xcFlOEY6P6qbfwHqXpAWgIw0G5aLmgoQnxuIrJJwDtFb2ABiqqoBmzgHw1y08gZb/mA=="
+    "@probe.gl/stats@4.1.0": {
+      "integrity": "sha512-EI413MkWKBDVNIfLdqbeNSJTs7ToBz/KVGkwi3D+dQrSIkRI2IYbWGAU3xX+D6+CI4ls8ehxMhNpUVMaZggDvQ=="
     },
     "@react-email/body@0.0.11_react@19.0.0": {
       "integrity": "sha512-ZSD2SxVSgUjHGrB0Wi+4tu3MEpB4fYSbezsFNEJk2xCWDBkFiOeEsjTmR5dvi+CxTK691hQTQlHv0XWuP7ENTg==",
@@ -2202,21 +2195,21 @@
         "tailwindcss@3.4.17_postcss@8.5.1"
       ]
     },
-    "@tailwindcss/forms@0.5.10_tailwindcss@4.0.0-beta.9": {
+    "@tailwindcss/forms@0.5.10_tailwindcss@4.0.0": {
       "integrity": "sha512-utI1ONF6uf/pPNO68kmN1b8rEwNXv3czukalo8VtJH8ksIkZXr3Q3VYudZLkCsDd4Wku120uF02hYK25XGPorw==",
       "dependencies": [
         "mini-svg-data-uri",
-        "tailwindcss@4.0.0-beta.9"
+        "tailwindcss@4.0.0"
       ]
     },
-    "@tailwindcss/typography@0.5.16_tailwindcss@4.0.0-beta.9": {
+    "@tailwindcss/typography@0.5.16_tailwindcss@4.0.0": {
       "integrity": "sha512-0wDLwCVF5V3x3b1SGXPCDcdsbDHMBe+lkFzBRaHeLvNi+nrrnZ1lA18u+OTWO8iSWU2GxUOCvlXtDuqftc1oiA==",
       "dependencies": [
         "lodash.castarray",
         "lodash.isplainobject",
         "lodash.merge",
         "postcss-selector-parser@6.0.10",
-        "tailwindcss@4.0.0-beta.9"
+        "tailwindcss@4.0.0"
       ]
     },
     "@types/acorn@4.0.6": {
@@ -2809,7 +2802,7 @@
         "sharp",
         "shiki@1.27.2",
         "tinyexec",
-        "tsconfck",
+        "tsconfck@3.1.4",
         "unist-util-visit",
         "vfile",
         "vite@5.4.11",
@@ -2871,7 +2864,72 @@
         "sharp",
         "shiki@1.29.1",
         "tinyexec",
-        "tsconfck",
+        "tsconfck@3.1.4",
+        "ultrahtml",
+        "unist-util-visit",
+        "unstorage",
+        "vfile",
+        "vite@6.0.10_tsx@4.19.2",
+        "vitefu@1.0.5_vite@6.0.10__tsx@4.19.2_tsx@4.19.2",
+        "which-pm",
+        "xxhash-wasm",
+        "yargs-parser",
+        "yocto-spinner",
+        "zod",
+        "zod-to-json-schema",
+        "zod-to-ts"
+      ]
+    },
+    "astro@5.1.8_typescript@5.7.3_tsx@4.19.2_vite@6.0.10__tsx@4.19.2_zod@3.24.1": {
+      "integrity": "sha512-7fNNceI/dXqGIkkZQjxhH31alAfgf33cDv34cPLCGFVSHHOpYG0NSrofnxdYf0BvWRlddqkq393UqDM5cJlv1w==",
+      "dependencies": [
+        "@astrojs/compiler",
+        "@astrojs/internal-helpers@0.4.2",
+        "@astrojs/markdown-remark@6.0.2",
+        "@astrojs/telemetry@3.2.0",
+        "@oslojs/encoding",
+        "@rollup/pluginutils",
+        "@types/cookie@0.6.0",
+        "acorn",
+        "aria-query",
+        "axobject-query",
+        "boxen",
+        "ci-info",
+        "clsx",
+        "common-ancestor-path",
+        "cookie",
+        "cssesc",
+        "debug@4.4.0",
+        "deterministic-object-hash",
+        "devalue",
+        "diff",
+        "dlv",
+        "dset",
+        "es-module-lexer",
+        "esbuild@0.24.2",
+        "estree-walker@3.0.3",
+        "fast-glob",
+        "flattie",
+        "github-slugger",
+        "html-escaper",
+        "http-cache-semantics",
+        "js-yaml@4.1.0",
+        "kleur@4.1.5",
+        "magic-string@0.30.17",
+        "magicast",
+        "micromatch",
+        "mrmime",
+        "neotraverse",
+        "p-limit@6.2.0",
+        "p-queue",
+        "preferred-pm",
+        "prompts",
+        "rehype",
+        "semver@7.6.3",
+        "sharp",
+        "shiki@1.29.1",
+        "tinyexec",
+        "tsconfck@3.1.4_typescript@5.7.3",
         "ultrahtml",
         "unist-util-visit",
         "unstorage",
@@ -3446,7 +3504,7 @@
     "drizzle-orm@0.38.4_@cloudflare+workers-types@4.20250109.0_@types+react@19.0.7": {
       "integrity": "sha512-s7/5BpLKO+WJRHspvpqTydxFob8i1vo2rEx4pY6TGY7QSMuUfWUuzaY0DIpXCkgHOo37BaFC+SJQb99dDUXT3Q==",
       "dependencies": [
-        "@cloudflare/workers-types",
+        "@cloudflare/workers-types@4.20250109.0",
         "@types/react"
       ]
     },
@@ -5775,8 +5833,8 @@
     "minipass@7.1.2": {
       "integrity": "sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw=="
     },
-    "mjolnir.js@3.0.0-beta.4": {
-      "integrity": "sha512-xhR1INYkJHVo/4cNimTsdkCAECGj6wh9tKMLO+eI2wv4T4g/QgIZCDooTpeKVcJpdw95VI2o6xrF3DDpwVOWvQ=="
+    "mjolnir.js@3.0.0": {
+      "integrity": "sha512-siX3YCG7N2HnmN1xMH3cK4JkUZJhbkhRFJL+G5N1vH0mh1t5088rJknIoqDFWDIU6NPGvRRgLnYW3ZHjSMEBLA=="
     },
     "mlly@1.7.4": {
       "integrity": "sha512-qmdSIPC4bDJXgZTCR7XosJiNKySV7O215tsPtDN9iEO/7q/76b/ijtgRu/+epFXSJhijtTCCGp3DWS549P3xKw==",
@@ -7302,8 +7360,8 @@
         "sucrase"
       ]
     },
-    "tailwindcss@4.0.0-beta.9": {
-      "integrity": "sha512-96KpsfQi+/sFIOfyFnGzyy5pobuzf1iMBD9NVtelerPM/lPI2XUS4Kikw9yuKRniXXw77ov1sl7gCSKLsn6CJA=="
+    "tailwindcss@4.0.0": {
+      "integrity": "sha512-ULRPI3A+e39T7pSaf1xoi58AqqJxVCLg8F/uM5A3FadUbnyDTgltVnXJvdkTjwCOGA6NazqHVcwPJC5h2vRYVQ=="
     },
     "thenify-all@1.6.0": {
       "integrity": "sha512-RNxQH/qI8/t3thXJDwcstUO4zeqo64+Uy/+sNVRBx4Xn2OX+OZ9oP+iJnNFqplFra2ZUVeKCSa2oVWi3T4uVmA==",
@@ -7435,6 +7493,12 @@
     },
     "tsconfck@3.1.4": {
       "integrity": "sha512-kdqWFGVJqe+KGYvlSO9NIaWn9jT1Ny4oKVzAJsKii5eoE9snzTJzL4+MMVOMn+fikWGFmKEylcXL710V/kIPJQ=="
+    },
+    "tsconfck@3.1.4_typescript@5.7.3": {
+      "integrity": "sha512-kdqWFGVJqe+KGYvlSO9NIaWn9jT1Ny4oKVzAJsKii5eoE9snzTJzL4+MMVOMn+fikWGFmKEylcXL710V/kIPJQ==",
+      "dependencies": [
+        "typescript"
+      ]
     },
     "tslib@2.8.1": {
       "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="
@@ -8022,7 +8086,7 @@
       "integrity": "sha512-eYcnubPhPBU1QMZYTam+vfCLpaQx+x1EWA6nFbLhid1eqNDAk1dNwNlbo+ZryrOHDEX3XlOxn2Z3Fx8vVv3hKw==",
       "dependencies": [
         "@cloudflare/kv-asset-handler",
-        "@cloudflare/workers-types",
+        "@cloudflare/workers-types@4.20250109.0",
         "@esbuild-plugins/node-globals-polyfill",
         "@esbuild-plugins/node-modules-polyfill",
         "blake3-wasm",
@@ -8198,9 +8262,9 @@
         "npm:@astrojs/sitemap@3.2.1",
         "npm:@astrojs/tailwind@^6.0.0-beta.0",
         "npm:@astrojs/ts-plugin@1.10.4",
-        "npm:@cloudflare/workers-types@^4.20250109.0",
-        "npm:@deck.gl/layers@^9.1.0-beta.3",
-        "npm:@deck.gl/mapbox@^9.1.0-beta.3",
+        "npm:@cloudflare/workers-types@^4.20250121.0",
+        "npm:@deck.gl/layers@^9.1.0",
+        "npm:@deck.gl/mapbox@^9.1.0",
         "npm:@deno/astro-adapter@0.2",
         "npm:@eslint/js@10",
         "npm:@iconify-json/line-md@^1.2.5",
@@ -8253,7 +8317,7 @@
         "npm:resend@^4.1.1",
         "npm:satori@~0.12.1",
         "npm:sharp@~0.33.5",
-        "npm:tailwindcss@^4.0.0-beta.9",
+        "npm:tailwindcss@4",
         "npm:tsx@^4.19.2",
         "npm:typescript@^5.7.3",
         "npm:unplugin-icons@22",

@@ -1,7 +1,7 @@
 ---
 import Button from '@/components/Button.astro'
 import ToolSection from '@/components/ToolSection.astro'
-import PageLayout from '@/layouts/Base.astro'
+import BaseLayout from '@/layouts/Base.astro'
 import MdiArrowLeft from '~icons/mdi/arrow-left'
 
 import illustrator from '@/assets/icons/Illustrator.png'
@@ -91,7 +91,7 @@ const DEVELOPMENT = [
 ]
 ---
 
-<PageLayout meta={{ title: 'Tools' }} showViewCount={false}>
+<BaseLayout meta={{ title: 'Tools' }} showViewCount={false}>
   <div class='w-full'>
     <Button text='Back' class='max-w-fit' href='/' data-astro-prefetch>
       <MdiArrowLeft class='size-4' />
@@ -110,4 +110,4 @@ const DEVELOPMENT = [
       <ToolSection title='Development' tools={DEVELOPMENT} />
     </div>
   </div>
-</PageLayout>
+</BaseLayout>

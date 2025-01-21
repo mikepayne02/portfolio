@@ -1,7 +1,7 @@
 ---
 export const prerender = false
 
-import PageLayout from '@/layouts/Base.astro'
+import BaseLayout from '@/layouts/Base.astro'
 import { actions, isInputError } from 'astro:actions'
 
 import Button from '@/components/Button.astro'
@@ -14,11 +14,6 @@ import { TURNSTILE_SITE_KEY } from 'astro:env/client'
 const result = Astro.getActionResult(actions.contact)
 const success = result?.data?.name ? true : false
 const inputErrors = isInputError(result?.error) ? result.error.fields : {}
-
-const meta = {
-  description: 'Conatact',
-  title: 'Contact'
-}
 ---
 
 {
@@ -71,7 +66,7 @@ const meta = {
   }
 </script>
 
-<PageLayout {meta}>
+<BaseLayout meta={{ title: 'Contact', description: 'Message me' }}>
   {
     result?.data?.name ? (
       <div class='flex flex-col items-center px-4 py-10 sm:px-6 lg:px-8'>
@@ -89,7 +84,7 @@ const meta = {
           <Button
             as='button'
             title='Replay confetti'
-            class='ms-2 size-8 animate-[appear_1500ms_ease-in-out_1500ms_forwards] cursor-pointer opacity-0 transition hover:text-muted-foreground/75'
+            class='hover:text-muted-foreground/75 ms-2 size-8 animate-[appear_1500ms_ease-in-out_1500ms_forwards] cursor-pointer opacity-0 transition'
             id='confetti'
           >
             <MdiReload class='size-5 origin-[46%_50%]' id='spinner' />
@@ -123,7 +118,7 @@ const meta = {
                 name='fullName'
                 type='text'
                 minlength='2'
-                class='peer mt-1 rounded-md border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
+                class='peer border-border bg-primary-foreground hover:border-foreground/25 mt-1 rounded-md p-2 shadow-sm hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
               />
               <span class='mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block'>
                 Please enter a name
@@ -138,7 +133,7 @@ const meta = {
                 transition:persist
                 name='email'
                 type='email'
-                class='peer mt-1 rounded-md border-border bg-primary-foreground p-2 shadow-sm hover:border-foreground/25 hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
+                class='peer border-border bg-primary-foreground hover:border-foreground/25 mt-1 rounded-md p-2 shadow-sm hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
                 placeholder='Enter your email address'
               />
               <span class='mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block'>
@@ -156,7 +151,7 @@ const meta = {
                 name='message'
                 placeholder='Enter your message'
                 minlength='2'
-                class='peer mt-1 h-24 w-full rounded-md border-border bg-primary-foreground p-2 shadow-sm [field-sizing:content] hover:border-foreground/25 hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
+                class='peer border-border bg-primary-foreground hover:border-foreground/25 mt-1 [field-sizing:content] h-24 w-full rounded-md p-2 shadow-sm hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
               />
               <span class='mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block'>
                 Please enter a message at least 2 characters long
@@ -169,7 +164,7 @@ const meta = {
             <button
               type='submit'
               id='submit'
-              class='group rounded-lg border border-border bg-primary-foreground px-4 py-1 transition hover:bg-border/25 disabled:pointer-events-none disabled:opacity-50 group-invalid:pointer-events-none group-invalid:opacity-50'
+              class='group border-border bg-primary-foreground hover:bg-border/25 rounded-lg border px-4 py-1 transition group-invalid:pointer-events-none group-invalid:opacity-50 disabled:pointer-events-none disabled:opacity-50'
             >
               <span class='block group-disabled:hidden'>Submit</span>
               <span class='hidden group-disabled:block'>
@@ -181,4 +176,4 @@ const meta = {
       </div>
     )
   }
-</PageLayout>
+</BaseLayout>

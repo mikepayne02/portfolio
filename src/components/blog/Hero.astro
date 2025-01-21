@@ -9,7 +9,7 @@ interface Props {
   minutesRead: string
 }
 
-const { slug } = Astro.params
+const { id } = Astro.params
 const {
   project: { data },
   minutesRead
@@ -23,7 +23,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 {
   data.coverImage && (
     <div
-      transition:name={`media-image-${slug}`}
+      transition:name={`media-image-${id}`}
       class='aspect-h-9 aspect-w-16 mb-6'
     >
       <Image

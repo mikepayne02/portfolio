@@ -1,7 +1,7 @@
 ---
 import Button from '@/components/Button.astro'
 import { getAllProjects, getUniqueTagsWithCount } from '@/data/project'
-import PageLayout from '@/layouts/Base.astro'
+import BaseLayout from '@/layouts/Base.astro'
 import CTA from '@/components/CTA.astro'
 
 import MdiArrowLeft from '~icons/mdi/arrow-left'
@@ -15,13 +15,13 @@ const meta = {
 }
 ---
 
-<PageLayout {meta}>
+<BaseLayout {meta}>
   <div class='w-full'>
     <Button text='Back' href='/projects' class='max-w-fit' data-astro-prefetch>
       <MdiArrowLeft class='size-4' />
     </Button>
 
-    <h1 class='mb-6 mt-5 text-2xl font-bold'>Tags</h1>
+    <h1 class='mt-5 mb-6 text-2xl font-bold'>Tags</h1>
     {allTags.length === 0 && <p>No posts yet.</p>}
 
     {
@@ -30,7 +30,7 @@ const meta = {
           {allTags.map(([tag, val]) => (
             <li class='flex items-center gap-x-2'>
               <a
-                class='inline-block underline underline-offset-4 hover:text-foreground/75'
+                class='hover:text-foreground/75 inline-block underline underline-offset-4'
                 href={`/tags/${tag}/`}
                 title={`View projects with the tag: ${tag}`}
                 data-astro-prefetch
@@ -47,4 +47,4 @@ const meta = {
     }
   </div>
   <CTA className='mt-16'>Contact</CTA>
-</PageLayout>
+</BaseLayout>

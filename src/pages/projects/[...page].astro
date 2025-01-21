@@ -9,7 +9,7 @@ import {
   groupProjectsByYear,
   sortMDByDate
 } from '@/data/project'
-import PageLayout from '@/layouts/Base.astro'
+import BaseLayout from '@/layouts/Base.astro'
 import type { GetStaticPaths, Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 
@@ -59,13 +59,13 @@ const groupedByYear = groupProjectsByYear(page.data)
 const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a)
 ---
 
-<PageLayout {meta}>
+<BaseLayout {meta}>
   <div class='w-full'>
     <Button text='Back' class='max-w-fit' href='/' data-astro-prefetch>
       <MdiArrowLeft class='size-4' />
     </Button>
 
-    <h1 class='mb-6 mt-5 text-2xl font-bold'>Projects</h1>
+    <h1 class='mt-5 mb-6 text-2xl font-bold'>Projects</h1>
     {page.data.length === 0 && <p>No projects yet.</p>}
 
     {
@@ -75,7 +75,7 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a)
             {descYearKeys.map((yearKey) => (
               <>
                 <h2 class='title text-lg'>{yearKey}</h2>
-                <ul class='mb-8 mt-6 space-y-4 text-start'>
+                <ul class='mt-6 mb-8 space-y-4 text-start'>
                   {groupedByYear[yearKey]?.map((p) => (
                     <li class='grid gap-2 sm:grid-cols-[auto_1fr] sm:[&_q]:col-start-2'>
                       <PostPreview project={p} withDesc />
@@ -121,4 +121,4 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a)
     }
   </div>
   <CTA className='mt-16'>Contact</CTA>
-</PageLayout>
+</BaseLayout>

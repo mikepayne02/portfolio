@@ -1,11 +1,12 @@
 ---
 import { getAllProjects } from '@/data/project'
+import { render } from 'astro:content'
 import PostLayout from '@/layouts/BlogPost.astro'
 
 export const getStaticPaths = async () => {
   const blogEntries = await getAllProjects()
   return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { id: entry.id },
     props: { entry }
   }))
 }
@@ -15,7 +16,7 @@ const {
   Content,
   headings,
   remarkPluginFrontmatter: { minutesRead }
-} = await entry.render()
+} = await render(entry)
 ---
 
 <PostLayout project={entry} {headings} {minutesRead}>

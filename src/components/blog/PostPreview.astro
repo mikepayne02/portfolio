@@ -24,14 +24,14 @@ const { description } = project.data
     {project.data.draft && <span class='text-red-500'>(Draft) </span>}
     <a
       data-astro-prefetch
-      href={`/projects/${project.slug}/`}
-      class='transition hover:text-muted-foreground'
+      href={`/projects/${project.id}/`}
+      class='hover:text-muted-foreground transition'
     >
       {project.data.title}
     </a>
     {
       withDesc && (
-        <p class='line-clamp-3 italic text-muted-foreground'>
+        <p class='text-muted-foreground line-clamp-3 italic'>
           {description &&
             (description.length > 100
               ? description.slice(0, 100) + '...'

@@ -1,5 +1,6 @@
 # build output
 dist/
+src/resume.md
 # generated types
 .astro/
 .vercel/

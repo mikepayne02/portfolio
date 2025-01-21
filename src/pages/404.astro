@@ -1,6 +1,6 @@
 ---
 import Button from '@/components/Button.astro'
-import PageLayout from '@/layouts/Base.astro'
+import BaseLayout from '@/layouts/Base.astro'
 import CTA from '@/components/CTA.astro'
 import MdiArrowLeft from '~icons/mdi/arrow-left'
 
@@ -10,10 +10,10 @@ const meta = {
 }
 ---
 
-<PageLayout {meta}>
+<BaseLayout {meta}>
   <div class='flex flex-col gap-y-3 px-4 py-10 text-center sm:px-6 lg:px-8'>
     <h1 class='block font-mono text-7xl font-bold sm:text-9xl'>404</h1>
-    <p class='mt-3 text-muted-foreground'>How could this happen</p>
+    <p class='text-muted-foreground mt-3'>How could this happen</p>
     <p>We couldn't find that page</p>
     <Button
       text='Home'
@@ -26,4 +26,4 @@ const meta = {
     </Button>
   </div>
   <CTA>Contact</CTA>
-</PageLayout>
+</BaseLayout>

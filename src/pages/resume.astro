@@ -1,0 +1,10 @@
+---
+import BaseLayout from '@/layouts/Base.astro'
+---
+
+<BaseLayout
+  meta={{ title: 'Resume', description: 'My Resume' }}
+  showViewCount={true}
+>
+  <iframe class='w-full' title='resume' src='/resume.pdf'></iframe>
+</BaseLayout>
