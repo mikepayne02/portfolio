@@ -3,7 +3,6 @@ export const prerender = false
 
 import BaseLayout from '@/layouts/Base.astro'
 import { actions, isInputError } from 'astro:actions'
-
 import Button from '@/components/Button.astro'
 import MdiArrowLeft from '~icons/mdi/arrow-left'
 import MdiReload from '~icons/mdi/reload'
@@ -78,7 +77,7 @@ const inputErrors = isInputError(result?.error) ? result.error.fields : {}
           soon as I can.
         </p>
         <div class='mt-5 flex flex-row'>
-          <Button text='Home' href='/' data-astro-prefetch>
+          <Button text='Home' href='/'>
             <MdiArrowLeft />
           </Button>
           <Button
@@ -106,57 +105,71 @@ const inputErrors = isInputError(result?.error) ? result.error.fields : {}
             action={actions.contact}
             novalidate
           >
-            <label class='flex w-full flex-col'>
-              <span>Name</span>
-              {inputErrors.fullName && (
-                <p class='text-red-500'>{inputErrors.fullName.join(', ')}</p>
-              )}
+            <div class='w-full'>
+              <label for='fullName' class='flex w-full flex-col'>
+                <span class='mb-2'>Name</span>
+                {inputErrors.fullName && (
+                  <p class='text-red-500'>{inputErrors.fullName.join(', ')}</p>
+                )}
+                <span class='peer border-input-[&:not(:placeholder-shown):not(:focus):invalid]:block mt-2 hidden text-sm text-red-500'>
+                  Please enter a name
+                </span>
+              </label>
               <input
+                id='fullName'
                 transition:persist
                 required
                 placeholder='Enter your name'
                 name='fullName'
                 type='text'
                 minlength='2'
-                class='peer border-border bg-primary-foreground hover:border-foreground/25 mt-1 rounded-md p-2 shadow-sm hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
+                autocomplete='name'
+                class='peer border-input bg-primary-foreground hover:border-foreground/25 w-full rounded-md border p-2 shadow-xs hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
               />
-              <span class='mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block'>
-                Please enter a name
-              </span>
-            </label>
-            <label class='flex w-full flex-col'>
-              <span>Email address</span>
-              {inputErrors.email && (
-                <p class='text-red-500'>{inputErrors.email.join(', ')}</p>
-              )}
+            </div>
+
+            <div class='w-full'>
+              <label for='email' class='flex w-full flex-col'>
+                <span class='mb-2'>Email address</span>
+                {inputErrors.email && (
+                  <p class='text-red-500'>{inputErrors.email.join(', ')}</p>
+                )}
+                <span class='peer border-input-[&:not(:placeholder-shown):not(:focus):invalid]:block mt-2 hidden text-sm text-red-500'>
+                  Please enter an email address
+                </span>
+              </label>
               <input
+                id='email'
                 transition:persist
                 name='email'
                 type='email'
-                class='peer border-border bg-primary-foreground hover:border-foreground/25 mt-1 rounded-md p-2 shadow-sm hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
+                autocomplete='email'
+                class='peer border-input bg-primary-foreground hover:border-foreground/25 w-full rounded-md border p-2 shadow-xs hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
                 placeholder='Enter your email address'
               />
-              <span class='mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block'>
-                Please enter an email address
-              </span>
-            </label>
-            <label class='flex w-full flex-col'>
-              <span>Message</span>
-              {inputErrors.message && (
-                <p class='text-red-500'>{inputErrors.message.join(', ')}</p>
-              )}
+            </div>
+
+            <div class='w-full'>
+              <label for='message' class='flex w-full flex-col'>
+                <span class='mb-2'>Message</span>
+                {inputErrors.message && (
+                  <p class='text-red-500'>{inputErrors.message.join(', ')}</p>
+                )}
+                <span class='peer border-input-[&:not(:placeholder-shown):not(:focus):invalid]:block mt-2 hidden text-sm text-red-500'>
+                  Please enter a message at least 2 characters long
+                </span>
+              </label>
               <textarea
+                id='message'
                 transition:persist
                 required
                 name='message'
                 placeholder='Enter your message'
                 minlength='2'
-                class='peer border-border bg-primary-foreground hover:border-foreground/25 mt-1 [field-sizing:content] h-24 w-full rounded-md p-2 shadow-sm hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
+                class='peer border-input bg-primary-foreground hover:border-foreground/25 [field-sizing:content] h-24 w-full rounded-md border p-2 shadow-xs hover:shadow-md invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-500'
               />
-              <span class='mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block'>
-                Please enter a message at least 2 characters long
-              </span>
-            </label>
+            </div>
+
             {inputErrors.turnstile && (
               <p class='text-red-500'>{inputErrors.turnstile.join(', ')}</p>
             )}
@@ -164,7 +177,7 @@ const inputErrors = isInputError(result?.error) ? result.error.fields : {}
             <button
               type='submit'
               id='submit'
-              class='group border-border bg-primary-foreground hover:bg-border/25 rounded-lg border px-4 py-1 transition group-invalid:pointer-events-none group-invalid:opacity-50 disabled:pointer-events-none disabled:opacity-50'
+              class='group border-input bg-primary-foreground hover:bg-border/25 cursor-pointer rounded-lg border px-4 py-1 transition group-invalid:pointer-events-none group-invalid:opacity-50 disabled:pointer-events-none disabled:opacity-50'
             >
               <span class='block group-disabled:hidden'>Submit</span>
               <span class='hidden group-disabled:block'>

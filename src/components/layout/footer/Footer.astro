@@ -17,7 +17,7 @@ const year = new Date().getFullYear()
 ---
 
 <footer class='mx-auto mt-12 w-full'>
-  <div class='border-t border-border pt-5'>
+  <div class='border-border border-t pt-5'>
     <div
       class='mb-5 flex flex-col-reverse items-center justify-between gap-y-3 sm:flex sm:flex-row sm:items-start sm:gap-y-0'
     >
@@ -35,7 +35,7 @@ const year = new Date().getFullYear()
       >
         {
           showViewCount && (
-            <span class='text-center text-sm text-muted-foreground'>
+            <span class='text-muted-foreground text-center text-sm'>
               <ViewCount path={Astro.url.pathname} server:defer>
                 <SvgSpinners3DotsScale
                   slot='fallback'
@@ -45,7 +45,7 @@ const year = new Date().getFullYear()
             </span>
           )
         }
-        <a href='https://uptime.mikepayne.me/status/main' target='_blank'>
+        <!-- <a href='https://uptime.mikepayne.me/status/main' target='_blank'>
           <img
             class='block w-40 dark:hidden'
             src='https://uptime.mikepayne.me/api/badge/1/avg-response?color=%233b82f6&labelColor=%23fcfcfd&style=flat'
@@ -56,7 +56,7 @@ const year = new Date().getFullYear()
             src='https://uptime.mikepayne.me/api/badge/1/avg-response?color=%233b82f6&labelColor=%2318181b&style=flat'
             alt='Uptime Badge'
           />
-        </a>
+        </a> -->
       </div>
       <div class='flex items-center justify-between'>
         <div class='flex items-center'>
@@ -69,21 +69,21 @@ const year = new Date().getFullYear()
           </SocialLink>
           <SocialLink
             label='Instagram'
-            href='https://www.instagram.com/michaelpayne02/'
+            href='https://www.instagram.com/mikepayne02/'
             target='_blank'
           >
             <MdiInstagram slot='icon' class='w-full' />
           </SocialLink>
           <SocialLink
             label='GitHub'
-            href='https://github.com/michaelpayne02'
+            href='https://github.com/mikepayne02'
             target='_blank'
           >
             <MdiGithub slot='icon' class='w-full' />
           </SocialLink>
           <SocialLink
             label='LinkedIn'
-            href='https://www.linkedin.com/in/michaelpayne02/'
+            href='https://www.linkedin.com/in/mikepayne02/'
             target='_blank'
           >
             <MdiLinkedin slot='icon' class='w-full' />
@@ -97,7 +97,7 @@ const year = new Date().getFullYear()
           </SocialLink>
           <SocialLink
             label='Email'
-            href='mailto:michael@payne.cx'
+            href='mailto:michael@mpayne.me'
             target='_blank'
           >
             <MdiEmailOutline slot='icon' class='w-full' />

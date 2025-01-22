@@ -85,3 +85,25 @@ export type Summary = {
   'content-type': string
   value: string
 }
+
+export type TurnstileOutcome = {
+  success: boolean
+  'error-codes'?: string[]
+}
+
+// --- NEW/UPDATED Unified Display Type ---
+export type DisplayComment = {
+  id: string // Unique identifier (e.g., "d1-123" or "wm-456")
+  author?: {
+    // Author is optional (mainly for webmentions that might lack it)
+    name: string
+    photo: string // Avatar URL (Gravatar or from webmention)
+    // No 'url' field anymore
+  }
+  publishedDate: Date
+  sourceUrl?: string // URL of the comment source (primarily for Webmentions)
+  targetUrl: string // URL of the post being commented on
+  htmlContent: string // Sanitized HTML content to display
+  sourceType: 'webmention' | 'comment' // To differentiate source
+}
+// --- End DisplayComment Type ---

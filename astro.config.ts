@@ -2,10 +2,10 @@ import cloudflare from '@astrojs/cloudflare'
 import react from '@astrojs/react'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
-import tailwind from '@astrojs/tailwind'
+import tailwindcss from '@tailwindcss/vite'
 import Icons from 'unplugin-icons/vite'
 import pagefind from 'astro-pagefind'
-import { defineConfig, envField } from 'astro/config'
+import { defineConfig, envField, fontProviders } from 'astro/config'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeUnwrapImages from 'rehype-unwrap-images'
 import { remarkReadingTime } from './src/utils/remark-reading-time.mjs'
@@ -29,9 +29,6 @@ export default defineConfig({
     sitemap(),
     pagefind(),
     mdx(),
-    tailwind({
-      applyBaseStyles: false
-    }),
     og()
   ],
   env: {
@@ -66,6 +63,7 @@ export default defineConfig({
   },
   vite: {
     plugins: [
+      tailwindcss(),
       Icons({
         compiler: 'astro'
       })
@@ -104,16 +102,37 @@ export default defineConfig({
       }
     }
   },
-  prefetch: true,
+  prefetch: {
+    prefetchAll: true
+  },
   output: 'static',
   experimental: {
     contentIntellisense: true,
-    clientPrerender: true
+    clientPrerender: true,
+    fonts: [
+      {
+        provider: fontProviders.google(),
+        name: 'Fira Sans',
+        cssVariable: '--font-sans',
+        weights: [400, 500, 600, 700],
+        styles: ['normal', 'italic'],
+        subsets: ['latin']
+      },
+      {
+        provider: fontProviders.google(),
+        name: 'Fira Code',
+        cssVariable: '--font-mono',
+        weights: [400, 500, 600, 700],
+        styles: ['normal'],
+        subsets: ['latin']
+      }
+    ]
   },
   adapter: cloudflare({
     imageService: 'compile',
     platformProxy: {
-      enabled: true
+      enabled: true,
+      configPath: 'wrangler.jsonc'
     }
   })
 })

@@ -14,6 +14,7 @@
 - Static social image generation based on [this guide](https://dietcode.io/p/astro-og/) using [Satori](https://github.com/vercel/satori) and [Resvg](https://github.com/vercel/satori). The resulting images are cached in a folder under `node_modules/.astro`.
 - Animated map using [MapLibre GL JS](https://maplibre.org/) and [Deck.gl](https://deck.gl/). Hydration isn't necessary because an intersection observer asynchronously imports the necessary chunks.
 - Contact form using [Astro Actions](https://github.com/withastro/roadmap/blob/actions/proposals/0046-actions.md) and [React Email](https://react.email/), protected by [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/)
+- Resume generated automatically using [pandoc](https://pandoc.org/)
 
 ## Environment
 

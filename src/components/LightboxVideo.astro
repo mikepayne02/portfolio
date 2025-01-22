@@ -1,5 +1,6 @@
 ---
 const { src, ...props } = Astro.props
+import { siteConfig } from '@/site.config'
 ---
 
 <div data-lightbox>
@@ -13,11 +14,11 @@ const { src, ...props } = Astro.props
     {...props}
   >
     <source
-      src=`https://content.mikepayne.me/videos/${src}.webm`
+      src=`${siteConfig.bucketEndpoint}/videos/${src}.webm`
       type='video/webm codecs=av01.0.08M'
     />
     <source
-      src=`https://content.mikepayne.me/videos/${src}.mp4`
+      src=`${siteConfig.bucketEndpoint}/videos/${src}.mp4`
       type='video/mp4'
     />
     Your browser does not support the video tag.

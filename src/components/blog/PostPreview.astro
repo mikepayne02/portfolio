@@ -23,7 +23,6 @@ const { description } = project.data
   <h2>
     {project.data.draft && <span class='text-red-500'>(Draft) </span>}
     <a
-      data-astro-prefetch
       href={`/projects/${project.id}/`}
       class='hover:text-muted-foreground transition'
     >

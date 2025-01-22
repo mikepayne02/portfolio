@@ -5,6 +5,7 @@ import { ActionError, defineAction } from 'astro:actions'
 import { z } from 'astro:schema'
 import { Resend } from 'resend'
 import domains from 'disposable-email-domains'
+import type { TurnstileOutcome } from '@/types'
 
 import {
   AUTHOR_EMAIL,
@@ -12,11 +13,7 @@ import {
   TURNSTILE_SECRET
 } from 'astro:env/server'
 
-type TurnstileOutcome = {
-  success: boolean
-  'error-codes'?: string[]
-}
-
+// Contact form action
 export default defineAction({
   accept: 'form',
   input: z.object({

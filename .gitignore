@@ -1,6 +1,8 @@
+# resume
+resume/resume.md
+resume/dist/
 # build output
 dist/
-src/resume.md
 # generated types
 .astro/
 .vercel/
@@ -29,3 +31,7 @@ pnpm-debug.log*
 
 # Vercel
 .vercel
+
+# bun files
+# TODO: temporary until deno actually works for development)
+bun.lockb

@@ -4,6 +4,7 @@
 import { siteConfig } from '@/site-config'
 import type { SiteMeta } from '@/types'
 import { ClientRouter } from 'astro:transitions'
+import { Font } from 'astro:assets'
 import '@/styles/app.css'
 
 type Props = SiteMeta
@@ -93,42 +94,9 @@ const socialImageURL = new URL(
 />
 <link rel='manifest' href='/site.webmanifest' />
 
-{/* Preload main fonts */}
-<link
-  rel='preload'
-  href='/fonts/fira-sans-v17-latin-regular.woff2'
-  as='font'
-  type='font/woff2'
-  crossorigin
-/>
-<link
-  rel='preload'
-  href='/fonts/fira-sans-v17-latin-600.woff2'
-  as='font'
-  type='font/woff2'
-  crossorigin
-/>
-<link
-  rel='preload'
-  href='/fonts/fira-sans-v17-latin-700.woff2'
-  as='font'
-  type='font/woff2'
-  crossorigin
-/>
-<link
-  rel='preload'
-  href='/fonts/fira-code-v22-latin-500.woff2'
-  as='font'
-  type='font/woff2'
-  crossorigin
-/>
-<link
-  rel='preload'
-  href='/fonts/fira-code-v22-latin-600.woff2'
-  as='font'
-  type='font/woff2'
-  crossorigin
-/>
+{/* Preload fonts */}
+<Font cssVariable='--font-sans' preload />
+<Font cssVariable='--font-mono' preload />
 
 {/* Canonical URL */}
 <link rel='canonical' href={canonicalURL} />
@@ -193,7 +161,7 @@ const socialImageURL = new URL(
 }
 <meta content={Astro.generator} name='generator' />
 
-{/* Plausible analytics only in production */}
+{/* Umami analytics only in production */}
 {
   import.meta.env.PROD && (
     <script

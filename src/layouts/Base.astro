@@ -5,6 +5,7 @@ import Footer from '@/components/layout/footer/Footer.astro'
 import Header from '@/components/layout/header/Header.astro'
 import SkipLink from '@/components/layout/SkipLink.astro'
 import ThemeProvider from '@/components/ThemeProvider.astro'
+import { fade } from 'astro:transitions'
 
 import { siteConfig } from '@/site-config'
 
@@ -29,7 +30,7 @@ const {
     />
   </head>
 
-  <body class='flex justify-center bg-background'>
+  <body class='bg-background flex justify-center'>
     <div class='absolute -z-10 h-screen w-full overflow-hidden'>
       <div
         id='gradient'
@@ -41,10 +42,14 @@ const {
     <SkipLink />
     <!-- Main content element for skip link -->
     <div
-      class='flex min-h-screen w-full max-w-[55rem] flex-col px-8 pb-10 pt-7 font-sans text-[0.92rem] leading-relaxed sm:px-10 lg:px-10'
+      class='flex min-h-screen w-full max-w-[55rem] flex-col px-8 pt-7 pb-10 font-sans text-[0.92rem] leading-relaxed sm:px-10 lg:px-10'
     >
       <Header />
-      <main id='main' class='flex flex-col items-center'>
+      <main
+        transition:animate={fade({ duration: '100ms' })}
+        id='main'
+        class='flex flex-col items-center'
+      >
         <slot />
       </main>
       <Footer showViewCount={showViewCount} />

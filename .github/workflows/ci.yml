@@ -1,4 +1,4 @@
-name: ci
+name: portfolio
 
 on:
   push:
@@ -18,14 +18,11 @@ jobs:
       - name: Install Deno
         uses: denoland/setup-deno@v2
         with:
-          deno-version: v2.1.7
+          deno-version: v2.3.1
 
       - name: Sops Binary Installer
         uses: mdgreenwald/mozilla-sops-action@v1.6.0
         id: install
-
-      - name: Install pandoc
-        run: sudo apt-get install pandoc weasyprint
 
       - name: Cache Astro assets
         uses: actions/cache@v4
@@ -39,13 +36,13 @@ jobs:
       - name: Install dependencies
         run: deno install --frozen=true
 
-      - name: Decrypt variables
+      - name: Decrypt site variables
         run: |-
           export SOPS_AGE_KEY=${{ secrets.SOPS_AGE_KEY }}
           sops decrypt .enc.env > .env
 
       - name: Build app
-        run: make all
+        run: deno task build
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3

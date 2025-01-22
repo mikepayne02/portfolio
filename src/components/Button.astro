@@ -12,9 +12,9 @@ const {
 <Tag
   class:list={[
     className,
-    'flex flex-row items-center justify-center gap-x-1 border border-border bg-primary-foreground text-sm transition',
+    'bg-primary-foreground border-input flex flex-row items-center justify-center gap-x-1 border text-sm transition',
     text && 'px-2 py-1',
-    href && 'shadow-sm hover:bg-border/25 hover:shadow',
+    href && 'hover:bg-border/25 shadow-xs hover:shadow-sm',
     style === 'pill' ? 'rounded-full px-3' : 'rounded-lg'
   ]}
   href={href}

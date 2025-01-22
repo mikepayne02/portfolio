@@ -7,11 +7,11 @@ import Label from '@/components/Label.astro'
 import Section from '@/components/Section.astro'
 import SkillLayout from '@/components/SkillLayout.astro'
 import PostPreview from '@/components/blog/PostPreview.astro'
-import { getAllProjects, sortMDByDate } from '@/data/project'
+import { getAllProjects, sortMDByDate } from '@/utils/project'
 import BaseLayout from '@/layouts/Base.astro'
 import { Image } from 'astro:assets'
 import ProjectCard from '@/components/ProjectCard.astro'
-import MapSuspense from '@/components/MapSuspense'
+import { MapSuspense } from '@/components/MapSuspense'
 import Birthday from '@/components/Birthday.astro'
 
 import LineMdMapMarker from '~icons/line-md/map-marker'
@@ -127,7 +127,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
     </Section>
     <Section title='Education'>
       <div
-        class='border-border bg-primary-foreground from-secondary/50 hover:border-foreground/25 relative grid-cols-4 rounded-xl border bg-gradient-to-b px-5 py-3 shadow-sm transition hover:shadow md:mx-auto md:w-3/4'
+        class='border-input bg-primary-foreground from-secondary/50 hover:border-foreground/25 relative grid-cols-4 rounded-xl border bg-linear-to-b px-5 py-3 shadow-xs transition hover:shadow-sm md:mx-auto md:w-3/4'
       >
         <Image
           alt='University of Nebraska-Lincoln logo'
@@ -154,7 +154,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
     </Section>
     <Section title='Leadership'>
       <div
-        class='border-border bg-primary-foreground from-secondary/50 hover:border-foreground/25 relative grid-cols-4 rounded-xl border bg-gradient-to-b px-5 py-3 shadow-sm transition hover:shadow md:mx-auto md:w-3/4'
+        class='bg-primary-foreground border-input from-secondary/50 hover:border-foreground/25 relative grid-cols-4 rounded-xl border bg-linear-to-b px-5 py-3 shadow-xs transition hover:shadow-sm md:mx-auto md:w-3/4'
       >
         <Image
           src={DUBadge}

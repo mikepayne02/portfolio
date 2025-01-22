@@ -1,6 +1,6 @@
 // https://github.com/sdnts/dietcode/blob/914e3970f6a0f555113768b12db3229dd822e6f1/astro.config.ts
 
-import { access, copyFile, mkdir, readFile, writeFile } from 'fs/promises'
+import { access, copyFile, readFile, writeFile } from 'fs/promises'
 import { siteConfig } from '../site.config'
 import { getFormattedDate } from './date'
 import type { AstroIntegration } from 'astro'
@@ -146,16 +146,17 @@ const render = ({
   }
 }
 
+let codegenDir: URL
+
 export const og = (): AstroIntegration => ({
   name: 'opengraph',
   hooks: {
+    'astro:config:setup': ({ createCodegenDir }) => {
+      codegenDir = createCodegenDir()
+    },
     'astro:build:done': async ({ dir, pages, logger }) => {
       logger.info('Generating opengraph images')
       const startTime = performance.now()
-
-      // Create cache directory if it doesn't exist
-      const cachePath = 'node_modules/.astro/og'
-      await mkdir(cachePath).catch(() => { })
 
       // Load and initialize the resvg wasm module
       const index_bg = await readFile(
@@ -223,7 +224,7 @@ export const og = (): AstroIntegration => ({
 
         // Compute the cached file path and the corresponding path in the dist folder where it should be placed during build
         const digest = hash.digest('base64').substring(0, 10).replace('/', '_')
-        const cacheFilePath = join(cachePath, `${digest}.png`)
+        const cacheFilePath = new URL(`${digest}.png`, codegenDir)
         const outputFilePath = join(dir.pathname, pathname, 'og.png')
 
         const cacheHit = await access(cacheFilePath)
@@ -255,9 +256,10 @@ export const og = (): AstroIntegration => ({
         const itemEnd = performance.now()
         logger.info(
           `/${pathname}og.png \x1b[90m ` +
-          (cacheHit ? '(reused cache entry) ' : '') +
-          `(+${(itemEnd - itemStart).toFixed(0)}ms) (${index + 1
-          }/${filteredPages.length})\x1b[0m`
+            (cacheHit ? '(reused cache entry) ' : '') +
+            `(+${(itemEnd - itemStart).toFixed(0)}ms) (${
+              index + 1
+            }/${filteredPages.length})\x1b[0m`
         )
       }
 

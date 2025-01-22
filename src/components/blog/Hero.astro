@@ -24,7 +24,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
   data.coverImage && (
     <div
       transition:name={`media-image-${id}`}
-      class='aspect-h-9 aspect-w-16 mb-6'
+      class='aspect-w-16 aspect-h-9 mb-6 overflow-hidden'
     >
       <Image
         alt={data.coverImage.alt}

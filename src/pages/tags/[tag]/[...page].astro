@@ -4,7 +4,7 @@ import type { CollectionEntry } from 'astro:content'
 import Button from '@/components/Button.astro'
 import Pagination from '@/components/Paginator.astro'
 import PostPreview from '@/components/blog/PostPreview.astro'
-import { getAllProjects, getUniqueTags, sortMDByDate } from '@/data/project'
+import { getAllProjects, getUniqueTags, sortMDByDate } from '@/utils/project'
 import BaseLayout from '@/layouts/Base.astro'
 import CTA from '@/components/CTA.astro'
 import MdiArrowLeft from '~icons/mdi/arrow-left'
@@ -55,7 +55,7 @@ const paginationProps = {
 
 <BaseLayout {meta}>
   <div class='w-full'>
-    <Button text='Back' href='/projects' class='max-w-fit' data-astro-prefetch>
+    <Button text='Back' href='/projects' class='max-w-fit'>
       <MdiArrowLeft class='size-4' />
     </Button>
     <h1 class='mt-5 mb-6 flex items-end gap-x-2 text-2xl font-bold'>

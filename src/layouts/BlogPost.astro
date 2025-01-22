@@ -4,9 +4,9 @@ import TOC from '@/components/blog/TOC.astro'
 import Button from '@/components/Button.astro'
 import type { CollectionEntry } from 'astro:content'
 
-import WebMentions from '@/components/blog/webmentions/index.astro'
 import LightBox from '@/components/LightboxPortal.astro'
 import BaseLayout from './Base.astro'
+import Comments from '@/components/blog/Comments.astro'
 
 import MdiArrowLeft from '~icons/mdi/arrow-left'
 import MdiChevronUp from '~icons/mdi/chevron-up'
@@ -25,8 +25,9 @@ const {
   id
 } = project
 
-const socialImage = ogManual ? ogImage : `/projects/${id}-og.png`
+const socialImage = ogManual ? ogImage : `/projects/${id}/og.png`
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
+const targetUrl = new URL(Astro.url.pathname, Astro.site).href // Get current page URL
 ---
 
 <BaseLayout
@@ -35,32 +36,31 @@ const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
 >
   <LightBox />
   <div class='w-full'>
-    <Button
-      class='max-w-fit'
-      text='Back'
-      href='/projects'
-      style='button'
-      data-astro-prefetch
-    >
+    <Button class='mb-8 max-w-fit' text='Back' href='/projects' style='button'>
       <MdiArrowLeft class='size-4' />
     </Button>
-    <div class='mt-8 gap-x-10 lg:flex lg:items-start'>
+
+    <div class='gap-x-10 lg:flex lg:items-start'>
       {!!headings.length && <TOC headings={headings} />}
-      <article class='flex-grow break-words' data-pagefind-body>
+
+      <article class='grow break-words' data-pagefind-body>
         <div id='blog-hero'>
           <Hero {project} {minutesRead} />
         </div>
+
         <div
           class='prose prose-base prose-zinc text-muted-foreground dark:prose-invert prose-headings:font-medium prose-headings:text-foreground prose-headings:before:absolute prose-headings:before:-ms-4 prose-th:before:content-none mt-12'
         >
           <slot />
-          <WebMentions server:defer />
+
+          <Comments {targetUrl} />
         </div>
       </article>
     </div>
+
     <button
       aria-label='Back to Top'
-      class='border-border bg-primary-foreground hover:border-border/75 hover:bg-border/25 hover:text-foreground/75 fixed end-4 bottom-8 z-90 flex size-8 translate-y-28 items-center justify-center rounded-full border text-3xl opacity-0 transition duration-300 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12'
+      class='bg-primary-foreground hover:bg-border/25 hover:text-foreground/75 border-input fixed end-4 bottom-8 z-90 flex size-8 translate-y-28 items-center justify-center rounded-full border text-3xl opacity-0 shadow-md transition duration-300 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12'
       data-show='false'
       id='to-top-btn'
     >
@@ -85,5 +85,5 @@ const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
   })
 
   const observer = new IntersectionObserver(callback)
-  observer.observe(targetHeader)
+  if (targetHeader) observer.observe(targetHeader)
 </script>

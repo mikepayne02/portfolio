@@ -1,4 +1,4 @@
-import { getAllProjects } from '@/data/project'
+import { getAllProjects } from '@/utils/project'
 import { siteConfig } from '@/site-config'
 import rss from '@astrojs/rss'
 import type { APIRoute } from 'astro'

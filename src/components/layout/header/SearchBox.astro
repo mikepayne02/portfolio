@@ -12,7 +12,7 @@ const q = Astro.url.searchParams.get('q') ?? ''
     data-open-modal
     disabled
     aria-label='search'
-    class='relative size-8 rounded-md border border-border bg-primary-foreground shadow-sm transition-colors hover:bg-border/25 hover:text-foreground/75 hover:shadow'
+    class='bg-primary-foreground border-input hover:bg-border/25 relative size-8 rounded-md border shadow-xs transition-colors hover:text-current/75 hover:shadow-sm'
   >
     <div
       class='absolute start-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2'
@@ -24,7 +24,7 @@ const q = Astro.url.searchParams.get('q') ?? ''
   </button>
   <dialog
     aria-label='search'
-    class='h-2/3 max-h-fit w-full max-w-full border border-border bg-background shadow backdrop:backdrop-blur sm:mx-auto sm:mb-auto sm:mt-16 sm:max-h-[calc(100%-8rem)] sm:min-h-[15rem] sm:max-w-[48rem] sm:rounded-2xl'
+    class='bg-background border-input h-2/3 max-h-fit w-full max-w-full border shadow-sm backdrop:backdrop-blur-sm sm:mx-auto sm:mt-16 sm:mb-auto sm:max-h-[calc(100%-8rem)] sm:min-h-[15rem] sm:max-w-[48rem] sm:rounded-2xl'
   >
     <div class='dialog-frame flex flex-col gap-4 p-6 pt-12 sm:pt-6'>
       <Search
@@ -108,11 +108,11 @@ const q = Astro.url.searchParams.get('q') ?? ''
 <style>
   site-search {
     --pagefind-ui-font: inherit;
-    --pagefind-ui-primary: theme('colors.primary.foreground');
-    --pagefind-ui-text: theme('colors.foreground');
-    --pagefind-ui-background: theme('colors.background');
-    --pagefind-ui-border: theme('colors.border');
-    --pagefind-ui-tag: theme('colors.muted.foreground');
+    --pagefind-ui-primary: var(--color-primary-foreground);
+    --pagefind-ui-text: var(--color-foreground);
+    --pagefind-ui-background: var(--color-background);
+    --pagefind-ui-border: var(--color-border);
+    --pagefind-ui-tag: var(--color-primary-foreground);
     --pagefind-ui-border-width: 1px;
     --pagefind-ui-border-radius: 1rem;
   }

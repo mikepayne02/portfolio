@@ -1,0 +1,40 @@
+name: resume
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-sync-resume:
+    name: Generate and Sync Resume
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sops Binary Installer
+        uses: mdgreenwald/mozilla-sops-action@v1.6.0
+        id: install
+
+      - name: Install pandoc
+        run: sudo apt-get install pandoc weasyprint
+
+      - name: Decrypt resume source
+        run: |-
+          export SOPS_AGE_KEY=${{ secrets.SOPS_AGE_KEY }}
+          sops decrypt resume/resume.enc.md > resume/resume.md
+
+      - name: Build resume
+        run: make resume # Assuming 'make resume' builds the resume
+
+      - name: Sync resume to S3
+        uses: jakejarvis/s3-sync-action@master
+        env:
+          AWS_S3_ENDPOINT: 'https://${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com'
+          AWS_S3_BUCKET: ${{ secrets.R2_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET }}
+          SOURCE_DIR: 'resume/dist'
+          DEST_DIR: 'resume'

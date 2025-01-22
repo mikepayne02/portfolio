@@ -2,9 +2,9 @@ import { Suspense, lazy } from 'react'
 import { Icon } from '@iconify/react'
 const Map = lazy(() => import('./Map'))
 
-export default () => {
+export const MapSuspense = () => {
   return (
-    <div className='map mt-12 h-96 w-full overflow-hidden rounded-xl border border-border shadow-md'>
+    <div className='map border-input mt-12 h-96 w-full overflow-hidden rounded-xl border shadow-md'>
       <Suspense
         fallback={
           <div className='flex h-full w-full items-center justify-center'>

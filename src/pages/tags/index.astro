@@ -1,6 +1,6 @@
 ---
 import Button from '@/components/Button.astro'
-import { getAllProjects, getUniqueTagsWithCount } from '@/data/project'
+import { getAllProjects, getUniqueTagsWithCount } from '@/utils/project'
 import BaseLayout from '@/layouts/Base.astro'
 import CTA from '@/components/CTA.astro'
 
@@ -17,7 +17,7 @@ const meta = {
 
 <BaseLayout {meta}>
   <div class='w-full'>
-    <Button text='Back' href='/projects' class='max-w-fit' data-astro-prefetch>
+    <Button text='Back' href='/projects' class='max-w-fit'>
       <MdiArrowLeft class='size-4' />
     </Button>
 
@@ -33,7 +33,6 @@ const meta = {
                 class='hover:text-foreground/75 inline-block underline underline-offset-4'
                 href={`/tags/${tag}/`}
                 title={`View projects with the tag: ${tag}`}
-                data-astro-prefetch
               >
                 &#35;{tag}
               </a>

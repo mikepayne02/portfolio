@@ -5,11 +5,11 @@ import LineMdMoon from '~icons/line-md/moon'
 
 <theme-toggle transition:persist='theme'>
   <button
-    class='relative size-8 rounded-md border border-border bg-primary-foreground shadow-sm transition-colors hover:bg-border/25 hover:text-foreground/75 hover:shadow'
+    class='bg-primary-foreground border-input hover:bg-border/25 hover:text-foreground/75 relative size-8 cursor-pointer rounded-md border shadow-xs transition-colors hover:shadow-sm'
   >
     <span class='sr-only'>Dark Theme</span>
     <div
-      class='absolute start-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 rotate-0 scale-100 opacity-100 transition-opacity transition-transform dark:rotate-180 dark:scale-0 dark:opacity-0'
+      class='absolute start-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 scale-100 rotate-0 opacity-100 transition-opacity transition-transform dark:scale-0 dark:rotate-180 dark:opacity-0'
       id=''
     >
       <LineMdSunnyOutline
@@ -17,7 +17,7 @@ import LineMdMoon from '~icons/line-md/moon'
       />
     </div>
     <div
-      class='absolute start-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 rotate-180 scale-0 opacity-0 transition-opacity transition-transform dark:rotate-0 dark:scale-100 dark:opacity-100'
+      class='absolute start-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 scale-0 rotate-180 opacity-0 transition-opacity transition-transform dark:scale-100 dark:rotate-0 dark:opacity-100'
     >
       <LineMdMoon
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}

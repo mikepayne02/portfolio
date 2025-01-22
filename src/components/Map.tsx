@@ -29,6 +29,7 @@ function getStyle(theme: string): string {
 export default (props: MapProps) => {
   const mapContainer = useRef(null)
   const map = useRef<maplibregl.Map | null>(null)
+  const animationFrameId = useRef<number | null>(null)
 
   useEffect(() => {
     if (map.current) return
@@ -51,12 +52,14 @@ export default (props: MapProps) => {
       // Divide timestamp by 100 to slow rotation to ~10 degrees / sec
       map.current?.rotateTo((timestamp / 120) % 360, { animate: false })
       // Request the next frame of the animation.
-      requestAnimationFrame(rotateCamera)
+      animationFrameId.current = requestAnimationFrame(rotateCamera)
     }
 
-    document.addEventListener('theme-change', (e) => {
+    const handleThemeChange = (e: Event) => {
       map.current?.setStyle(getStyle((e as CustomEvent).detail.theme))
-    })
+    }
+
+    document.addEventListener('theme-change', handleThemeChange)
 
     map.current.on('load', () => {
       const arcData = JSON.parse(window.atob(MAP_DATA)) as Arc[]
@@ -90,13 +93,26 @@ export default (props: MapProps) => {
         layers: [layer]
       })
 
-      // @ts-ignore
       map.current?.addControl(overlay)
 
       // Start the animation.
       rotateCamera(0)
     })
+
+    // Cleanup function
+    return () => {
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current)
+      }
+      document.removeEventListener('theme-change', handleThemeChange)
+      if (map.current) {
+        map.current.remove()
+        map.current = null
+      }
+    }
   })
 
-  return <div ref={mapContainer} className='relative h-full w-full' />
+  return (
+    <div ref={mapContainer} className='border-input relative h-full w-full' />
+  )
 }
